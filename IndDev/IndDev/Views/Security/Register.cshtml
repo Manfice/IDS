@@ -1,0 +1,113 @@
+﻿@model IndDev.Auth.Model.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_LayoutSFoot.cshtml";
+}
+
+@if (TempData["secureMessage"] != null)
+{
+    <div class="alert alert-danger">
+        <h4>@TempData["secureMessage"]</h4>
+    </div>
+}
+
+<div class="loginForm">
+    <div class="logForm">
+        <h1>Регистрация нового пользователя.</h1>
+        @using (Html.BeginForm("Register","Security"))
+        {
+            @Html.AntiForgeryToken()
+
+            @Html.LabelFor(model => model.UserName)<br/>
+            @Html.ValidationMessageFor(model => model.UserName)
+            @Html.TextBoxFor(model => model.UserName, new {placeholder="ООО \"ХХХХХХХХХХ\""})
+            
+            @Html.LabelFor(model => model.Region)<br />
+            @Html.ValidationMessageFor(model => model.Region)
+            @Html.TextBoxFor(model => model.Region, new {placeholder="Белгородская обл. г. Шебекино"})
+
+            @Html.LabelFor(model => model.Email)<br />
+            @Html.ValidationMessageFor(model => model.Email)
+            @Html.TextBoxFor(model => model.Email, new {placeholder="example@email.net"})
+
+            @Html.LabelFor(model => model.Phone)<br />
+            @Html.ValidationMessageFor(model => model.Phone)
+            @Html.TextBoxFor(model => model.Phone, new {placeholder="+7-900-888-99-99"})
+
+            @Html.LabelFor(model => model.Password)<br />
+            @Html.ValidationMessageFor(model => model.Password)
+            @Html.PasswordFor(model => model.Password)
+
+            @Html.LabelFor(model => model.ConfirmPassword)<br />
+            @Html.ValidationMessageFor(model => model.ConfirmPassword)
+            @Html.PasswordFor(model => model.ConfirmPassword)
+
+            <input type="submit" value="ОТПРАВИТЬ"/>
+        }
+    </div>
+</div>
+@*<h2>Регистрация нового пользователя.</h2>
+@using (Html.BeginForm("Register", "Security", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <hr />
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.UserName, new {@class = "col-md-2 control-label"})
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.UserName, new {@class = "form-control", placeholder="Иванов Петр или (ООО \"СуперСвязь\")"})
+            @Html.ValidationMessageFor(m => m.UserName)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Email, new {@class = "col-md-2 control-label"})
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Email, new {@class = "form-control", placeholder = "example@email.ru"})
+            @Html.ValidationMessageFor(m => m.Email)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Password, new {@class = "col-md-2 control-label"})
+        <div class="col-md-10">
+            @Html.PasswordFor(m => m.Password, new {@class = "form-control"})
+            @Html.ValidationMessageFor(m => m.Password)
+        </div>
+    </div>
+    
+    <div class="form-group">
+        @Html.LabelFor(m => m.ConfirmPassword, new {@class = "col-md-2 control-label"})
+        <div class="col-md-10">
+            @Html.PasswordFor(m => m.ConfirmPassword, new {@class = "form-control"})
+            @Html.ValidationMessageFor(m=>m.ConfirmPassword)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Region, new {@class = "col-md-2 control-label"})
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Region, new {@class = "form-control", placeholder="г. Ставрополь, Ставропольский край"})
+            @Html.ValidationMessageFor(m=>m.Region)
+        </div>
+    </div>
+    
+    <div class="form-group">
+        @Html.LabelFor(m => m.Phone, new {@class = "col-md-2 control-label"})
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Phone, new {@class = "form-control", placeholder="+70001112233"})
+            @Html.ValidationMessageFor(m=>m.Phone)
+        </div>
+    </div>
+
+   <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-default" value="Зарегистрировать" />
+        </div>
+    </div>
+}*@
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

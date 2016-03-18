@@ -1,0 +1,22 @@
+﻿@model IndDev.Domain.Entity.News
+
+<hr/>
+<div id="Title" class="container">
+    <div class="row">
+        <div class="col-md-2">
+            <img src="~/Content/images/man.png" alt="#" class="glyf_news"/>
+        </div>
+        <div class="col-md-8">
+            <h3 class="title_news">@Model.Title</h3>
+            <p>@Model.NewsTime<span> &raquo; @Model.Category</span></p>
+        </div>
+        <div class="col-md-2">
+            <a href="@Model.Source" class="btn btn-info pull-right" target="_blank">Источник</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            @Html.Raw(Model.FullNewsBody)
+        </div>
+    </div>
+</div>

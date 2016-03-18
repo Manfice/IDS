@@ -1,0 +1,33 @@
+﻿<div class="categorys">
+    <table class="table table-hover table-striped table-responsive">
+        <thead>
+        <tr>
+            <td>Код</td>
+            <td>Имя</td>
+            <td>Описание</td>
+            <td>Картинка</td>
+            <td>Приоритет</td>
+            <td>Действия</td>
+        </tr>
+        </thead>
+        <tbody id="tbCat">
+        @Html.Action("CategoriesList")
+        </tbody>
+        <tfoot>
+    @using (Ajax.BeginForm("AddProdCat", "Admin", new AjaxOptions {HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "tbCat"}, new {enctype = "multipart/form-data"}))
+    {
+        @Html.AntiForgeryToken()
+        <tr>
+            <td>Новая</td>
+            <td><input name="title" type="text" /></td>
+            <td><textarea name="descr" type="text" maxlength="120" rows="3"></textarea></td>
+            <td><input id="photo" name="photo" type="file" /></td>
+            <td><input name="priority" type="number" value="999" max="999" min="1" /></td>
+            <td><input type="submit" value="Добавить" /></td>
+        </tr>
+    }
+        
+        </tfoot>
+    </table>
+</div>
+

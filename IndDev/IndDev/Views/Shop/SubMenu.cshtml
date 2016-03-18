@@ -1,0 +1,21 @@
+﻿@model IEnumerable<IndDev.Domain.Entity.Menu.Menu>
+
+@if (Model.Any())
+{
+    <ul class="subMenuItem">
+        @foreach (var item in Model)
+        {
+            <li>
+                @{if (@item.HasChild)
+                    {<a><i class="fa fa-arrow-circle-o-left"></i>@item.Title</a>}
+                    else
+                    {
+                        @Html.ActionLink(@item.Title, "Index")
+                    }
+                }
+                @Html.Action("SubMenu", new { id = item.Id.ToString() })
+            </li>
+        }
+    </ul>
+  
+}

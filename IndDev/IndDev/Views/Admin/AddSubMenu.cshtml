@@ -1,0 +1,14 @@
+﻿@model IndDev.Domain.Entity.Menu.Menu
+
+<div id="addSubMenu" class="pull-right">
+    <h1>Выбрана категория: @Model.Title</h1>
+    @using (Html.BeginForm("AddMenuItem", "Admin"))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(menu => menu.Id)
+        <label>Название подкатегории</label>
+        <input type="text" name="title"/>
+
+        <input type="submit" value="Сохранить"/>
+    }
+</div>

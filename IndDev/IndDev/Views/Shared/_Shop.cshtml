@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="~/favicon.png">
+    <link href="http://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700,800,900" rel="stylesheet" type="text/css">
+    <title>@ViewBag.Title - Industrial Development</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/media")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+<div class="navbar navbar-fixed-top myNav">
+    <div class="navbar-header">
+        <div>
+            <img src="~/Content/images/logoTopWhite.png"/>
+        </div>
+    </div>
+</div>
+<div>
+    @RenderBody()
+</div>
+
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@RenderSection("scripts", required: false)
+</body>
+</html>

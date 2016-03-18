@@ -1,0 +1,17 @@
+﻿using System.Collections.Generic;
+using IndDev.Auth.Logic;
+using IndDev.Auth.Model;
+using IndDev.Domain.Entity.Auth;
+
+namespace IndDev.Domain.Abstract
+{
+    public interface ISecureRepository
+    {
+        IEnumerable<User> Users { get; }
+        User GetUser(string email);
+        UsrRoles GetRoleForUser(string role);
+        ValidationInfo Register(RegisterViewModel reg);
+        ValidationInfo Login(LoginViewModel log);
+        User GetUserById(int id);
+    }
+}

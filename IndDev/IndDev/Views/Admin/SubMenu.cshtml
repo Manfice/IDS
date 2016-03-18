@@ -1,0 +1,28 @@
+﻿@model IEnumerable<IndDev.Domain.Entity.Menu.Menu>
+
+@if (Model.Any())
+{
+    <ul class="subMenuItem">
+        @foreach (var item in Model)
+        {
+            <li>
+                @{if (@item.HasChild)
+                    {
+                        @Html.ActionLink("-", "RemoveSubMenu", new { parent = item.Id }, new { @class = "btn btn-warning btn-sm" })
+                        <a>@item.Title <i class="fa fa-arrow-right"></i></a>
+                        @Ajax.ActionLink("+", "AddSubMenu", new { parent = item.Id }, new AjaxOptions { HttpMethod = "post", UpdateTargetId = "addSubMenu", InsertionMode = InsertionMode.Replace }, new { @class = "btn btn-success btn-sm" })
+                    }
+                    else
+                    {
+                        @Ajax.ActionLink("-", "RemoveSubMenu", new { id = item.Id }, new AjaxOptions { HttpMethod = "post", UpdateTargetId = "addSubMenu", InsertionMode = InsertionMode.Replace }, new { @class = "btn btn-warning btn-sm" })
+                        @Html.ActionLink(@item.Title, "Products")
+                        @Ajax.ActionLink("+", "AddSubMenu", new { parent = item.Id }, new AjaxOptions { HttpMethod = "post", UpdateTargetId = "addSubMenu", InsertionMode = InsertionMode.Replace }, new { @class = "btn btn-success btn-sm" })
+                    }
+                                    }
+                @Html.Action("SubMenu", new { id = item.Id})
+            </li>
+        }
+    </ul>
+
+}
+

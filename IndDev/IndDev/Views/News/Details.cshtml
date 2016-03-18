@@ -1,0 +1,28 @@
+﻿@model IndDev.Models.NewsViewModel
+
+@{
+    ViewBag.Title = "Новости";
+    Layout = "~/Views/Shared/_LayoutSFoot.cshtml";
+}
+
+
+<div id="Title" class="container margin-top-65px">
+    <div class="row">
+        <div class="col-md-2 hidden-sm hidden-xs">
+            <img src="~/Content/images/man.png" alt="#" class="glyf_news"/>
+        </div>
+        <div class="col-md-8">
+            <h3 class="title_news">@Model.CurrentNews.Title</h3>
+            <p>@Model.CurrentNews.NewsTime<span> &raquo; @Model.Category</span></p>
+        </div>
+        <div class="col-md-2">
+            <a href="@Model.CurrentNews.Source" class="btn btn-info pull-right" target="_blank">Источник</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            @Html.Raw(Model.CurrentNews.FullNewsBody)
+        </div>
+    </div>
+    <a class="btn btn-success" href="@Model.ReturnUrl">&laquo; Назад</a>
+</div>

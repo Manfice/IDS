@@ -1,0 +1,8 @@
+﻿@model IEnumerable<IndDev.Domain.Context.Curency>
+
+<ul class="vals">
+    @foreach (var item in Model)
+    {
+        <li>@item.Stitle: @item.CurValue.ToString("C")</li>
+    }
+</ul>

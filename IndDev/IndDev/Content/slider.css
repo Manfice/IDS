@@ -1,0 +1,308 @@
+﻿.slider {
+    position: relative;
+    height: 640px;
+}
+#imges img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    visibility: hidden;
+    -webkit-transition: 1s;
+    -moz-transition: 1s;
+    -ms-transition: 1s;
+    -o-transition: 1s;
+    transition: 1s;
+}
+
+#Snav {
+    display: block;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+#SnavUp {
+    display: block;
+    width: 100%;
+    height: 10%;
+}
+.showed {
+    position: absolute;
+    display: block;
+    color: whitesmoke;
+    background-color: #007acb;
+    background-color: rgba(0, 122, 203, 0.75);
+    padding: 1%;
+    top: 1%;
+    left: 2%;
+    -webkit-transition: 1s;
+    -moz-transition: 1s;
+    -ms-transition: 1s;
+    -o-transition: 1s;
+    transition: 1s;
+}
+
+#NavDots {
+    position: absolute;
+    right: 1%;
+    top: 1%;
+    display: block;
+    width: 25%;
+    height: 10%;
+    margin-right: 2%;
+    margin-top: 2%;
+}
+#NavDots ul {
+    margin: 0;
+    float: right;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+#NavDots span {
+    display: block;
+}
+#NavDots li {
+    cursor: pointer;
+    display: block;
+    width: 10%;
+    height: 100%;
+    margin: 0 5% 0 5%;
+    float: left;
+    text-align: center;
+}
+#NavDots li:hover {
+    color: red;
+}
+.activeDot {
+    color: yellow;
+    font-size: 150%;
+}
+.activeDot:hover {
+    color: whitesmoke;
+}
+#SnavMiddle {
+    display: block;
+    width: 100%;
+    height: 15%;
+    margin-top: 20%;
+}
+#SnavMiddle span {
+    font-size: 300%;
+    color: lightslategray;
+}
+#Sright {
+    float: right;
+    cursor: pointer;
+}
+#Sleft {
+    cursor: pointer;
+}
+#SnavBottom {
+    display: block;
+    position: absolute;
+    width: 100%;
+    background-color: #626262;
+    background-color: rgba(255, 217, 217, 0.6);
+    bottom: 0;
+    left: 0;
+}
+#SnavBottom:hover {
+    background-color: #626262;
+    color: whitesmoke;
+}
+.descr-content {
+    padding: 0 1% 0 1%;
+}
+.descr-content h2 p h3{
+    color: #000000;
+    font-weight: bold;
+    visibility: hidden;
+}
+.descr-content p {
+    text-align: justify;
+}
+.price {
+    float: right;
+}
+/*Effects
+.slide-view {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    position: absolute;
+    text-align: center;
+    cursor: default;
+    left: 0;
+    top: 0;
+}
+.slide-view .slide-mask, .slide-view .slide-content {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    left: 0
+}
+.slide-view img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    visibility: visible;
+}
+.slide-view h2 {
+    font-family: "RobotoBold";
+    text-transform: uppercase;
+    color: #000;
+    text-align: center;
+    position: relative;
+    font-size: 200%;
+    padding: 3%;
+    background: #ffffff;
+    background: rgba(255, 255, 255, 0.6);
+    margin: 8% 0 0 0
+}
+
+.slide-view p {
+    font-family: "RobotoLight";
+    font-size: 150%;
+    position: relative;
+    color: #fff;
+    background: #000000;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 3% 5%;
+    text-align: center
+}
+
+.slide-view a.slide-info {
+    display: inline-block;
+    text-decoration: none;
+    padding: 7px 14px;
+    background: #000;
+    color: #fff;
+    text-transform: uppercase;
+    -webkit-box-shadow: 0 0 1px #000;
+    -ms-box-shadow: 0 0 1px #000;
+    box-shadow: 0 0 1px #000;
+    z-index: 1000;
+}
+
+.slide-view a.slide-info:hover {
+    -webkit-box-shadow: 0 0 5px #000;
+    -ms-box-shadow: 0 0 5px #000;
+    box-shadow: 0 0 5px #000
+}
+
+/*Mask
+.view-first img {
+    -webkit-transition: all 0.2s linear;
+    -moz-transition: all 0.2s linear;
+    -ms-transition: all 0.2s linear;
+    -o-transition: all 0.2s linear;
+    transition: all 0.2s linear;
+}
+
+.view-first .slide-mask {
+    -ms-opacity: 0;
+    opacity: 0;
+    background-color: #0a8eeb;
+    background-color: rgba(10, 142, 235, 0.7);
+    -webkit-transition: all 0.4s ease-in-out;
+    -moz-transition: all 0.4s ease-in-out;
+    -ms-transition: all 0.4s ease-in-out;
+    -o-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
+}
+
+.view-first h2 {
+    -webkit-transform: translateY(-100px);
+    -moz-transform: translateY(-100px);
+    -ms-transform: translateY(-100px);
+    -o-transform: translateY(-100px);
+    transform: translateY(-100px);
+    -ms-opacity: 0;
+    opacity: 0;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -ms-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+}
+
+.view-first p {
+    -webkit-transform: translateY(100px);
+    -moz-transform: translateY(100px);
+    -ms-transform: translateY(100px);
+    -o-transform: translateY(100px);
+    transform: translateY(100px);
+    -ms-opacity: 0;
+    opacity: 0;
+    -webkit-transition: all 0.2s linear;
+    -moz-transition: all 0.2s linear;
+    -ms-transition: all 0.2s linear;
+    -o-transition: all 0.2s linear;
+    transition: all 0.2s linear;
+}
+
+.view-first a.slide-info {
+    -ms-opacity: 0;
+    opacity: 0;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -ms-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+}
+
+.view-first:hover img {
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    -o-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+.view-first:hover .slide-mask {
+    -ms-opacity: 1;
+    opacity: 1;
+}
+
+.view-first:hover h2,
+.view-first:hover p,
+.view-first:hover a.slide-info {
+    -ms-opacity: 1;
+    opacity: 1;
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+    transform: translateY(0);
+}
+
+.view-first:hover p {
+    -webkit-transition-delay: 0.1s;
+    -moz-transition-delay: 0.1s;
+    -ms-transition-delay: 0.1s;
+    -o-transition-delay: 0.1s;
+    transition-delay: 0.1s;
+}
+
+.view-first:hover a.slide-info {
+    -webkit-transition-delay: 0.2s;
+    -moz-transition-delay: 0.2s;
+    -ms-transition-delay: 0.2s;
+    -o-transition-delay: 0.2s;
+    transition-delay: 0.2s;
+}
+
+.slide-view a:hover {
+    background-color: #fff;
+    color: purple;
+}*/

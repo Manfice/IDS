@@ -1,0 +1,19 @@
+﻿@model IEnumerable<IndDev.Domain.Entity.News>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 style="margin: 1%">@Html.ActionLink("Последние новости", "Index", "News",null,new {@class="label"})</h3>
+    </div>
+    <div class="panel-body">
+        @{
+            foreach (var news in Model)
+            {
+                <h4>@news.Title</h4>
+                <p>@news.ShortDescr</p>
+                @Html.ActionLink("подробнее","Details","News",new {news.Id, returnUrl=Request.Url.PathAndQuery}, new {@class="btn btn-info btn-sm"})
+                <p class="pull-right">@news.NewsTime.ToShortTimeString() | @news.NewsTime.ToShortDateString()</p>
+                <hr/>
+            }
+        }
+    </div>
+</div>

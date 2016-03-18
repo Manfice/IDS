@@ -1,0 +1,27 @@
+﻿@model IndDev.Domain.Entity.Auth.User
+@{
+    ViewBag.Title = "EditUser";
+    Layout = "~/Views/Shared/_LayoutSFoot.cshtml";
+}
+
+@if (TempData["valid"] != null)
+{
+    <div class="panel-success">
+        <h4>@TempData["valid"]</h4>
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-3 left-navigation">
+        @Html.Action("AdminNavigation")
+    </div>
+    <div  class="col-md-9">
+       @Html.Action("UserSummary", new {userId=Model.Id})
+        @if (User.IsInRole("A"))
+        {
+            <hr/>
+           @Html.Action("ChangeUser", new {id=Model.Id})
+        }
+    </div>
+</div>
+

@@ -1,0 +1,36 @@
+﻿@model IEnumerable<IndDev.Domain.Entity.Auth.User>
+
+<div>
+    <table class="table table-responsive table-striped">
+        <thead class="thead-st">
+        <tr>
+            <td>Код:</td>
+            <td>Имя:</td>
+            <td>Почта:</td>
+            <td>Телефон:</td>
+            <td>Регион:</td>
+            <td>Роль:</td>
+            <td>Действия:</td>
+        </tr>
+        </thead>
+        <tbody>
+        @{
+            foreach (var user in Model)
+            {
+                <tr>
+                    <td>@user.Id</td>
+                    <td>@user.Name</td>
+                    <td>@user.EMail</td>
+                    <td>@user.Phone</td>
+                    <td>@user.Region</td>
+                    <td>@user.UsrRoles.Descr</td>
+                    <td>
+                       @Html.ActionLink("Подробнее","EditUser",new {id=user.Id}, new {@class="btn btn-info btn-sm"})
+
+                    </td>
+                </tr>
+            }
+        }
+        </tbody>
+    </table>
+</div>

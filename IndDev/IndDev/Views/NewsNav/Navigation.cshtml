@@ -1,0 +1,12 @@
+﻿@model IndDev.Models.CatViewModel
+
+@Html.ActionLink("Все новости","Index","News", null, new {@class = "btn btn-block btn-default" + (Model.SelectedCategory==null ? " btn-primary" : "") } )
+
+@{ 
+    foreach (var items in Model.Categories)
+    {
+        @Html.RouteLink(items,
+       new {controller="News", action="Index", category = items, page=1},
+       new { @class = "btn btn-block btn-default" + (items == Model.SelectedCategory ? " btn-primary":"") })
+    }
+}

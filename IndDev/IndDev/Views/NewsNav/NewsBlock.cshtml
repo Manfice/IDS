@@ -1,0 +1,56 @@
+﻿@model IEnumerable<IndDev.Domain.Entity.News>
+    @{ var i = 0;}
+
+<div class="container">
+    <div class="about">
+        <div class="row">
+            <div class="col-md-12">
+                <h3>НОВОСТИ</h3>
+                <span></span>
+                <p>
+                    Компания Industrial Development динамично развивающийся дистрибьютор телекоммуникационного оборудования.
+                    Мы постоянно следим за рынком телекоммуникаций и выкладываем самые интересные события в нашу новостную ленту.
+
+                </p>
+            </div>
+        </div>
+    </div>
+
+    @foreach (var item in Model)
+    {
+        if (i%2 == 0)
+        {
+            <div class="blog-bottom">
+                <div class="blog-left">
+                    <img src="@Url.Action("GetImage", "NewsNav", new {id = item.Id})" alt=""/>
+                </div>
+                <span class="circle"></span>
+                <div class="blog-right">
+                    <h6>@item.NewsTime.Date.ToString("D")</h6>
+                    <h4>@item.Title</h4>
+                    <p>@item.ShortDescr</p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        }
+        else
+        {
+            <div class="blog-bottom">
+                <div class="blog-left">
+                    <h6>@item.NewsTime.Date.ToString("D")</h6>
+                    <h4>@item.Title</h4>
+                    <p>@item.ShortDescr</p>
+                </div>
+                <span class="circle"></span>
+                <div class="blog-right">
+                    <img src="@Url.Action("GetImage", "NewsNav", new {id = item.Id})" alt="" />
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        }
+        i++;
+    }
+
+
+    <div class="post"><a href="@Url.Action("Index","News")">Все новости</a></div>
+</div>

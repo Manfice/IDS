@@ -1,0 +1,19 @@
+﻿@model IndDev.Domain.Entity.Auth.User
+
+<nav class="admin-nav">
+    
+<div box>
+    <div class="box-title">
+        <h3>AdminPage</h3>
+    </div>
+    <div class="box-content">
+        <ul>
+            <li><a class="active" href="#">Мой профиль</a></li>
+            <li>@Html.ActionLink("Пользователи", "UserList")</li>
+            <li>@Html.ActionLink("Товары","Products")</li>
+            <li><a href="#">Заказы</a></li>
+            <li><a href="#">Сообщения</a></li>
+        </ul>
+    </div>
+</div>
+</nav>

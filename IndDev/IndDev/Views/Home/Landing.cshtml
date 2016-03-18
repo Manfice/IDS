@@ -1,0 +1,565 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_LayoutSFoot.cshtml";
+    ViewBag.Title = "Welcome";
+    var origin = DateTime.Now.Year - 2010;
+}
+@*
+    <!-- start header -->
+    <div class="header_bg">
+        <!-----start-conatiner---->
+        <div class="container">
+            <!-----start-header---->
+            <div class="header">
+                <!----start-top-nav---->
+                <header id="topnav">
+                    <nav>
+                        <ul>
+                            <li class=""><a href="#">Главная</a></li>
+                            <li><a href="#about" class="scroll">О компании</a></li>
+                            <li><a class="scroll" href="#shop">Каталог</a></li>
+                            <li><a href="#team" class="scroll">Отзывы</a></li>
+                            <li><a href="#blog" class="scroll">Новости</a></li>
+                            <li class="last"><a href="#contact" class="scroll">Контакты</a></li>
+                        </ul>
+                        <div class="clearfix"> </div>
+                    </nav>
+                    <h1><a href="#"><img class="logo" src="~/Content/images/id_logo.svg" alt=""/></a>
+                    </h1>
+                    <a href="#" id="navbtn">Nav Menu</a>
+                    <div class="clearfix"> </div>
+                </header>
+                <!----start-top-nav---->
+            </div>
+            <!-----start-header---->
+        </div>
+    </div>
+ *@
+
+
+<!----start-images-slider---->
+<div class="images-slider">
+    <!-- start slider -->
+    <div id="fwslider">
+        <div class="slider_container">
+            <div class="slide">
+                <!-- Slide image -->
+                <img src="~/Content/images/fiber_optic.jpg" alt=""/>
+                <div class="fon"></div>
+                <!-- /Slide image -->
+                <!-- Texts container -->
+                <div class="slide_content">
+                    <div class="slide_content_wrap">
+                        <!-- Text description -->
+                        <p class="description">Активные и пасивные оптические компоненты.</p>
+                        <!-- /Text description -->
+                        <!-- Text title -->
+                        <h4 class="title">
+                            ОПТИЧЕСКИЕ <span>ПАТЧ-КОРДЫ</span>, ПИГ-ТЭИЛЫ<br>
+                            КАБЕЛЬ ДЛЯ ОПТИЧЕСКИХ <span>ЛИНИЙ СВЯЗИ</span><br/>
+                            <span>ОБОРУДОВАНИЕ</span> И КОМПОНЕНТЫ G-PON
+                        </h4>
+                        <!-- /Text title -->
+                        <p class="description"><a href="@Url.Action("Index","Shop")">Подробнее <img src="~/Content/images/mairala/download.png" alt=""/></a>
+                        </p>
+                        <div class="slide-btns description">
+                        </div>
+                    </div>
+                </div>
+                <!-- /Texts container -->
+            </div>
+            <!-- /Duplicate to create more slides -->
+            <div class="slide">
+                <img src="~/Content/images/vols.jpg" alt=""/>
+                <div class="fon"></div>
+                <div class="slide_content">
+                    <div class="slide_content_wrap">
+                        <!-- Text description -->
+                        <p class="description">Арматура для воздушных оптических линий связи</p>
+                        <!-- /Text description -->
+                        <!-- Text title -->
+                        <h4 class="title">
+                            ПОДВЕСНАЯ АРМАТУРА, <span>МУФТЫ</span>, ЗАЖИМЫ<br>
+                            <span>ИНСТРУМЕНТ</span>, ОБОРУДОВАНИЕ ДЛЯ МОНТАЖА.
+                            ПРОИЗВОДСТВО <span>РОССИИ</span>, КИТАЯ.
+                        </h4>
+                        <!-- /Text title -->
+                        <p class="description"><a href="#">Подробнее <img src="~/Content/images/mairala/download.png" alt=""/></a>
+                        </p>
+                        <div class="slide-btns description">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="~/Content/images/SIP.jpg" alt=""/>
+                <div class="fon"></div>
+                <div class="slide_content">
+                    <div class="slide_content_wrap">
+                        <!-- Text description -->
+                        <p class="description">Арматура для СИП</p>
+                        <!-- /Text description -->
+                        <!-- Text title -->
+                        <h4 class="title">
+                            ОБОРУДОВАНИЕ  И <span>МАТЕРИАЛЫ</span>, ДЛЯ <span>СИП</span><br>
+                            ЛИНЕЙНАЯ, <span>КОНТАКТНАЯ</span>, СОЕДИНИТЕЛЬНАЯ <span>АРМАТУРА</span>
+                            НАТЯЖНАЯ, <span>ЗАЩИТНАЯ</span>, СПИРАЛЬНАЯ, СЦЕПНАЯ <span>АРМАТУРА</span>. УЗЛЫ КРЕПЛЕНИЯ
+                        </h4>
+                        <!-- /Text title -->
+                        <p class="description"><a href="#">Подробнее <img src="~/Content/images/mairala/download.png" alt=""/></a>
+                        </p>
+                        <div class="slide-btns description">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--/slide -->
+            <div class="slide">
+                <img src="~/Content/images/twisted_pair.jpg" alt=""/>
+                <div class="fon"></div>
+                <div class="slide_content">
+                    <div class="slide_content_wrap">
+                        <!-- Text description -->
+                        <p class="description">Компоненты СКС</p>
+                        <!-- /Text description -->
+                        <!-- Text title -->
+                        <h4 class="title">
+                            ПАТЧ-ПАНЕЛИ, <span>ПАТЧ-КОРДЫ</span>, КОННЕКТОРЫ,<br>
+                            РОЗЕТКИ, КРОССОВОЕ ОБОРУДОВАНИЕ, <span>КАБЕЛЬ НА ОСНОВЕ</span>
+                            <span>ВИТЫХ ПАР</span>, РАСПРЕДЕЛИТЕЛЬНЫЕ БОКСЫ.
+                        </h4>
+                        <!-- /Text title -->
+                        <p class="description">
+                            <a href="#">Подробнее <img src="~/Content/images/mairala/download.png" alt="" /></a>
+                        </p>
+                        <div class="slide-btns description">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--/slide -->
+        </div>
+        <div class="timers"> </div>
+        <div class="slidePrev"><span> </span></div>
+        <div class="slideNext"><span> </span></div>
+    </div>
+    <!--/slider -->
+</div>
+
+<!-- portfolio -->
+<div class="portfilio" id="shop">
+    <div class="container">
+        <div class="about">
+            <div class="row  Protects">
+                <div class="col-md-12">
+                    <h3>НАШ КАТАЛОГ</h3>
+                    <span></span>
+                    <p>Предлагаем Вам ознакомиться с нашими предложениями в нашем каталоге. <br/>Для постоянных клиентов работает площадка B2B.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="port">
+        <ul>
+            <li>
+                <div class="view view-fourth">
+                    <img src="~/Content/images/products/twist-pair.jpg" alt=""/>
+                    <div class="mask">
+                        <div class="border">
+                            <h2>КАБЕЛИ НА ОСНОВЕ ВИТЫХ ПАР</h2>
+                            <span></span>
+                            <p class="a">NIKOLAN, NIKOMAX</p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="view view-fourth">
+                    <img src="~/Content/images/products/foc.jpg" alt=""/>
+                    <div class="mask">
+                        <div class="border">
+                            <h2>КРОССЫ ОПТИЧЕСКИЕ</h2>
+                            <span></span>
+                            <p class="a">НАСТЕННЫЕ, РЭКОВЫЕ</p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="view view-fourth">
+                    <img src="~/Content/images/products/plint.jpg" alt=""/>
+                    <div class="mask">
+                        <div class="border">
+                            <h2>ТЕЛЕФОНИЯ</h2>
+                            <span></span>
+                            <p class="a">КАБЕЛЬ, РОЗЕТКИ, ПЛИНТЫ, КРТ</p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="view view-fourth">
+                    <img src="~/Content/images/products/switch.jpg" alt=""/>
+                    <div class="mask">
+                        <div class="border">
+                            <h2>КОММУТАТОРЫ, SFP</h2>
+                            <span></span>
+                            <p class="a">GIGALINK</p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="port-text">
+        <h4>ВСЕ ЭТО И МНОГОЕ ДРУГОЕ ВЫ НАЙДЕТЕ В НАШЕМ КАТАЛОГЕ</h4>
+        <p>Вся продукция сертифицированна и протестирована.</p>
+        <p><a href="@Url.Action("Index","Shop")">В КАТАЛОГ<span> </span></a>
+        </p>
+    </div>
+    <div class="port">
+        <ul>
+            <li>
+                <div class="view view-fourth">
+                    <img src="~/Content/images/products/sip.jpg" alt=""/>
+                    <div class="mask">
+                        <div class="border">
+                            <h2>АРМАТУРА СИП</h2>
+                            <span></span>
+                            <p class="a">ПОДВЕСНАЯ, СПИРАЛЬНАЯ, ЗАЩИТНАЯ</p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="view view-fourth">
+                    <img src="~/Content/images/products/fiber.jpg" alt=""/>
+                    <div class="mask">
+                        <div class="border">
+                            <h2>КОМПОНЕНТЫ ДЛЯ ВОЛС, G-PON</h2>
+                            <span></span>
+                            <p class="a">СОБСТВЕННОЕ ПРОИЗВОДСТВО<br/>ОТ ЭКОНОМ ДО HIEGHT-END РЕШЕНИЙ
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="view view-fourth">
+                    <img src="~/Content/images/products/racks.jpg" alt=""/>
+                    <div class="mask">
+                        <div class="border">
+                            <h2>19" ШКАФЫ И СТОЙКИ</h2>
+                            <span></span>
+                            <p class="a">НАПОЛЬНЫЕ, НАСТЕННЫЕ, <br/> АНТИВАНДАЛЬНЫЕ</p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="view view-fourth">
+                    <img src="~/Content/images/products/fsm-80.jpg" alt=""/>
+                    <div class="mask">
+                        <div class="border">
+                            <h2>ОБОРУДОВАНИЕ И ИНСТРУМЕНТ <br/>ДЛЯ ВСЕХ ВИДОВ СИСТЕМ СВЯЗИ
+                            </h2>
+                            <span></span>
+                            <p class="a">FUJIKURA, REXANT</p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<!-- about -->
+<div class="about" id="about">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Industrial Development</h3>
+                <span> </span>
+                <p>Запомните, что не работодатель дает зарплату, он всего лишь распределяет деньги. Зарплату выдает клиент.</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="about-bottom">
+    <div class="about-left pull-left">
+        <h4>О КОМПАНИИ</h4>
+        <p>Industrial Development - поставщик оборудования связи. </p>
+        <p>Компания ООО «Научно-Производственное объединение Индастриал Дивелопмент» работает с 2010 года и предлагает вам рассмотреть наше предложение по сотрудничеству в области поставки антивандальных конструктивов 19» стандарта, телекоммуникационных шкафов, пассивного оборудования для телефонии, оптического волокна, оптических компонентов, медного кабеля. Основное направление деятельности компании «INDUSTRIAL DEVELOPMENT» это разработка, внедрение и поддержка высококачественных решений по оборудованию связи.</p>
+        <p><a href="@Url.Action("About")">ПОДРОБНЕЕ</a>
+        </p>
+    </div>
+    <div class="about-right pull-right">
+        <img src="~/Content/images/man_dc.png" alt=""/>
+    </div>
+    <div class="clearfix"></div>
+</div>
+<div class="blog" id="blog">
+    @Html.Action("NewsBlock","NewsNav")
+</div>
+<!-- service -->
+<div class="service text-center">
+    <div class="container">
+        <h3>НАШИ ПРЕИМУЩЕСТВА</h3>
+        <p>Компания Inductrial Development - мультибрэндовый дистрибьютор, основной задачей для нас, является поставка широкого спектра оборудования связи. <br/> Самым главным для нас является:</p>
+        <div class="service-bottom">
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="~/Content/images/mairala/contact.png" alt="" />
+                    <h4><a href="#">НАЛИЧИЕ ТОВАРОВ</a></h4>
+                    <p>У нас вы всегда найдете в наличии широкий ассортимент товаров. Взять экземпляры продукции на тестирование. Получить всю необходимую документацию.</p>
+                </div>
+                <div class="col-md-4">
+                    <img src="~/Content/images/mairala/flag.png" alt="" />
+                    <h4><a href="#">ЛУЧШАЯ ЦЕНА</a></h4>
+                    <p>Сотрудничая напрямую с производителями и импортерами, наша компания работает и предлагает цену от производителя (из первых рук), а в некоторых случаях еще и ниже. Сравните сами.</p>
+                </div>
+                <div class="col-md-4">
+                    <img src="~/Content/images/mairala/fl.png" alt="" />
+                    <h4><a href="#">ГАРАНТИЯ</a></h4>
+                    <p>Industrial Development - работает на рынке г. Ставрополя и края уже более @origin лет. Мы ценим свою репутацию и ваши интересы. Поэтому, мы гарантируем - с нами вам будет выгодно. </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- skills -->
+<div class="skills text-center">
+    <div class="container">
+        <h4>НАША КОМПАНИЯ В ЦИФРАХ</h4>
+        <p>Немного статистики:</p>
+        <div class="client">
+            <div class="pie-wrapper progress-45 style-2">
+                <span class="label">2,7<span class="smaller">К</span></span>
+                <div class="pie">
+                    <div class="left-side half-circle"></div>
+                    <div class="right-side half-circle"></div>
+                </div>
+                <div class="shadow"></div>
+                <h3>ТОВАРОВ В НАЛИЧИИ</h3>
+            </div>
+            <div class="pie-wrapper progress-75 style-2">
+                <span class="label">267<span class="smaller"></span></span>
+                <div class="pie">
+                    <div class="left-side half-circle"></div>
+                    <div class="right-side half-circle"></div>
+                </div>
+                <div class="shadow"></div>
+                <h3>ПОСТОЯННЫХ КЛИЕНТОВ</h3>
+            </div>
+            <div class="pie-wrapper progress-95 style-2">
+                <span class="label">95<span class="smaller">%</span></span>
+                <div class="pie">
+                    <div class="left-side half-circle"></div>
+                    <div class="right-side half-circle"></div>
+                </div>
+                <div class="shadow"></div>
+                <h3>ПОЛОЖИТЕЛЬНЫХ ОТЗЫВОВ</h3>
+            </div>
+            <div class="pie-wrapper progress-45 style-2">
+                <span class="label">45<span class="smaller">%</span></span>
+                <div class="pie">
+                    <div class="left-side half-circle"></div>
+                    <div class="right-side half-circle"></div>
+                </div>
+                <div class="shadow"></div>
+                <h3>ТОВАРОВ ПР-ВО РОССИИ</h3>
+            </div>
+            @*<div class="pie-wrapper progress-75 style-2">
+                <span class="label">75<span class="smaller">%</span></span>
+                <div class="pie">
+                    <div class="left-side half-circle"></div>
+                    <div class="right-side half-circle"></div>
+                </div>
+                <div class="shadow"></div>
+                <h3>КАКОЙ-НИБУДЬ ХРЕНИ</h3>
+            </div>*@
+        </div>
+    </div>
+</div>
+
+<div class="team" id="team">
+    <div class="container">
+        <div class="about">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3>НАШИ ПАРТНЕРЫ</h3>
+                    <span> </span>
+                    <p>Наша компания активно работает и поставляет оборудование операторам федерального уровня. Нам доверяют:</p>
+                </div>
+            </div>
+        </div>
+        <div class="team-member">
+            <ul>
+                <li>
+                    <div class="view1 view-fourth1">
+                        <img src="~/Content/images/mairala/rostelecom.png" alt="" />
+                        <div class="mask1">
+                            <div class="border1">
+                                <div class="social-icons-set">
+                                    <ul>
+                                        <li><a class="facebook" href="https://www.facebook.com/Rostelecom.Official/" target="_blank"> </a></li>
+                                        <li><a class="twitter" href="#"> </a></li>
+                                        <li><a class="vimeo" href="#"> </a></li>
+                                    </ul>
+                                    <div class="clear"> </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <P><a href="">РОСТЕЛЕКОМ<br><label></label></a></P>
+                </li>
+                <li>
+                    <div class="view1 view-fourth1">
+                        <img src="~/Content/images/mairala/fs.jpg" alt="" />
+                        <div class="mask1">
+                            <div class="border1">
+                                <div class="social-icons-set">
+                                    <ul>
+                                        <li><a class="glyphicon glyphicon-" href="#"> </a></li>
+                                        <li><a class="twitter" href="#"> </a></li>
+                                        <li><a class="vimeo" href="#"> </a></li>
+                                    </ul>
+                                    <div class="clear"> </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <P><a href="">ФОРМУЛА СВЯЗИ<br><label></label></a></P>
+                </li>
+                <li>
+                    <div class="view1 view-fourth1">
+                        <img src="~/Content/images/mairala/greenpoint.png" alt="" />
+                        <div class="mask1">
+                            <div class="border1">
+                                <div class="social-icons-set">
+                                    <ul>
+                                        <li><a class="facebook" href="#"> </a></li>
+                                        <li><a class="twitter" href="#"> </a></li>
+                                        <li><a class="vimeo" href="#"> </a></li>
+                                    </ul>
+                                    <div class="clear"> </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix">  </div>
+                    <P><a href="">ЗЕЛЕНАЯ ТОЧКА<br><label></label></a></P>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="slider">
+    <div id="da-slider1" class="da-slider">
+        <!-- da-slider -->
+        <div class="da-slide">
+            <h2>ГЕНРИ ФОРД</h2>
+            <p>Однажды Вам может показаться, что весь мир настроился против Вас. В такие моменты не легко, но стоит вспомнить, что самолет тоже взлетает против ветра.</p>
+        </div>
+        <div class="da-slide">
+            <h2>АЛЬБЕРТ ЭНШТЕЙН</h2>
+            <p>Существует огромный разрыв между тем, что человек собою представляет, и тем, что другие думают о нём или, по крайней мере, говорят вслух.</p>
+        </div>
+        <div class="da-slide">
+            <h2>БЕНДЖАМИН ФРАНКЛИН</h2>
+            <p>Всегда будь в войне со своими недостатками, в мире со своими соседями, и каждый новый год находи себя лучшим человеком.</p>
+        </div>
+        <div class="da-slide">
+            <h2>ВЛАДИМИР ПУТИН</h2>
+            <p>Добавлю от себя: тот, кто не понял своего прошлого, вынужден прожить его снова...Наше прошлое, суть послание о том, каким может стать будущее.</p>
+        </div>
+    </div><!-- da-slider -->
+</div>
+
+<!---start-contact---->
+<div class="contact s4" id="contact">
+    <div class="container">
+        <h3>ЗАДАТЬ ВОПРОС</h3>
+        <div class="row">
+            <div class="col-md-12">
+                @using (Html.BeginForm("SendMessage","Home",FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <input type="text" name="fio" class="textbox" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Имя';}">
+                    <input type="text" name="email" class="textbox" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}">
+                    <textarea value="Message" name="message" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Сообщение';}"></textarea>
+                    <input type="submit" value="ОТПРАВИТЬ">
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<!---End-contact---->
+<div class="footer-top">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <a href="#"><img src="~/Content/images/id_logo.svg" alt=""/></a>
+                <p>Поставка высококачественного оборудования связи.</p>
+                <p>Производство оптических компонентов, патч-кордов, пиг-тэилов. Низкие цены. Большой выбор.</p>
+            </div>
+            <div class="col-md-3">
+                <h4>СТАТЬИ</h4>
+                <div class="foot">
+                    <span>24 march 2014</span>
+                    <p><a href="#">Printing and typesetting industry</a>
+                    </p>
+                </div>
+                <div class="foot">
+                    <span>24 march 2014</span>
+                    <p><a href="#">Printing and typesetting industry</a>
+                    </p>
+                </div>
+                <div class="foot">
+                    <span>24 march 2014</span>
+                    <p><a href="#">Printing and typesetting industry</a>
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <h4>ОТЗЫВЫ</h4>
+                <div class="foot">
+                    <span>industry@info.com</span>
+                    <p><a href="#">Printing and typesetting industry</a>
+                    </p>
+                </div>
+                <div class="foot">
+                    <span>industry@info.com</span>
+                    <p><a href="#">Printing and typesetting industry</a>
+                    </p>
+                </div>
+                <div class="foot">
+                    <span>industry@info.com</span>
+                    <p><a href="#">Printing and typesetting industry</a>
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <h4 class="a">КОНТАКТЫ</h4>
+                <p class="a">Главный офис компании "Industrial Development" распологается в г. Ставрополе. Осуществляем доставку по всей территории РОССИИ.</p>
+                <address>
+                    <p class="b">355000, г. Ставрополь, </p>
+                    <p class="b">ул. Льва Толстого </p>
+                    <p class="b">Phone : +7 8652 99-19-13</p>
+                    <p class="b"><a href="@Url.Action("Contact")">Подробнее &gt;&gt;&gt;</a></p>
+                </address>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- scroll_top_btn -->
+<script type="text/javascript">
+		jQuery(document).ready(function($) {
+			$(".scroll").click(function(event){
+				event.preventDefault();
+				$('html,body').animate({scrollTop:$(this.hash).offset().top},1200);
+			});
+		});
+</script>

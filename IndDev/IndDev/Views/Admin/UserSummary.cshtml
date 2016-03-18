@@ -1,0 +1,41 @@
+﻿@model IndDev.Domain.Entity.Auth.User
+
+<div>
+    <table class="table table-striped table-responsive">
+        <thead class="thead-st">
+        <tr rowspan="2">
+            <td>Данные пользователя:</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td class="col-md-3">Имя пользователя:</td>
+            <td class="col-md-9">@Model.Name</td>
+        </tr>
+        <tr>
+            <td class="col-md-3">Адрес электронной почты:</td>
+            <td class="col-md-9">@Model.EMail</td>
+        </tr>
+        <tr>
+            <td class="col-md-3">Подтвержден ли e-mail:</td>
+            <td class="col-md-9">@Model.ConfirmEmail</td>
+        </tr>
+        <tr>
+            <td class="col-md-3">Контактный телефон:</td>
+            <td class="col-md-9">@Model.Phone</td>
+        </tr>
+        <tr>
+            <td class="col-md-3">Клиент пользователя:</td>
+            <td class="col-md-9">@Model.Customer.Title</td>
+        </tr>
+        <tr>
+            <td class="col-md-3">Пользователь заблокирован:</td>
+            <td class="col-md-9">@Model.Block</td>
+        </tr>
+        <tr>
+            <td class="col-md-3">Роль пользователя:</td>
+            <td class="col-md-9">@Model.UsrRoles.Descr</td>
+        </tbody>
+    </table>
+
+</div>

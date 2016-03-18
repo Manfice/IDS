@@ -1,0 +1,17 @@
+﻿    <ul class="nav nav-tabs" >
+        <li class=""><a href="#productList" data-toggle="tab">Товары</a></li>
+        <li class=""><a href="#menuList" data-toggle="tab">Меню</a></li>
+        <li class="active"><a href="#catList" data-toggle="tab">Категории</a></li>
+    </ul>
+<div class="tab-content">
+    <div class="tab-pane bordered" id="productList">
+        Loren Ipsum
+    </div>
+    <div class="tab-pane bordered" id="menuList">
+        @Html.Action("RootMenu")
+        @Html.Action("AddSubMenu", new {parent=0})
+    </div>
+    <div class="tab-pane active bordered" id="catList">
+        @Html.Action("Categories")
+    </div>
+</div>

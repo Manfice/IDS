@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="~/favicon.png">
+    <link href="http://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700,800,900" rel="stylesheet" type="text/css">
+    <title>@ViewBag.Title - Industrial Development</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/media")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body onload="Load()">
+    
+<div class="navbar navbar-inverse navbar-fixed-top navbar-blue logo">
+    <div class="container">
+        <div class="navbar-header logo">
+            <button type="button" class="navbar-toggle navbar-blue brn" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @Html.ActionLink("Industrial Development", "Landing", "Home", new {area = ""}, new {@class = "navbar-brand"})
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li>@Html.ActionLink("Главная", "Index", "Home")</li>
+                <li>@Html.ActionLink("Каталог", "Index", "Shop")</li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">О компании<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>@Html.ActionLink("Новости", "Index", "News")</li>
+                        <li>@Html.ActionLink("О нас", "About", "Home")</li>
+                        <li>@Html.ActionLink("Контакты", "Contact", "Home")</li>
+                    </ul>
+                </li>
+            </ul>
+            @(User.Identity.IsAuthenticated ? Html.Action("Login", "Home", new {id = User.Identity.Name}) : Html.Partial("_LoginPartial"))
+            @Html.Partial("_CurrencyPartial")
+        </div>
+    </div>
+</div>
+    
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+
+        <footer class="footcolor">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 contacts">
+                        <h3>Контакты:</h3>
+                        <p>Российская Федерация 355041,</p>
+                        <p>Ставропольский край, г. Ставрополь,</p>
+                        <p>ул. Л. Толстого, д.53</p>
+                        <hr/>
+                        <p>тел. +7 (8652) 99-05-82</p>
+                        <p>тел. +7 (8652) 99-05-83</p>
+                        <p>тел. +7 (8652) 99-05-84</p>
+                        <p>сот. +7 (988) 705-23-26</p>
+                        <p>сот. +7 (962) 011-74-46</p>
+                        <p>e-mail: ka.id@yandex.ru</p>
+                        <p>e-mail: inna-strelova@yandex.ru</p>
+                        <p>e-mail: alexander@id-racks.ru</p>
+                    </div>
+                    <div class="col-md-4 vendors">
+                        <h3>Вендоры:</h3>
+                        <hr/>
+                        <div class="col-md-6">
+                            <p>NetLan</p>
+                            <p>Nikomax</p>
+                            <p>Giglink</p>
+                            <p>TLK</p>
+                            <p>Zyxel</p>
+                            <p>D-Link</p>
+                            <p>Install-DV</p>
+                            <p>IPcom</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p>Cisco</p>
+                            <p>TP-Link</p>
+                            <p>Южкабель</p>
+                            <p>Белтелекабель</p>
+                            <p>Эмилинк</p>
+                            <p>Panasonic</p>
+                            <p>Telenko</p>
+                            <p>SNR</p>
+                        </div>
+                    </div>
+                </div>
+                <p>&copy; @DateTime.Now.Year - <a href="http://einstain.azurewebsites.net" target="_blank">"Einstein Studio Solutions"</a>
+                </p>
+            </div>
+        </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/slide")
+    @RenderSection("scripts", required: false)
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#reg").click(function() {
+            $("#user-view").toggle(50);
+        });
+    });
+</script>
+   
+</body>
+</html>

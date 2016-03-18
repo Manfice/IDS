@@ -1,0 +1,705 @@
+﻿@import url(https://fonts.googleapis.com/css?family=Roboto:400,900,700,500,300&subset=latin,cyrillic);
+a,a:focus, a:active {
+    outline: none;
+}
+.navbar-blue {
+    background-color: #00007c;
+}
+.brn {
+    border: none;
+}
+.logo {
+    font-family: "RobotoCondensedRegular";
+}
+.margin-top-65px {
+    margin-top: 25px;
+}
+.footcolor {
+    background-color: #1e1e1e;
+}
+.advBack {
+    background: #686868;
+    color: whitesmoke;
+}
+.madman {
+    width: 100%;
+    margin: 10% 5% 10% 0;
+}
+#text h6 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    color: rgb(255, 141, 0);
+}
+#text p {
+    margin: 5% 0 10% 0;
+    text-align: justify;
+}
+.outFrame {
+    margin: 13% 0 0 0;
+    height: 100%;
+    border: 2px solid orangered;
+    -ms-border-radius: 1em;
+    border-radius: 1em;
+}
+
+.outFrame h3 {
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+}
+.outFrame ul {
+    text-decoration: none;
+    margin: 5%;
+}
+.outFrame li {
+    display: block;
+    margin: 7% 0 0 0;
+    text-align: center;
+    cursor: pointer;
+}
+
+.outFrame a {
+    display: block;
+    text-decoration: none;
+    font-size: 1.5em;
+    color: whitesmoke;
+    line-height: 3;
+    background-color: orangered;
+    -ms-border-radius: 0.5em;
+    border-radius: 0.5em;
+}
+.outFrame a:hover {
+    background-color: #ff4500;
+    background-color: rgba(255, 69, 0, 0.79);
+}
+.outFrame a:focus {
+    outline: none;
+}
+
+.contacts {
+    margin: 2% 0;
+    border-right: 2px solid;
+}
+.contacts p {
+    color: white;
+    margin: 0;
+
+}
+.contacts h3 {
+    color: white;
+    margin: 0;
+}
+.vendors {
+    border-right: 2px solid;
+    margin: 2% 0;
+}
+.vendors h3 {
+    color: whitesmoke;
+    margin: 0;
+}
+.vendors p {
+    color: whitesmoke;
+    margin: 5%;
+}
+.vals li {
+    margin: 0 10px;
+    line-height: 30px;
+    color: whitesmoke;
+    font-family: "RobotoCondensedRegular";
+}
+.vals {
+    display: block;
+    margin: 20px 20px;
+}
+.vals i {
+    color: white;
+    font-weight: 600;
+}
+.reset_link a:focus {
+    outline: none;
+}
+/*Popover login*/
+.loginPart {
+    display: none;
+    position: absolute;
+    top: 120px;
+    left: 0;
+    background-color: rgb(20, 158, 254);
+}
+.loginPart ul {
+    padding: 0 50px 0 10px;
+}
+.loginPart ul li a {
+    display: block;
+    line-height: 35px;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+}
+.loginPart ul li a i {
+    margin: 0 0 0 20px;
+}
+
+.regControl {
+    width: 300px;
+    display: none;
+    position: absolute;
+    background-color: #007acb;
+    color: whitesmoke;
+    top: 120px;
+    left: 0;
+}
+.media-photo {
+    margin: 10px;
+}
+.media-photo img {
+    width: 50%
+}
+.media-body {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 3% 5% 0 0;
+    text-align: right;
+}
+.media-body p {
+    margin: 0;
+}
+.media-control {
+    margin: 0;
+}
+.media-control ul {
+    list-style: none;
+    margin: 0 0 0 0;
+}
+.media-control ul li {
+    padding: 0 0 0 20px;
+}
+.media-control ul li a {
+    text-decoration: none;
+    color: whitesmoke;
+    line-height: 35px;
+    display: block;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -ms-transition: 0.5s;
+    -o-transition: 0.5s;
+    transition: 0.5s;
+}
+.media-control ul li a:hover {
+    margin-left: 10px;
+}
+.media-control ul li a:active,
+.media-control ul li a:focus {
+    outline: none;
+}
+/*End popover login*/
+/*Start Admin navigation*/
+.left-navigation {
+    height: 900px;
+
+}
+.box {
+    
+}
+.box-title {
+    background-color: #007acb;
+    color: whitesmoke;
+    border-left: solid 2px red;
+}
+.box-title h3 {
+    margin: 0;
+    padding: 10px 5px 10px 10px;
+    display: block;
+}
+.box-content {
+    background-color: #0095ff;
+}
+.box-content ul {
+    
+}
+.box-content ul li {
+    line-height: 50px;
+    padding-left: 10px;
+    -webkit-transition: 1s;
+    -moz-transition: 1s;
+    -ms-transition: 1s;
+    -o-transition: 1s;
+    transition: 1s;
+    border-bottom: 1px solid whitesmoke;
+}
+
+.box-content ul li:hover {
+    background-color: whitesmoke;
+    padding-left: 20px;
+}
+.box-content ul li a {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 120%;
+    display: block;
+    line-height: 50px;
+    color: whitesmoke;
+    -webkit-transition: 1s;
+    -moz-transition: 1s;
+    -ms-transition: 1s;
+    -o-transition: 1s;
+    transition: 1s;
+}
+.box-content ul li a:hover {
+    text-decoration: none;
+    color: #007acb;
+}
+.box-content ul li a:focus,
+.box-content ul li a:active {
+    outline: none;
+    text-decoration: none;
+}
+/*End Admin navigation*/
+.thead-st {
+    background-color: #007acb;
+    color: whitesmoke;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 120%;
+}
+/*Shop navigation*/
+.catalog {
+    position: relative;
+    background-color: whitesmoke;
+    font-family: "RobotoCondensedRegular";
+}
+.menuShop {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    background: linear-gradient(-78deg,red,blueviolet)
+}
+.menuShop ul {
+    border: solid 2px red;
+}
+.menuShop ul li {
+    background-color: #0095ff;
+    padding: 0 25px;
+    cursor: pointer;
+}
+.menuShop ul li a {
+    line-height: 35px;
+    text-decoration: none;
+    color: whitesmoke;
+    display: block;
+}
+.subMenuItem {
+    position: absolute;
+}
+.myCart {
+    padding: 10px;
+    margin-bottom: 20px;
+    border-bottom: solid 3px green;
+}
+.goToCart {
+    float: left;
+    font-size: 60px;
+}
+.goToCart a i {
+    color: whitesmoke;
+}
+.stat {
+    text-align: right;
+    color: whitesmoke;
+}
+/*End Shop navigation*/
+/*Product groups*/
+.productGroupe {
+    margin: 0 254px 0 0;
+    padding: 0 0 0 20px;
+}
+.pg {
+    background: url("../Content/images/prFon.jpg");
+    background-repeat: repeat;
+    height: 300px;
+    padding: 20px;
+    text-align: center;
+    border: solid 1px;
+    border-right: none;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    overflow: hidden;
+    margin: 10px 0;
+}
+.pgList {
+
+}
+.pgList li {
+    float: left;
+    display: inline-block;
+    padding: 0 20px;
+    border-right: solid 1px black;
+    width: 13%;
+    height: 300px;
+}
+.pgItem {
+    position: relative;
+}
+.pgItem h5 {
+    font-weight: bold;
+}
+.pgItem p {
+    font-weight: lighter;
+    margin: 20px;
+}
+.pgItem img:first-child {
+    width: 100px;
+    margin: 50px 0 0 0;
+}
+.flag {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30px;
+}
+/*End product groups*/
+/*Попытка сделать хедер*/
+.myHead {
+    overflow: visible;
+    position: fixed;
+    top: 0;
+    background: linear-gradient(-166deg, #8bdaff, #0095ff);
+    width: 100%;
+    height: 120px;
+    z-index: 999;
+}
+.idLogo {
+    margin: 0;
+    padding: 0;
+}
+.idLogo>a {
+    float: left;
+    display: block;
+    padding: 20px;
+}
+.idLogo:hover .loginPart {
+    display: block;
+}
+.idLogo:hover .regControl {
+    display: block;
+}
+.idLogo a img {
+    width: 150px;
+}
+.currensy {
+    float: left;
+    margin: 7px 0;
+}
+.myHead nav ul {
+    margin: 0px 1% 0 0; 
+}
+.myHead nav ul li {
+    float: right;
+    margin: 0 1%;
+}
+.myHead nav ul li a {
+    display: block;
+    padding: 10px 40px;
+    color: white;
+    font-weight: 600;
+    border-radius: 30px;
+    border: solid 2px white;
+    margin: 40px 0 0 0;
+}
+.myHead nav ul li a:hover {
+    cursor: pointer;
+    background-color: white;
+    color: #0095ff;
+    text-decoration: none;
+}
+.myHead nav ul li a:active, .myHead nav ul li a:focus {
+    text-decoration: none;
+}
+.myShop{
+    float: left;
+    background: linear-gradient(-55deg,rgb(220, 140, 143), rgb(255, 147, 0));
+    padding: 20px 0 0 0;
+    transition: all 0.33s;
+    box-shadow: -2px 2px 5px gray;
+}
+.myShop a {
+    display: inline-block;
+    line-height: 40px;
+    padding: 20px;
+    color: white;
+    font-weight: bold;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+.myShop a i {
+    margin: 0 0 0 10px;
+}
+.myShop a:hover {
+    text-decoration: none;
+}
+.myShop:hover{
+    padding: 16px 0 20px;
+    border-bottom: solid 3px #fff;
+}
+/*Попытка удалась.*/
+/*Contacts*/
+.contact-bg {
+    background: url("/Content/images/dc960_640.jpg") center no-repeat;
+    background-size: 100% 100%;
+    padding: 3% 0;
+}
+.contact-bg address {
+    margin-bottom: 3%;
+    color: white;
+    line-height: 25px;
+    font-weight: bold;
+}
+.contact-bg address a {
+    color: orangered;
+}
+#map {
+    margin: 0 10%;
+}
+/*/Contacts*/
+/*About*/
+.about-bg {
+    background: url("/Content/images/colors2.jpg") no-repeat;
+    background-size: 100% 100%;
+}
+.about-history-box {
+    position: relative;
+    margin: 20px 0;
+    padding: 5%;
+    background: rgba(30, 30, 30, 0.78);
+    background-size: 100% 100%;
+    text-align: center;
+    border: solid 3px rgba(0, 128, 0, 0.7);
+}
+.about-history-box h2 {
+    font-size: 25px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    color: rgba(253, 161, 94, 0.75);
+}
+.about-history-box h3 {
+    font-weight: 200;
+    letter-spacing: 2px;
+    color: rgba(253, 161, 94, 0.75);
+    font-size: 25px;
+}
+.about-history-box img {
+    width: 30%;
+    padding: 4% 0 0 0;
+    display: inline-block;
+}
+.cool-text {
+    font-family: "NautilusPompiliusRegular";
+    text-align: justify;
+    font-size: 17px;
+    color: rgba(206, 189, 149, 0.75);
+}
+.cool-text:first-letter {
+    padding: 0 0 0 2%;
+    font-weight: bold;
+    font-size: 120%;
+    color: whitesmoke;
+}
+.cool-text a {
+    font-family: "RobotoMedium";
+    text-decoration: none;
+    color: rgba(132, 177, 168, 0.75);
+}
+.about-tabs ul {
+    margin: 0 0 20px;
+    height: 50px;
+    text-align: center;
+}
+.about-tabs ul li{
+    float: left;
+    width: 29%;
+    margin: 0 2%;
+}
+.about-tabs ul .active a {
+    background-color: rgba(49,173,255,0.70);
+}
+/*class="nav nav-tabs nav-justified"*/
+.about-tabs ul li a {
+    background-color: rgba(30, 30, 30, 0.78);
+    color: white;
+    display: block;
+    line-height: 45px;
+    border: solid 2px white;
+    border-radius: 30px;
+    font-size: 20px;
+    letter-spacing: 2px;
+    font-weight: 600;
+}
+.about-tabs ul li a:hover {
+    text-decoration: none;
+    background-color: rgba(30, 30, 30, 0.78);
+}
+.about-tabs ul li a:active, .about-tabs ul li a:focus {
+    text-decoration: none;
+}
+.sert-section {
+    background-color: rgba(30, 30, 30, 0.78);
+    padding: 1%;
+    border: solid 3px rgba(0, 128, 0, 0.7);
+}
+.sertificat:focus {
+    outline: none;
+}
+.sert-section h3, .sert-section h4 {
+    margin: 1% 0 2% 3%;
+    color: rgba(253, 161, 94, 0.75);
+    font-size: 20px;
+    font-family: "Sagoe UI", sans-serif;
+    font-weight: 100;
+    letter-spacing: 2px;
+}
+.sert-section p {
+    text-align: justify;
+    color: rgba(253, 161, 94, 0.75);
+    font-family: "RobotoLight", sans-serif;
+}
+.sert-section p:first-letter {
+    margin: 0 0 0 3%;
+}
+.sert-section iframe {
+    margin: 0 0 0 25%;
+}
+.partner-link {
+    text-align: center;
+    width: 100%;
+}
+.sertificat img {
+    width: 100%;
+    margin: 5%;
+    border: 1px solid #666;
+    -ms-border-radius: 5%;
+    border-radius: 5%;
+}
+/*/About*/
+/*----------------------------------------
+    Login Form
+----------------------------------------*/
+.loginForm {
+    position: relative;
+    text-align: center;
+    background: url("/Content/images/servers.jpg") no-repeat;
+    background-size: 100% auto;
+    background-position: center center;
+    padding: 100px 0;
+}
+.logForm {
+    border: solid 2px;
+    margin: auto;
+    padding: 50px;
+    width: 400px;
+    background-color: rgba(220, 237, 255, 0.8);
+}
+.logForm h1 {
+    margin: 20px 0;
+    font-weight: 600;
+    color: rgb(28, 28, 28);
+}
+.logForm label {
+    margin: 10px;
+}
+.logForm input[type="text"], .logForm input[type="password"], .logForm input[type="number"] {
+    border: none;
+    border-bottom: solid 3px green;
+    width: 100%;
+    text-align: center;
+}
+.logForm input[type="submit"] {
+    background-color: rgb(74, 184, 254);
+    margin: 20px 0 0 0;
+    padding: 10px 20px;
+    border: none;
+    color: whitesmoke;
+    font-weight: 600;
+}
+.logForm textarea {
+    width: 100%;
+}
+.logForm input[type="submit"]:hover {
+    background-color: green;
+}
+.logForm a {
+    display: inline-block;
+    cursor: pointer;
+    padding: 0 0 0 30px;
+}
+/*----------------------------------------
+    END Login Form
+----------------------------------------*/
+/*----------------------------------------
+    Add SubCat
+----------------------------------------*/
+.productCategory {
+    overflow: auto;
+    margin: 10px;
+    padding: 10px;
+}
+.picture {
+    width: 150px;
+}
+.detCatForm {
+
+    margin: 10px 0 0 250px
+}
+.detCatForm input {
+    margin: 10px;
+}
+.detCatForm textarea {
+    width: 300px;
+}
+.detCatForm input[type="number"] {
+    max-width: 50px;
+}
+.subCat table thead {
+    background-color: #007acb;
+    color: whitesmoke;
+}
+.subCat table {
+    text-align: center;
+}
+.subCat textarea {
+    width: 100%;
+}
+/*----------------------------------------
+    END Sub Cat
+----------------------------------------*/
+.myMenuAdm {
+    float: left;
+}
+.myMenuAdm ul {
+    border: solid 1px #666;
+}
+.myMenuAdm ul li a i {
+    float: right;
+    line-height: 30px;
+    margin: 3px;
+}
+.myMenuAdm ul li a {
+    line-height: 25px;
+    margin: 0 10px;
+}
+.ui-menu { width: 300px }
+.ui-state-active {
+    background-color: orangered;
+    color: white;
+}
+.ui-state-focus {
+    background-color: orangered;
+    color: white;
+}
+.ui-state-focus>a,
+.ui-state-active>a{
+    color: white;
+    text-decoration: none;
+}

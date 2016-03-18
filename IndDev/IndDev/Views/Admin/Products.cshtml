@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "Products";
+    Layout = "~/Views/Shared/_LayoutSFoot.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-3 left-navigation">
+        @Html.Action("AdminNavigation")
+    </div>
+    <div class="col-md-9">
+        @if (TempData["message"] != null)
+        {
+            <h3 style="color: red">@TempData["message"]</h3>
+        }
+        @Html.Action("ProductIndex")
+    </div>
+</div>

@@ -1,0 +1,70 @@
+﻿@{
+    ViewBag.Title = "Контакты";
+    Layout = "~/Views/Shared/_LayoutSFoot.cshtml";
+}
+<div class="contact-bg">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <address>
+                    <p>Наши контакты</p>
+                    <p>Адрес офиса:</p>
+                    <p>Российская Федерация 355041, Ставропольский край, г. Ставрополь, ул. Л. Толстого, д.53</p>
+
+                    <p>Телефоны компании:</p>
+
+                    <p>+7 (8652) 99-05-82</p>
+                    <p>+7 (8652) 99-05-83 </p>
+                    <p>+7 (8652) 99-05-84</p>
+                    <p>+7 (988) 705-23-26</p>
+                    <p>+7 (962) 011-74-46</p>
+                </address>
+                <div id="map" class="well" style="width: 100%; height: 600px;"></div>
+                <address>
+                    <strong>Директор:</strong> <a href="mailto:a.id@yandex.ru">a.id@yandex.ru</a><br/>
+                    <strong>Отдел продаж:</strong> <a href="mailto:inna-strelova@yandex.ru">inna-strelova@yandex.ru</a><br/>
+                    <strong>Технический отдел:</strong> <a href="mailto:Marketing@example.com">alexander@id-racks.ru</a>
+                </address>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@*Яндекс карта.*@
+<script src="//api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+<script type="text/javascript">
+    ymaps.ready(function () {
+        var myMap = new ymaps.Map('map', {
+            center: [45.03228330, 41.95178155],
+            zoom: 17
+        }, {
+            searchControlProvider: 'yandex#search'
+        }),
+            myGeoObject = new ymaps.GeoObject({
+                // Описание геометрии.
+                geometry: {
+                    type: "Point",
+                    coordinates: [45.0318, 41.95208155]
+                    
+                },
+                // Свойства.
+                properties: {
+                    // Контент метки.
+                    iconContent: 'Мы здесь',
+                    hintContent: 'На домофоне №1'
+                    
+                }
+            }, {
+                // Опции.
+                // Иконка метки будет растягиваться под размер ее содержимого.
+                preset: 'islands#blackStretchyIcon',
+                // Метку можно перемещать.
+                draggable: true
+            });
+
+        myMap.geoObjects.add(myGeoObject);
+    });
+</script>

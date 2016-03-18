@@ -1,0 +1,76 @@
+﻿@model IndDev.Auth.Model.LoginViewModel
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LayoutSFoot.cshtml";
+}
+
+@section scripts 
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<div class="loginForm" style="padding: 300px 0;">
+    <div class="logForm">
+        <h1>АВТОРИЗАЦИЯ ПОЛЬЗОВАТЕЛЯ</h1>
+        @using (@Html.BeginForm("Login","Security", FormMethod.Post))
+        {
+            @Html.ValidationSummary()
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.ReturnUrl)
+            <label>ЛОГИН</label><br/>
+            @Html.TextBoxFor(model => model.Login, new { placeholder = "example@email.com" })<br />
+            <label>ПАРОЛЬ</label><br />
+            @Html.PasswordFor(model => model.Password)<br />
+            @Html.CheckBoxFor(model => model.RememberMe)
+            @Html.LabelFor(model => model.RememberMe)<br />
+            <input type="submit" value="ВОЙТИ"/>
+            <a>Забыли пароль?</a>
+        }
+    </div>
+</div>
+
+
+
+@*<div class="row">
+    <div class="col-md-8">
+        <section id="loginForm">
+            @using (Html.BeginForm("Login", "Security", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Login, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.Login, new { @class = "form-control", @placeholder="example@mydomen.com" })
+                        @Html.ValidationMessageFor(m => m.Login, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <div class="checkbox">
+                            @Html.CheckBoxFor(m => m.RememberMe)
+                            @Html.LabelFor(m => m.RememberMe)
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Вход" class="btn btn-default" />
+                    </div>
+                </div>
+            }
+        </section>
+    </div>
+</div>*@
+
+
+

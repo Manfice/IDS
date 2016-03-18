@@ -1,0 +1,48 @@
+﻿@model IEnumerable<IndDev.Domain.Entity.News>
+
+@{
+    ViewBag.Title = "EditList";
+    Layout = "~/Views/Shared/_LayoutSFoot.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3>Список новостей</h3>
+        @Html.ActionLink("Добавить новость", "Create", "News", new {@class = "btn btn-info"})
+    </div>
+    <div class="panel-body">
+        <table class="table table-striped table-bordered table-hover">
+            <tr>
+                <th class="text-center">Дата</th>
+                <th class="text-center">Заголовок</th>
+                <th class="text-center">Публикация</th>
+                <th class="text-center">Действия</th>
+            </tr>
+            @{
+                foreach (var news in Model)
+                {
+                    <tr>
+                        <td>@news.NewsTime</td>
+                        <td>@Html.ActionLink(news.Title,"Edit",new {news.Id})</td>
+                        <td>@news.Published</td>
+                        <td class="text-center">
+                                @using (Html.BeginForm("Delete", "News"))
+                                {
+                                    <div class="form-horizontal" style="margin-left: 8%;">
+                                        <div class="form-group">
+                                            @Html.ActionLink("Просмотр", "Details", "News", new { news.Id }, new { @class = "btn btn-info" })
+                                            @Html.Hidden("id", news.Id)
+                                            <input type="submit" class="btn btn-danger" value="Удалить" />
+                                        </div>
+                                    </div>
+                                }
+                        </td>
+                    </tr>
+                }
+            }
+        </table>
+    </div>
+    <div class="panel-footer">
+        @Html.ActionLink("Назад к новостям","Index","News", new {@class= "btn btn-success"})
+    </div>
+</div>

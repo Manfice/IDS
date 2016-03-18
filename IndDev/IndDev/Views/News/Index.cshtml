@@ -1,0 +1,39 @@
+﻿
+@model IndDev.Models.NewsViewModel
+
+@{
+    ViewBag.Title = "Новости";
+    Layout = "~/Views/Shared/_LayoutSFoot.cshtml";
+}
+
+<h1>Новости</h1>
+@{
+    if (Request.IsAuthenticated)
+    {
+        @Html.ActionLink("Перейти к редактированию новостей", "EditList")
+        ;
+    }
+    else
+    {
+        <p>Наши новости</p>
+        }
+    }
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            @Html.Action("Navigation","NewsNav")
+        </div>
+        <div class="col-md-9">
+            @{
+                foreach (var n in Model.News)
+                {
+                    @Html.Partial("_News",n) 
+                }
+            }
+        </div>
+    </div>
+</div>
+<div class="pull-right">
+    <a href="/" class="btn btn-warning">go back</a>
+    @(Model.PageInfo.TotalPages > 2 ? Html.SmalPageNav(Model.PageInfo, x => Url.Action("Index", new {page = x, category = Model.Category})) : Html.PageLinks(Model.PageInfo, x => Url.Action("Index", new {page = x, category = Model.Category})))
+</div>

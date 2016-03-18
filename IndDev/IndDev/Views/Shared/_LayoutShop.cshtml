@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="~/favicon.png">
+    <title>@ViewBag.Title - Industrial Development</title>
+    @*<link href="~/Content/jquery-ui.css" rel="stylesheet"/>*@
+    <link href="~/Content/fonts.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="http://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700,800,900" rel="stylesheet" type="text/css">
+    <link href="~/Content/mairala/style.css" rel="stylesheet" />
+    <link href="~/Content/Main.css" rel="stylesheet" />
+    <style>
+        .ui-menu{width: 250px;}
+    </style>
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery-ui.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $("#menu").menu({
+                position: { my: "right top", at: "right-250 top+20" }
+            });
+        })
+    </script>
+    @Scripts.Render("~/bundles/modernizr")
+
+
+</head>
+<body>
+    <div class="myHead">
+        <div class="idLogo">
+            <a href="/"><img src="~/Content/images/id_logo.svg" alt="logo" /></a>
+            @(User.Identity.IsAuthenticated ? Html.Action("Login", "Home", new { id = User.Identity.Name }) : Html.Partial("_LoginPartial"))
+        </div>
+        <div class="currensy">
+            @Html.Action("Currensy", "Home")
+        </div>
+        <div class="myShop">
+            <a href="@Url.Action("Index","Shop")">МАГАЗИН<i class="fa fa-arrow-circle-o-right"></i></a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="@Url.Action("Contact","Home")">Контакты</a></li>
+                <li><a>Барахолка</a></li>
+                <li><a>Галерея</a></li>
+                <li><a href="@Url.Action("About","Home")">Компания</a></li>
+                <li><a href="@Url.Action("Landing","Home")">Главная</a></li>
+            </ul>
+        </nav>
+    </div>
+
+<div>
+    @RenderBody()
+</div>
+<div class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="copy-right">
+                    <p>
+                        &#169 Copyright @DateTime.Today.Year All Rights Reserved <a href="/"> Industrial Development</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

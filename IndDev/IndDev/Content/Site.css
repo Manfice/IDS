@@ -1,0 +1,52 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 0;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+.bordered {
+    border-left: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    padding: 1%;
+}
+/*Убираем с табов рамку, красим в синий цвет.*/
+
+.info {
+    background-color: #428ac9;
+    color: #fff;
+    font-weight: bold;
+}
+.info:hover {
+    color: #000;
+}
+.title_news {
+    margin: 0;
+    font-family: "RobotoMedium";
+    color: rgb(37, 37, 182);
+}
+.glyf_news {
+    width: 100%;
+}
+.author {
+    margin: 0;
+
+}

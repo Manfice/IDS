@@ -1,0 +1,21 @@
+﻿@model IndDev.Domain.Entity.Auth.User
+
+<div class="regControl" id="user-view">
+    <div class="media-object">
+        <div class="media-photo">
+            <img src="~/Content/images/id_logo.svg"/>
+        </div>
+    </div>
+    <div class="media-body">
+        <h4>@Model.Name</h4>
+        <p>@Model.EMail</p>
+        <p>@Model.UsrRoles.Descr</p>
+    </div>
+    <div class="media-control">
+        <ul>
+            <li><a href="@Url.Action("AdminPage","Admin", new { userId = Model.Id })">Вход в личный кабинет</a></li>
+            <li><a href="#">Корзина</a></li>
+            <li>@Html.ActionLink("Выход", "LogOut", "Security")</li>
+        </ul>
+    </div>
+</div>
