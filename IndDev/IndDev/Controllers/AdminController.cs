@@ -5,6 +5,7 @@ using System.Web.Mvc;
 using IndDev.Domain.Abstract;
 using IndDev.Domain.Entity.Auth;
 using IndDev.Domain.Entity.Menu;
+using IndDev.Models;
 
 namespace IndDev.Controllers
 {
@@ -242,7 +243,8 @@ namespace IndDev.Controllers
         }
         public PartialViewResult SubMenu(int id)
         {
-            return PartialView(_repository.GetSubMenuItems(id));
+            var b = _repository.GetSubMenuItems(id);
+            return PartialView(b);
         }
 
         public PartialViewResult AddSubMenu(int parent)
@@ -260,6 +262,12 @@ namespace IndDev.Controllers
         {
             _repository.RemoveSubMenu(id);
             return RedirectToAction("Products");
+        }
+
+        public PartialViewResult ProductList(int menuId)
+        {
+            var p = _repository.GetProductsByMenu(menuId);
+            return PartialView(p);
         }
     }
 }

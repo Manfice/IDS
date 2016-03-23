@@ -7,6 +7,8 @@ using IndDev.Domain.Abstract;
 using IndDev.Domain.Entity.Auth;
 using IndDev.Domain.Entity.Customers;
 using IndDev.Domain.Entity.Menu;
+using IndDev.Domain.Entity.Products;
+using IndDev.Domain.ViewModels;
 
 namespace IndDev.Domain.Context
 {
@@ -181,6 +183,18 @@ namespace IndDev.Domain.Context
 
         public void AddSubMenuItem(Menu menu)
         {
+            if (menu.Id==0)
+            {
+                var rootMenu = new Menu
+                {
+                    HasChild = false,
+                    ParentItem = null,
+                    Title = menu.Title
+                };
+                _context.Menus.Add(rootMenu);
+                _context.SaveChanges();
+                return;
+            }
             var pMenu = _context.Menus.Find(menu.Id);
             pMenu.HasChild = true;
             var newMenu = new Menu
@@ -199,12 +213,33 @@ namespace IndDev.Domain.Context
             var parentId = dbMenu.ParentItem.Id;
             if (dbMenu.HasChild) return;
             _context.Menus.Remove(dbMenu);
-            var dbParent = _context.Menus.Find(parentId);
-            if (_context.Menus.Any(menu => menu.ParentItem.Id==dbParent.Id))
+            _context.SaveChanges();
+            var prCount = _context.Menus.Where(menu => menu.ParentItem.Id==parentId).ToList();
+            if (prCount.Count==0)
             {
+                var dbParent = _context.Menus.Find(parentId);
                 dbParent.HasChild = false;
             }
             _context.SaveChanges();
+        }
+
+        public IEnumerable<ProductViewModel> GetProductsByMenu(int menuId)
+        {
+            var pvm = new List<ProductViewModel>();
+            var products = _context.Products.Where(product => product.MenuItem.Id == menuId).ToList();
+            foreach (var product in products)
+            {
+                var p = new ProductViewModel
+                {
+                    Id = product.Id,
+                    Title = product.Title,
+                    PriceIn = product.Prices.FirstOrDefault(price => price.PriceType==PriceType.InputPrice).Value,
+                    Currency = product.Prices.FirstOrDefault(price => price.PriceType==PriceType.InputPrice).Currency.StringCode,
+                    PriceOut = product.Prices.FirstOrDefault(price => price.PriceType==PriceType.OutputPrice).Value
+                };
+                pvm.Add(p);
+            }
+            return pvm;
         }
     }
 }

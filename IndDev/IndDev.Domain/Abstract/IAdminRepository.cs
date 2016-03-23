@@ -3,6 +3,8 @@ using IndDev.Auth.Logic;
 using IndDev.Domain.Entity.Auth;
 using IndDev.Domain.Entity.Customers;
 using IndDev.Domain.Entity.Menu;
+using IndDev.Domain.Entity.Products;
+using IndDev.Domain.ViewModels;
 
 namespace IndDev.Domain.Abstract
 {
@@ -28,5 +30,6 @@ namespace IndDev.Domain.Abstract
         Menu GetMenu(int id);
         void AddSubMenuItem(Menu menu);
         void RemoveSubMenu(int id);
+        IEnumerable<ProductViewModel> GetProductsByMenu(int menuId);
     }
 }

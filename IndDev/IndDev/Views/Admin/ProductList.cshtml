@@ -1,0 +1,32 @@
+﻿@model IEnumerable<IndDev.Domain.ViewModels.ProductViewModel>
+
+<div id="products">
+    <table class="table table-responsive table-striped">
+        <thead>
+        <tr>
+            <td>#id</td>
+            <td>Наименование</td>
+            <td>Цена вход</td>
+            <td>Валюта</td>
+            <td>Розница в р.</td>
+            <td>Действия</td>
+        </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Title</td>
+                    <td>@item.PriceIn.ToString("##.###")</td>
+                    <td>@item.Currency</td>
+                    <td>@item.PriceOut.ToString("C")</td>
+                    <td>
+                        <button>Изменить</button>
+                        <button>Удалить</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

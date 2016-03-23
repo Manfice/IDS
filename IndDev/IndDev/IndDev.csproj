@@ -196,6 +196,7 @@
     <Compile Include="HtmlHelpers\PagingHelper.cs" />
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
     <Compile Include="Models\CatViewModel.cs" />
+    <Compile Include="Models\MenuViewModel.cs" />
     <Compile Include="Models\NewsViewModel.cs" />
     <Compile Include="Models\PageInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -279,17 +280,13 @@
     <Content Include="Content\images\tele960_640.jpg" />
     <Content Include="Content\images\twisted_pair.jpg" />
     <Content Include="Content\images\Uploads\Categories\2c3c307740815695e65ab4d10bcd5c46.png" />
-    <Content Include="Content\images\Uploads\Categories\4354567554342.jpg" />
     <Content Include="Content\images\Uploads\Categories\583274eff7198274651c0629536dedad.jpg" />
     <Content Include="Content\images\Uploads\Categories\71557_b_large.jpg" />
     <Content Include="Content\images\Uploads\Categories\718_big.jpg" />
     <Content Include="Content\images\Uploads\Categories\ee5ad7187398ed700c9783993e3c6ac4.png" />
-    <Content Include="Content\images\Uploads\Categories\kg_gib.jpg" />
-    <Content Include="Content\images\Uploads\Categories\patchcord.png" />
     <Content Include="Content\images\Uploads\Categories\racks.jpg" />
     <Content Include="Content\images\Uploads\Categories\rkgm.jpg" />
     <Content Include="Content\images\Uploads\Categories\vp.png" />
-    <Content Include="Content\images\Uploads\Categories\мгшв.jpg" />
     <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\Main.css" />
     <Content Include="Content\mairala\fwslider.css" />
@@ -626,7 +623,9 @@
     <Content Include="Scripts\tinymce\utils\mctabs.js" />
     <Content Include="Scripts\tinymce\utils\validate.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -700,6 +699,7 @@
     <Content Include="Views\Admin\RootMenu.cshtml" />
     <Content Include="Views\Admin\SubMenu.cshtml" />
     <Content Include="Views\Admin\AddSubMenu.cshtml" />
+    <Content Include="Views\Admin\ProductList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

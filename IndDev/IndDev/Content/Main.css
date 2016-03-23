@@ -679,13 +679,14 @@ a,a:focus, a:active {
 }
 .myMenuAdm ul {
     border: solid 1px #666;
+    line-height: 30px;
 }
 .myMenuAdm ul li a i {
     float: right;
     line-height: 30px;
     margin: 3px;
 }
-.myMenuAdm ul li a {
+.titleA{
     line-height: 25px;
     margin: 0 10px;
 }
