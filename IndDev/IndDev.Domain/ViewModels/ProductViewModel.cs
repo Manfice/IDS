@@ -25,6 +25,26 @@ namespace IndDev.Domain.ViewModels
         public Product Product { get; set; }
     }
 
+    public class ProductDetailsViewModel
+    {
+        public Product Product { get; set; }
+        public IEnumerable<Brand> Brands { get; set; }
+        public IEnumerable<MesureUnit> MesureUnits { get; set; }
+        public IEnumerable<Vendor> Vendors { get; set; }
+        public IEnumerable<Price> Prices { get; set; } 
+        public int SelBr { get; set; }
+        public int SelVr { get; set; }
+        public int SelMu { get; set; }
+    }
+
+    public class PriceViewModel
+    {
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public Currency Currency { get; set; }
+        public decimal Value { get; set; }
+    }
+
     public class AddPhotoViewModel
     {
         public int ProductId { get; set; }

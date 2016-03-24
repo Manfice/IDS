@@ -309,7 +309,14 @@ namespace IndDev.Controllers
 
         public ActionResult ProductDetails(int id)
         {
-            return View(_repository.GetProduct(id));
+            var pdvm = new ProductDetailsViewModel
+            {
+                Product = _repository.GetProduct(id),
+                Brands = _repository.GetAllBrands(),
+                Vendors = _repository.GetAllVendors(),
+                MesureUnits = _repository.GetAllMesureUnits()
+            };
+            return View(pdvm);
         }
 
         [HttpPost]

@@ -267,7 +267,6 @@ a,a:focus, a:active {
 /*Shop navigation*/
 .catalog {
     position: relative;
-    background-color: whitesmoke;
     font-family: "RobotoCondensedRegular";
 }
 .menuShop {
@@ -317,7 +316,7 @@ a,a:focus, a:active {
     padding: 0 0 0 20px;
 }
 .pg {
-    background: url("../Content/images/prFon.jpg");
+    /*background: url("../Content/images/prFon.jpg");*/
     background-repeat: repeat;
     height: 300px;
     padding: 20px;
@@ -334,14 +333,23 @@ a,a:focus, a:active {
 }
 .pgList li {
     float: left;
-    display: inline-block;
     padding: 0 20px;
     border-right: solid 1px black;
     width: 13%;
     height: 300px;
 }
+.pgList li a {
+    display: block;
+    cursor: pointer;
+    text-decoration: none;
+    color: #1e1e1e;
+}
 .pgItem {
     position: relative;
+}
+.pgItem:hover {
+    background-color: #6495ed;
+    padding: 15px;
 }
 .pgItem h5 {
     font-weight: bold;

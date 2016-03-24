@@ -21,7 +21,8 @@ namespace IndDev.Controllers
         // GET: Shop
         public ActionResult Index()
         {
-            return View();
+            var catList = _repository.GetProductMenus();
+            return View(catList);
         }
 
         public PartialViewResult Navigation()

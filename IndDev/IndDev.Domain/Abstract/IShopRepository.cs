@@ -7,5 +7,6 @@ namespace IndDev.Domain.Abstract
     {
         IEnumerable<Menu> GetTopMenus();
         IEnumerable<Menu> GetSubMenu(int id);//Curent menu ID
+        IEnumerable<ProductMenu> GetProductMenus();
     }
 }

@@ -1,65 +1,97 @@
 ﻿@using IndDev.Domain.Entity
-@model IndDev.Domain.Entity.Products.Product
+@model IndDev.Domain.ViewModels.ProductDetailsViewModel
 @{
     ViewBag.Title = "ProductDetails";
     Layout = "~/Views/Shared/_LayoutSFoot.cshtml";
 }
 
 <div class="well-lg">
-    <h2>@Model.Title</h2>
-    <div class="row formProduct">
-        @using (Html.BeginForm())
-        {
-            @Html.AntiForgeryToken()
-            @Html.HiddenFor(product => product.Id)
-            <div class="col-md-3 pull-left">
-                @if ((Model.ProductPhotos.Count>0) && (Model.ProductPhotos.Count(photo => photo.PhotoType==PhotoType.Avatar)>0))
-                {
-                    <img src="@Model.ProductPhotos.FirstOrDefault(photo => photo.PhotoType==PhotoType.Avatar).Path" alt="avatarka"/>
-                }
-            </div>
-            <div class="col-md-9">
-                @Html.LabelFor(product => product.Articul, "Артикул:")<br/>
-                @Html.EditorFor(product => product.Articul)<br/>
-
-                @Html.LabelFor(product => product.Title, "Наименование:")<br/>
-                @Html.EditorFor(product => product.Title)<br/>
-
-                @Html.LabelFor(product => product.Description, "Описание:")<br/>
-                @Html.TextAreaFor(product => product.Description)<br/>
-
-                @Html.LabelFor(product => product.IsService, "Товар является услугой:")
-                @Html.CheckBoxFor(product => product.IsService)
-            </div>
-            <input type="submit" value="Сохранить"/>
-        }
-        <hr/>
+    <h2>@Model.Product.Title</h2>
+    <div class="formProduct">
         <div class="row">
-            <h2>Дополнительные фото товара:</h2>
-            @if (Model.ProductPhotos != null && Model.ProductPhotos.Count > 0)
+            @using (Html.BeginForm())
             {
-                foreach (var item in Model.ProductPhotos)
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(model => model.Product.Id)
+                <div class="col-md-3 pull-left">
+                    @if ((Model.Product.ProductPhotos.Count > 0) && (Model.Product.ProductPhotos.Count(photo => photo.PhotoType == PhotoType.Avatar) > 0))
+                {
+                        <img src="@Model.Product.ProductPhotos.FirstOrDefault(photo => photo.PhotoType == PhotoType.Avatar).Path" alt="avatarka" />
+                    }
+                </div>
+                <div class="col-md-9">
+                    @Html.LabelFor(model => model.Product.Articul, "Артикул:")<br />
+                    @Html.EditorFor(model => model.Product.Articul)<br />
+
+                    @Html.LabelFor(model => model.Product.Title, "Наименование:")<br />
+                    @Html.EditorFor(model => model.Product.Title)<br />
+
+                    @Html.LabelFor(model => model.Product.Description, "Описание:")<br />
+                    @Html.TextAreaFor(model => model.Product.Description)<br />
+
+                    @Html.LabelFor(model => model.Product.IsService, "Товар является услугой:")
+                    @Html.CheckBoxFor(model => model.Product.IsService)
+                </div>
+                <input type="submit" value="Сохранить" />
+            }
+        </div>
+
+        <hr/>
+
+        <h2>Дополнительные фото товара:</h2>
+
+        <div class="row">
+            @if (Model.Product.ProductPhotos != null && Model.Product.ProductPhotos.Count > 0)
+            {
+                foreach (var item in Model.Product.ProductPhotos)
                 {
                     <div class="col-md-2">
-                        <img src="@item.Path" alt="@item.AltText" />
-                        @Html.ActionLink("Удалить", "Products", new { id = item.Id })
+                        <img src="@item.Path" alt="@item.AltText"/>
+                        @Html.ActionLink("Удалить", "Products", new {id = item.Id})
                     </div>
                 }
             }
-            @using (Html.BeginForm("AddPhotoToProduct", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            <div class="col-md-2">
+                @using (Html.BeginForm("AddPhotoToProduct", "Admin", FormMethod.Post, new {enctype = "multipart/form-data"}))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.Hidden("ProductId", Model.Product.Id)
+                    <input type="file" name="photo"/>
+                    <input type="submit" value="Добавить"/>
+                }
+            </div>
+
+        </div>
+
+        <hr/>
+
+        <h2>Характеристики:</h2><br/>
+        <div class="row">
+            @using (Html.BeginForm())
             {
                 @Html.AntiForgeryToken()
-                @Html.Hidden("ProductId", Model.Id)
-                <input type="file" name="photo" />
-                <input type="submit" value="Добавить" />
+                @Html.HiddenFor(model => model.Product.Id)
+                <div class="col-md-2">
+                    @Html.LabelFor(model => model.Brands,"Брэнд")
+                    @Html.DropDownListFor(model => model.SelBr,new SelectList(Model.Brands,"Id","FullName"),Model.Product.Brand.FullName)
+                </div>
+                <div class="col-md-2">
+                    @Html.LabelFor(model => model.Vendors, "Вендор")
+                    @Html.DropDownListFor(model => model.SelVr, new SelectList(Model.Vendors, "Id", "Name"), Model.Product.Vendor.Name)
+                </div>
+                <div class="col-md-2">
+                    @Html.LabelFor(model => model.MesureUnits, "Ед. измерения")
+                    @Html.DropDownListFor(model => model.SelMu, new SelectList(Model.MesureUnits, "Id", "FullName"), Model.Product.MesureUnit.FullName)
+                </div>
+                <input type="submit" value="Сохранить"/>
             }
         </div>
         <hr/>
-        <h2>Характеристики:</h2>
-        <hr/>
-        <h2>Цены:</h2>
-        <hr/>
-    </div>
-    
-</div>
 
+        <h2>Цены:</h2>
+        <div class="row" id="priceSection">
+            
+        </div>
+        <hr />
+    </div>
+</div>
