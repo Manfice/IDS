@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using IndDev.Auth.Logic;
+using IndDev.Domain.Entity;
 using IndDev.Domain.Entity.Auth;
 using IndDev.Domain.Entity.Customers;
 using IndDev.Domain.Entity.Menu;
@@ -16,7 +17,7 @@ namespace IndDev.Domain.Abstract
         IEnumerable<UsrRoles> Roleses { get; }
         ValidationInfo UpdateUser(User user);
         IEnumerable<ProductMenu> ProductMenus();
-        void AddCategory(ProductMenu menu);
+        ValidEvent AddCategory(ProductMenu menu);
         void DeleteCatImage(ProdMenuImage image);
         ValidEvent RemoveCategory(int id);
         ProductMenu GetProductMenu(int id);
@@ -31,5 +32,13 @@ namespace IndDev.Domain.Abstract
         void AddSubMenuItem(Menu menu);
         void RemoveSubMenu(int id);
         IEnumerable<ProductViewModel> GetProductsByMenu(int menuId);
+        IEnumerable<Brand> GetAllBrands();
+        IEnumerable<MesureUnit> GetAllMesureUnits();
+        IEnumerable<Vendor> GetAllVendors();
+        ValidEvent SaveProduct(AddProductViewModel model);
+        IEnumerable<Product> GetCatProduct(int catId);
+        Product GetProduct(int id);
+        ValidEvent RemoveProduct(int id);
+        ValidEvent AddPhotoToProduct(int prodId, ProductPhoto photo);
     }
 }

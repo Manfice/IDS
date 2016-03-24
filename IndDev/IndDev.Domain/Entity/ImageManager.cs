@@ -26,4 +26,19 @@ namespace IndDev.Domain.Entity
         public int ImageSize { get; set; }
         public virtual Product ProductOf { get; set; }
     }
+
+    public class ProductPhoto
+    {
+        public int Id { get; set; }
+        public string Path { get; set; }
+        public string FullPath { get; set; }
+        public string AltText { get; set; }
+        public PhotoType PhotoType { get; set; }
+        public virtual Product Product { get; set; }
+    }
+
+    public enum PhotoType
+    {
+        Avatar,Photo
+    }
 }

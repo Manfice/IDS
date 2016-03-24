@@ -1,0 +1,65 @@
+﻿@using IndDev.Domain.Entity
+@model IndDev.Domain.Entity.Products.Product
+@{
+    ViewBag.Title = "ProductDetails";
+    Layout = "~/Views/Shared/_LayoutSFoot.cshtml";
+}
+
+<div class="well-lg">
+    <h2>@Model.Title</h2>
+    <div class="row formProduct">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(product => product.Id)
+            <div class="col-md-3 pull-left">
+                @if ((Model.ProductPhotos.Count>0) && (Model.ProductPhotos.Count(photo => photo.PhotoType==PhotoType.Avatar)>0))
+                {
+                    <img src="@Model.ProductPhotos.FirstOrDefault(photo => photo.PhotoType==PhotoType.Avatar).Path" alt="avatarka"/>
+                }
+            </div>
+            <div class="col-md-9">
+                @Html.LabelFor(product => product.Articul, "Артикул:")<br/>
+                @Html.EditorFor(product => product.Articul)<br/>
+
+                @Html.LabelFor(product => product.Title, "Наименование:")<br/>
+                @Html.EditorFor(product => product.Title)<br/>
+
+                @Html.LabelFor(product => product.Description, "Описание:")<br/>
+                @Html.TextAreaFor(product => product.Description)<br/>
+
+                @Html.LabelFor(product => product.IsService, "Товар является услугой:")
+                @Html.CheckBoxFor(product => product.IsService)
+            </div>
+            <input type="submit" value="Сохранить"/>
+        }
+        <hr/>
+        <div class="row">
+            <h2>Дополнительные фото товара:</h2>
+            @if (Model.ProductPhotos != null && Model.ProductPhotos.Count > 0)
+            {
+                foreach (var item in Model.ProductPhotos)
+                {
+                    <div class="col-md-2">
+                        <img src="@item.Path" alt="@item.AltText" />
+                        @Html.ActionLink("Удалить", "Products", new { id = item.Id })
+                    </div>
+                }
+            }
+            @using (Html.BeginForm("AddPhotoToProduct", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.Hidden("ProductId", Model.Id)
+                <input type="file" name="photo" />
+                <input type="submit" value="Добавить" />
+            }
+        </div>
+        <hr/>
+        <h2>Характеристики:</h2>
+        <hr/>
+        <h2>Цены:</h2>
+        <hr/>
+    </div>
+    
+</div>
+

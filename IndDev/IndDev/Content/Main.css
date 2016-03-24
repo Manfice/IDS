@@ -681,6 +681,10 @@ a,a:focus, a:active {
     border: solid 1px #666;
     line-height: 30px;
 }
+.myMenuAdm ul li {
+    display: block;
+    background-color: white;
+}
 .myMenuAdm ul li a i {
     float: right;
     line-height: 30px;
@@ -692,15 +696,23 @@ a,a:focus, a:active {
 }
 .ui-menu { width: 300px }
 .ui-state-active {
-    background-color: orangered;
+    background-color: orangered !important;
     color: white;
 }
 .ui-state-focus {
-    background-color: orangered;
+    background-color: orangered !important;
     color: white;
 }
 .ui-state-focus>a,
 .ui-state-active>a{
     color: white;
     text-decoration: none;
+}
+.formProduct {
+    border: solid 1px;
+    padding: 10px;
+}
+.formProduct input[type="text"], .formProduct textarea {
+    margin: 10px 0;
+    width: 500px;
 }

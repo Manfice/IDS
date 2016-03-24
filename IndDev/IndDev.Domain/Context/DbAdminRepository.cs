@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using IndDev.Auth.Logic;
 using IndDev.Domain.Abstract;
+using IndDev.Domain.Entity;
 using IndDev.Domain.Entity.Auth;
 using IndDev.Domain.Entity.Customers;
 using IndDev.Domain.Entity.Menu;
@@ -66,10 +67,12 @@ namespace IndDev.Domain.Context
             return _context.Users.ToList();
         }
 
-        public void AddCategory(ProductMenu menu)
+        public ValidEvent AddCategory(ProductMenu menu)
         {
-            _context.ProductMenus.Add(menu);
+            var cat = menu;
+            _context.ProductMenus.Add(cat);
             _context.SaveChanges();
+            return new ValidEvent {Code = cat.Id};
         }
 
         public void DeleteCatImage(ProdMenuImage image)
@@ -240,6 +243,80 @@ namespace IndDev.Domain.Context
                 pvm.Add(p);
             }
             return pvm;
+        }
+
+        public IEnumerable<Brand> GetAllBrands()
+        {
+            return _context.Brands.ToList();
+        }
+
+        public IEnumerable<MesureUnit> GetAllMesureUnits()
+        {
+            return _context.MesureUnits.ToList();
+        }
+
+        public IEnumerable<Vendor> GetAllVendors()
+        {
+            return _context.Vendors.ToList();
+        }
+
+        public ValidEvent SaveProduct(AddProductViewModel model)
+        {
+            var brand = _context.Brands.Find(model.SelBrand);
+            var mu = _context.MesureUnits.Find(model.SelMU);
+            var cat = _context.ProductMenuItems.Find(model.SubCatId);
+            var product = new Product
+            {
+                Articul = model.Product.Articul,
+                Brand = brand,
+                MesureUnit = mu,
+                Categoy = cat,
+                Description = model.Product.Description,
+                IsService = model.Product.IsService,
+                Title = model.Product.Title,
+                Vendor = brand.Vendor,
+                Warranty = model.Product.Warranty
+            };
+            _context.Products.Add(product);
+            _context.SaveChanges();
+            return new ValidEvent {Code = product.Id};
+        }
+
+        public IEnumerable<Product> GetCatProduct(int catId)
+        {
+            return _context.Products.Where(product => product.Categoy.Id == catId).ToList();
+        }
+
+        public Product GetProduct(int id)
+        {
+            return _context.Products.Find(id);
+        }
+
+        public ValidEvent RemoveProduct(int id)
+        {
+            //Todo:Проверить удаление цен.
+            var prod = _context.Products.Find(id);
+            var cat = prod.Categoy.Id;
+            _context.Products.Remove(prod);
+            _context.SaveChanges();
+            return new ValidEvent {Code = cat};
+        }
+
+        public ValidEvent AddPhotoToProduct(int prodId, ProductPhoto photo)
+        {
+            var product = _context.Products.Find(prodId);
+            var avatar = product.ProductPhotos.Count(productPhoto => productPhoto.PhotoType == PhotoType.Avatar);
+            var image = new ProductPhoto
+            {
+                AltText = photo.AltText,
+                FullPath = photo.FullPath,
+                PhotoType = avatar>0? PhotoType.Photo : PhotoType.Avatar,
+                Path = photo.Path,
+                Product = product
+            };
+            _context.ProductPhotos.Add(image);
+            _context.SaveChanges();
+            return new ValidEvent {Code = product.Id};
         }
     }
 }

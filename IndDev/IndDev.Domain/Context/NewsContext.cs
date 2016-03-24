@@ -35,6 +35,7 @@ namespace IndDev.Domain.Context
         public DbSet<ProductMenuItem> ProductMenuItems { get; set; }
         public DbSet<ProdMenuImage> ProdMenuImages { get; set; }
         public DbSet<ProductMenu> ProductMenus { get; set; }
+        public DbSet<ProductPhoto> ProductPhotos { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

@@ -41,29 +41,29 @@
         <thead>
             <tr>
                 <td>Код:</td>
-                <td>Наименование:</td>
-                <td>Описание:</td>
-                <td>Россия:</td>
-                <td>Картинка:</td>
+                <td>Артикул:</td>
+                <td colspan="2">Наименование:</td>
+                <td>Закуп:</td>
+                <td>Валюта:</td>
+                <td>Розница:</td>
                 <td>Действия:</td>
             </tr>
         </thead>
         <tbody id="subCat">
-            @*@Html.Action("SubCutList", new { id = @Model.Id })*@
+            @Html.Action("ShowProducts", new { subCatId = @Model.Id })
         </tbody>
         <tfoot>
-            @using (Html.BeginForm("AddSubCut", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
-            {
-                @Html.AntiForgeryToken()
-                <tr>
-                    <td>@Html.Hidden("menuId", Model.Id)</td>
-                    <td><input type="text" name="title" placeholder="Наименование" /></td>
-                    <td><textarea name="descr" placeholder="Описание подкатегории" maxlength="120" rows="3"></textarea></td>
-                    <td>@Html.CheckBox("IsRus", false)</td>
-                    <td><input type="file" name="photo" /></td>
-                    <td><input type="submit" class="btn btn-success btn-sm" value="Сохранить" /></td>
-                </tr>
-            }
+            <tr>
+                <td>Артикул:</td>
+                <td>Наименование:</td>
+                <td>Описание:</td>
+                <td>Гарантия:</td>
+                <td>Ед. изм.:</td>
+                <td>Брэнд:</td>
+                <td>Услуга:</td>
+                <td>Действия:</td>
+            </tr>
+        @Html.Action("AddProductToSubCat", new {subCatID = @Model.Id, returnUrl = Request.Url.PathAndQuery})
         </tfoot>
     </table>
 </div>

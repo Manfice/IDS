@@ -1,10 +1,14 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using IndDev.Domain.Abstract;
+using IndDev.Domain.Entity;
 using IndDev.Domain.Entity.Auth;
 using IndDev.Domain.Entity.Menu;
+using IndDev.Domain.Entity.Products;
+using IndDev.Domain.ViewModels;
 using IndDev.Models;
 
 namespace IndDev.Controllers
@@ -100,7 +104,6 @@ namespace IndDev.Controllers
         {
             return PartialView(_repository.ProductMenus().OrderBy(menu => menu.Priority));
         }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult AddProdCat(ProductMenu productMenu, HttpPostedFileBase photo)
@@ -125,9 +128,9 @@ namespace IndDev.Controllers
                     Path = "/Content/images/Uploads/Categories/" + fileName
                 };
             }
-            _repository.AddCategory(pMenu);
+            var result = _repository.AddCategory(pMenu);
 
-            return RedirectToAction("ProductIndex");
+            return RedirectToAction("CatDetails", _repository.GetProductMenu(result.Code));
         }
 
         public ActionResult DeleteCat(int id)
@@ -268,6 +271,80 @@ namespace IndDev.Controllers
         {
             var p = _repository.GetProductsByMenu(menuId);
             return PartialView(p);
+        }
+
+        public PartialViewResult AddProductToSubCat(int subCatId,string returnUrl)
+        {
+            var p = new AddProductViewModel
+            {
+                SubCatId = subCatId,
+                ReturnUrl = returnUrl,
+                Brands = _repository.GetAllBrands(),
+                MesureUnits = _repository.GetAllMesureUnits(),
+                Product = new Product()
+            };
+
+            return PartialView(p);
+        }
+
+        public PartialViewResult ShowProducts(int subCatId)
+        {
+            var p = _repository.GetCatProduct(subCatId);
+            var pvm = new List<ProductViewModel>();
+            foreach (var item in p)
+            {
+                var pr = new ProductViewModel
+                {
+                    Id = item.Id,
+                    Title = item.Title,
+                    Articul = item.Articul,
+                    PriceIn = (double)100,
+                    Currency = "USD",
+                    PriceOut = 6877
+                };
+                pvm.Add(pr);
+            }
+            return PartialView(pvm);
+        }
+
+        public ActionResult ProductDetails(int id)
+        {
+            return View(_repository.GetProduct(id));
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddProduct(AddProductViewModel model)
+        {
+            _repository.SaveProduct(model);
+            return RedirectToAction("SubCatDetails", new {id = model.SubCatId, returnUrl = model.ReturnUrl});
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddPhotoToProduct(AddPhotoViewModel model)
+        {
+            if (model.Photo!=null)
+            {
+                var fileName = model.Photo.FileName;
+                var filePath = Server.MapPath("/Content/images/Uploads/Categories");
+                var fullPath = Path.Combine(filePath, fileName);
+                model.Photo.SaveAs(fullPath);
+                var image = new ProductPhoto
+                {
+                    
+                    AltText = fileName,
+                    FullPath = fullPath,
+                    Path = "/Content/images/Uploads/Categories/" + fileName
+                };
+                var result = _repository.AddPhotoToProduct(model.ProductId, image);
+            }
+            return RedirectToAction("ProductDetails", new {id = model.ProductId});
+        }
+
+        public ActionResult RemoveProduct(int id, string returnUrl)
+        {
+            var result = _repository.RemoveProduct(id);
+            return RedirectToAction("SubCatDetails", new {id=result.Code, returnUrl=returnUrl});
         }
     }
 }
