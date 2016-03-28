@@ -43,7 +43,8 @@ namespace IndDev.Domain.Context
 
         private IEnumerable<Curency> GetCursOnDate(DateTime date)
         {
-            var curses = _context.Curses.Where(curency => curency.ReqDate==date).ToList();
+            var cDate = CorrWeekDay(date);
+            var curses = _context.Curses.Where(curency => curency.ReqDate==cDate).ToList();
             if (curses.Any())
             {
                 return curses;
@@ -73,7 +74,7 @@ namespace IndDev.Domain.Context
                 _context.Curses.Add(curs);
             }
             _context.SaveChanges();
-            curses = _context.Curses.Where(curency => curency.ReqDate == date).ToList();
+            curses = _context.Curses.Where(curency => curency.ReqDate == cDate).ToList();
             return curses;
         } 
 
@@ -84,7 +85,6 @@ namespace IndDev.Domain.Context
             {
                 var d = doc.Attribute("Date").Value;
                 DateTime docDate = makeDate(d);
-                //DateTime.TryParse(d,out docDate);
                 var valCbrfs = (from c in doc.Descendants("Valute")
                     let xElement = c.Element("NumCode")
                     where xElement != null
@@ -115,6 +115,20 @@ namespace IndDev.Domain.Context
             return result;
         }
 
+        private DateTime CorrWeekDay(DateTime date)
+        {
+            var dd = date;
+            switch (date.DayOfWeek)
+            {
+                case DayOfWeek.Sunday:
+                    dd = date.AddDays(-1);
+                    break;
+                case DayOfWeek.Monday:
+                    dd = date.AddDays(-2);
+                    break;
+            }
+            return dd;
+        }
         private string CorrDate(DateTime date)
         {
             switch (date.DayOfWeek)
