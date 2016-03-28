@@ -50,12 +50,16 @@ namespace IndDev.Domain.Context
             }
             try
             {
-                var doc = XDocument.Load(ValDateReq(date));
+                var req = ValDateReq(date);
+                var doc = XDocument.Load(req);
                 curses = RequestCurrencies(doc).ToList();
             }
             catch (Exception e)
             {
-                throw;
+                return new List<Curency>
+                {
+                    new Curency {Stitle = e.Message,CurValue = 0, Title = date.ToString(CultureInfo.CurrentCulture)}
+                };
             }
             foreach (var curency in curses.Where(curency => (curency.Stitle=="USD") || (curency.Stitle=="EUR")))
             {
@@ -76,10 +80,11 @@ namespace IndDev.Domain.Context
         private IEnumerable<Curency> RequestCurrencies(XDocument document)
         {
             var doc = document.Element("ValCurs");
-
             if (doc != null)
             {
                 var d = doc.Attribute("Date").Value;
+                DateTime docDate = makeDate(d);
+                //DateTime.TryParse(d,out docDate);
                 var valCbrfs = (from c in doc.Descendants("Valute")
                     let xElement = c.Element("NumCode")
                     where xElement != null
@@ -93,7 +98,7 @@ namespace IndDev.Domain.Context
                     where xElement2 != null
                     select new Curency()
                     {
-                        ReqDate = DateTime.Parse(d),
+                        ReqDate = docDate,
                         Stitle = element.Value,
                         Title = element1.Value,
                         CurValue = cursValue(xElement2.Value)
@@ -145,6 +150,16 @@ namespace IndDev.Domain.Context
             {
                 return decimal.Parse(curs);
             }
+        }
+
+        private DateTime makeDate(string s)
+        {
+            var d = s.Split('.');
+            var day = int.Parse(d[0]);
+            var mnth = int.Parse(d[1]);
+            var year = int.Parse(d[2]);
+            var result = new DateTime(year,mnth,day);
+            return result;
         }
     }
 }

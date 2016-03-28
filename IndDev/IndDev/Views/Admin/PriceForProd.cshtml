@@ -1,0 +1,17 @@
+﻿@model IndDev.Domain.ViewModels.PriceSetter
+
+    <tr>
+@using (Html.BeginForm("SavePrice", "Admin", FormMethod.Post))
+{
+        @Html.HiddenFor(setter => setter.PriceViewModel.Id)
+        <td>@Model.PriceViewModel.Id</td>
+        <td>@Html.EditorFor(setter => setter.Title)</td>
+        <td>@Html.TextBoxFor(setter => setter.Value, new {type="number"})</td>
+        <td>@Html.DropDownListFor(setter => setter.SelCurr, new SelectList(Model.Currencies, "Id", "StringCode"), Model.PriceViewModel.Currency.StringCode)</td>
+        <td>@Html.DropDownListFor(setter => setter.PriceTp, new SelectList(Model.PriceTypes,"Value"),Model.PriceTp)</td>
+        <td>@Model.PriceViewModel.ConvValue.ToString("C")</td>
+        <td>
+            <input type="submit" value="Сохранить"/>
+        </td>
+}
+    </tr>

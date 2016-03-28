@@ -1,0 +1,23 @@
+﻿@model IndDev.Domain.Entity.Products.Product
+
+<div class="col-md-12">
+    <table class="table table-responsive table-striped">
+        <thead>
+            <tr>
+                <td>Код</td>
+                <td>Наименование</td>
+                <td>Цена</td>
+                <td>Валюта</td>
+                <td>Тип цены</td>
+                <td>Конвертация</td>
+                <td>Действия</td>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model.Prices)
+        {
+            @Html.Action("PriceForProd", new {priceId = item.Id})
+        }
+        </tbody>
+    </table>
+</div>

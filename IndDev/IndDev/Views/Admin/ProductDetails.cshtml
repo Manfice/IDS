@@ -90,7 +90,7 @@
 
         <h2>Цены:</h2>
         <div class="row" id="priceSection">
-            
+            @Html.Action("SetPriceSection",new {pId = Model.Product.Id})
         </div>
         <hr />
     </div>

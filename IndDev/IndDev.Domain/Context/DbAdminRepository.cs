@@ -236,9 +236,9 @@ namespace IndDev.Domain.Context
                 {
                     Id = product.Id,
                     Title = product.Title,
-                    PriceIn = product.Prices.FirstOrDefault(price => price.PriceType==PriceType.InputPrice).Value,
-                    Currency = product.Prices.FirstOrDefault(price => price.PriceType==PriceType.InputPrice).Currency.StringCode,
-                    PriceOut = product.Prices.FirstOrDefault(price => price.PriceType==PriceType.OutputPrice).Value
+                   // PriceIn = product.Prices.FirstOrDefault(price => price.PriceType==PriceType.InputPrice).Value,
+                    Currency = product.Prices.FirstOrDefault(price => price.PriceType==PriceType.InputPrice).Currency.StringCode
+                  //  PriceOut = product.Prices.FirstOrDefault(price => price.PriceType==PriceType.OutputPrice).Value
                 };
                 pvm.Add(p);
             }
@@ -278,6 +278,20 @@ namespace IndDev.Domain.Context
                 Warranty = model.Product.Warranty
             };
             _context.Products.Add(product);
+            var pTypes = Enum.GetNames(typeof (PriceType));
+            foreach (var s in pTypes)
+            {
+                var price = new Price
+                {
+                    PriceType = (PriceType)Enum.Parse(typeof(PriceType),s),
+                    Currency = _context.Currencies.FirstOrDefault(currency => currency.Code=="RUB"),
+                    Product = product,
+                    Publish = false,
+                    Title = s,
+                    Value = 0
+                };
+                _context.Prices.Add(price);
+            }
             _context.SaveChanges();
             return new ValidEvent {Code = product.Id};
         }
@@ -317,6 +331,55 @@ namespace IndDev.Domain.Context
             _context.ProductPhotos.Add(image);
             _context.SaveChanges();
             return new ValidEvent {Code = product.Id};
+        }
+
+        public IEnumerable<PriceViewModel> GetProdPrices(int prodId)
+        {
+            var product = _context.Products.Find(prodId);
+            var curses = new Valutes(DateTime.Today).GetCurses();
+            var pvml = new List<PriceViewModel>();
+            foreach (var price in product.Prices)
+            {
+                var p = new PriceViewModel
+                {
+                    Product = product,
+                    Currency = price.Currency,
+                    Title = price.Title,
+                    Value = price.Value
+                };
+                if (price.Currency.Code == "RUB")
+                {
+                    p.ConvValue = price.Value;
+                }
+                else
+                {
+                    var crs = curses.FirstOrDefault(curency => curency.Stitle == price.Currency.Code);
+                    p.ConvValue = ValToRub(price.Value, crs.CurValue);
+                }
+                pvml.Add(p);
+            }
+            return pvml;
+            
+        }
+
+        private decimal ValToRub(decimal value, decimal curs)
+        {
+            return value>0 ? value*curs:0;
+        }
+        public PriceSetter GetPriceSetter(int id)
+        {
+            var price = _context.Prices.Find(id);
+            var tp = (PriceType[])Enum.GetValues(typeof (PriceType));
+            return new PriceSetter
+            {
+                PriceViewModel = new PriceViewModel (),
+                PriceTp = price.PriceType.ToString(),
+                PriceTypes = tp,
+                Currencies = _context.Currencies.ToList(),
+                Public = price.Publish,
+                Title = price.Title,
+                Value = price.Value
+            };
         }
     }
 }

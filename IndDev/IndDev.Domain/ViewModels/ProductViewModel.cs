@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Web;
+using IndDev.Domain.Context;
 using IndDev.Domain.Entity.Products;
 
 namespace IndDev.Domain.ViewModels
@@ -43,6 +44,22 @@ namespace IndDev.Domain.ViewModels
         public string Title { get; set; }
         public Currency Currency { get; set; }
         public decimal Value { get; set; }
+        public decimal ConvValue { get; set; }
+        public Product Product { get; set; }
+    }
+
+    public class PriceSetter
+    {
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public string PriceTp { get; set; }
+        public decimal Value { get; set; }
+        public bool Public { get; set; }
+        public int SelCurr { get; set; }
+        public IEnumerable<Currency> Currencies { get; set; }
+        public IEnumerable<PriceType> PriceTypes { get; set; }
+        public PriceViewModel PriceViewModel { get; set; }
+
     }
 
     public class AddPhotoViewModel

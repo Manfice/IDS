@@ -104,6 +104,7 @@ namespace IndDev.Controllers
         {
             return PartialView(_repository.ProductMenus().OrderBy(menu => menu.Priority));
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult AddProdCat(ProductMenu productMenu, HttpPostedFileBase photo)
@@ -166,13 +167,15 @@ namespace IndDev.Controllers
                 result = _repository.UpdateCategory(menu, null);
             }
 
-            return RedirectToAction("CatDetails", new {id=result.Code});
+            return RedirectToAction("CatDetails", new {id = result.Code});
         }
+
         public PartialViewResult SubCutList(int id)
         {
             var cat = _repository.GetProductMenu(id);
             return PartialView(cat.MenuItems);
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult AddSubCut(ProductMenuItem item, HttpPostedFileBase photo, int menuId)
@@ -199,16 +202,17 @@ namespace IndDev.Controllers
                 };
             }
             _repository.AddSubCategory(pMenu);
-            return RedirectToAction("CatDetails",new {id=menuId});
+            return RedirectToAction("CatDetails", new {id = menuId});
         }
 
         public ActionResult SubCatDetails(int id, string returnUrl)
         {
             var sc = _repository.GetSubCat(id);
             @ViewBag.ReturnUrl = returnUrl;
-            @ViewBag.Title =$"Подкатегория {sc.Title}";
+            @ViewBag.Title = $"Подкатегория {sc.Title}";
             return View(sc);
         }
+
         public ActionResult EditSubCategory(ProductMenuItem menu, HttpPostedFileBase photo, string retUrl)
         {
             ValidEvent result;
@@ -231,19 +235,20 @@ namespace IndDev.Controllers
                 result = _repository.UpdateSubCategory(menu, null);
             }
 
-            return RedirectToAction("SubCatDetails", new { id = result.Code, returnUrl=retUrl });
+            return RedirectToAction("SubCatDetails", new {id = result.Code, returnUrl = retUrl});
         }
 
         public ActionResult RemoveSubCat(int id, int root)
         {
             TempData["message"] = _repository.RemoveSubCat(id).Messge;
-            return RedirectToAction("CatDetails", new {id=root});
+            return RedirectToAction("CatDetails", new {id = root});
         }
 
         public PartialViewResult RootMenu()
         {
             return PartialView(_repository.GetrootMenuItems());
         }
+
         public PartialViewResult SubMenu(int id)
         {
             var b = _repository.GetSubMenuItems(id);
@@ -273,7 +278,7 @@ namespace IndDev.Controllers
             return PartialView(p);
         }
 
-        public PartialViewResult AddProductToSubCat(int subCatId,string returnUrl)
+        public PartialViewResult AddProductToSubCat(int subCatId, string returnUrl)
         {
             var p = new AddProductViewModel
             {
@@ -298,7 +303,7 @@ namespace IndDev.Controllers
                     Id = item.Id,
                     Title = item.Title,
                     Articul = item.Articul,
-                    PriceIn = (double)100,
+                    PriceIn = (double) 100,
                     Currency = "USD",
                     PriceOut = 6877
                 };
@@ -319,6 +324,23 @@ namespace IndDev.Controllers
             return View(pdvm);
         }
 
+        public PartialViewResult SetPriceSection(int pId)
+        {
+            var p = _repository.GetProduct(pId);
+            return PartialView(p);
+        }
+
+        public PartialViewResult PriceForProd(int priceId)
+        {
+            var ps = _repository.GetPriceSetter(priceId);
+            return PartialView(ps);
+        }
+        [HttpPost]
+        public ActionResult SavePrice(PriceSetter model)
+        {
+
+            return PartialView("SetPriceSection");
+        }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult AddProduct(AddProductViewModel model)
