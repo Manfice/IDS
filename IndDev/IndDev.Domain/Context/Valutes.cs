@@ -43,6 +43,7 @@ namespace IndDev.Domain.Context
 
         private IEnumerable<Curency> GetCursOnDate(DateTime date)
         {
+
             var cDate = CorrWeekDay(date);
             var curses = _context.Curses.Where(curency => curency.ReqDate==cDate).ToList();
             if (curses.Any())
@@ -72,6 +73,9 @@ namespace IndDev.Domain.Context
                     Title = curency.Title
                 };
                 _context.Curses.Add(curs);
+                var currentCursVall = _context.Currencies.FirstOrDefault(currency => currency.Code == curency.Stitle);
+                currentCursVall.ActualDate=DateTime.Today;
+                currentCursVall.Curs = curency.CurValue;
             }
             _context.SaveChanges();
             curses = _context.Curses.Where(curency => curency.ReqDate == cDate).ToList();

@@ -311,6 +311,12 @@ namespace IndDev.Domain.Context
             //Todo:Проверить удаление цен.
             var prod = _context.Products.Find(id);
             var cat = prod.Categoy.Id;
+            var prs = prod.Prices.ToList();
+            foreach (var price in prs)
+            {
+                var dbPrice = _context.Prices.Find(price.Id);
+                _context.Prices.Remove(dbPrice);
+            }
             _context.Products.Remove(prod);
             _context.SaveChanges();
             return new ValidEvent {Code = cat};
@@ -345,17 +351,8 @@ namespace IndDev.Domain.Context
                     Product = product,
                     Currency = price.Currency,
                     Title = price.Title,
-                    Value = price.Value
+                    OriginalPrice = price.Value
                 };
-                if (price.Currency.Code == "RUB")
-                {
-                    p.ConvValue = price.Value;
-                }
-                else
-                {
-                    var crs = curses.FirstOrDefault(curency => curency.Stitle == price.Currency.Code);
-                    p.ConvValue = ValToRub(price.Value, crs.CurValue);
-                }
                 pvml.Add(p);
             }
             return pvml;
@@ -369,17 +366,37 @@ namespace IndDev.Domain.Context
         public PriceSetter GetPriceSetter(int id)
         {
             var price = _context.Prices.Find(id);
-            var tp = (PriceType[])Enum.GetValues(typeof (PriceType));
+            var pvm = new PriceViewModel
+            {
+                Currency = price.Currency,
+                Product = price.Product,
+                Title = price.Title,
+                OriginalPrice = price.Value
+            };
             return new PriceSetter
             {
-                PriceViewModel = new PriceViewModel (),
-                PriceTp = price.PriceType.ToString(),
-                PriceTypes = tp,
+                PriceViewModel = pvm,
+                PriceType = price.PriceType,
                 Currencies = _context.Currencies.ToList(),
                 Public = price.Publish,
                 Title = price.Title,
-                Value = price.Value
+                Value = price.Value,
+                Id = price.Id
             };
+        }
+
+        public ValidEvent SetPrice(PriceSetter model)
+        {
+            var dbPrice = _context.Prices.Find(model.Id);
+            dbPrice.Title = model.Title;
+            dbPrice.Value = model.Value;
+            if (model.SelCurr != 0)
+            {
+                var curr = _context.Currencies.Find(model.SelCurr);
+                dbPrice.Currency = curr;
+            }
+            _context.SaveChanges();
+            return new ValidEvent {Code = model.PriceViewModel.Product.Id};
         }
     }
 }

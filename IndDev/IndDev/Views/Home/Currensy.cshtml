@@ -1,7 +1,8 @@
-﻿@model IEnumerable<IndDev.Domain.Context.Curency>
+﻿@model IndDev.Domain.ViewModels.CursViewModel
 
 <ul class="vals">
-    @foreach (var item in Model)
+    <li>@Model.CursDate.ToLongDateString()</li>
+    @foreach (var item in Model.Curses)
     {
         <li>@item.Stitle: @item.CurValue.ToString("C")</li>
     }

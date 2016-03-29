@@ -33,6 +33,7 @@ namespace IndDev.Infrastructure
             _kernel.Bind<ISecureRepository>().To<DbSecureRepository>().InRequestScope();
             _kernel.Bind<IAdminRepository>().To<DbAdminRepository>();
             _kernel.Bind<IShopRepository>().To<DbShopRepository>().InRequestScope();
+            _kernel.Bind<IHomeRepository>().To<DbHomeRepository>().InRequestScope();
         }
     }
 }

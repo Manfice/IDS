@@ -14,9 +14,13 @@
                 @Html.AntiForgeryToken()
                 @Html.HiddenFor(model => model.Product.Id)
                 <div class="col-md-3 pull-left">
-                    @if ((Model.Product.ProductPhotos.Count > 0) && (Model.Product.ProductPhotos.Count(photo => photo.PhotoType == PhotoType.Avatar) > 0))
-                {
-                        <img src="@Model.Product.ProductPhotos.FirstOrDefault(photo => photo.PhotoType == PhotoType.Avatar).Path" alt="avatarka" />
+                    @if (Model.Avatar != null)
+                    {
+                        <img src="@Model.Avatar.Path" alt="avatarka"/>
+                    }
+                    else
+                    {
+                        <img src="~/Content/images/noimage.png" alt="Нет картинки"/>
                     }
                 </div>
                 <div class="col-md-9">

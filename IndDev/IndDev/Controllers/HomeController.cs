@@ -10,10 +10,12 @@ namespace IndDev.Controllers
     public class HomeController : Controller
     {
         private readonly ISecureRepository _repository;
+        private readonly IHomeRepository _home;
 
-        public HomeController(ISecureRepository repository)
+        public HomeController(ISecureRepository repository, IHomeRepository home)
         {
             _repository = repository;
+            _home = home;
         }
         
         public ActionResult Index()
@@ -43,7 +45,7 @@ namespace IndDev.Controllers
 
         public PartialViewResult Currensy()
         {
-            var cur = new Valutes(DateTime.Today).GetCurses();
+            var cur = _home.GetCurses(DateTime.Today);
             return PartialView(cur);
         }
 

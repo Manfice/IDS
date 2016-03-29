@@ -42,5 +42,6 @@ namespace IndDev.Domain.Abstract
         ValidEvent AddPhotoToProduct(int prodId, ProductPhoto photo);
         IEnumerable<PriceViewModel> GetProdPrices(int prodId);
         PriceSetter GetPriceSetter(int id);
+        ValidEvent SetPrice(PriceSetter model);
     }
 }

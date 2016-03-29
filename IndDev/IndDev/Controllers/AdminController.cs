@@ -298,28 +298,31 @@ namespace IndDev.Controllers
             var pvm = new List<ProductViewModel>();
             foreach (var item in p)
             {
-                var pr = new ProductViewModel
+                var pvmItem = new ProductViewModel
                 {
                     Id = item.Id,
                     Title = item.Title,
+                    Currency = item.Prices.FirstOrDefault(price => price.PriceType==PriceType.InputPrice)?.Currency.Code,
                     Articul = item.Articul,
-                    PriceIn = (double) 100,
-                    Currency = "USD",
-                    PriceOut = 6877
+                    PriceIn = item.Prices.FirstOrDefault(price => price.PriceType==PriceType.InputPrice).Value,
+                    PriceOut = item.Prices.FirstOrDefault(price => price.PriceType == PriceType.OutputPrice).Value
                 };
-                pvm.Add(pr);
+                pvm.Add(pvmItem);
             }
             return PartialView(pvm);
         }
 
         public ActionResult ProductDetails(int id)
         {
+            var product = _repository.GetProduct(id);
+            var prodAva = product.ProductPhotos?.FirstOrDefault(photo => photo.PhotoType == PhotoType.Avatar);
             var pdvm = new ProductDetailsViewModel
             {
-                Product = _repository.GetProduct(id),
+                Product = product,
                 Brands = _repository.GetAllBrands(),
                 Vendors = _repository.GetAllVendors(),
-                MesureUnits = _repository.GetAllMesureUnits()
+                MesureUnits = _repository.GetAllMesureUnits(),
+                Avatar = prodAva
             };
             return View(pdvm);
         }
@@ -338,8 +341,8 @@ namespace IndDev.Controllers
         [HttpPost]
         public ActionResult SavePrice(PriceSetter model)
         {
-
-            return PartialView("SetPriceSection");
+            var result = _repository.SetPrice(model);
+            return RedirectToAction("ProductDetails", new {id=result.Code});
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
