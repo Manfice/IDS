@@ -1,0 +1,16 @@
+﻿@model IndDev.Domain.Entity.Menu.ProductMenu
+@{
+    Layout = "~/Views/Shared/_LayoutShop.cshtml";
+}
+<div>
+    <div>
+        <h2>@Model.Title</h2>
+    </div>
+    <div>
+        @foreach (var item in Model.MenuItems)
+        {
+            <h2>@item.Title</h2>
+            <img src="@item.Image.Path" alt="@item.Image.AltText"/>
+        }
+    </div>
+</div>

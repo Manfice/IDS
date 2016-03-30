@@ -41,6 +41,11 @@ namespace IndDev.Controllers
             }
             return PartialView(sm);
         }
+
+        public ActionResult CatDetails(int catId)
+        {
+            return View(_repository.GetProductMenu(catId));
+        }
         
     }
 }

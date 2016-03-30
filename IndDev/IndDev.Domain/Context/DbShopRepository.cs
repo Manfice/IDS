@@ -10,6 +10,11 @@ namespace IndDev.Domain.Context
     {
          private readonly DataContext _context = new DataContext();
 
+        public ProductMenu GetProductMenu(int id)
+        {
+            return _context.ProductMenus.Find(id);
+        }
+
         public IEnumerable<ProductMenu> GetProductMenus()
         {
             return _context.ProductMenus.ToList().OrderBy(menu => menu.Priority);

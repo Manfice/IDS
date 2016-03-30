@@ -4,15 +4,66 @@
     Layout = "~/Views/Shared/_LayoutShop.cshtml";
 }
 
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var owl = $(".owl-carousel");
+            owl.owlCarousel({
+                loop: true,
+                margin: 10,
+                nav: false,
+                autoPlay: true,
+                autoplayTimeout: 1000,
+                autoplayHoverPause: true,
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    800: {
+                        items: 3
+                    },
+                    1200: {
+                        items: 5
+                    }
+                }
+            });
+        });
+    </script>
+}
 
 <div class="catalog">
-    <div class="productGroupe">
+    @foreach (var item in Model)
+    {
+        <div class="productGroupe">
+            <div class="catList">
+                <div class="owl-carousel">
+                    @foreach (var groupe in item.MenuItems)
+                    {
+                        <div class="item catItem">
+                            <img src="@groupe.Image.Path"/>
+                            <h1>@groupe.Title</h1>
+                            <p>@groupe.Descr</p>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="groupeView">
+                <img src="@item.Image.Path" alt="@item.Image.AltText"/>
+                <h1>@item.Title</h1>
+                <p>@item.Descr</p>
+                <a class="btn btn-success btn-sm" href="@Url.Action("CatDetails", "Shop", new {catId = item.Id})">ПОДРОБНЕЕ<i class="fa fa-arrow-circle-o-right"></i></a>
+            </div>
+        </div>
+        <hr/>
+    }
+</div>
+    @*<div class="productGroupe">
        @foreach (var item in Model)
        {
            <div class="pg">
                <ul class="pgList">
                    <li>
-                       <a href="#">
+                       <a href="@Url.Action("CatDetails","Shop",new {catId = item.Id})">
                            <div class="pgItem">
                                <img src="@item.Image.Path" alt="@item.Image.AltText" />
                                <h5>@item.Title</h5>
@@ -39,9 +90,8 @@
                </ul>
            </div>
        }
-    </div>
-    <div class="menuShop">
+    </div>*@
+    @*<div class="menuShop">
         @Html.Action("Navigation")
-    </div>
-</div>
+    </div>*@
 

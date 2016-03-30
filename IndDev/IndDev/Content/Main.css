@@ -110,7 +110,7 @@ a,a:focus, a:active {
 }
 .vals {
     display: block;
-    margin: 20px 20px;
+    margin: 5px 20px;
 }
 .vals i {
     color: white;
@@ -312,55 +312,58 @@ a,a:focus, a:active {
 /*End Shop navigation*/
 /*Product groups*/
 .productGroupe {
-    margin: 0 254px 0 0;
+    position: relative;
     padding: 0 0 0 20px;
 }
-.pg {
-    /*background: url("../Content/images/prFon.jpg");*/
-    background-repeat: repeat;
-    height: 300px;
-    padding: 20px;
-    text-align: center;
-    border: solid 1px;
-    border-right: none;
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
+.productGroupe .groupeView:first-child {
+    margin: 10px 0 0 0;
+}
+.groupeView {
+    position: relative;
+    display: block;
+    width: 300px;
+    height: 320px;
     overflow: hidden;
+    text-align: center;
+    border-right: solid 5px rgb(40, 165, 81);
+}
+.groupeView img {
+    max-width: 150px;
+    margin: 10px 0 0 0;
+}
+.groupeView h1 {
+    font-weight: bold;
     margin: 10px 0;
 }
-.pgList {
+.groupeView p {
+    padding: 0 10px;
+}
+.groupeView a {
+    position: absolute;
+    margin: 10px;
+    bottom: 5px;
+    right: 10px;
+}
+.groupeView a i {
+    margin: 0 0 0 10px;
+}
+.catList {
+    position: absolute;
+    right: 0;
+    top: 20px;
+    width: 80%;
+}
+.catItem {
+    text-align: center;
+    width: 200px;
 
 }
-.pgList li {
-    float: left;
-    padding: 0 20px;
-    border-right: solid 1px black;
-    width: 13%;
-    height: 300px;
+.catItem img {
+    height: 150px !important;
 }
-.pgList li a {
-    display: block;
-    cursor: pointer;
-    text-decoration: none;
-    color: #1e1e1e;
-}
-.pgItem {
-    position: relative;
-}
-.pgItem:hover {
-    background-color: #6495ed;
-    padding: 15px;
-}
-.pgItem h5 {
+.catItem h1 {
     font-weight: bold;
-}
-.pgItem p {
-    font-weight: lighter;
-    margin: 20px;
-}
-.pgItem img:first-child {
-    width: 100px;
-    margin: 50px 0 0 0;
+    margin: 10px 0;
 }
 .flag {
     position: absolute;

@@ -13,7 +13,6 @@
 
     public enum PriceType
     {
-        InputPrice,Dealer,
-        OutputPrice
+        Opt,LowOpt,Retail,Sale
     }
 }

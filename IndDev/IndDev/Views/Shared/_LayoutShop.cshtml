@@ -6,24 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="~/favicon.png">
     <title>@ViewBag.Title - Industrial Development</title>
-    @*<link href="~/Content/jquery-ui.css" rel="stylesheet"/>*@
     <link href="~/Content/fonts.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
     <link href="http://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700,800,900" rel="stylesheet" type="text/css">
     <link href="~/Content/mairala/style.css" rel="stylesheet" />
     <link href="~/Content/Main.css" rel="stylesheet" />
-    <style>
-        .ui-menu{width: 250px;}
-    </style>
-    <script src="~/Scripts/jquery-1.10.2.js"></script>
-    <script src="~/Scripts/jquery-ui.js"></script>
-    <script type="text/javascript">
-        $(function() {
-            $("#menu").menu({
-                position: { my: "right top", at: "right-250 top+20" }
-            });
-        })
-    </script>
+    <link href="~/Content/owl.carousel.css" rel="stylesheet" />
     @Scripts.Render("~/bundles/modernizr")
 
 
@@ -68,6 +57,8 @@
     </div>
 </div>
 
+    <script src="~/Scripts/jquery-2.2.2.js"></script>
+    <script src="~/Scripts/owl.carousel.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>
