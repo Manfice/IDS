@@ -42,9 +42,17 @@ namespace IndDev.Controllers
             return PartialView(sm);
         }
 
-        public ActionResult CatDetails(int catId)
+        public ActionResult CatDetails(int catId, int selCat)
         {
-            return View(_repository.GetProductMenu(catId));
+            var model = _repository.GetProductMenu(catId);
+            ViewBag.Title = model.Title;
+            ViewBag.Products = selCat;
+            return View(model);
+        }
+
+        public PartialViewResult ShowProducts(int catId, string subCat)
+        {
+            return PartialView();
         }
         
     }

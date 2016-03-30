@@ -593,6 +593,63 @@ a,a:focus, a:active {
     -ms-border-radius: 5%;
     border-radius: 5%;
 }
+.goBack {
+    background-color: rgb(107, 163, 226);
+}
+.goBack a {
+    display: block;
+    font-size: 25px;
+    line-height: 40px;
+    padding: 0 0 0 20px;
+    color: white;
+    text-decoration: none;
+}
+.goBack a i {
+    margin: 0 20px;
+}
+.goBack a:hover {
+    background-color: white;
+    color: rgb(107, 162, 225);
+    transition: all .5s;
+}
+.selCat {
+    border-left: solid 5px gray;
+}
+.selCat img {
+    margin: 10px 0 10px 55px;
+}
+.selCat h1 {
+    font-weight: bold;
+    margin: 10px;
+}
+.selCat p {
+    padding: 5px
+}
+.subCutItems {
+    border-left: solid 5px orangered;
+    padding: 10px;
+    border-top: solid 1px gray;
+    min-height: 150px;
+}
+.subCutItems:hover{
+    background-color: rgb(196, 236, 210);
+    border-left: solid 5px yellow;
+    transition: all .5s;
+}
+.subCutItems a {
+    display: inline-block;
+    color: rgb(16, 61, 134);
+    text-decoration: none;
+    cursor: pointer;
+}
+.subCutItems img {
+    float: left;
+    margin: 10px;
+    width: 90px;
+}
+.subCutItems h1 {
+    font-weight: bold;
+}
 /*/About*/
 /*----------------------------------------
     Login Form

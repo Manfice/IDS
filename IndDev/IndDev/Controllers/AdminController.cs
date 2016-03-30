@@ -302,10 +302,10 @@ namespace IndDev.Controllers
                 {
                     Id = item.Id,
                     Title = item.Title,
-                    Currency = item.Prices.FirstOrDefault(price => price.PriceType==PriceType.InputPrice)?.Currency.Code,
+                    Currency = item.Prices.FirstOrDefault(price => price.PriceType==PriceType.LowOpt)?.Currency.Code,
                     Articul = item.Articul,
-                    PriceIn = item.Prices.FirstOrDefault(price => price.PriceType==PriceType.InputPrice).Value,
-                    PriceOut = item.Prices.FirstOrDefault(price => price.PriceType == PriceType.OutputPrice).Value
+                    PriceIn = item.Prices.FirstOrDefault(price => price.PriceType==PriceType.LowOpt).Value,
+                    PriceOut = item.Prices.FirstOrDefault(price => price.PriceType == PriceType.Retail).Value
                 };
                 pvm.Add(pvmItem);
             }

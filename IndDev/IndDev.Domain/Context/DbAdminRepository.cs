@@ -237,7 +237,7 @@ namespace IndDev.Domain.Context
                     Id = product.Id,
                     Title = product.Title,
                    // PriceIn = product.Prices.FirstOrDefault(price => price.PriceType==PriceType.InputPrice).Value,
-                    Currency = product.Prices.FirstOrDefault(price => price.PriceType==PriceType.InputPrice).Currency.StringCode
+                    Currency = product.Prices.FirstOrDefault(price => price.PriceType==PriceType.LowOpt).Currency.StringCode
                   //  PriceOut = product.Prices.FirstOrDefault(price => price.PriceType==PriceType.OutputPrice).Value
                 };
                 pvm.Add(p);

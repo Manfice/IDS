@@ -2,15 +2,28 @@
 @{
     Layout = "~/Views/Shared/_LayoutShop.cshtml";
 }
-<div>
-    <div>
-        <h2>@Model.Title</h2>
+<div class="shopSubCat row">
+    <div class="productsSection col-md-9 col-lg-10">
+        @Html.Action("ShowProducts", new {catId = @Model.Id, subCat = ViewBag.Products})
     </div>
-    <div>
+    <ul class="subCatNav col-md-3 col-lg-2">
+        <li class="goBack"><a href="@Url.Action("Index", "Shop")"><i class="fa fa-arrow-circle-o-left"></i>КАТАЛОГ</a></li>
+        <li class="selCat">
+            <div>
+                <img src="@Model.Image.Path" alt="@Model.Image.AltText" width="150"/>
+                <h1>@Model.Title</h1>
+                <p>@Model.Descr</p>
+            </div>
+        </li>
         @foreach (var item in Model.MenuItems)
         {
-            <h2>@item.Title</h2>
-            <img src="@item.Image.Path" alt="@item.Image.AltText"/>
+            <li class="subCutItems"><a href="@Url.Action()">
+                <div>
+                    <img src="@item.Image.Path" alt="@item.Image.AltText"/>
+                    <h1>@item.Title</h1>
+                    <p>@item.Descr</p>
+                </div>
+            </a></li>
         }
-    </div>
+    </ul>
 </div>
