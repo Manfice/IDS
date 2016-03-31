@@ -1,2 +1,17 @@
-﻿@model IEnumerable<IndDev.Domain.Entity.Products.Product>
-wow
+﻿@model IEnumerable<IndDev.Domain.ViewModels.ShopProductView>
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-2 shopView">
+            <img src="@item.Avatar.Path" alt="@item.Avatar.AltText"/>
+            <h1>@item.Product.Title</h1>
+            @foreach (var price in item.Prices)
+            {
+                if (price.OriginalPrice>0)
+                {
+                    <p>@price.Title <span><strong>@price.ConvValue.ToString("C")</strong></span></p>
+                }
+            }
+        </div>
+    }
+</div>

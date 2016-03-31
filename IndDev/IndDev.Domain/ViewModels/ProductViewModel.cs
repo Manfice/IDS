@@ -86,4 +86,11 @@ namespace IndDev.Domain.ViewModels
         public int ProductId { get; set; }
         public HttpPostedFileBase Photo { get; set; }
     }
+
+    public class ShopProductView
+    {
+        public Product Product { get; set; }
+        public ProductPhoto Avatar { get; set; }    
+        public IEnumerable<PriceViewModel> Prices { get; set; }
+    }
 }

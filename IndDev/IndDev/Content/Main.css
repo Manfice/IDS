@@ -372,6 +372,18 @@ a,a:focus, a:active {
     width: 30px;
 }
 /*End product groups*/
+/*Producs*/
+.shopView {
+    height: 350px;
+}
+.shopView p {
+    margin: 5px;
+    text-align: right
+}
+.shopView p span {
+    font-weight: bold;
+}
+/*End routs*/
 /*Попытка сделать хедер*/
 .myHead {
     overflow: visible;
@@ -612,6 +624,26 @@ a,a:focus, a:active {
     color: rgb(107, 162, 225);
     transition: all .5s;
 }
+.showAll {
+    background-color: rgb(74, 175, 96);
+}
+.showAll a {
+    display: block;
+    text-align: center;
+    font-size: 20px;
+    line-height: 40px;
+    padding: 0 0 0 20px;
+    color: white;
+    text-decoration: none;
+}
+.showAll a i {
+    margin: 0 20px;
+}
+.showAll a:hover {
+    background-color: white;
+    color: rgb(107, 162, 225);
+    transition: all .5s;
+}
 .selCat {
     border-left: solid 5px gray;
 }
@@ -649,6 +681,10 @@ a,a:focus, a:active {
 }
 .subCutItems h1 {
     font-weight: bold;
+}
+.activeItem {
+    background: linear-gradient(90deg, rgb(112, 204, 254), white);
+    border-left: solid 5px rgb(112, 203, 253);
 }
 /*/About*/
 /*----------------------------------------

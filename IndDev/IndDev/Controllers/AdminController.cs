@@ -326,6 +326,14 @@ namespace IndDev.Controllers
             };
             return View(pdvm);
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult UpdateProduct(ProductDetailsViewModel model)
+        {
+            var prod = model.Product;
+            var p = _repository.UpdateProduct(prod);
+            return RedirectToAction("ProductDetails", new {id=p.Id});
+        }
 
         public PartialViewResult SetPriceSection(int pId)
         {

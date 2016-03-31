@@ -43,5 +43,6 @@ namespace IndDev.Domain.Abstract
         IEnumerable<PriceViewModel> GetProdPrices(int prodId);
         PriceSetter GetPriceSetter(int id);
         ValidEvent SetPrice(PriceSetter model);
+        Product UpdateProduct(Product model);
     }
 }

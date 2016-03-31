@@ -312,11 +312,13 @@ namespace IndDev.Domain.Context
             var prod = _context.Products.Find(id);
             var cat = prod.Categoy.Id;
             var prs = prod.Prices.ToList();
+            var img = prod.ProductPhotos;
             foreach (var price in prs)
             {
                 var dbPrice = _context.Prices.Find(price.Id);
                 _context.Prices.Remove(dbPrice);
             }
+            _context.ProductPhotos.RemoveRange(img);
             _context.Products.Remove(prod);
             _context.SaveChanges();
             return new ValidEvent {Code = cat};
@@ -397,6 +399,17 @@ namespace IndDev.Domain.Context
             }
             _context.SaveChanges();
             return new ValidEvent {Code = model.PriceViewModel.Product.Id};
+        }
+
+        public Product UpdateProduct(Product model)
+        {
+            var dbProduct = _context.Products.Find(model.Id);
+            dbProduct.Title = model.Title;
+            dbProduct.Articul = model.Articul;
+            dbProduct.Description = model.Description;
+            dbProduct.IsService = model.IsService;
+            _context.SaveChanges();
+            return dbProduct;
         }
     }
 }

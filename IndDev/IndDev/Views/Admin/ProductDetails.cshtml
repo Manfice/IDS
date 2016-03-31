@@ -9,34 +9,34 @@
     <h2>@Model.Product.Title</h2>
     <div class="formProduct">
         <div class="row">
-            @using (Html.BeginForm())
+            @using (Html.BeginForm("UpdateProduct", "Admin", FormMethod.Post))
             {
                 @Html.AntiForgeryToken()
                 @Html.HiddenFor(model => model.Product.Id)
                 <div class="col-md-3 pull-left">
                     @if (Model.Avatar != null)
                     {
-                        <img src="@Model.Avatar.Path" alt="avatarka"/>
+                        <img src="@Model.Avatar.Path" alt="avatarka" width="200"/>
                     }
                     else
                     {
-                        <img src="~/Content/images/noimage.png" alt="Нет картинки"/>
+                        <img src="~/Content/images/noimage.png" alt="Нет картинки" width="100"/>
                     }
                 </div>
                 <div class="col-md-9">
-                    @Html.LabelFor(model => model.Product.Articul, "Артикул:")<br />
-                    @Html.EditorFor(model => model.Product.Articul)<br />
+                    @Html.LabelFor(model => model.Product.Articul, "Артикул:")<br/>
+                    @Html.EditorFor(model => model.Product.Articul)<br/>
 
-                    @Html.LabelFor(model => model.Product.Title, "Наименование:")<br />
-                    @Html.EditorFor(model => model.Product.Title)<br />
+                    @Html.LabelFor(model => model.Product.Title, "Наименование:")<br/>
+                    @Html.EditorFor(model => model.Product.Title)<br/>
 
-                    @Html.LabelFor(model => model.Product.Description, "Описание:")<br />
-                    @Html.TextAreaFor(model => model.Product.Description)<br />
+                    @Html.LabelFor(model => model.Product.Description, "Описание:")<br/>
+                    @Html.TextAreaFor(model => model.Product.Description)<br/>
 
                     @Html.LabelFor(model => model.Product.IsService, "Товар является услугой:")
                     @Html.CheckBoxFor(model => model.Product.IsService)
                 </div>
-                <input type="submit" value="Сохранить" />
+                <input type="submit" value="Сохранить"/>
             }
         </div>
 
@@ -50,7 +50,7 @@
                 foreach (var item in Model.Product.ProductPhotos)
                 {
                     <div class="col-md-2">
-                        <img src="@item.Path" alt="@item.AltText"/>
+                        <img src="@item.Path" alt="@item.AltText" width="100"/>
                         @Html.ActionLink("Удалить", "Products", new {id = item.Id})
                     </div>
                 }
@@ -76,8 +76,8 @@
                 @Html.AntiForgeryToken()
                 @Html.HiddenFor(model => model.Product.Id)
                 <div class="col-md-2">
-                    @Html.LabelFor(model => model.Brands,"Брэнд")
-                    @Html.DropDownListFor(model => model.SelBr,new SelectList(Model.Brands,"Id","FullName"),Model.Product.Brand.FullName)
+                    @Html.LabelFor(model => model.Brands, "Брэнд")
+                    @Html.DropDownListFor(model => model.SelBr, new SelectList(Model.Brands, "Id", "FullName"), Model.Product.Brand.FullName)
                 </div>
                 <div class="col-md-2">
                     @Html.LabelFor(model => model.Vendors, "Вендор")
@@ -94,8 +94,9 @@
 
         <h2>Цены:</h2>
         <div class="row" id="priceSection">
-            @Html.Action("SetPriceSection",new {pId = Model.Product.Id})
+            @Html.Action("SetPriceSection", new {pId = Model.Product.Id})
         </div>
-        <hr />
+        <hr/>
     </div>
+    @Html.ActionLink("Back","SubCatDetails",new {id=Model.Product.Categoy.Id})
 </div>
