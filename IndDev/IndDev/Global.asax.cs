@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using IndDev.Domain.Entity.Cart;
+using IndDev.Infrastructure.Binders;
 
 namespace IndDev
 {
@@ -16,6 +18,7 @@ namespace IndDev
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            ModelBinders.Binders.Add(typeof(Cart),new CartModelBinder());
         }
     }
 }

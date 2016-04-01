@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using IndDev.Domain.Abstract;
+using IndDev.Domain.Entity.Cart;
 using IndDev.Domain.Entity.Menu;
 using IndDev.Models;
 
@@ -55,6 +56,5 @@ namespace IndDev.Controllers
             var sCatId = 0; int.TryParse(subCat, out sCatId);
             return PartialView(_repository.GetProducts(catId,sCatId));
         }
-        
     }
 }

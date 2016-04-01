@@ -293,22 +293,6 @@ a,a:focus, a:active {
 .subMenuItem {
     position: absolute;
 }
-.myCart {
-    padding: 10px;
-    margin-bottom: 20px;
-    border-bottom: solid 3px green;
-}
-.goToCart {
-    float: left;
-    font-size: 60px;
-}
-.goToCart a i {
-    color: whitesmoke;
-}
-.stat {
-    text-align: right;
-    color: whitesmoke;
-}
 /*End Shop navigation*/
 /*Product groups*/
 .productGroupe {
@@ -385,6 +369,17 @@ a,a:focus, a:active {
 }
 /*End routs*/
 /*Попытка сделать хедер*/
+.dropdown-menu {
+    background: linear-gradient(-166deg, #8bdaff, #0095ff);
+    width: 100%;
+    height: 100px;
+}
+.dropdown-menu li {
+    margin: 10px !important;
+}
+.dropdown-menu li a {
+    margin: 10px !important; 
+}
 .myHead {
     overflow: visible;
     position: fixed;
@@ -393,6 +388,24 @@ a,a:focus, a:active {
     width: 100%;
     height: 120px;
     z-index: 999;
+}
+.myHead nav button {
+    float: right;
+    margin: 30px;
+    padding: 20px;
+    font-weight: bold;
+    background-color: transparent;
+    border: solid 2px white;
+    color: white;
+}
+.myHead nav button:hover,
+.myHead nav button:focus {
+    background-color: transparent;
+    border: solid 2px white;
+    color: white;
+}
+.myHead nav button i {
+    padding: 0 10px 0 10px;
 }
 .idLogo {
     margin: 0;
@@ -466,6 +479,25 @@ a,a:focus, a:active {
 .myShop:hover{
     padding: 16px 0 20px;
     border-bottom: solid 3px #fff;
+}
+.myCart {
+    float: left;
+    margin: 0 0 0 20px;
+    height: 100%;
+    width: 200px;
+    background-color: green;
+}
+.myCart div i {
+    float: left;
+    font-size: 40px;
+    margin: 10px;
+    color: white;
+} 
+.myCart div h1{
+    float: left;
+    font-weight: bold;
+    color: white;
+    margin: 20px 0 0 0;
 }
 /*Попытка удалась.*/
 /*Contacts*/

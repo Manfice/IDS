@@ -81,6 +81,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\IAdminRepository.cs" />
+    <Compile Include="Abstract\ICartRepository.cs" />
     <Compile Include="Abstract\IHomeRepository.cs" />
     <Compile Include="Abstract\INewsRepository.cs" />
     <Compile Include="Abstract\IShopRepository.cs" />
@@ -89,6 +90,7 @@
     <Compile Include="Abstract\ISecureRepository.cs" />
     <Compile Include="Context\Curency.cs" />
     <Compile Include="Context\DbAdminRepository.cs" />
+    <Compile Include="Context\DbCart.cs" />
     <Compile Include="Context\DbHomeRepository.cs" />
     <Compile Include="Context\dbNewsRepository.cs" />
     <Compile Include="Context\dbSecureRepository.cs" />
@@ -97,6 +99,7 @@
     <Compile Include="Context\Valutes.cs" />
     <Compile Include="Entity\Auth\User.cs" />
     <Compile Include="Entity\Auth\Usr_Roles.cs" />
+    <Compile Include="Entity\Cart\Cart.cs" />
     <Compile Include="Entity\Customers\CustomerModel.cs" />
     <Compile Include="Entity\ImageManager.cs" />
     <Compile Include="Entity\Menu\ProductMenu.cs" />
@@ -109,6 +112,7 @@
     <Compile Include="Entity\Products\Vendor.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\CartViewModel.cs" />
     <Compile Include="ViewModels\CursViewModel.cs" />
     <Compile Include="ViewModels\CustomerViewModel.cs" />
     <Compile Include="ViewModels\NewsViewModel.cs" />
@@ -119,7 +123,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Entity\Cart\" />
     <Folder Include="Entity\Stock\" />
   </ItemGroup>
   <ItemGroup>

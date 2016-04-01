@@ -27,10 +27,14 @@
             @Html.Action("Currensy", "Home")
         </div>
         <div class="myShop">
-            <a href="@Url.Action("Index","Shop")">МАГАЗИН<i class="fa fa-arrow-circle-o-right"></i></a>
+            <a href="@Url.Action("Index", "Shop")">МАГАЗИН<i class="fa fa-arrow-circle-o-right"></i></a>
+        </div>
+        <div class="myCart">
+            @Html.Action("CartModule","Cart")
         </div>
         <nav>
-            <ul>
+            <button type="button" class="dropdown-toggle" data-toggle="dropdown">МЕНЮ <i class="fa fa-list"></i></button>
+            <ul class="dropdown-menu" role="menu">
                 <li><a href="@Url.Action("Contact","Home")">Контакты</a></li>
                 <li><a>Барахолка</a></li>
                 <li><a>Галерея</a></li>
@@ -59,6 +63,7 @@
 
     <script src="~/Scripts/jquery-2.2.2.js"></script>
     <script src="~/Scripts/owl.carousel.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

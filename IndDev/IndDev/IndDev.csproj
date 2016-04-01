@@ -186,6 +186,7 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\NewsNavController.cs" />
@@ -195,6 +196,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="HtmlHelpers\PagingHelper.cs" />
+    <Compile Include="Infrastructure\Binders\CartModelBinder.cs" />
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
     <Compile Include="Models\CatViewModel.cs" />
     <Compile Include="Models\MenuViewModel.cs" />
@@ -284,6 +286,8 @@
     <Content Include="Content\images\Sertificates\ipcom.jpg" />
     <Content Include="Content\images\tele960_640.jpg" />
     <Content Include="Content\images\twisted_pair.jpg" />
+    <Content Include="Content\images\Uploads\Categories\2-psba-provoda-atmosferostojkie.png" />
+    <Content Include="Content\images\Uploads\Categories\24.jpg" />
     <Content Include="Content\images\Uploads\Categories\2c3c307740815695e65ab4d10bcd5c46.png" />
     <Content Include="Content\images\Uploads\Categories\445376.jpg" />
     <Content Include="Content\images\Uploads\Categories\583274eff7198274651c0629536dedad.jpg" />
@@ -301,7 +305,11 @@
     <Content Include="Content\images\Uploads\Categories\racks.jpg" />
     <Content Include="Content\images\Uploads\Categories\rkgm.jpg" />
     <Content Include="Content\images\Uploads\Categories\scpc.jpg" />
+    <Content Include="Content\images\Uploads\Categories\scsc.png" />
     <Content Include="Content\images\Uploads\Categories\vp.png" />
+    <Content Include="Content\images\Uploads\Categories\Планка сменная 8FC %28пластик%29.jpg" />
+    <Content Include="Content\images\Uploads\Categories\Планка сменная 8SC %28пластик%29.jpg" />
+    <Content Include="Content\images\Uploads\Categories\Планка сменная глухая %28пластик%29.jpg" />
     <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\Main.css" />
     <Content Include="Content\mairala\fwslider.css" />
@@ -649,6 +657,7 @@
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\readme.md" />
     <Content Include="Scripts\tinymce\langs\readme.md" />
     <Content Include="Views\Shop\ShowProducts.cshtml" />
+    <Content Include="Views\Cart\CartModule.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
