@@ -5,13 +5,27 @@
         <div class="col-md-2 shopView">
             <img src="@item.Avatar.Path" alt="@item.Avatar.AltText"/>
             <h1>@item.Product.Title</h1>
-            @foreach (var price in item.Prices)
+            @foreach (var price in item.Prices.Where(price => price.OriginalPrice > 0))
             {
-                if (price.OriginalPrice>0)
-                {
-                    <p>@price.Title <span><strong>@price.ConvValue.ToString("##.##р.")</strong></span></p>
-                }
+                <p>От @price.PriceFrom @item.Product.MesureUnit.ShortName <span>@price.ConvValue.ToString("##.##р.")</span></p>
             }
+            <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#@item.Product.Id">ПРОСМОТР</button>
+        </div>
+        <div class="modal fade" id="@item.Product.Id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">@item.Product.Title</h4>
+                    </div>
+                    <div class="modal-body">
+                        @Html.Action("ProductView","Shop", new {id=item.Product.Id})
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                    </div>
+                </div>
+            </div>
         </div>
     }
 </div>

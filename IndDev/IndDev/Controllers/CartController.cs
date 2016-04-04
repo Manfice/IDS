@@ -18,14 +18,25 @@ namespace IndDev.Controllers
             _repository = repository;
         }
         // GET: Cart
-        public ActionResult Index()
+        public ActionResult Index(Cart cart)
         {
-            return View();
+            return View(cart);
         }
 
         public PartialViewResult CartModule(Cart cart)
         {
             return PartialView(cart);
         }
+
+        public ActionResult AddToCart(int productId, int quantity, Cart cart)
+        {
+            var product = _repository.GetProduct(productId);
+            if (product!=null)
+            {
+                cart.AddItem(product,quantity);
+            }
+            return PartialView("CartModule",cart);
+        }
+
     }
 }

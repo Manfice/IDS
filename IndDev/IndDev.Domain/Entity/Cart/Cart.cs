@@ -11,10 +11,13 @@ namespace IndDev.Domain.Entity.Cart
 
         private static Price GetActualPrice(Product product, int quantity)
         {
-            var p = new Price();
+            Price p = null;
             foreach (var source in product.Prices.Where(price1 => price1.Value > 0).Where(source => quantity >= source.QuanttityFrom))
             {
-                p = source;
+                if (p==null)
+                {
+                    p = source;
+                }
             }
             return p;
         }
@@ -53,7 +56,7 @@ namespace IndDev.Domain.Entity.Cart
 
         public decimal CalcTotalSumm()
         {
-            return _cartItems.Sum(item => item.Quantity*item.ActualPrice.Value);
+            return _cartItems.Sum(item => item.Quantity*item.ActualPrice.Value*item.ActualPrice.Currency.Curs);
         }
 
         public void ClearList()

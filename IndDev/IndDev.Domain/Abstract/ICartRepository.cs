@@ -1,7 +1,9 @@
-﻿namespace IndDev.Domain.Abstract
+﻿using IndDev.Domain.Entity.Products;
+
+namespace IndDev.Domain.Abstract
 {
     public interface ICartRepository
     {
-        void AddToCart(int prodId, int quantity);
+        Product GetProduct(int id);
     }
 }

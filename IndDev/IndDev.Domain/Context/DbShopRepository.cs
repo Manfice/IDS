@@ -34,7 +34,7 @@ namespace IndDev.Domain.Context
                                 ? product.ProductPhotos.FirstOrDefault(photo => photo.PhotoType == PhotoType.Avatar)
                                 : new ProductPhoto {AltText = "нет фотки", Path = "/Content/images/noimage.png"}
                     };
-                    var pr = product.Prices.Select(price => new PriceViewModel {Id = price.Id, Currency = price.Currency, OriginalPrice = price.Value, Title = price.Title}).ToList();
+                    var pr = product.Prices.Select(price => new PriceViewModel {Id = price.Id, Currency = price.Currency, OriginalPrice = price.Value, Title = price.Title, PriceFrom = price.QuanttityFrom}).ToList();
                     pv.Prices = pr;
                     pvm.Add(pv);
                 }
@@ -53,7 +53,7 @@ namespace IndDev.Domain.Context
                                 ? product.ProductPhotos.FirstOrDefault(photo => photo.PhotoType == PhotoType.Avatar)
                                 : new ProductPhoto { AltText = "нет фотки", Path = "/Content/images/noimage.png" }
                     };
-                    var pr = product.Prices.Select(price => new PriceViewModel { Id = price.Id, Currency = price.Currency, OriginalPrice = price.Value, Title = price.Title }).ToList();
+                    var pr = product.Prices.Select(price => new PriceViewModel { Id = price.Id, Currency = price.Currency, OriginalPrice = price.Value, Title = price.Title, PriceFrom = price.QuanttityFrom}).ToList();
                     pv.Prices = pr;
                     pvm.Add(pv);
                 }
@@ -74,6 +74,22 @@ namespace IndDev.Domain.Context
         public IEnumerable<Menu> GetTopMenus()
         {
             return _context.Menus.Where(menu => menu.ParentItem==null).ToList();
+        }
+
+        public ShopProductView GetProduct(int id)
+        {
+            var product = _context.Products.Find(id);
+            var pv = new ShopProductView
+            {
+                Product = product,
+                Avatar =
+                    product.ProductPhotos.Any(photo => photo.PhotoType == PhotoType.Avatar)
+                        ? product.ProductPhotos.FirstOrDefault(photo => photo.PhotoType == PhotoType.Avatar)
+                        : new ProductPhoto { AltText = "нет фотки", Path = "/Content/images/noimage.png" }
+            };
+            var pr = product.Prices.Where(price => price.Value>0).Select(price => new PriceViewModel { Id = price.Id, Currency = price.Currency, OriginalPrice = price.Value, Title = price.Title, PriceFrom = price.QuanttityFrom}).ToList();
+            pv.Prices = pr;
+            return pv;
         }
     }
 }

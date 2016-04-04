@@ -658,6 +658,8 @@
     <Content Include="Scripts\tinymce\langs\readme.md" />
     <Content Include="Views\Shop\ShowProducts.cshtml" />
     <Content Include="Views\Cart\CartModule.cshtml" />
+    <Content Include="Views\Shop\ProductView.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

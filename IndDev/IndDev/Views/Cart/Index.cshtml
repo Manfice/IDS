@@ -1,0 +1,14 @@
+﻿@model IndDev.Domain.Entity.Cart.Cart
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutSFoot.cshtml";
+}
+
+<h2>Index</h2>
+@foreach (var item in Model.CartItems)
+{
+    <p>@item.Product.Title</p>
+    <p>@item.ActualPrice.Title</p>
+    <p>@item.Quantity</p>
+    <p>@item.SubTotal</p>
+}

@@ -4,15 +4,25 @@
 @using (Html.BeginForm("SavePrice", "Admin", FormMethod.Post))
 {
         @Html.HiddenFor(setter => setter.Id)
-    @Html.HiddenFor(setter => setter.PriceViewModel.Product.Id)
+        @Html.HiddenFor(setter => setter.PriceViewModel.Product.Id)
+
     <td>@Model.Id</td>
-        <td>@Html.TextBoxFor(setter => setter.Title)</td>
-        <td>@Html.EditorFor(setter => setter.Value)</td>
-        <td>@Html.DropDownListFor(setter => setter.SelCurr, new SelectList(Model.Currencies, "Id", "StringCode"), Model.PriceViewModel.Currency.StringCode)</td>
-        <td>@Html.Label(Model.PriceType.ToString())</td>
-        <td>@Model.PriceViewModel.ConvValue.ToString("##.### p.")</td>
-        <td>
-            <input type="submit" value="Сохранить"/>
-        </td>
+
+    <td>@Html.TextBoxFor(setter => setter.Title)</td>
+
+    <td>@Html.EditorFor(setter => setter.PriceFrom)</td>
+
+    <td>@Html.EditorFor(setter => setter.Value)</td>
+
+    <td>@Html.DropDownListFor(setter => setter.SelCurr, new SelectList(Model.Currencies, "Id", "StringCode"), Model.PriceViewModel.Currency.StringCode)</td>
+
+    <td>@Html.Label(Model.PriceType.ToString())</td>
+
+    <td>@Model.PriceViewModel.ConvValue.ToString("##.### p.")</td>
+
+    <td>
+        <input type="submit" value="Сохранить"/>
+    </td>
+
 }
     </tr>

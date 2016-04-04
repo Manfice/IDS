@@ -288,7 +288,8 @@ namespace IndDev.Domain.Context
                     Product = product,
                     Publish = false,
                     Title = s,
-                    Value = 0
+                    Value = 0,
+                    QuanttityFrom = 1
                 };
                 _context.Prices.Add(price);
             }
@@ -383,7 +384,8 @@ namespace IndDev.Domain.Context
                 Public = price.Publish,
                 Title = price.Title,
                 Value = price.Value,
-                Id = price.Id
+                Id = price.Id,
+                PriceFrom = price.QuanttityFrom
             };
         }
 
@@ -392,6 +394,7 @@ namespace IndDev.Domain.Context
             var dbPrice = _context.Prices.Find(model.Id);
             dbPrice.Title = model.Title;
             dbPrice.Value = model.Value;
+            dbPrice.QuanttityFrom = model.PriceFrom;
             if (model.SelCurr != 0)
             {
                 var curr = _context.Currencies.Find(model.SelCurr);

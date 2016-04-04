@@ -358,7 +358,15 @@ a,a:focus, a:active {
 /*End product groups*/
 /*Producs*/
 .shopView {
-    height: 350px;
+    position: relative;
+    height: 450px;
+    border-left: solid 5px green;
+    border-bottom: solid 5px yellow;
+    border-bottom-left-radius: 35px;
+    margin: 15px
+}
+.shopView img {
+    max-height: 150px;
 }
 .shopView p {
     margin: 5px;
@@ -367,7 +375,33 @@ a,a:focus, a:active {
 .shopView p span {
     font-weight: bold;
 }
-/*End routs*/
+.shopView button {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+}
+.orderForm {
+    
+}
+.avatar {
+    float: left;
+    max-height: 200px;
+}
+.productParams {
+    height: 300px;
+    text-align: right;
+    background-color: orchid;
+    padding: 10px;
+}
+.productParams h2 {
+    font-weight: bold;
+    margin: 0 15px;
+}
+.productParams p {
+    margin: 10px 0;
+    font-size: 20px
+}
+/*End produts*/
 /*Попытка сделать хедер*/
 .dropdown-menu {
     background: linear-gradient(-166deg, #8bdaff, #0095ff);
@@ -490,13 +524,15 @@ a,a:focus, a:active {
 .myCart div i {
     float: left;
     font-size: 40px;
-    margin: 10px;
+    margin: 10px 10px 0 10px;
     color: white;
 } 
 .myCart div h1{
-    float: left;
     font-weight: bold;
     color: white;
+    padding: 20px 0 0 0;
+}
+.cartDet {
     margin: 20px 0 0 0;
 }
 /*Попытка удалась.*/

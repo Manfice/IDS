@@ -59,6 +59,7 @@ namespace IndDev.Domain.ViewModels
             }
         }
 
+        public int PriceFrom { get; set; }
         public decimal ConvValue
         {
             get { return ConversionValue; }
@@ -75,6 +76,7 @@ namespace IndDev.Domain.ViewModels
         public decimal Value { get; set; }
         public bool Public { get; set; }
         public int SelCurr { get; set; }
+        public int PriceFrom { get; set; }
         public IEnumerable<Currency> Currencies { get; set; }
         public PriceType PriceType { get; set; }
         public PriceViewModel PriceViewModel { get; set; }

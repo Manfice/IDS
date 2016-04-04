@@ -1,13 +1,16 @@
 ﻿using System;
 using IndDev.Domain.Abstract;
+using IndDev.Domain.Entity.Products;
 
 namespace IndDev.Domain.Context
 {
     public class DbCart : ICartRepository
     {
-        public void AddToCart(int prodId, int quantity)
+        private readonly DataContext _context = new DataContext();
+
+        public Product GetProduct(int id)
         {
-            throw new NotImplementedException();
+            return _context.Products.Find(id);
         }
     }
 }

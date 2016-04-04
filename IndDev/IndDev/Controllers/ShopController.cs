@@ -56,5 +56,10 @@ namespace IndDev.Controllers
             var sCatId = 0; int.TryParse(subCat, out sCatId);
             return PartialView(_repository.GetProducts(catId,sCatId));
         }
+
+        public PartialViewResult ProductView(int id)
+        {
+            return PartialView(_repository.GetProduct(id));
+        }
     }
 }

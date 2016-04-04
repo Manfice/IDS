@@ -1,0 +1,28 @@
+﻿@model IndDev.Domain.ViewModels.ShopProductView
+
+<div class="orderForm">
+    <img class="avatar" src="@Model.Avatar.Path" alt="@Model.Avatar.AltText"/>
+    <div class="productParams">
+        <h2>@Model.Product.Articul</h2>
+        <p>Цены:</p>
+        @foreach (var price in Model.Prices)
+        {
+            <p>От @price.PriceFrom @Model.Product.MesureUnit.ShortName <span>@price.ConvValue.ToString("##.##р.")</span></p>
+        }
+    </div>
+    @using (Ajax.BeginForm("AddToCart","Cart",new AjaxOptions {HttpMethod = "Post", UpdateTargetId = "cartModule", InsertionMode = InsertionMode.Replace}))
+    {
+        @Html.AntiForgeryToken()
+        @Html.Hidden("productId", Model.Product.Id)
+        <input type="number" name="quantity" value="1" min="1"/>
+        <button type="submit">Заказать</button>
+    }
+    <hr/>
+    @foreach (var item in Model.Product.ProductPhotos)
+    {
+        <img src="@item.Path" alt="@item.AltText" width="100"/>
+    }
+    <hr/>
+    <h2>Описание:</h2>
+    <p>@Model.Product.Description</p>
+</div>
