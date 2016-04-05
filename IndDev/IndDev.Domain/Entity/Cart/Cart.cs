@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using IndDev.Domain.Entity.Products;
+using IndDev.Domain.ViewModels;
 
 namespace IndDev.Domain.Entity.Cart
 {
@@ -9,14 +11,22 @@ namespace IndDev.Domain.Entity.Cart
         private readonly List<CartItem> _cartItems = new List<CartItem>();
         public IEnumerable<CartItem> CartItems => _cartItems;
 
-        private static Price GetActualPrice(Product product, int quantity)
+        private static PriceViewModel GetActualPrice(Product product, int quantity)
         {
-            Price p = null;
+            PriceViewModel p = null;
             foreach (var source in product.Prices.Where(price1 => price1.Value > 0).Where(source => quantity >= source.QuanttityFrom))
             {
                 if (p==null)
                 {
-                    p = source;
+                    p = new PriceViewModel
+                    {
+                        Id = source.Id,
+                        Product = source.Product,
+                        Title = source.Title,
+                        Currency = source.Currency,
+                        OriginalPrice = source.Value,
+                        PriceFrom = source.QuanttityFrom
+                    };
                 }
             }
             return p;
@@ -37,7 +47,7 @@ namespace IndDev.Domain.Entity.Cart
             else
             {
                 cItem.Quantity += quantity;
-                cItem.ActualPrice = GetActualPrice(product, quantity);
+                cItem.ActualPrice = GetActualPrice(product, cItem.Quantity);
             }
         }
 
@@ -56,7 +66,8 @@ namespace IndDev.Domain.Entity.Cart
 
         public decimal CalcTotalSumm()
         {
-            return _cartItems.Sum(item => item.Quantity*item.ActualPrice.Value*item.ActualPrice.Currency.Curs);
+            var summ = _cartItems.Sum(item => Math.Round(item.Quantity * item.ActualPrice.ConvValue, 2));
+            return summ;
         }
 
         public void ClearList()
@@ -68,8 +79,8 @@ namespace IndDev.Domain.Entity.Cart
     public class CartItem
     {
         public Product Product { get; set; }
-        public Price ActualPrice { get; set; }
+        public PriceViewModel ActualPrice { get; set; }
         public int Quantity { get; set; }
-        public decimal SubTotal => Quantity*ActualPrice.Value*ActualPrice.Currency.Curs;
+        public decimal SubTotal => Math.Round(Quantity*ActualPrice.ConvValue,2);
     }
 }

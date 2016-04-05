@@ -6,7 +6,7 @@
         <h1>КОРЗИНА</h1>
     </a>
     <div class="cartDet">
-        <p>@Model.CartItems.Count()</p>
-        <p>@Model.CalcTotalSumm()</p>
+        <p>Наименований: @Model.CartItems.Count()</p>
+        <p>Сумма: @Model.CalcTotalSumm().ToString("C")</p>
     </div>
 </div>

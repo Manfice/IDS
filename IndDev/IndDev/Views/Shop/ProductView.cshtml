@@ -10,10 +10,11 @@
             <p>От @price.PriceFrom @Model.Product.MesureUnit.ShortName <span>@price.ConvValue.ToString("##.##р.")</span></p>
         }
     </div>
-    @using (Ajax.BeginForm("AddToCart","Cart",new AjaxOptions {HttpMethod = "Post", UpdateTargetId = "cartModule", InsertionMode = InsertionMode.Replace}))
+    @using (Html.BeginForm("AddToCart","Cart",FormMethod.Post))
     {
         @Html.AntiForgeryToken()
         @Html.Hidden("productId", Model.Product.Id)
+        @Html.Hidden("sCat",Model.SubCategory)
         <input type="number" name="quantity" value="1" min="1"/>
         <button type="submit">Заказать</button>
     }

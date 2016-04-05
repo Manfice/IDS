@@ -36,6 +36,7 @@ namespace IndDev.Domain.Context
                     };
                     var pr = product.Prices.Select(price => new PriceViewModel {Id = price.Id, Currency = price.Currency, OriginalPrice = price.Value, Title = price.Title, PriceFrom = price.QuanttityFrom}).ToList();
                     pv.Prices = pr;
+                    pv.SubCategory = catId;
                     pvm.Add(pv);
                 }
                 return pvm;
@@ -55,6 +56,7 @@ namespace IndDev.Domain.Context
                     };
                     var pr = product.Prices.Select(price => new PriceViewModel { Id = price.Id, Currency = price.Currency, OriginalPrice = price.Value, Title = price.Title, PriceFrom = price.QuanttityFrom}).ToList();
                     pv.Prices = pr;
+                    pv.SubCategory = catId;
                     pvm.Add(pv);
                 }
             }
@@ -76,7 +78,7 @@ namespace IndDev.Domain.Context
             return _context.Menus.Where(menu => menu.ParentItem==null).ToList();
         }
 
-        public ShopProductView GetProduct(int id)
+        public ShopProductView GetProduct(int id, int mCat)
         {
             var product = _context.Products.Find(id);
             var pv = new ShopProductView
@@ -89,6 +91,7 @@ namespace IndDev.Domain.Context
             };
             var pr = product.Prices.Where(price => price.Value>0).Select(price => new PriceViewModel { Id = price.Id, Currency = price.Currency, OriginalPrice = price.Value, Title = price.Title, PriceFrom = price.QuanttityFrom}).ToList();
             pv.Prices = pr;
+            pv.SubCategory = mCat;
             return pv;
         }
     }

@@ -1,14 +1,45 @@
 ﻿@model IndDev.Domain.Entity.Cart.Cart
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_LayoutSFoot.cshtml";
+    Layout = "~/Views/Shared/_LayoutShop.cshtml";
 }
 
-<h2>Index</h2>
-@foreach (var item in Model.CartItems)
-{
-    <p>@item.Product.Title</p>
-    <p>@item.ActualPrice.Title</p>
-    <p>@item.Quantity</p>
-    <p>@item.SubTotal</p>
-}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <table class="table table-striped table-responsive table-hover">
+                <thead>
+                <tr>
+                    <td>КОД</td>
+                    <td>НАИМЕНОВАНИЕ</td>
+                    <td>ЦЕНА</td>
+                    <td>КОЛ-ВО</td>
+                    <td>СУММА</td>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var item in Model.CartItems)
+                {
+                    <tr>
+                        <td>@item.Product.Id</td>
+                        <td>@item.Product.Title</td>
+                        <td>@item.ActualPrice.ConvValue.ToString("C")</td>
+                        <td>@item.Quantity @item.Product.MesureUnit.ShortName</td>
+                        <td>@item.SubTotal.ToString("C")</td>
+                    </tr>
+                }
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td colspan="3">Итого:</td>
+                    <td colspan="2">@Model.CalcTotalSumm().ToString("C")</td>
+                </tr>
+                    <tr>
+                        <td colspan="3">НДС:</td>
+                        <td colspan="2">@((Model.CalcTotalSumm()*18/118).ToString("C"))</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>

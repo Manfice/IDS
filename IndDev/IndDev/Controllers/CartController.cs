@@ -11,7 +11,7 @@ namespace IndDev.Controllers
     [AllowAnonymous]
     public class CartController : Controller
     {
-        private ICartRepository _repository;
+        private readonly ICartRepository _repository;
 
         public CartController(ICartRepository repository)
         {
@@ -27,15 +27,14 @@ namespace IndDev.Controllers
         {
             return PartialView(cart);
         }
-
-        public ActionResult AddToCart(int productId, int quantity, Cart cart)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddToCart(int productId, int quantity, Cart cart, int? sCat)
         {
             var product = _repository.GetProduct(productId);
-            if (product!=null)
-            {
-                cart.AddItem(product,quantity);
-            }
-            return PartialView("CartModule",cart);
+            if (product == null) return View("Index");
+            cart.AddItem(product,quantity);
+            return RedirectToAction("CatDetails","Shop",new {catId = sCat, selCat = product.Categoy.Id});
         }
 
     }

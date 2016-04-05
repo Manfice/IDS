@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
 using System.Web;
 using IndDev.Domain.Context;
 using IndDev.Domain.Entity;
@@ -43,7 +44,7 @@ namespace IndDev.Domain.ViewModels
     public class PriceViewModel
     {
         private decimal OriginalValue { get; set; }
-        private decimal ConversionValue { get; set; }
+        private string ConversionValue { get; set; }
 
         public int Id { get; set; }
         public string Title { get; set; }
@@ -54,7 +55,7 @@ namespace IndDev.Domain.ViewModels
             get { return OriginalValue; }
             set
             {
-                ConversionValue = value*Currency.Curs;
+                ConversionValue = (value*Currency.Curs).ToString("C");
                 OriginalValue = value;
             }
         }
@@ -62,8 +63,15 @@ namespace IndDev.Domain.ViewModels
         public int PriceFrom { get; set; }
         public decimal ConvValue
         {
-            get { return ConversionValue; }
-            set { ConversionValue = value; }
+            get
+            {
+                decimal val;
+                var nfi = new CultureInfo("ru-Ru",false).NumberFormat;
+                nfi.CurrencyDecimalDigits = 2;
+                decimal.TryParse(ConversionValue, NumberStyles.Currency,nfi, out val);
+                return val; 
+                
+            }
         }
 
         public Product Product { get; set; }
@@ -94,5 +102,6 @@ namespace IndDev.Domain.ViewModels
         public Product Product { get; set; }
         public ProductPhoto Avatar { get; set; }    
         public IEnumerable<PriceViewModel> Prices { get; set; }
+        public int SubCategory { get; set; }
     }
 }

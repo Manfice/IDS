@@ -19,7 +19,7 @@
                         <h4 class="modal-title" id="myModalLabel">@item.Product.Title</h4>
                     </div>
                     <div class="modal-body">
-                        @Html.Action("ProductView","Shop", new {id=item.Product.Id})
+                        @Html.Action("ProductView","Shop", new {id=item.Product.Id, subCat = item.SubCategory})
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
