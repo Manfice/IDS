@@ -891,3 +891,56 @@ a,a:focus, a:active {
     margin: 10px 0;
     width: 500px;
 }
+/*CART*/
+.cart {
+    padding: 50px 0;
+}
+.cartAttantion {
+    text-align: center;
+    padding: 30px 30px 20px;
+    margin: 0 0 20px 0;
+}
+.cartAttantion h1 {
+    font-weight: bold;
+    font-size: 40px;
+    margin: 10px;
+}
+.cartAttantion p {
+    margin: 0 0 20px;
+}
+.cartAttantion a {
+    margin: 50px;
+    line-height: 50px;
+    padding: 10px;
+    border: solid 2px #a9a9a9;
+    text-decoration: none;
+    cursor: pointer;
+}
+.navLinks {
+    text-align: center;
+}
+.navLinks a {
+    margin: 20px 40px;
+}
+.cart table thead {
+    background-color: rgb(5, 151, 254);
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}
+.loginCart h1 {
+    font-size: 20px;
+}
+.loginCart input {
+    margin: 10px;
+}
+.loginCart input[type="submit"] {
+    padding: 10px;
+    background-color: #0083fe;
+    color: white;
+    border: none;
+}
+.loginCart a {
+    border: none;
+}
+/*END CART*/

@@ -17,6 +17,7 @@
         @using (Html.BeginForm("Register","Security"))
         {
             @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.ReturnUrl)
 
             @Html.LabelFor(model => model.UserName)<br/>
             @Html.ValidationMessageFor(model => model.UserName)

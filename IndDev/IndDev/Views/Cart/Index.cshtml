@@ -1,45 +1,123 @@
-﻿@model IndDev.Domain.Entity.Cart.Cart
+﻿@using IndDev.Domain.Entity
+@model IndDev.Domain.Entity.Cart.Cart
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutShop.cshtml";
 }
-
-<div class="container">
-    <div class="row">
-        <div class="col-lg-12">
-            <table class="table table-striped table-responsive table-hover">
-                <thead>
-                <tr>
-                    <td>КОД</td>
-                    <td>НАИМЕНОВАНИЕ</td>
-                    <td>ЦЕНА</td>
-                    <td>КОЛ-ВО</td>
-                    <td>СУММА</td>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach (var item in Model.CartItems)
+<div class="cart">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                @if (User.Identity.IsAuthenticated)
                 {
-                    <tr>
-                        <td>@item.Product.Id</td>
-                        <td>@item.Product.Title</td>
-                        <td>@item.ActualPrice.ConvValue.ToString("C")</td>
-                        <td>@item.Quantity @item.Product.MesureUnit.ShortName</td>
-                        <td>@item.SubTotal.ToString("C")</td>
-                    </tr>
+                    @Html.Action("CartCustomerView","Customer")
                 }
-                </tbody>
-                <tfoot>
-                <tr>
-                    <td colspan="3">Итого:</td>
-                    <td colspan="2">@Model.CalcTotalSumm().ToString("C")</td>
-                </tr>
+                else
+                {
+                    <div class="cartAttantion">
+                        <h1>Уважаемый клиент</h1>
+                        <p>Просим обратить Ваше внимание. на то, что для завершения процедуры покупки, Вам
+                            необходимо будет авторизоваться в системе или пройти простую процедуру регистрации
+                            в нашем магазине.
+                        </p>
+                        <a data-toggle="modal" data-target="#loginView">ВХОД</a>
+                        <div class="modal fade" id="loginView" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <h4 class="modal-title" id="myModalLabel">Вход</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="loginCart">
+                                            <h1>АВТОРИЗАЦИЯ ПОЛЬЗОВАТЕЛЯ</h1>
+                                            @using (@Html.BeginForm("Login", "Security", FormMethod.Post))
+                                            {
+                                                @Html.ValidationSummary()
+                                                @Html.AntiForgeryToken()
+                                                @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+                                                <label>ЛОГИН</label><br/>
+                                                @Html.TextBox("Login", null, new {placeholder = "example@email.com"})<br/>
+                                                <label>ПАРОЛЬ</label><br/>
+                                                @Html.Password("Password")<br/>
+                                                @Html.CheckBox("RememberMe", true)
+                                                @Html.Label("запомнить меня")<br/>
+                                                <input type="submit" value="ВОЙТИ"/>
+                                                <a>Забыли пароль?</a>
+                                            }
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="@Url.Action("Register","Security", new {returnUrl = Request.Url.PathAndQuery})">РЕГИСТРАЦИЯ</a>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <table class="table table-striped table-responsive table-hover ">
+                    <thead>
                     <tr>
-                        <td colspan="3">НДС:</td>
+                        <td>КОД</td>
+                        <td>НАИМЕНОВАНИЕ</td>
+                        <td>ЦЕНА</td>
+                        <td>КОЛ-ВО</td>
+                        <td>СУММА</td>
+                        <td></td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var item in Model.CartItems)
+                    {
+                        <tr>
+                            @using (Html.BeginForm("ReCalc", "Cart", FormMethod.Post))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.Hidden("prodId", item.Product.Id)
+                                <td>@item.Product.Id</td>
+                                <td data-toggle="collapse" data-target="#@item.Product.Id" style="cursor: pointer">@item.Product.Title</td>
+                                <td>@item.ActualPrice.ConvValue.ToString("C")</td>
+                                <td>@Html.TextBox("quantity", item.Quantity, new {@type = "number", min = "1", style = "width: 70px;"})</td>
+                                <td>@item.SubTotal.ToString("C")</td>
+                                <td>
+                                    <input type="submit" value="Пересчитать" class="btn btn-primary btn-sm"/>
+                                    <a class="btn btn-danger btn-sm" href="@Url.Action("RemoveItem", "Cart", new {prodId = item.Product.Id})">Удалить</a>
+                                </td>
+                            }
+                        </tr>
+                        <tr id="@item.Product.Id" class="collapse">
+                            <td colspan="6">
+                                <div class="lineDetails">
+                                    <img src="@item.Product.ProductPhotos.FirstOrDefault(photo => photo.PhotoType == PhotoType.Avatar).Path" alt="avatarka" width="100" style="float: right"/>
+                                    <p>@item.Product.Description</p>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <td colspan="4">Итого:</td>
+                        <td colspan="2">@Model.CalcTotalSumm().ToString("C")</td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">НДС:</td>
                         <td colspan="2">@((Model.CalcTotalSumm()*18/118).ToString("C"))</td>
                     </tr>
-                </tfoot>
-            </table>
+                    </tfoot>
+                </table>
+            </div>
+            <div class="col-lg-12 navLinks">
+                <a class="btn btn-primary btn-lg" href="@Url.Action("Index", "Shop")">ПЕРЕЙТИ В КАТАЛОГ</a>
+                <a class="btn btn-danger btn-lg" href="@Url.Action("EmptyCart", "Cart")">ОЧИСТИТЬ КОРЗИНУ</a>
+                <a class="btn btn-success btn-lg" href="@Url.Action("Index", "Shop")">ОФОРМИТЬ ЗАКАЗ</a>
+            </div>
         </div>
     </div>
 </div>

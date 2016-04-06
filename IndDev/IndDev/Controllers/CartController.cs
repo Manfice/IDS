@@ -37,5 +37,27 @@ namespace IndDev.Controllers
             return RedirectToAction("CatDetails","Shop",new {catId = sCat, selCat = product.Categoy.Id});
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ReCalc(int prodId, int quantity,Cart cart)
+        {
+            var product = _repository.GetProduct(prodId);
+            if (product == null) return View("Index");
+            cart.ChangeQuantity(product, quantity);
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult RemoveItem(int prodId, Cart cart)
+        {
+            var product = _repository.GetProduct(prodId);
+            if (product == null) return View("Index");
+            cart.RemoveLine(product);
+            return RedirectToAction("Index");
+        }
+        public ActionResult EmptyCart(Cart cart)
+        {
+            cart.ClearList();
+            return RedirectToAction("Index");
+        }
     }
 }

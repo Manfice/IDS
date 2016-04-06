@@ -8,6 +8,7 @@ namespace IndDev.Domain.Entity.Products
         public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
+        public string Warning { get; set; }
         public string Articul { get; set; }
         public bool IsService { get; set; } 
         public string Warranty { get; set; }

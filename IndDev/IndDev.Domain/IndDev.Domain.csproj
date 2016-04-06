@@ -82,6 +82,7 @@
   <ItemGroup>
     <Compile Include="Abstract\IAdminRepository.cs" />
     <Compile Include="Abstract\ICartRepository.cs" />
+    <Compile Include="Abstract\ICustomer.cs" />
     <Compile Include="Abstract\IHomeRepository.cs" />
     <Compile Include="Abstract\INewsRepository.cs" />
     <Compile Include="Abstract\IShopRepository.cs" />
@@ -91,6 +92,7 @@
     <Compile Include="Context\Curency.cs" />
     <Compile Include="Context\DbAdminRepository.cs" />
     <Compile Include="Context\DbCart.cs" />
+    <Compile Include="Context\DbCustomer.cs" />
     <Compile Include="Context\DbHomeRepository.cs" />
     <Compile Include="Context\dbNewsRepository.cs" />
     <Compile Include="Context\dbSecureRepository.cs" />
