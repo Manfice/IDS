@@ -158,6 +158,7 @@ a,a:focus, a:active {
 }
 .media-body {
     position: absolute;
+    width: 50%;
     top: 0;
     right: 0;
     padding: 3% 5% 0 0;
@@ -944,3 +945,51 @@ a,a:focus, a:active {
     border: none;
 }
 /*END CART*/
+/*CUSTOMER LK*/
+/*NAV MENU*/
+.custNav {
+    text-align: center;
+    margin: 0 20% 0 30%;
+}
+.custNav ul {
+    display: block;
+    position: relative;
+}
+.custNav ul li{
+    float: left;
+}
+.custNav ul li a {
+    display: block;
+    padding: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 20px;
+}
+.custNav ul li a:hover {
+    background-color: #999;
+    color: white;
+    transition: all .3s;
+}
+/*END NAV MENU*/
+/*ABOUT*/
+.logotip {
+    float: left;
+    max-width: 40%;
+}
+.logotip img {
+    padding: 20px;
+}
+.custDescr {
+    float: right;
+    width: 50%;
+}
+.custDescr table {
+}
+.tabHead {
+    background-color: rgb(91, 193, 254);
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}
+/*END ABOUT*/
+/*END CUSTOMER  LK*/

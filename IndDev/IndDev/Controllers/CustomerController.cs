@@ -7,6 +7,7 @@ using System.Web.Routing;
 using IndDev.Domain.Abstract;
 using IndDev.Domain.Entity.Auth;
 using IndDev.Domain.Entity.Customers;
+using IndDev.Domain.ViewModels;
 
 namespace IndDev.Controllers
 {
@@ -28,9 +29,26 @@ namespace IndDev.Controllers
         // GET: Customer
         public ActionResult Index()
         {
-            return View();
+            var customer = _repository.GetCustomerByUserId(_user);
+            return View(customer);
         }
 
+        public PartialViewResult LkNavigation(string select)
+        {
+            var nav = new List<CustMenuItems>
+            {
+                new CustMenuItems {Title = "Личные данные", MenuLink = "/Customer/Index"},
+                new CustMenuItems {Title = "Заказы", MenuLink = "/Customer/Index"},
+                new CustMenuItems {Title = "Сальдо", MenuLink = "/Customer/Index"}
+            };
+            return PartialView(nav);
+        }
+
+        public PartialViewResult About()
+        {
+            var customer = _repository.GetCustomerByUserId(_user);
+            return PartialView(customer);
+        }
         public ActionResult CartCustomerView()
         {
             var cust = _repository.GetCustomerByUserId(_user);

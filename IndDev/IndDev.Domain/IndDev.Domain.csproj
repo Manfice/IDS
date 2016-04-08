@@ -84,6 +84,7 @@
     <Compile Include="Abstract\ICartRepository.cs" />
     <Compile Include="Abstract\ICustomer.cs" />
     <Compile Include="Abstract\IHomeRepository.cs" />
+    <Compile Include="Abstract\IMailRepository.cs" />
     <Compile Include="Abstract\INewsRepository.cs" />
     <Compile Include="Abstract\IShopRepository.cs" />
     <Compile Include="Abstract\Logic.cs" />
@@ -97,6 +98,7 @@
     <Compile Include="Context\dbNewsRepository.cs" />
     <Compile Include="Context\dbSecureRepository.cs" />
     <Compile Include="Context\DbShopRepository.cs" />
+    <Compile Include="Context\MailRepository.cs" />
     <Compile Include="Context\NewsContext.cs" />
     <Compile Include="Context\Valutes.cs" />
     <Compile Include="Entity\Auth\User.cs" />
@@ -104,6 +106,7 @@
     <Compile Include="Entity\Cart\Cart.cs" />
     <Compile Include="Entity\Customers\CustomerModel.cs" />
     <Compile Include="Entity\ImageManager.cs" />
+    <Compile Include="Entity\MailMessageModel.cs" />
     <Compile Include="Entity\Menu\ProductMenu.cs" />
     <Compile Include="Entity\News.cs" />
     <Compile Include="Entity\Products\Brand.cs" />

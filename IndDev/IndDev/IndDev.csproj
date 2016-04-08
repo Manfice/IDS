@@ -189,6 +189,7 @@
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MailController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\NewsNavController.cs" />
     <Compile Include="Controllers\SecurityController.cs" />
@@ -293,8 +294,6 @@
     <Content Include="Content\images\Uploads\Categories\445376.jpg" />
     <Content Include="Content\images\Uploads\Categories\583274eff7198274651c0629536dedad.jpg" />
     <Content Include="Content\images\Uploads\Categories\6a65c7a8f1a6dfbc8b2c8195d9f6ca44.jpg" />
-    <Content Include="Content\images\Uploads\Categories\71557_b_large.jpg" />
-    <Content Include="Content\images\Uploads\Categories\718_big.jpg" />
     <Content Include="Content\images\Uploads\Categories\ee5ad7187398ed700c9783993e3c6ac4.png" />
     <Content Include="Content\images\Uploads\Categories\fc-fc.jpg" />
     <Content Include="Content\images\Uploads\Categories\fcscpc.png" />
@@ -304,10 +303,8 @@
     <Content Include="Content\images\Uploads\Categories\pc.png" />
     <Content Include="Content\images\Uploads\Categories\ptfcsclc.jpg" />
     <Content Include="Content\images\Uploads\Categories\racks.jpg" />
-    <Content Include="Content\images\Uploads\Categories\rkgm.jpg" />
     <Content Include="Content\images\Uploads\Categories\scpc.jpg" />
     <Content Include="Content\images\Uploads\Categories\scsc.png" />
-    <Content Include="Content\images\Uploads\Categories\vp.png" />
     <Content Include="Content\images\Uploads\Categories\Планка сменная 8FC %28пластик%29.jpg" />
     <Content Include="Content\images\Uploads\Categories\Планка сменная 8SC %28пластик%29.jpg" />
     <Content Include="Content\images\Uploads\Categories\Планка сменная глухая %28пластик%29.jpg" />
@@ -662,11 +659,15 @@
     <Content Include="Views\Shop\ProductView.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Customer\CartCustomerView.cshtml" />
+    <Content Include="Views\Customer\Index.cshtml" />
+    <Content Include="Views\Customer\LkNavigation.cshtml" />
+    <Content Include="Views\Customer\About.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Entitys\" />
     <Folder Include="Upload\" />
+    <Folder Include="Views\Mail\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

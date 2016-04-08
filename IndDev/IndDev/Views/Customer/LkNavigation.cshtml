@@ -1,0 +1,19 @@
+﻿@model IEnumerable<IndDev.Domain.ViewModels.CustMenuItems>
+<nav class="col-lg-12 custNav">
+    <ul>
+        @foreach (var item in Model)
+        {
+            <li>
+                @if (item.IsActive)
+                {
+                    <a class="currAction" href="@Url.Content(item.MenuLink)">@item.Title</a>
+                }
+                else
+                {
+                    <a href="@Url.Content(item.MenuLink)">@item.Title</a>
+                }
+            </li>
+        }
+    </ul>
+</nav>
+<hr/>

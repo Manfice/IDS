@@ -36,6 +36,7 @@ namespace IndDev.Infrastructure
             _kernel.Bind<IHomeRepository>().To<DbHomeRepository>().InRequestScope();
             _kernel.Bind<ICartRepository>().To<DbCart>().InSingletonScope();
             _kernel.Bind<ICustomer>().To<DbCustomer>().InSingletonScope();
+            _kernel.Bind<IMailRepository>().To<MailRepository>();
         }
     }
 }

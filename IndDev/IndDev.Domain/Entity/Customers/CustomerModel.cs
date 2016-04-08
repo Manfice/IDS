@@ -13,13 +13,14 @@ namespace IndDev.Domain.Entity.Customers
         public int Id { get; set; }
         public string Title { get; set; }
         public string Adress { get; set; }
-        public virtual UserPhoto Photo { get; set; }
+        public virtual CustomerLogo Photo { get; set; }
         public virtual Details Details { get; set; }
     }
 
     public class Details
     {
         public int Id { get; set; }
+        public string CompanyName { get; set; }
         public string Inn { get; set; }
         public string Kpp { get; set; }
         public string Ogrn { get; set; }    
@@ -44,5 +45,14 @@ namespace IndDev.Domain.Entity.Customers
         public string Korr { get; set; }
         public string Bik { get; set; }
         public virtual Details DetailsOf { get; set; }
+    }
+
+    public class CustomerLogo
+    {
+        public int Id { get; set; }
+        public string Path { get; set; }
+        public string AltText { get; set; }
+        public string FullPath { get; set; }
+
     }
 }

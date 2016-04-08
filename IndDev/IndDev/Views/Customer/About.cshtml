@@ -1,0 +1,75 @@
+﻿@model IndDev.Domain.Entity.Customers.Customer
+<div class="logotip">
+    @if (Model.Photo == null)
+    {
+        <img src="~/Content/images/noimage.png" alt="Логотип не задан"/>
+    }
+    else
+    {
+        <img src="@Model.Photo.Path" alt="@Model.Photo.AltText"/>
+    }
+    <ul>
+        @if (Model.Photo == null)
+        {
+            <li>Добавить</li>
+        }
+        else
+        {
+            <li>Изменить</li>
+            <li>Удалить</li>
+        }
+    </ul>
+</div>
+<div class="custDescr">
+    <table class="table table-responsive table-condensed">
+        <thead>
+        <tr>
+            <td class="tabHead" colspan="2">Данные пользователя <a class="pull-right"><i class="fa fa-pencil"></i></a></td>
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Псевдоним:</td>
+                <td>@Model.Title</td>
+            </tr>
+            <tr>
+                <td>Местонахождение:</td>
+                <td>@Model.Adress</td>
+            </tr>
+            <tr>
+                <td class="tabHead" colspan="2">Реквизиты <a class="pull-right"><i class="fa fa-pencil"></i></a></td>
+            </tr>
+            <tr>
+                <td>Компания:</td>
+                <td>@Model.Details.CompanyName</td>
+            </tr>
+            <tr>
+                <td>ИНН/КПП:</td>
+                <td>@Model.Details.Inn/@Model.Details.Kpp</td>
+            </tr>
+            <tr>
+                <td>ОГРН:</td>
+                <td>@Model.Details.Ogrn</td>
+            </tr>
+            <tr>
+                <td>Юридический адрес:</td>
+                <td>@Model.Details.UrAdress</td>
+            </tr>
+            <tr>
+                <td>Адрес доставки:</td>
+                <td>@Model.Details.RealAdress</td>
+            </tr>
+            <tr>
+                <td class="tabHead" colspan="2">Контакты <a class="pull-right"><i class="fa fa-pencil"></i></a></td>
+            </tr>
+            <tr>
+                <td>Компания:</td>
+                <td>@Model.Title</td>
+            </tr>
+            <tr>
+                <td>Компания:</td>
+                <td>@Model.Title</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
