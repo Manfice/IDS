@@ -59,6 +59,11 @@ namespace IndDev.Controllers
             return View(user);
         }
 
+        public ActionResult DeleteUsr(int id)
+        {
+            return RedirectToAction("UserList");
+        }
+
         public PartialViewResult UserSummary(int userId)
         {
             return PartialView(_repository.User(userId));

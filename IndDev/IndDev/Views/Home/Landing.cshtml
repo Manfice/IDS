@@ -299,33 +299,7 @@
     <div class="clearfix"></div>
 </div>
 <div class="blog" id="blog">
-    @Html.Action("NewsBlock","NewsNav")
-</div>
-<!-- service -->
-<div class="service text-center">
-    <div class="container">
-        <h3>НАШИ ПРЕИМУЩЕСТВА</h3>
-        <p>Компания Inductrial Development - мультибрэндовый дистрибьютор, основной задачей для нас, является поставка широкого спектра оборудования связи. <br/> Самым главным для нас является:</p>
-        <div class="service-bottom">
-            <div class="row">
-                <div class="col-md-4">
-                    <img src="~/Content/images/mairala/contact.png" alt="" />
-                    <h4><a href="#">НАЛИЧИЕ ТОВАРОВ</a></h4>
-                    <p>У нас вы всегда найдете в наличии широкий ассортимент товаров. Взять экземпляры продукции на тестирование. Получить всю необходимую документацию.</p>
-                </div>
-                <div class="col-md-4">
-                    <img src="~/Content/images/mairala/flag.png" alt="" />
-                    <h4><a href="#">ЛУЧШАЯ ЦЕНА</a></h4>
-                    <p>Сотрудничая напрямую с производителями и импортерами, наша компания работает и предлагает цену от производителя (из первых рук), а в некоторых случаях еще и ниже. Сравните сами.</p>
-                </div>
-                <div class="col-md-4">
-                    <img src="~/Content/images/mairala/fl.png" alt="" />
-                    <h4><a href="#">ГАРАНТИЯ</a></h4>
-                    <p>Industrial Development - работает на рынке г. Ставрополя и края уже более @origin лет. Мы ценим свою репутацию и ваши интересы. Поэтому, мы гарантируем - с нами вам будет выгодно. </p>
-                </div>
-            </div>
-        </div>
-    </div>
+    @Html.Action("NewsBlock", "NewsNav")
 </div>
 <!-- skills -->
 <div class="skills text-center">
@@ -381,8 +355,33 @@
         </div>
     </div>
 </div>
-
-<div class="team" id="team">
+<!-- service -->
+<div class="service text-center">
+    <div class="container">
+        <h3>НАШИ ПРЕИМУЩЕСТВА</h3>
+        <p>Компания Inductrial Development - мультибрэндовый дистрибьютор, основной задачей для нас, является поставка широкого спектра оборудования связи. <br /> Самым главным для нас является:</p>
+        <div class="service-bottom">
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="~/Content/images/mairala/contact.png" alt="" />
+                    <h4><a href="#">НАЛИЧИЕ ТОВАРОВ</a></h4>
+                    <p>У нас вы всегда найдете в наличии широкий ассортимент товаров. Взять экземпляры продукции на тестирование. Получить всю необходимую документацию.</p>
+                </div>
+                <div class="col-md-4">
+                    <img src="~/Content/images/mairala/flag.png" alt="" />
+                    <h4><a href="#">ЛУЧШАЯ ЦЕНА</a></h4>
+                    <p>Сотрудничая напрямую с производителями и импортерами, наша компания работает и предлагает цену от производителя (из первых рук), а в некоторых случаях еще и ниже. Сравните сами.</p>
+                </div>
+                <div class="col-md-4">
+                    <img src="~/Content/images/mairala/fl.png" alt="" />
+                    <h4><a href="#">ГАРАНТИЯ</a></h4>
+                    <p>Industrial Development - работает на рынке г. Ставрополя и края уже более @origin лет. Мы ценим свою репутацию и ваши интересы. Поэтому, мы гарантируем - с нами вам будет выгодно. </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*<div class="team" id="team">
     <div class="container">
         <div class="about">
             <div class="row">
@@ -455,7 +454,7 @@
             </ul>
         </div>
     </div>
-</div>
+</div>*@
 <div class="slider">
     <div id="da-slider1" class="da-slider">
         <!-- da-slider -->
@@ -487,9 +486,9 @@
                 @using (Html.BeginForm("SendQuestion","Mail",FormMethod.Post))
                 {
                     @Html.AntiForgeryToken()
-                    <input type="text" name="SenderName" class="textbox" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Имя';}">
-                    <input type="text" name="From" class="textbox" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}">
-                    <textarea value="Message" name="Body" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Сообщение';}"></textarea>
+                    <input type="text" name="SenderName" class="textbox" value="" placeholder="Ваше имя">
+                    <input type="text" name="From" class="textbox" value="" placeholder="Ваш e-mail">
+                    <textarea value="Message" name="Body" placeholder="Сообщение"></textarea>
                     <input type="submit" value="ОТПРАВИТЬ">
                 }
             </div>

@@ -221,6 +221,7 @@
     <Content Include="Content\images\dc960_640.jpg" />
     <Content Include="Content\images\fiber_optic.jpg" />
     <Content Include="Content\images\id_logo.svg" />
+    <Content Include="Content\images\Letters\bm.jpg" />
     <Content Include="Content\images\logoTopWhite.png" />
     <Content Include="Content\images\mairala\about.jpg" />
     <Content Include="Content\images\mairala\ad300x250.jpg" />
@@ -561,6 +562,7 @@
     <Content Include="Scripts\tinymce\tinymce.js" />
     <Content Include="Scripts\tinymce\tinymce.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Views\Mails\LetterFromTitle.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

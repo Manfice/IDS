@@ -19,7 +19,7 @@
 	text-align: left;
 }
 .da-slide-current{
-	z-index: 1000;
+	z-index: 2;
 }
 .da-slider-fb .da-slide{
 	left: 100%;
@@ -93,7 +93,7 @@
 	text-align: center;
 	left: 0px;
 	bottom: 75px;
-	z-index: 2000;
+	z-index: 2;
 	-moz-user-select: none;
 	-webkit-user-select: none;
 }

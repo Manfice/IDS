@@ -80,8 +80,8 @@ namespace IndDev.Controllers
                     TempData["secureMessage"] = string.Format(rvm.Message);
                     return RedirectToAction("Landing", "Home");
                 }
+            TempData["secureMessage"] = rvm.Message;
             }
-            TempData["secureMessage"] = "Проверьте правильность введенных данных";
             return View(register);
         }
 

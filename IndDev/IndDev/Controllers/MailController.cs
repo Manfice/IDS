@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -31,7 +32,8 @@ namespace IndDev.Controllers
         public ActionResult SendQuestion(MailMessageModel message)
         {
             if (!ModelState.IsValid) return View("Error");
-            _repository.SendMessage(message);
+            var bdy = System.IO.File.ReadAllText(Server.MapPath("~/Views/Mails/LetterFromTitle.html"));
+            _repository.SendMessage(message,bdy);
             return RedirectToAction("About", "Home");
         }
     }

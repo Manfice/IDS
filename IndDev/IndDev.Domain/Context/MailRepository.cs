@@ -8,37 +8,41 @@ namespace IndDev.Domain.Context
 {
     public class MailRepository : IMailRepository
     {
-        public void SendMessage(MailMessageModel model)
+        public string MakeLetterFromIndex(MailMessageModel message)
         {
-            var body = "<p>Wow {0} WOW {1}</p>";
-            var smtp = new SmtpClient()
-            {
-                Credentials = new NetworkCredential("manfice@gmail.com", "1q2w3eOP"),
-                EnableSsl = true,
-                UseDefaultCredentials = false,
-                Port = 587,
-                Host = "smtp.gmail.com",
-                DeliveryMethod = SmtpDeliveryMethod.Network
-            };
+            throw new NotImplementedException();
+        }
 
-            var message = new MailMessage()
+        public void SendMessage(MailMessageModel model, string body)
+        {
+            var fromAddress = new MailAddress("manfice@gmail.com", "Industrial Development");
+            var toAddress = new MailAddress(model.From, "Customer");
+            const string fromPassword = "1q2w3eQW";
+            const string subject = "Отправленно с сайта, с главной формы";
+
+            var smtp = new SmtpClient
             {
-                Body = string.Format(body, model.SenderName, model.From),
-                IsBodyHtml = true,
-                Subject = "test",
-                From = new MailAddress("manfice@gmail.com")
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
             };
-            message.To.Add(model.From);
-            try
+            var bd = body.Replace("{0}", model.SenderName);
+            bd = bd.Replace("{1}", DateTime.Now.ToString("f"));
+            bd = bd.Replace("{2}", model.Body);
+            bd = bd.Replace("{3}", model.From);
+            using (var message = new MailMessage(fromAddress, toAddress)
             {
+                Subject = subject,
+                Body = bd,
+                IsBodyHtml = true
+            })
+            {
+                message.To.Add(new MailAddress("ka.id@yandex.ru"));
                 smtp.Send(message);
             }
-            catch (Exception x)
-            {
-                throw ;
-            }
-
-
         }
     }
 }

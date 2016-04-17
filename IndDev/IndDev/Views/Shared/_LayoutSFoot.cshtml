@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="~/Content/mairala/fwslider.css" media="all">
     <link rel="stylesheet" type="text/css" href="~/Content/mairala/slider.css"/>
     <link href="~/Content/Main.css" rel="stylesheet" />
-     <link rel="stylesheet" href="~/Content/jquery-ui.css"/>
+    <link rel="stylesheet" href="~/Content/jquery-ui.css"/>
     <script src="~/Scripts/jquery-2.2.2.js"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
     <script type="text/javascript" src="~/Scripts/bootstrap.js"></script>
@@ -31,25 +31,25 @@
 
     @RenderSection("upperscripts", required: false)
     <script type="text/javascript">
-			$(function() {
-				$('#da-slider').cslider({
-					autoplay : true,
-					bgincrement : 800
-				});
-			});
-			$(function() {
-			    $("#menu").menu();
-			});
+        $(function() {
+            $('#da-slider').cslider({
+                autoplay : true,
+                bgincrement : 800
+            });
+        });
+        $(function() {
+            $("#menu").menu();
+        });
     </script>
     <script type="text/javascript">
-			$(function() {
+        $(function() {
 
-				$('#da-slider1').cslider({
-					autoplay : true,
-					bgincrement : 1500
-				});
+            $('#da-slider1').cslider({
+                autoplay : true,
+                bgincrement : 1500
+            });
 
-			});
+        });
     </script>
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -101,13 +101,13 @@
     <script type="text/javascript" src="~/Scripts/mairala/easing.js"></script>
     <script type="text/javascript" src="~/Scripts/mairala/menu.js"></script>
     @RenderSection("scripts", required: false)
-    <script type="text/javascript">
+<script type="text/javascript">
     jQuery(document).ready(function($) {
         $(".scroll").click(function(event) {
             event.preventDefault();
             $('html,body').animate({ scrollTop: $(this.hash).offset().top }, 1200);
         });
     });
-    </script>
+</script>
 </body>
 </html>

@@ -993,3 +993,18 @@ a,a:focus, a:active {
 }
 /*END ABOUT*/
 /*END CUSTOMER  LK*/
+/*PAI*/
+.progressDiv {
+    position: relative;
+    left: 7%;
+    top: 100px;
+    display: inline-block;
+}
+
+.statChartHolder {
+    width: 35%;
+    height: 90%;
+    position: relative;
+    top: 15px;
+    display: inline-block;
+}

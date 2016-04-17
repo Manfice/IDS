@@ -140,17 +140,17 @@ body {
  	font-family: "RobotoLight", sans-serif;
 }
 #topnav nav ul li a:hover {
-  border-bottom: 4px solid #7B6C63;
+  border-bottom: 4px solid #0697fe;
 }
 #topnav nav ul li a:link,
 #topnav nav ul li a:focus {
   outline: none;
 }
 #topnav nav ul li a:focus {
-  border-bottom: 4px solid #7B6C63;
+  border-bottom: 4px solid #0697fe;
 }
 #topnav nav ul li.active>a {
-  border-bottom: 4px solid #7B6C63;
+  border-bottom: 4px solid #0697fe;
 }
 /* footer block */
 #btmnav {
@@ -231,7 +231,7 @@ body {
  .about h3{
  	font-family: 'Raleway', sans-serif;
  	font-size: 1.7em;
- 	color:#7B6C63;
+ 	color:#0697fe;
  	font-weight: 600;
  }
 .about p {
@@ -246,7 +246,7 @@ body {
 
 .about span {
 	padding: 0px 60px;
-	border-bottom: 3px solid #7B6C63;
+	border-bottom: 3px solid #0697fe;
 }
 .about-bottom{
 	background: #F5F5F5;
@@ -258,7 +258,7 @@ body {
 .about-left h4{
 	font-family: 'Raleway', sans-serif;
  	font-size: 1.3em;
- 	color:#7B6C63;
+ 	color:#0697fe;
  	font-weight: 600;
  	margin-top: 12%;
 }
@@ -290,8 +290,8 @@ body {
    	-o-border-radius: 7px;
 }
 .about-left p a:hover{
-	background: #7B6C63;
-	border:2px solid #7B6C63;
+	background: #0697fe;
+	border:2px solid #0697fe;
 	color: #fff;
 }
 .Protects{
@@ -308,7 +308,7 @@ body {
 .service h3{
 	font-family: 'Raleway', sans-serif;
  	font-size: 1.3em;
- 	color:#7B6C63;
+ 	color:#0697fe;
  	font-weight: 600;
 }
 .service p{
@@ -323,7 +323,7 @@ body {
 .service h4 a{
 	font-family: 'Raleway', sans-serif;
  	font-size: 1.1em;
- 	color:#7B6C63;
+ 	color:#0697fe;
  	font-weight: 600;
  	text-decoration:none;
  	-webkit-transition: all 0.3s ease-in-out;
@@ -393,7 +393,7 @@ body {
   vertical-align: super;
 }
 .pie-wrapper.style-2 .shadow {
-  border: 5px solid #7B6C63;
+  border: 5px solid #0697fe;
   border-radius: 50%;
   height: 100%;
   width: 100%;
@@ -712,8 +712,8 @@ div.port-text p {
    	-o-border-radius: 7px;
 }
 .port-text p a:hover{
-	background: #7B6C63;
-	border: 2px solid #7B6C63;
+	background: #0697fe;
+	border: 2px solid #0697fe;
 	color: #fff;
 }
 div.port-text p a img {
@@ -977,7 +977,7 @@ div.team-member {
 }
 .blog-left h6{
 	font-family: 'Raleway', sans-serif;
-	color:#7B6C63;
+	color:#0697fe;
 	font-size: 1em;
 }
 .blog-left h4{
@@ -1002,7 +1002,7 @@ div.team-member {
 }
 .blog-right h6{
 	font-family: 'Raleway', sans-serif;
-	color:#7B6C63;
+	color:#0697fe;
 	font-size: 1em;
 }
 .blog-right h4{
@@ -1032,7 +1032,7 @@ div.team-member {
 	background-color: #ccc;
 }
 .post {
-	background: #7B6C63;
+	background: #0697fe;
 	color: #fff;
 	width: 100px;
 	height: 75px;
@@ -1069,7 +1069,7 @@ div.team-member {
 .contact h3{
 	font-family: 'Raleway', sans-serif;
 	font-size: 1.7em;
-	color: #7B6C63;
+	color: #0697fe;
 	font-weight: 600;
 	text-align: center;
 	padding-bottom: 2%;
@@ -1122,12 +1122,12 @@ div.team-member {
 .contact input[type="submit"]{
 	font-family: 'Raleway', sans-serif;
 	font-size: 0.875em;
-	color: #7B6C63;
+	color: #0697fe;
 	margin-top: 12px;
 	background: none;
 	padding: 13px 30px;
 	text-transform: uppercase;
-	border:2px solid #7B6C63;
+	border:2px solid #0697fe;
 	transition: 0.5s ease;
 	-o-transition: 0.5s ease;
 	-webkit-transition: 0.5s ease;
@@ -1138,8 +1138,8 @@ div.team-member {
 	-o-border-radius:7px;
 }
 .contact input[type="submit"]:hover{
-	background: #7B6C63;
-	border: 2px solid #7B6C63;
+	background: #0697fe;
+	border: 2px solid #0697fe;
 	color: #fff;
 	cursor:pointer;
 }
@@ -1220,7 +1220,7 @@ div.team-member {
 }
 .copy-right p a
 {
-	color: #7B6C63;
+	color: #0697fe;
 	 -webkit-transition: all 0.5s ease-out;
 	-moz-transition: all 0.5s ease-out;
 	-ms-transition: all 0.5s ease-out;
