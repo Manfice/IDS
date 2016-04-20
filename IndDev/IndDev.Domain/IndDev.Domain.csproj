@@ -99,7 +99,7 @@
     <Compile Include="Context\dbSecureRepository.cs" />
     <Compile Include="Context\DbShopRepository.cs" />
     <Compile Include="Context\MailRepository.cs" />
-    <Compile Include="Context\NewsContext.cs" />
+    <Compile Include="Context\DataContext.cs" />
     <Compile Include="Context\Valutes.cs" />
     <Compile Include="Entity\Auth\User.cs" />
     <Compile Include="Entity\Auth\Usr_Roles.cs" />

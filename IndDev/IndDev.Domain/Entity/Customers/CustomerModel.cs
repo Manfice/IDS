@@ -42,6 +42,7 @@ namespace IndDev.Domain.Entity.Customers
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public string Account { get; set; }
         public string Korr { get; set; }
         public string Bik { get; set; }
         public virtual Details DetailsOf { get; set; }

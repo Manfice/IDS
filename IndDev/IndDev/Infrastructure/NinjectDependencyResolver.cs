@@ -31,12 +31,12 @@ namespace IndDev.Infrastructure
         {
             _kernel.Bind<INewsRepository>().To<DbNewsRepository>();
             _kernel.Bind<ISecureRepository>().To<DbSecureRepository>().InRequestScope();
-            _kernel.Bind<IAdminRepository>().To<DbAdminRepository>();
+            _kernel.Bind<IAdminRepository>().To<DbAdminRepository>().InRequestScope();
             _kernel.Bind<IShopRepository>().To<DbShopRepository>().InRequestScope();
             _kernel.Bind<IHomeRepository>().To<DbHomeRepository>().InRequestScope();
             _kernel.Bind<ICartRepository>().To<DbCart>().InSingletonScope();
             _kernel.Bind<ICustomer>().To<DbCustomer>().InSingletonScope();
-            _kernel.Bind<IMailRepository>().To<MailRepository>();
+            _kernel.Bind<IMailRepository>().To<MailRepository>().InSingletonScope();
         }
     }
 }

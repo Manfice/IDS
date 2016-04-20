@@ -1,10 +1,12 @@
-﻿using IndDev.Models;
+﻿using System.Threading.Tasks;
+using IndDev.Auth.Model;
+using IndDev.Models;
 
 namespace IndDev.Domain.Abstract
 {
     public interface IMailRepository
     {
         void SendMessage(MailMessageModel model, string body);
-        string MakeLetterFromIndex(MailMessageModel message);
+        Task<string> RegisterLetterAsync(string body, RegisterViewModel model);
     }
 }

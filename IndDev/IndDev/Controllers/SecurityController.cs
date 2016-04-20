@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -14,10 +15,12 @@ namespace IndDev.Controllers
     public class SecurityController : Controller
     {
         private readonly ISecureRepository _repository;
+        private readonly IMailRepository _mailRepository;
 
-        public SecurityController(ISecureRepository repository)
+        public SecurityController(ISecureRepository repository, IMailRepository mail)
         {
             _repository = repository;
+            _mailRepository = mail;
         }
         // GET: Security
         public ActionResult Login(string returnUrl) 
@@ -32,9 +35,9 @@ namespace IndDev.Controllers
             if (ModelState.IsValid)
                 {
                     var svm = _repository.Login(model);
-                    if (svm.Code==0)
+                    if (svm.Code>0)
                     {
-                        FormsAuthentication.SetAuthCookie(_repository.GetUser(model.Login).Id.ToString(),model.RememberMe);
+                        FormsAuthentication.SetAuthCookie(svm.Code.ToString(),model.RememberMe);
                         TempData["secureMessage"] = string.Format(svm.Message);
                         if (!string.IsNullOrEmpty(returnUrl))
                         {
@@ -43,13 +46,13 @@ namespace IndDev.Controllers
                             {
                                 return Redirect(decodeUrl);
                             }
-                            return RedirectToAction("Landing", "Home");
                         }
                     }
                     TempData["secureMessage"] = string.Format(svm.Message);
                     return RedirectToAction("Landing","Home");
                 }
             
+            TempData["secureMessage"] = string.Format("Указаны не корректные данные.");
             return View(model);
         }
         public ActionResult Register (string returnUrl) 
@@ -59,7 +62,7 @@ namespace IndDev.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Register (RegisterViewModel register, string  returnUrl) 
+        public async Task<ActionResult> Register (RegisterViewModel register, string  returnUrl) 
         {
             if (ModelState.IsValid)
             {
@@ -68,6 +71,8 @@ namespace IndDev.Controllers
                 {
                     FormsAuthentication.SetAuthCookie(_repository.GetUser(register.Email).Id.ToString(),false);
                     TempData["secureMessage"] = string.Format(rvm.Message);
+                    var messageBody = System.IO.File.ReadAllText(Server.MapPath("~/Views/Mails/ThankYou.html"));
+                    await _mailRepository.RegisterLetterAsync(messageBody,register);
                     if (!string.IsNullOrEmpty(returnUrl))
                     {
                         string decodeUrl = Server.UrlDecode(returnUrl);

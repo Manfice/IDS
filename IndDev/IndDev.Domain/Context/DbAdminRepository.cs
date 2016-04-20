@@ -26,19 +26,18 @@ namespace IndDev.Domain.Context
 
         public ValidationInfo UpdateUser(User user)
         {
-            var dbUser = User(user.Id);
-            if (dbUser==null)
+            using (var ctx = new DataContext())
             {
-                return new ValidationInfo {Code = -1, Message = "Ошибка. Такого пользователя нет в базе данных."};
+                var role = ctx.Roles.Find(user.UsrRoles.Id);
+                var usr = ctx.Users.Find(user.Id);
+                usr.Name = user.Name;
+                usr.Phone = user.Phone;
+                usr.Region = user.Region;
+                usr.ConfirmEmail = user.ConfirmEmail;
+                usr.Block = user.Block;
+                usr.UsrRoles = role;
+                ctx.SaveChanges();
             }
-            var role = _context.Roles.FirstOrDefault(r => r.Id == user.UsrRoles.Id);
-            dbUser.Name = user.Name;
-            dbUser.Phone = user.Phone;
-            dbUser.Region = user.Region;
-            dbUser.ConfirmEmail = user.ConfirmEmail;
-            dbUser.Block = user.Block;
-            dbUser.UsrRoles = role;
-            _context.SaveChanges();
             return new ValidationInfo {Code = user.Id, Message = "Данные успешно обновлены"};
         }
 

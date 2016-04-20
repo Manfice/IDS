@@ -17,17 +17,23 @@ namespace IndDev.Domain.Context
         public ValidationInfo Login(LoginViewModel log)
         {
             var passHash = SecureLogic.EncodeMd5(log.Password);
-            var dbUser =
-                _context.Users.Where(
-                    u => (u.EMail == log.Login) && (u.PasswordHash == passHash)).ToList();
-            if (dbUser.Count==0)
+            var dbUser =_context.Users.FirstOrDefault(user => user.EMail==log.Login);
+            if (dbUser==null)
             {
-                return new ValidationInfo() {Code = 1,
+                return new ValidationInfo() {Code = -1,
                     Message = "Пользователь с такой парой e-mail/пароль не найден в базе данных"};
             }
-            return new ValidationInfo()
+            if (dbUser.PasswordHash!=passHash)
             {
-                Code = 0,
+                return new ValidationInfo()
+                {
+                    Code = -1,
+                    Message = "Пользователь с такой парой e-mail/пароль не найден в базе данных"
+                };
+            }
+            return new ValidationInfo
+            {
+                Code = dbUser.Id,
                 Message = "Вход выполнен успешно"
             };
         }

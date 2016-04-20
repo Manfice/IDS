@@ -2,12 +2,12 @@
 using System.Linq;
 using System.Web.Security;
 using IndDev.Domain.Context;
+using IndDev.Domain.Entity.Auth;
 
 namespace IndDev.Domain.Abstract
 {
     public class RoleP:RoleProvider
     {
-        private readonly DataContext _context = new DataContext();
         public override bool IsUserInRole(string username, string roleName)
         {
             throw new NotImplementedException();
@@ -16,9 +16,13 @@ namespace IndDev.Domain.Abstract
         public override string[] GetRolesForUser(string username)
         {
             var i = int.Parse(username);
-            var user = _context.Users.FirstOrDefault(u => u.Id == i);
-            if (user == null) return new string[] {};
-            var s = user.UsrRoles.Name;
+            string s;
+            using (var context = new DataContext())
+            {
+                var user = context.Users.Find(i);
+                if (user == null) return new string[] {};
+                s = user.UsrRoles.Name;
+            } 
             string[] resalt = {s};
             return resalt;
         }

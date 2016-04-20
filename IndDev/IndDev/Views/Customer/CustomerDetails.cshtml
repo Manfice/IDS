@@ -1,0 +1,118 @@
+﻿@model IndDev.Domain.Entity.Auth.User
+@{
+    ViewBag.Title = Model.Customer.Title;
+    Layout = "~/Views/Shared/_LayoutSFoot.cshtml";
+}
+
+
+<div class="container">
+    <div class="row">
+        @using (Html.BeginForm("SaveCustomerData","Customer", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(user => user.Id)
+
+            <table class="table table-striped table-responsive col-lg-9 col-md-10 col-sm-12" style="margin: 20px;">
+                <thead>
+                    <tr>
+                        <td colspan="2" class="tabHead">Персональные данные пользователя</td>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Ваше имя (как к вам обращаться)</td>
+                    <td>@Html.TextBoxFor(user => user.Name, new {placeholder = @Model.Name, @class = "form-control"})</td>
+                </tr>
+                <tr>
+                    <td>Ваш контактный телефон:</td>
+                    <td>@Html.TextBoxFor(user => user.Phone, new {placeholder = @Model.Phone, @class = "form-control"})</td>
+                </tr>
+                <tr>
+                    <td>Ваш регион (город):</td>
+                    <td>@Html.TextBoxFor(user => user.Region, new {placeholder = @Model.Region, @class = "form-control"})</td>
+                </tr>
+                <tr>
+                    <td>Изменить данные для входа на сайт</td>
+                    <td>@Html.ActionLink(@Model.EMail + " пароль >>>", "Index", "Customer")</td>
+                </tr>
+                </tbody>
+                <thead>
+                    <tr>
+                        <td colspan="2" class="tabHead">Данные для ТК (получатель)</td>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Название компании:</td>
+                    <td>@Html.TextBoxFor(user => user.Customer.Title, new {placeholder = @Model.Customer.Title, @class = "form-control"})</td>
+                </tr>
+                <tr>
+                    <td>Адрес доставки:</td>
+                    <td>@Html.TextBoxFor(user => user.Customer.Adress, new {placeholder = @Model.Customer.Adress, @class = "form-control"})</td>
+                </tr>
+                </tbody>
+                <thead>
+                    <tr>
+                        <td colspan="2" class="tabHead">Реквизиты, для выставления счета:</td>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Название компании:</td>
+                    <td>@Html.TextBoxFor(user => user.Customer.Details.CompanyName, new {placeholder = @Model.Customer.Details.CompanyName, @class = "form-control"})</td>
+                </tr>
+                <tr>
+                    <td>Юридический адрес:</td>
+                    <td>@Html.TextBoxFor(user => user.Customer.Details.UrAdress, new {placeholder = @Model.Customer.Details.UrAdress, @class = "form-control"})</td>
+                </tr>
+                <tr>
+                    <td>ИНН:</td>
+                    <td>@Html.TextBoxFor(user => user.Customer.Details.Inn, new {placeholder = @Model.Customer.Details.Inn, @class = "form-control"})</td>
+                </tr>
+                <tr>
+                    <td>КПП:</td>
+                    <td>@Html.TextBoxFor(user => user.Customer.Details.Kpp, new {placeholder = @Model.Customer.Details.Kpp, @class = "form-control"})</td>
+                </tr>
+                <tr>
+                    <td>ОГРН:</td>
+                    <td>@Html.TextBoxFor(user => user.Customer.Details.Ogrn, new {placeholder = @Model.Customer.Details.Ogrn, @class = "form-control"})</td>
+                </tr>
+                @foreach (var bank in Model.Customer.Details.Banks)
+                {
+                    <tr>
+                        <td>Банковский счет:</td>
+                        <td>@Html.ActionLink("p/c: " + bank.Account + " в " + bank.Name + " корр/с.: " + bank.Korr + " бик: " + bank.Bik, "BankDetails", "Customer", new {id = bank.Id})</td>
+                    </tr>
+                }
+                <tr>
+                    <td>Банковский счет:</td>
+                    <td>@Html.ActionLink("Добавить банковкий счет >>>", "BankDetails", "Customer", new {id = 0})</td>
+                </tr>
+                @foreach (var tel in Model.Customer.Details.Telephones)
+                {
+                    <tr>
+                        <td>Телефоны организации:</td>
+                        <td>@Html.ActionLink(tel.Title + ": " + tel.Numder, "TelDetails", "Customer", new {id = tel.Id})</td>
+                    </tr>
+                }
+                <tr>
+                    <td>Телефон/факс:</td>
+                    <td>@Html.ActionLink("Добавить телефон >>>", "TelDetails", "Customer", new {id = 0})</td>
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td colspan="2" class="tabHead">
+                        @Html.ActionLink("Назадъ", "Index","Customer", new {@class="btn btn-default btn-sm"})
+                        <input type="submit" value="Сохранить" class="btn btn-success btn-sm"/>
+                    </td>
+                </tr>
+                </tfoot>
+            </table>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -15,7 +15,7 @@ namespace IndDev.Controllers
     [AllowAnonymous]
     public class MailController : Controller
     {
-        private IMailRepository _repository;
+        private readonly IMailRepository _repository;
 
         public MailController(IMailRepository repository)
         {

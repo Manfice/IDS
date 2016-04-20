@@ -37,7 +37,7 @@ namespace IndDev.Controllers
         {
             var nav = new List<CustMenuItems>
             {
-                new CustMenuItems {Title = "Личные данные", MenuLink = "/Customer/Index"},
+                new CustMenuItems {Title = "Личные данные", MenuLink = "/Customer/CustomerDetails"},
                 new CustMenuItems {Title = "Заказы", MenuLink = "/Customer/Index"},
                 new CustMenuItems {Title = "Сальдо", MenuLink = "/Customer/Index"}
             };
@@ -53,6 +53,20 @@ namespace IndDev.Controllers
         {
             var cust = _repository.GetCustomerByUserId(_user);
             return PartialView(cust);
+        }
+
+        public ActionResult CustomerDetails()
+        {
+            var user = _repository.GetUserById(_user);
+            return View(user);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult SaveCustomerData(User model)
+        {
+            _repository.UpdateCustomer(model);
+            return RedirectToAction("Index");
         }
     }
 }
