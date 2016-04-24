@@ -1,4 +1,5 @@
-﻿using IndDev.Domain.Entity.Customers;
+﻿using System;
+using IndDev.Domain.Entity.Customers;
 
 namespace IndDev.Domain.Entity.Auth
 
@@ -13,6 +14,7 @@ namespace IndDev.Domain.Entity.Auth
         public bool ConfirmEmail { get; set; }
         public bool Block { get; set; }
         public string PasswordHash { get; set; }
+        public Guid TempSecret { get; set; }
         public virtual UsrRoles UsrRoles { get; set; }
         public virtual Customer Customer { get; set; }
         

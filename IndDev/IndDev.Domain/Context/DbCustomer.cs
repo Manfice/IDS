@@ -28,6 +28,11 @@ namespace IndDev.Domain.Context
             dbUser.Region = model.Region;
             dbUser.Customer.Title = model.Customer.Title;
             dbUser.Customer.Adress = model.Customer.Adress;
+            dbUser.Customer.Details.CompanyName = model.Customer.Details.CompanyName;
+            dbUser.Customer.Details.UrAdress = model.Customer.Details.UrAdress;
+            dbUser.Customer.Details.Inn = model.Customer.Details.Inn;
+            dbUser.Customer.Details.Kpp = model.Customer.Details.Kpp;
+            dbUser.Customer.Details.Ogrn = model.Customer.Details.Ogrn;
             _context.SaveChanges();
             return new ValidEvent {Code = dbUser.Id, Messge = "Ok"};
         }

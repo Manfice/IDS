@@ -1,6 +1,23 @@
-﻿@model IndDev.Domain.Entity.Customers.Customer
+﻿@model IndDev.Domain.Entity.Auth.User
 
 <div class="cartCutomer">
-    <img src=""/>
-    <h1>@Model.Title</h1>
+    <img src="@Url.Content("~/Content/images/noimage.png")" alt="test"/>
+    <table class="table table-responsive table-condensed">
+        <tr>
+            <td>Заказчик:</td>
+            <td>@Model.Customer.Title</td>
+        </tr>
+        <tr>
+            <td>Доставка:</td>
+            <td>@Model.Customer.Adress</td>
+        </tr>
+        <tr>
+            <td>Телефон:</td>
+            <td>@Model.Phone</td>
+        </tr>
+        <tr>
+            <td>Статус:</td>
+            <td>@Model.UsrRoles.Descr</td>
+        </tr>
+    </table>
 </div>

@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using IndDev.Domain.Abstract;
 using IndDev.Domain.Entity.Auth;
+using IndDev.Domain.Entity.Cart;
 using IndDev.Domain.Entity.Customers;
 using IndDev.Domain.ViewModels;
 
@@ -46,12 +47,12 @@ namespace IndDev.Controllers
 
         public PartialViewResult About()
         {
-            var customer = _repository.GetCustomerByUserId(_user);
+            var customer = _repository.GetUserById(_user);
             return PartialView(customer);
         }
         public ActionResult CartCustomerView()
         {
-            var cust = _repository.GetCustomerByUserId(_user);
+            var cust = _repository.GetUserById(_user);
             return PartialView(cust);
         }
 
@@ -68,5 +69,11 @@ namespace IndDev.Controllers
             _repository.UpdateCustomer(model);
             return RedirectToAction("Index");
         }
+
+        public ActionResult MakeOrder(Cart cart)
+        {
+            return View();
+        }
+         
     }
 }

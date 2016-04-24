@@ -1,15 +1,15 @@
-﻿@model IndDev.Domain.Entity.Customers.Customer
+﻿@model IndDev.Domain.Entity.Auth.User
 <div class="logotip">
-    @if (Model.Photo == null)
+    @if (Model.Customer.Photo == null)
     {
         <img src="~/Content/images/noimage.png" alt="Логотип не задан"/>
     }
     else
     {
-        <img src="@Model.Photo.Path" alt="@Model.Photo.AltText"/>
+        <img src="@Model.Customer.Photo.Path" alt="@Model.Customer.Photo.AltText"/>
     }
     <ul>
-        @if (Model.Photo == null)
+        @if (Model.Customer.Photo == null)
         {
             <li>Добавить</li>
         }
@@ -29,46 +29,46 @@
         </thead>
         <tbody>
             <tr>
-                <td>Псевдоним:</td>
-                <td>@Model.Title</td>
+                <td>Имя:</td>
+                <td>@Model.Name</td>
             </tr>
             <tr>
-                <td>Местонахождение:</td>
-                <td>@Model.Adress</td>
+                <td>Регион:</td>
+                <td>@Model.Region</td>
             </tr>
             <tr>
                 <td class="tabHead" colspan="2">Реквизиты <a class="pull-right"><i class="fa fa-pencil"></i></a></td>
             </tr>
             <tr>
                 <td>Компания:</td>
-                <td>@Model.Details.CompanyName</td>
+                <td>@Model.Customer.Details.CompanyName</td>
             </tr>
             <tr>
                 <td>ИНН/КПП:</td>
-                <td>@Model.Details.Inn/@Model.Details.Kpp</td>
+                <td>@Model.Customer.Details.Inn/@Model.Customer.Details.Kpp</td>
             </tr>
             <tr>
                 <td>ОГРН:</td>
-                <td>@Model.Details.Ogrn</td>
+                <td>@Model.Customer.Details.Ogrn</td>
             </tr>
             <tr>
                 <td>Юридический адрес:</td>
-                <td>@Model.Details.UrAdress</td>
+                <td>@Model.Customer.Details.UrAdress</td>
             </tr>
             <tr>
                 <td>Адрес доставки:</td>
-                <td>@Model.Details.RealAdress</td>
+                <td>@Model.Customer.Adress</td>
             </tr>
             <tr>
                 <td class="tabHead" colspan="2">Контакты <a class="pull-right"><i class="fa fa-pencil"></i></a></td>
             </tr>
             <tr>
-                <td>Компания:</td>
-                <td>@Model.Title</td>
+                <td>Телефон личный:</td>
+                <td>@Model.Phone</td>
             </tr>
             <tr>
-                <td>Компания:</td>
-                <td>@Model.Title</td>
+                <td>Электронная почта:</td>
+                <td>@Model.EMail</td>
             </tr>
         </tbody>
     </table>

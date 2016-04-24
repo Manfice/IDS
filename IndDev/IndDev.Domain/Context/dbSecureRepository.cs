@@ -86,5 +86,24 @@ namespace IndDev.Domain.Context
         {
             return _context.Users.Find(id);
         }
+
+        public User ValidResetPassRequest(string email, Guid secret)
+        {
+            var dbUser = _context.Users.FirstOrDefault(user => user.EMail == email);
+            if (dbUser==null)
+            {
+                return null;
+            }
+            return dbUser.TempSecret==secret ? dbUser : null;
+        }
+
+        public User ResetGuid(string email)
+        {
+            var dbUser = _context.Users.FirstOrDefault(user => user.EMail == email);
+            if (dbUser == null) return null;
+            dbUser.TempSecret = Guid.NewGuid();
+            _context.SaveChanges();
+            return dbUser;
+        }
     }
 }

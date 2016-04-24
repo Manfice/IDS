@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using IndDev.Auth.Logic;
 using IndDev.Auth.Model;
 using IndDev.Domain.Entity.Auth;
@@ -13,5 +14,7 @@ namespace IndDev.Domain.Abstract
         ValidationInfo Register(RegisterViewModel reg);
         ValidationInfo Login(LoginViewModel log);
         User GetUserById(int id);
+        User ValidResetPassRequest(string email, Guid secret);
+        User ResetGuid(string email);
     }
 }

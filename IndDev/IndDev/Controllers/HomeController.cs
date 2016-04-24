@@ -49,6 +49,11 @@ namespace IndDev.Controllers
             return PartialView(cur);
         }
 
+        public ActionResult MessageScreen(string message)
+        {
+            ViewBag.Message = message;
+            return View();
+        }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult SendMessage(string fio, string email, string message)

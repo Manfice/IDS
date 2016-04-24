@@ -765,9 +765,6 @@ a,a:focus, a:active {
 .loginForm {
     position: relative;
     text-align: center;
-    background: url("/Content/images/servers.jpg") no-repeat;
-    background-size: 100% auto;
-    background-position: center center;
     padding: 100px 0;
 }
 .logForm {
@@ -1000,7 +997,15 @@ a,a:focus, a:active {
     top: 100px;
     display: inline-block;
 }
-
+.cartCutomer img {
+    float: right;
+    width: 150px;
+    margin: 20px;
+}
+.cartCutomer table {
+    float: left;
+    width: 60%;
+}
 .statChartHolder {
     width: 35%;
     height: 90%;
@@ -1008,3 +1013,22 @@ a,a:focus, a:active {
     top: 15px;
     display: inline-block;
 }
+.messageScreen {
+    text-align: center;
+    margin: 50px auto;
+    max-width: 60%;
+    padding: 50px;
+    background-color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+.messageScreen h1 {
+    font-weight: bold;
+    font-size: 30px;
+    text-transform: uppercase;
+    margin: 0 0 50px 0;
+}
+.messageScreen p {
+    
+}
+

@@ -563,6 +563,7 @@
     <Content Include="Scripts\tinymce\tinymce.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Views\Mails\LetterFromTitle.html" />
+    <Content Include="Views\Mails\ResetPassword.html" />
     <Content Include="Views\Mails\ThankYou.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -666,6 +667,10 @@
     <Content Include="Views\Customer\LkNavigation.cshtml" />
     <Content Include="Views\Customer\About.cshtml" />
     <Content Include="Views\Customer\CustomerDetails.cshtml" />
+    <Content Include="Views\Customer\MakeOrder.cshtml" />
+    <Content Include="Views\Security\ForgotPassword.cshtml" />
+    <Content Include="Views\Home\MessageScreen.cshtml" />
+    <Content Include="Views\Security\ResetPassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

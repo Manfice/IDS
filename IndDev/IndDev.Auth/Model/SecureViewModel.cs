@@ -18,6 +18,22 @@ namespace IndDev.Auth.Model
         public string ReturnUrl { get; set; }
     }
 
+    public class ResetPasswordVm
+    {
+        [Required(ErrorMessage = "Укажите пароль!")]
+        [Display(Name = "ПАРОЛЬ")]
+        [DataType(DataType.Password)]
+        [MinLength(6, ErrorMessage = "Пароль должен быть минимум из 6 символов.")]
+        public string Password { get; set; }
+        [Required]
+        [Display(Name = "ПОДТВЕРЖДЕНИЕ ПАРОЛЯ")]
+        [DataType(DataType.Password)]
+        [Compare("Password", ErrorMessage = "Пароли не совпадают.")]
+        public string ConfirmPassword { get; set; }
+
+        public int UserId { get; set; }
+    }
+
     public class RegisterViewModel
     {
         [Required(ErrorMessage = "Укажите название компании!")]

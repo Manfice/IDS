@@ -1,15 +1,19 @@
 ﻿using System;
+using System.Linq;
 using System.Net;
 using System.Net.Mail;
+using System.Security.Policy;
 using System.Threading.Tasks;
 using IndDev.Auth.Model;
 using IndDev.Domain.Abstract;
+using IndDev.Domain.Entity.Auth;
 using IndDev.Models;
 
 namespace IndDev.Domain.Context
 {
     public class MailRepository : IMailRepository
     {
+        
         private async Task<string> SendMyMailAsync(string body, string to, string subject)
         {
             var fromAddress = new MailAddress("manfice@gmail.com", "Industrial Development");
@@ -32,7 +36,7 @@ namespace IndDev.Domain.Context
                 //message.To.Add(new MailAddress("ka.id@yandex.ru"));
                 await smtp.SendMailAsync(message);
             }
-            return "Message deliveryed";
+            return $"Message deliveryed to {to}";
         }
 
         public async Task<string> RegisterLetterAsync(string body, RegisterViewModel model)
@@ -74,6 +78,23 @@ namespace IndDev.Domain.Context
                 message.To.Add(new MailAddress("ka.id@yandex.ru"));
                 smtp.Send(message);
             }
+        }
+
+        public async Task<string> ResetPassword(string body, string to, string resetLink)
+        {
+            using (var context = new DataContext())
+            {
+                var usr = context.Users.FirstOrDefault(user => user.EMail==to);
+                if (usr!=null)
+                {
+                    var bd = body.Replace("{0}", usr.Name);
+                    bd = bd.Replace("{1}", to);
+                    bd = bd.Replace("{2}", resetLink);
+                    return await SendMyMailAsync(bd, to, "Сброс пароля.");
+                }
+                return $"Пользователь с логином {to} не найден в бд.";
+            } 
+
         }
     }
 }

@@ -90,6 +90,40 @@ namespace IndDev.Controllers
             return View(register);
         }
 
+        public ActionResult ForgotPassword()
+        {
+            return View(new LoginViewModel());
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> EmailResetLink(string login)
+        {
+            if (!ModelState.IsValid) return View("ForgotPassword", login);
+            var messageBody = System.IO.File.ReadAllText(Server.MapPath("~/Views/Mails/ResetPassword.html"));
+            var guid = _repository.ResetGuid(login);
+            if (guid==null)
+            {
+                return RedirectToAction("MessageScreen", "Home", new { message = $"Пользователь с адресом электронной почты: {login} не обнаружен." });
+            }
+            var callback ="www.id-racks.ru"+Url.Action("ResetPassword", "Security", new { email = login, secret = guid.TempSecret });
+            var msg = await _mailRepository.ResetPassword(messageBody, login, callback);
+            return RedirectToAction("MessageScreen", "Home", new {message = msg});
+        }
+
+        public ActionResult ResetPassword(string email, Guid secret)
+        {
+            var dbUser = _repository.ValidResetPassRequest(email, secret);
+            if (dbUser==null)
+            {
+                return RedirectToAction("MessageScreen", "Home", new { message = $"Пользователь с адресом электронной почты: {email} не обнаружен." });
+            }
+            var rpvm = new ResetPasswordVm
+            {
+                UserId = dbUser.Id
+            };
+            return View(rpvm);
+        }
         public ActionResult LogOut()
         {
             FormsAuthentication.SignOut();
