@@ -124,6 +124,17 @@ namespace IndDev.Controllers
             };
             return View(rpvm);
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ResetPassword(ResetPasswordVm model)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = _repository.RestorePassword(model);
+                return RedirectToAction("MessageScreen", "Home", new {message = result.Messge});
+            }
+            return View(model);
+        }
         public ActionResult LogOut()
         {
             FormsAuthentication.SignOut();

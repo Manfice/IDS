@@ -36,7 +36,7 @@ namespace IndDev.Domain.Context
                 //message.To.Add(new MailAddress("ka.id@yandex.ru"));
                 await smtp.SendMailAsync(message);
             }
-            return $"Message deliveryed to {to}";
+            return $"Письмо отправленно на адрес: {to}";
         }
 
         public async Task<string> RegisterLetterAsync(string body, RegisterViewModel model)

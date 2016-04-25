@@ -105,5 +105,18 @@ namespace IndDev.Domain.Context
             _context.SaveChanges();
             return dbUser;
         }
+
+        public ValidEvent RestorePassword(ResetPasswordVm model)
+        {
+            var dbUser = _context.Users.Find(model.UserId);
+            if (dbUser!=null)
+            {
+                dbUser.PasswordHash = SecureLogic.EncodeMd5(model.Password);
+                dbUser.TempSecret = Guid.NewGuid();
+                _context.SaveChanges();
+                return new ValidEvent {Code = dbUser.Id, Messge = $"Пароль пользователя {dbUser.Name} был изменен. На почту выслано потдверждение."};
+            }
+            return new ValidEvent {Code = 0, Messge = "Извините, произошла ошибка. Попробуйте запросить сброс пароля заново."};
+        }
     }
 }
