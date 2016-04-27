@@ -109,6 +109,7 @@
     <Compile Include="Entity\MailMessageModel.cs" />
     <Compile Include="Entity\Menu\ProductMenu.cs" />
     <Compile Include="Entity\News.cs" />
+    <Compile Include="Entity\Orders\Order.cs" />
     <Compile Include="Entity\Products\Brand.cs" />
     <Compile Include="Entity\Products\Currency.cs" />
     <Compile Include="Entity\Products\MesureUnit.cs" />

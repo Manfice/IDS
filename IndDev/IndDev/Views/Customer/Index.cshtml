@@ -13,3 +13,20 @@
         </div>
     </div>
 </div>
+@section scripts{
+    <script type="text/javascript">
+    jQuery(document).ready(function($) {
+        if ($('.renderBody').height() + 80 < $(window).height()) {
+            $('.footer').css({
+                position: 'absolute',
+                bottom: 0,
+                width: '100%'
+            });
+        } else {
+            $('.footer').css({
+                position: 'relative'
+            });
+        }
+    });
+</script>
+}

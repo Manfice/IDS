@@ -1,8 +1,10 @@
-﻿
+﻿@model IndDev.Domain.Entity.Orders.Order
 @{
     ViewBag.Title = "MakeOrder";
     Layout = "~/Views/Shared/_LayoutShop.cshtml";
 }
 
-<h2>MakeOrder</h2>
-
+@foreach (var item in Model.OrderLines)
+{
+    <h1>@item.Product.Title - @item.Price - @item.Quantity</h1>
+}

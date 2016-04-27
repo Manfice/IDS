@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using IndDev.Domain.Entity.Auth;
 
 namespace IndDev.Domain.Entity.Customers
@@ -13,6 +14,7 @@ namespace IndDev.Domain.Entity.Customers
         public int Id { get; set; }
         public string Title { get; set; }
         public string Adress { get; set; }
+        public DateTime Register { get; set; }
         public virtual CustomerLogo Photo { get; set; }
         public virtual Details Details { get; set; }
     }

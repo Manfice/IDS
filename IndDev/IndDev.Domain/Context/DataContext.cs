@@ -4,6 +4,7 @@ using IndDev.Domain.Entity;
 using IndDev.Domain.Entity.Auth;
 using IndDev.Domain.Entity.Customers;
 using IndDev.Domain.Entity.Menu;
+using IndDev.Domain.Entity.Orders;
 using IndDev.Domain.Entity.Products;
 
 namespace IndDev.Domain.Context
@@ -37,7 +38,11 @@ namespace IndDev.Domain.Context
         public DbSet<ProdMenuImage> ProdMenuImages { get; set; }
         public DbSet<ProductMenu> ProductMenus { get; set; }
         public DbSet<ProductPhoto> ProductPhotos { get; set; }
-
+        //Orders
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderLine> OrderLines { get; set; }
+        public DbSet<Delivery> Deliveries { get; set; }
+        public DbSet<DeliveryType> DeliveryTypes { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

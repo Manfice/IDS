@@ -103,5 +103,7 @@ namespace IndDev.Domain.ViewModels
         public ProductPhoto Avatar { get; set; }    
         public IEnumerable<PriceViewModel> Prices { get; set; }
         public int SubCategory { get; set; }
+        public bool IsSale { get; set; }
+        public bool Byeble { get; set; } // можно ли эту хрень купить?
     }
 }

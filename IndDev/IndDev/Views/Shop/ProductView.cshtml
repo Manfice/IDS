@@ -10,15 +10,18 @@
             <p>От @price.PriceFrom @Model.Product.MesureUnit.ShortName <span>@price.ConvValue.ToString("##.##р.")</span></p>
         }
     </div>
-    @using (Html.BeginForm("AddToCart","Cart",FormMethod.Post))
+    @if (Model.Byeble)
     {
-        @Html.AntiForgeryToken()
-        @Html.Hidden("productId", Model.Product.Id)
-        @Html.Hidden("sCat",Model.SubCategory)
-        <input type="number" name="quantity" value="1" min="1"/>
-        <button type="submit">Заказать</button>
+        using (Html.BeginForm("AddToCart", "Cart", FormMethod.Post))
+         {
+             @Html.AntiForgeryToken()
+             @Html.Hidden("productId", Model.Product.Id)
+             @Html.Hidden("sCat", Model.SubCategory)
+             <input type="number" name="quantity" value="1" min="1"/>
+             <button type="submit">Заказать</button>
+         }
+        <hr/>
     }
-    <hr/>
     @foreach (var item in Model.Product.ProductPhotos)
     {
         <img src="@item.Path" alt="@item.AltText" width="100"/>

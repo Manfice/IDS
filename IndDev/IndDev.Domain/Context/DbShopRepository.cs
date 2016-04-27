@@ -36,6 +36,8 @@ namespace IndDev.Domain.Context
                     };
                     var pr = product.Prices.Select(price => new PriceViewModel {Id = price.Id, Currency = price.Currency, OriginalPrice = price.Value, Title = price.Title, PriceFrom = price.QuanttityFrom}).ToList();
                     pv.Prices = pr;
+                    pv.IsSale = IsSale(pr);
+                    pv.Byeble = CheckPrice(pr);
                     pv.SubCategory = catId;
                     pvm.Add(pv);
                 }
@@ -56,11 +58,23 @@ namespace IndDev.Domain.Context
                     };
                     var pr = product.Prices.Select(price => new PriceViewModel { Id = price.Id, Currency = price.Currency, OriginalPrice = price.Value, Title = price.Title, PriceFrom = price.QuanttityFrom}).ToList();
                     pv.Prices = pr;
+                    pv.Byeble = CheckPrice(pr);
+                    pv.IsSale = IsSale(pr);
                     pv.SubCategory = catId;
                     pvm.Add(pv);
                 }
             }
             return pvm;
+        }
+
+        private bool IsSale(List<PriceViewModel> model)
+        {
+            return model.Any(item => item.Title == "Sale" && item.ConvValue > 0);
+        }
+
+        private bool CheckPrice(List<PriceViewModel> list)
+        {
+            return list != null && list.Any(item => item.ConvValue>0);
         }
 
         public IEnumerable<ProductMenu> GetProductMenus()
@@ -91,6 +105,8 @@ namespace IndDev.Domain.Context
             };
             var pr = product.Prices.Where(price => price.Value>0).Select(price => new PriceViewModel { Id = price.Id, Currency = price.Currency, OriginalPrice = price.Value, Title = price.Title, PriceFrom = price.QuanttityFrom}).ToList();
             pv.Prices = pr;
+            pv.Byeble = CheckPrice(pr);
+            pv.IsSale = IsSale(pr);
             pv.SubCategory = mCat;
             return pv;
         }

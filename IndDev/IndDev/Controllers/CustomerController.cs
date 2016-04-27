@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations.Sql;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -72,8 +73,17 @@ namespace IndDev.Controllers
 
         public ActionResult MakeOrder(Cart cart)
         {
+            //if (!cart.CartItems.Any())
+            //    return RedirectToAction("MessageScreen", "Home",
+            //        new {message = "Не выбран ни один товар. Ваша корзина пуста."});
+            //var order = _repository.MakeOrder(_user, cart);
+            //if (order == null)
+            //    return RedirectToAction("MessageScreen", "Home",
+            //        new {message = "Заказ не сохранен. Попробуйте еще раз."});
+            //cart.ClearList();
+
             return View();
         }
-         
+
     }
 }

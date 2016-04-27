@@ -29,6 +29,7 @@ namespace IndDev.Domain.Entity.Cart
                     };
                 }
             }
+
             return p;
         }
 
@@ -37,11 +38,13 @@ namespace IndDev.Domain.Entity.Cart
             var cItem = _cartItems.FirstOrDefault(item => item.Product.Id == product.Id);
             if (cItem == null)
             {
+                var price = GetActualPrice(product, quantity);
+                if (price == null) return;
                 _cartItems.Add(new CartItem
                 {
                     Product = product,
                     Quantity = quantity,
-                    ActualPrice = GetActualPrice(product,quantity)
+                    ActualPrice = price
                 });
             }
             else
@@ -55,8 +58,10 @@ namespace IndDev.Domain.Entity.Cart
         {
             var line = _cartItems.FirstOrDefault(item => item.Product.Id == product.Id);
             if (line == null) return;
+            var price = GetActualPrice(product, quantity);
+            if (price==null) return;
             line.Quantity = quantity;
-            line.ActualPrice = GetActualPrice(product, quantity);
+            line.ActualPrice = price;
         }
 
         public void RemoveLine(Product product)
