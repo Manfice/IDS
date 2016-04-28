@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using IndDev.Domain.Entity.Auth;
 using IndDev.Domain.Entity.Cart;
 using IndDev.Domain.Entity.Customers;
@@ -12,5 +13,7 @@ namespace IndDev.Domain.Abstract
         User GetUserById(int id);
         ValidEvent UpdateCustomer(User model);
         Order MakeOrder(int userId, Cart cart);
+        List<PaymentMethod> GetPaymentMethods();
+        List<DeliveryType> GetDeliveryTypes();
     }
 }

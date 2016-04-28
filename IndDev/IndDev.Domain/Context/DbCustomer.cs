@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -84,5 +85,15 @@ namespace IndDev.Domain.Context
             _context.SaveChanges();
             return new ValidEvent {Code = dbUser.Id, Messge = "Ok"};
         }
+
+        public List<PaymentMethod> GetPaymentMethods()
+        {
+            return _context.PaymentMethods.ToList();
+        }
+
+        public List<DeliveryType> GetDeliveryTypes()
+        {
+            return _context.DeliveryTypes.ToList();
+        } 
     }
 }

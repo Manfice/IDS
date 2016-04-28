@@ -9,6 +9,7 @@ using IndDev.Domain.Abstract;
 using IndDev.Domain.Entity.Auth;
 using IndDev.Domain.Entity.Cart;
 using IndDev.Domain.Entity.Customers;
+using IndDev.Domain.Entity.Orders;
 using IndDev.Domain.ViewModels;
 
 namespace IndDev.Controllers
@@ -71,7 +72,7 @@ namespace IndDev.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult MakeOrder(Cart cart)
+        public ActionResult MakeOrder()
         {
             //if (!cart.CartItems.Any())
             //    return RedirectToAction("MessageScreen", "Home",
@@ -81,8 +82,21 @@ namespace IndDev.Controllers
             //    return RedirectToAction("MessageScreen", "Home",
             //        new {message = "Заказ не сохранен. Попробуйте еще раз."});
             //cart.ClearList();
-
-            return View();
+            var customer = _repository.GetCustomerByUserId(_user);
+            var delTypes = _repository.GetDeliveryTypes().Select(type => new SelectListItem
+            {
+                Text = type.Title+" - "+type.Cost.ToString("C"),
+                Value = type.Id.ToString()
+            });
+            var preOrder = new PreOrder
+            {
+                Customer = customer,
+                PaymentMethods = _repository.GetPaymentMethods(),
+                Delivery = new Delivery {Recipient = customer.Title, To = customer.Adress},
+                PaymentMethod = new PaymentMethod(),
+                DeliveryTypes = delTypes
+            };
+            return View(preOrder);
         }
 
     }

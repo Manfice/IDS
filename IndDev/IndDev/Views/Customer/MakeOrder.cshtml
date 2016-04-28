@@ -1,10 +1,50 @@
-﻿@model IndDev.Domain.Entity.Orders.Order
+﻿@model IndDev.Domain.ViewModels.PreOrder
 @{
     ViewBag.Title = "MakeOrder";
     Layout = "~/Views/Shared/_LayoutShop.cshtml";
 }
 
-@foreach (var item in Model.OrderLines)
-{
-    <h1>@item.Product.Title - @item.Price - @item.Quantity</h1>
-}
+
+<div class="preOrder">
+    <h1>Еще пара вопросов</h1>
+    @using (Html.BeginForm())
+    {
+        <div class="row delivery">
+            <h3>Укажите, как Вы планируете получить заказ:</h3>
+            @Html.DropDownListFor(order => order.Delivery.Id, Model.DeliveryTypes, Model.Delivery.Id)
+            <br/>
+            @Html.Label("Наименование получателя:")
+            @Html.TextBoxFor(order => order.Delivery.Recipient)
+            <br/>
+            @Html.Label("Куда доставить:")
+            @Html.TextBoxFor(order => order.Delivery.To)
+            <br/>
+            @Html.Label("Комментарий к доставке:")
+            @Html.TextAreaFor(order => order.Delivery.Comment)
+            <h3>Укажите способ оплаты:</h3>
+            @Html.DropDownListFor(order => order.PaymentMethod.Id, new SelectList(Model.PaymentMethods, "Id", "Title"), Model.PaymentMethod.Id)
+        </div>
+        <input class="btn btn-success btn-lg" type="submit" value="ЗАКАЗАТЬ"/>
+    }
+<div class="delDescr">
+    <h1>ПАМЯТКА</h1>
+    <h2>Доставка:</h2>
+    <div class="descrArticle">
+        <h3>Самовывоз.</h3>
+        <p>
+            <span>Клиент </span>сам забирает товар в офисе компании. Важно помнить, что получая товар
+            Вам потребуется доверенность или печать организации, независимо от того, каким способом вы оплачивали товар.
+        </p>
+        <h4>Стоимость:<strong> БЕСПЛАТНО</strong></h4>
+    </div>
+    <div class="descrArticle">
+        <h3>Доставка до ТК(транспортной компании)</h3>
+        <p>
+            <span>Товар </span>доставляется до транспортной компании силами поставщика. При этом, поставщик берёт на себя обязательства
+            упаковать груз надлежащим образом, организовать его доставку и отправку в кратчайшие сроки. Наименование транспортной компании
+            <strong>рекомендуем</strong> указать в комментарии к доставке. 
+        </p>
+        <h4>Стоимость:<strong> 300р.</strong></h4>
+    </div>
+</div>
+</div>

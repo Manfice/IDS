@@ -38,7 +38,13 @@ namespace IndDev.Domain.Migrations
                 new DeliveryType {Id = 1, Title = "Самовывоз",Cost = 0,FreeFrom = 0,Description = "Забор заказа осуществляет клиент самостоятельно, по доверенности, со склада компании."},
                 new DeliveryType {Id = 2, Title = "Доставка до ТК",Cost = 300,FreeFrom = 15000, Description = "Доставка до транспортной компании осуществляет продавец."},
                 new DeliveryType {Id = 3, Title = "Автобусом",Cost = 500,FreeFrom = 10000, Description = "Доставка груза осуществляется по средствам маршрутных автобусов с автовокзала в г. Ставрополе. ВНИМАНИЕ! Этот способ доставки самый ненадежный. Используйте его только в крайних случаях."},
-                new DeliveryType { Id = 4, Title = "Экспресс", Cost = 0, FreeFrom = 0,Description = "Экспресс доставка актуальна для небольших грузов до 5ти кг."}
+                new DeliveryType { Id = 4, Title = "Экспресс", Cost = 0, FreeFrom = 0,Description = "Экспресс доставка актуальна для небольших грузов до 5ти кг."},
+                new DeliveryType { Id = 5, Title = "Доставка по городу Ставрополю",Cost = 500, FreeFrom = 15000, Description = ""}
+                );
+            context.PaymentMethods.AddOrUpdate(method => method.Id,
+                new PaymentMethod {Id = 1,Title = "Перечислением от Юр. лица.",Description = "Оплата по безналичному расчету, через банк."},
+                new PaymentMethod {Id = 2,Title = "Оплата на карту.",Description = "Оплата на карту. Только для физических лиц."},
+                new PaymentMethod {Id = 3,Title = "Наличными в офисе",Description = "Оплата наличными. Для физ. лиц."}
                 );
             //  This method will be called after migrating to the latest version.
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 

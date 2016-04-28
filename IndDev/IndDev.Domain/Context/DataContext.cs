@@ -43,6 +43,7 @@ namespace IndDev.Domain.Context
         public DbSet<OrderLine> OrderLines { get; set; }
         public DbSet<Delivery> Deliveries { get; set; }
         public DbSet<DeliveryType> DeliveryTypes { get; set; }
+        public DbSet<PaymentMethod> PaymentMethods { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
