@@ -13,7 +13,6 @@ namespace IndDev.Domain.Abstract
         User GetUserById(int id);
         ValidEvent UpdateCustomer(User model);
         Order MakeOrder(int userId, Cart cart);
-        List<PaymentMethod> GetPaymentMethods();
         List<DeliveryType> GetDeliveryTypes();
     }
 }

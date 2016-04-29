@@ -72,6 +72,8 @@ namespace IndDev.Controllers
                     FormsAuthentication.SetAuthCookie(_repository.GetUser(register.Email).Id.ToString(),false);
                     TempData["secureMessage"] = string.Format(rvm.Message);
                     var messageBody = System.IO.File.ReadAllText(Server.MapPath("~/Views/Mails/ThankYou.html"));
+                    var confirmEmail = "www.id-racks.ru" + Url.Action("ConfirmEmail", "Security", new { email = register.Email, confirmation = _repository.GetUser(register.Email).TempSecret});
+                    messageBody = messageBody.Replace("{2}", confirmEmail);
                     await _mailRepository.RegisterLetterAsync(messageBody,register);
                     if (!string.IsNullOrEmpty(returnUrl))
                     {
@@ -134,6 +136,12 @@ namespace IndDev.Controllers
                 return RedirectToAction("MessageScreen", "Home", new {message = result.Messge});
             }
             return View(model);
+        }
+
+        public ActionResult ConfirmEmail(string email, Guid confirmation)
+        {
+            var result = _repository.ConfirmEmail(email, confirmation);
+            return RedirectToAction("MessageScreen", "Home", new { message = result.Messge });
         }
         public ActionResult LogOut()
         {

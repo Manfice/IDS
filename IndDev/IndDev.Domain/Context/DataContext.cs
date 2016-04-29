@@ -25,6 +25,7 @@ namespace IndDev.Domain.Context
         public DbSet<Details> Detailses { get; set; }
         public DbSet<Telephone> Telephones { get; set; }
         public DbSet<Bank> Banks { get; set; }
+        public DbSet<CustomerStatus> CustomerStatuses { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Currency> Currencies { get; set; }
@@ -43,7 +44,6 @@ namespace IndDev.Domain.Context
         public DbSet<OrderLine> OrderLines { get; set; }
         public DbSet<Delivery> Deliveries { get; set; }
         public DbSet<DeliveryType> DeliveryTypes { get; set; }
-        public DbSet<PaymentMethod> PaymentMethods { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using IndDev.Domain.Entity.Auth;
+using IndDev.Domain.Entity.Products;
 
 namespace IndDev.Domain.Entity.Customers
 {
@@ -17,6 +18,7 @@ namespace IndDev.Domain.Entity.Customers
         public DateTime Register { get; set; }
         public virtual CustomerLogo Photo { get; set; }
         public virtual Details Details { get; set; }
+        public virtual CustomerStatus CustomerStatus { get; set; }
     }
 
     public class Details
@@ -57,5 +59,13 @@ namespace IndDev.Domain.Entity.Customers
         public string AltText { get; set; }
         public string FullPath { get; set; }
 
+    }
+
+    public class CustomerStatus
+    {
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public decimal Discount { get; set; }
+        public PriceType PriceType { get; set; }
     }
 }

@@ -55,17 +55,19 @@ namespace IndDev.Domain.Context
                 };
 
             }
+            var cStat = _context.CustomerStatuses.Find(1);
             var usr = new User()
             {
                 Name = reg.UserName,
                 EMail = reg.Email,
                 Phone = reg.Phone,
                 Region = reg.Region,
+                TempSecret = Guid.NewGuid(),
                 PasswordHash = SecureLogic.EncodeMd5(reg.Password),
                 ConfirmEmail = false,
                 UsrRoles = GetRoleForUser("C"),
                 Block = false,
-                Customer = new Customer {Title = reg.UserName, Details = new Details() }
+                Customer = new Customer {Title = reg.UserName, Details = new Details(),Register = DateTime.Today,CustomerStatus = cStat}
             };
             _context.Users.Add(usr);
             _context.SaveChanges();
@@ -117,6 +119,19 @@ namespace IndDev.Domain.Context
                 return new ValidEvent {Code = dbUser.Id, Messge = $"Пароль пользователя {dbUser.Name} был изменен. На почту выслано потдверждение."};
             }
             return new ValidEvent {Code = 0, Messge = "Извините, произошла ошибка. Попробуйте запросить сброс пароля заново."};
+        }
+
+        public ValidEvent ConfirmEmail(string email, Guid secret)
+        {
+            var dbUser = _context.Users.FirstOrDefault(user => user.EMail == email);
+            if (dbUser == null)
+                return new ValidEvent
+                {
+                    Code = 0,
+                    Messge = $"Пользователь с таким адресом электронной почты ({email}) не обнаружен."
+                };
+            dbUser.ConfirmEmail = true;
+            return new ValidEvent {Code = dbUser.Id, Messge = $"Ваш адрес электронной почты: {dbUser.EMail} подтвержден."};
         }
     }
 }

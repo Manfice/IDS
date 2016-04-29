@@ -86,11 +86,6 @@ namespace IndDev.Domain.Context
             return new ValidEvent {Code = dbUser.Id, Messge = "Ok"};
         }
 
-        public List<PaymentMethod> GetPaymentMethods()
-        {
-            return _context.PaymentMethods.ToList();
-        }
-
         public List<DeliveryType> GetDeliveryTypes()
         {
             return _context.DeliveryTypes.ToList();

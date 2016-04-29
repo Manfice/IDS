@@ -1,4 +1,6 @@
 ﻿@import url(https://fonts.googleapis.com/css?family=Roboto:400,900,700,500,300&subset=latin,cyrillic);
+@import url(https://fonts.googleapis.com/css?family=Fira+Sans:400,700italic,700,500italic,500,400italic,300italic,300&subset=latin,cyrillic);
+/*font-family: 'Fira Sans', sans-serif;*/
 a,a:focus, a:active {
     outline: none;
 }
@@ -1086,6 +1088,12 @@ a,a:focus, a:active {
     margin: 25px 0 0 0;
     background-color: #bcb8b8;
     background-color: rgba(188, 184, 184, 0.49);
+}
+.delDescr h2 {
+    font-size: 25px;
+}
+.attantion {
+    color: red;
 }
 .delDescr h4 {
     text-align: right;

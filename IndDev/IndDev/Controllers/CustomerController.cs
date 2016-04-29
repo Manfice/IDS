@@ -91,9 +91,7 @@ namespace IndDev.Controllers
             var preOrder = new PreOrder
             {
                 Customer = customer,
-                PaymentMethods = _repository.GetPaymentMethods(),
                 Delivery = new Delivery {Recipient = customer.Title, To = customer.Adress},
-                PaymentMethod = new PaymentMethod(),
                 DeliveryTypes = delTypes
             };
             return View(preOrder);

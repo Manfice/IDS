@@ -17,5 +17,6 @@ namespace IndDev.Domain.Abstract
         User ValidResetPassRequest(string email, Guid secret);
         User ResetGuid(string email);
         ValidEvent RestorePassword(ResetPasswordVm model);
+        ValidEvent ConfirmEmail(string email, Guid secret);
     }
 }

@@ -14,7 +14,6 @@ namespace IndDev.Domain.Entity.Orders
         public string Notes { get; set; }
         public virtual Customer Customer { get; set; }
         public virtual Delivery Delivery { get; set; }
-        public virtual PaymentMethod PaymentMethod { get; set; }
         public virtual ICollection<OrderLine> OrderLines { get; set; }
     }
 
@@ -48,10 +47,4 @@ namespace IndDev.Domain.Entity.Orders
         public virtual DeliveryType DeliveryType { get; set; }
     }
 
-    public class PaymentMethod
-    {
-        public int Id { get; set; }
-        public string Title { get; set; }
-        public string Description { get; set; }
-    }
 }
