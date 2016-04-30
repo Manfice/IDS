@@ -8,6 +8,7 @@ using IndDev.Domain.Entity.Auth;
 using IndDev.Domain.Entity.Cart;
 using IndDev.Domain.Entity.Customers;
 using IndDev.Domain.Entity.Orders;
+using IndDev.Domain.ViewModels;
 
 namespace IndDev.Domain.Context
 {
@@ -37,16 +38,25 @@ namespace IndDev.Domain.Context
             return _context.Users.Find(id);
         }
 
-        public Order MakeOrder(int userId, Cart cart)
+        public Order MakeOrder(int userId, Cart cart, PreOrder preOrder)
         {
             var customer = _context.Users.Find(userId).Customer;
-
+            var dType = _context.DeliveryTypes.Find(preOrder.DeliveryTypeCode);
+            var deliv = new Delivery
+            {
+                DeliveryType = dType,
+                Recipient = preOrder.Delivery.Recipient,
+                To = preOrder.Delivery.To,
+                Comment = preOrder.Delivery.Comment,
+                DeliveryCost = cart.CalcTotalSumm() >= dType.FreeFrom ? 0 : dType.Cost
+            };
             var ord = new Order
             {
                 Customer = customer,
                 OrderDate = DateTime.Today.Date,
                 Submit = false,
-                Number = OrderNumber()
+                Number = OrderNumber(),
+                Delivery = deliv
             };
             _context.Orders.Add(ord);
 
@@ -65,7 +75,7 @@ namespace IndDev.Domain.Context
 
                 _context.OrderLines.Add(oLine);
             }
-            _context.SaveChanges();
+            //_context.SaveChanges();
             return ord;
         }
 

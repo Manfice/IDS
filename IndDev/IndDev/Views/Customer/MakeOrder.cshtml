@@ -7,11 +7,12 @@
 
 <div class="preOrder">
     <h1>Еще пара вопросов</h1>
-    @using (Html.BeginForm())
+    @using (Html.BeginForm("MakeOrder","Customer", FormMethod.Post))
     {
+        @Html.AntiForgeryToken()
         <div class="row delivery">
             <h3>Укажите, как Вы планируете получить заказ:</h3>
-            @Html.DropDownListFor(order => order.Delivery.Id, Model.DeliveryTypes, Model.Delivery.Id)
+            @Html.DropDownListFor(order => order.DeliveryTypeCode, Model.DeliveryTypes, Model.DeliveryTypeCode)
             <br/>
             @Html.Label("Наименование получателя:")
             @Html.TextBoxFor(order => order.Delivery.Recipient)

@@ -55,7 +55,7 @@ namespace IndDev.Domain.Context
                 };
 
             }
-            var cStat = _context.CustomerStatuses.Find(1);
+            var cStat = _context.CustomerStatuses.Find(5);
             var usr = new User()
             {
                 Name = reg.UserName,
@@ -131,6 +131,8 @@ namespace IndDev.Domain.Context
                     Messge = $"Пользователь с таким адресом электронной почты ({email}) не обнаружен."
                 };
             dbUser.ConfirmEmail = true;
+            dbUser.TempSecret = Guid.NewGuid();
+            _context.SaveChanges();
             return new ValidEvent {Code = dbUser.Id, Messge = $"Ваш адрес электронной почты: {dbUser.EMail} подтвержден."};
         }
     }

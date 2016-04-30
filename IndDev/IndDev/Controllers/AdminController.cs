@@ -13,6 +13,7 @@ using IndDev.Models;
 
 namespace IndDev.Controllers
 {
+    [Authorize(Roles = "A,M,O")]
     public class AdminController : Controller
     {
         private readonly IAdminRepository _repository;
@@ -22,7 +23,6 @@ namespace IndDev.Controllers
             _repository = repository;
         }
 
-        [Authorize(Roles = "A,M,O")]
 
         // GET: Admin
         public ActionResult AdminPage(int userId)

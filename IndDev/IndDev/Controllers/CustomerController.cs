@@ -74,14 +74,6 @@ namespace IndDev.Controllers
 
         public ActionResult MakeOrder()
         {
-            //if (!cart.CartItems.Any())
-            //    return RedirectToAction("MessageScreen", "Home",
-            //        new {message = "Не выбран ни один товар. Ваша корзина пуста."});
-            //var order = _repository.MakeOrder(_user, cart);
-            //if (order == null)
-            //    return RedirectToAction("MessageScreen", "Home",
-            //        new {message = "Заказ не сохранен. Попробуйте еще раз."});
-            //cart.ClearList();
             var customer = _repository.GetCustomerByUserId(_user);
             var delTypes = _repository.GetDeliveryTypes().Select(type => new SelectListItem
             {
@@ -92,9 +84,25 @@ namespace IndDev.Controllers
             {
                 Customer = customer,
                 Delivery = new Delivery {Recipient = customer.Title, To = customer.Adress},
-                DeliveryTypes = delTypes
+                DeliveryTypes = delTypes,
+                DeliveryTypeCode = 5
             };
             return View(preOrder);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult MakeOrder(Cart cart, PreOrder preorder)
+        {
+            if (!cart.CartItems.Any())
+                return RedirectToAction("MessageScreen", "Home",
+                    new { message = "Не выбран ни один товар. Ваша корзина пуста." });
+            var order = _repository.MakeOrder(_user, cart, preorder);
+            if (order == null)
+                return RedirectToAction("MessageScreen", "Home",
+                    new { message = "Заказ не сохранен. Попробуйте еще раз." });
+            cart.ClearList();
+            return RedirectToAction("MessageScreen", "Home",
+                    new { message = "отправлен менеджерам для проверки и выставления счета.", paragraf = $" Заказ №{order.Number} от {order.OrderDate.ToLongDateString()}" });
         }
 
     }

@@ -10,6 +10,7 @@ namespace IndDev.Domain.Entity.Cart
     {
         private readonly List<CartItem> _cartItems = new List<CartItem>();
         public IEnumerable<CartItem> CartItems => _cartItems;
+        public decimal Discount { get; set; }
 
         private static PriceViewModel GetActualPrice(Product product, int quantity)
         {
@@ -72,6 +73,16 @@ namespace IndDev.Domain.Entity.Cart
         public decimal CalcTotalSumm()
         {
             var summ = _cartItems.Sum(item => Math.Round(item.Quantity * item.ActualPrice.ConvValue, 2));
+            return summ;
+        }
+
+        public decimal CalcTotalWithDiscount()
+        {
+            var summ = _cartItems.Sum(item => Math.Round(item.Quantity * item.ActualPrice.ConvValue, 2));
+            if (Discount>0)
+            {
+                summ = summ - ((summ*Discount)/100);
+            }
             return summ;
         }
 

@@ -38,16 +38,16 @@ namespace IndDev.Domain.Migrations
                 }
                 );
             context.DeliveryTypes.AddOrUpdate(type => type.Id,
-                new DeliveryType {Id = 1, Title = "Самовывоз",Cost = 0,FreeFrom = 0,Description = "Забор заказа осуществляет клиент самостоятельно, по доверенности, со склада компании."},
-                new DeliveryType {Id = 2, Title = "Доставка до ТК",Cost = 500,FreeFrom = 20000, Description = "Доставка до транспортной компании осуществляет продавец."},
-                new DeliveryType {Id = 3, Title = "Автобусом",Cost = 500,FreeFrom = 20000, Description = "Доставка груза осуществляется по средствам маршрутных автобусов с автовокзала в г. Ставрополе. ВНИМАНИЕ! Этот способ доставки самый ненадежный. Используйте его только в крайних случаях."},
-                new DeliveryType { Id = 4, Title = "Доставка по городу Ставрополю",Cost = 500, FreeFrom = 20000, Description = ""}
+                new DeliveryType {Id = 6, Title = "Самовывоз",Cost = 0,FreeFrom = 0,Description = "Забор заказа осуществляет клиент самостоятельно, по доверенности, со склада компании."},
+                new DeliveryType {Id = 7, Title = "Доставка до ТК",Cost = 500,FreeFrom = 20000, Description = "Доставка до транспортной компании осуществляет продавец."},
+                new DeliveryType {Id = 8, Title = "Автобусом",Cost = 500,FreeFrom = 20000, Description = "Доставка груза осуществляется по средствам маршрутных автобусов с автовокзала в г. Ставрополе. ВНИМАНИЕ! Этот способ доставки самый ненадежный. Используйте его только в крайних случаях."},
+                new DeliveryType { Id = 9, Title = "Доставка по городу Ставрополю",Cost = 500, FreeFrom = 20000, Description = ""}
                 );
             context.CustomerStatuses.AddOrUpdate(status => status.Id, 
-                new CustomerStatus { Id = 1, Title = "Новичок",Discount = 2,PriceType = PriceType.Retail},
-                new CustomerStatus { Id = 1, Title = "Партнер",Discount = 0, PriceType = PriceType.LowOpt },
-                new CustomerStatus { Id = 1, Title = "Постоянный клиент",Discount = 0, PriceType = PriceType.LowOpt },
-                new CustomerStatus { Id = 1, Title = "Оптовик",Discount = 0, PriceType = PriceType.Opt }
+                new CustomerStatus { Id = 5, Title = "Новичок",Discount = 2,PriceType = PriceType.Retail},
+                new CustomerStatus { Id = 6, Title = "Партнер",Discount = 0, PriceType = PriceType.LowOpt },
+                new CustomerStatus { Id = 7, Title = "Постоянный клиент",Discount = 0, PriceType = PriceType.LowOpt },
+                new CustomerStatus { Id = 8, Title = "Оптовик",Discount = 0, PriceType = PriceType.Opt }
                 );
             //  This method will be called after migrating to the latest version.
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 

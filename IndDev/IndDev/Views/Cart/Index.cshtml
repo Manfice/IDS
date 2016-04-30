@@ -107,8 +107,18 @@
                         <td colspan="2">@Model.CalcTotalSumm().ToString("C")</td>
                     </tr>
                     <tr>
+                        <td colspan="3">Скидка:</td>
+                        <td>@Model.Discount %</td>
+                        <td colspan="2">@(((Model.CalcTotalSumm()*Model.Discount)/100).ToString("C"))</td>
+                    </tr>
+                        <tr>
+                            <td colspan="4">Итого с учетом скидки:</td>
+                            <td colspan="2">@Model.CalcTotalWithDiscount().ToString("C")</td>
+                        </tr>
+
+                    <tr>
                         <td colspan="4">НДС:</td>
-                        <td colspan="2">@((Model.CalcTotalSumm()*18/118).ToString("C"))</td>
+                        <td colspan="2">@((Model.CalcTotalWithDiscount()*18/118).ToString("C"))</td>
                     </tr>
                     </tfoot>
                 </table>

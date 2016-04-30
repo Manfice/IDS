@@ -49,8 +49,9 @@ namespace IndDev.Controllers
             return PartialView(cur);
         }
 
-        public ActionResult MessageScreen(string message)
+        public ActionResult MessageScreen(string message, string paragraf)
         {
+            ViewBag.Paragraf = paragraf;
             ViewBag.Message = message;
             return View();
         }

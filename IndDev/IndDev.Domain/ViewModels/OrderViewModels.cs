@@ -16,6 +16,7 @@ namespace IndDev.Domain.ViewModels
         public Cart Cart { get; set; }
         public Customer Customer { get; set; }
         public Delivery Delivery { get; set; }
+        public int DeliveryTypeCode { get; set; }
         public IEnumerable<SelectListItem> DeliveryTypes { get; set; }
     }
 }

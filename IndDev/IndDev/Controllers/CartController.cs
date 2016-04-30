@@ -20,6 +20,7 @@ namespace IndDev.Controllers
         // GET: Cart
         public ActionResult Index(Cart cart)
         {
+            if (!User.Identity.IsAuthenticated) cart.Discount = 0;
             return View(cart);
         }
 

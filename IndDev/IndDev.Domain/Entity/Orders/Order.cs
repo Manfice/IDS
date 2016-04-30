@@ -44,6 +44,7 @@ namespace IndDev.Domain.Entity.Orders
         public string Recipient { get; set; }
         public string To { get; set; }
         public string Comment { get; set; }
+        public decimal DeliveryCost { get; set; }
         public virtual DeliveryType DeliveryType { get; set; }
     }
 

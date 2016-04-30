@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using System.Web.Security;
 using IndDev.Domain.Abstract;
 using IndDev.Auth.Model;
+using IndDev.Domain.Entity.Cart;
 using Microsoft.Ajax.Utilities;
 
 namespace IndDev.Controllers
@@ -30,7 +31,7 @@ namespace IndDev.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(LoginViewModel model, string returnUrl) 
+        public ActionResult Login(Cart cart, LoginViewModel model, string returnUrl) 
         {
             if (ModelState.IsValid)
                 {
@@ -38,6 +39,7 @@ namespace IndDev.Controllers
                     if (svm.Code>0)
                     {
                         FormsAuthentication.SetAuthCookie(svm.Code.ToString(),model.RememberMe);
+                        cart.Discount = _repository.GetUserById(svm.Code).Customer.CustomerStatus.Discount;
                         TempData["secureMessage"] = string.Format(svm.Message);
                         if (!string.IsNullOrEmpty(returnUrl))
                         {
@@ -106,11 +108,11 @@ namespace IndDev.Controllers
             var guid = _repository.ResetGuid(login);
             if (guid==null)
             {
-                return RedirectToAction("MessageScreen", "Home", new { message = $"Пользователь с адресом электронной почты: {login} не обнаружен." });
+                return RedirectToAction("MessageScreen", "Home", new { message = $"Пользователь с адресом электронной почты: {login} не обнаружен.", paragraf="ВОССТАНОВЛЕНИЕ ПАРОЛЯ" });
             }
             var callback ="www.id-racks.ru"+Url.Action("ResetPassword", "Security", new { email = login, secret = guid.TempSecret });
             var msg = await _mailRepository.ResetPassword(messageBody, login, callback);
-            return RedirectToAction("MessageScreen", "Home", new {message = msg});
+            return RedirectToAction("MessageScreen", "Home", new {message = msg, paragraf = "ВОССТАНОВЛЕНИЕ ПАРОЛЯ" });
         }
 
         public ActionResult ResetPassword(string email, Guid secret)
@@ -118,7 +120,7 @@ namespace IndDev.Controllers
             var dbUser = _repository.ValidResetPassRequest(email, secret);
             if (dbUser==null)
             {
-                return RedirectToAction("MessageScreen", "Home", new { message = $"Пользователь с адресом электронной почты: {email} не обнаружен." });
+                return RedirectToAction("MessageScreen", "Home", new { message = $"Пользователь с адресом электронной почты: {email} не обнаружен.", paragraf = "ВОССТАНОВЛЕНИЕ ПАРОЛЯ" });
             }
             var rpvm = new ResetPasswordVm
             {
@@ -133,7 +135,7 @@ namespace IndDev.Controllers
             if (ModelState.IsValid)
             {
                 var result = _repository.RestorePassword(model);
-                return RedirectToAction("MessageScreen", "Home", new {message = result.Messge});
+                return RedirectToAction("MessageScreen", "Home", new {message = result.Messge, paragraf = "ВОССТАНОВЛЕНИЕ ПАРОЛЯ" });
             }
             return View(model);
         }
@@ -141,7 +143,7 @@ namespace IndDev.Controllers
         public ActionResult ConfirmEmail(string email, Guid confirmation)
         {
             var result = _repository.ConfirmEmail(email, confirmation);
-            return RedirectToAction("MessageScreen", "Home", new { message = result.Messge });
+            return RedirectToAction("MessageScreen", "Home", new { message = result.Messge, paragraf = "ПОДТВЕРЖДЕНИЕ E-MAIL" });
         }
         public ActionResult LogOut()
         {
