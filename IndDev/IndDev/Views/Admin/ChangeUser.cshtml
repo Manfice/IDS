@@ -12,7 +12,7 @@
         @Html.HiddenFor(model => model.Id)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
+            @Html.Label("Имя пользователя:", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
@@ -20,7 +20,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.EMail, new { @class = "control-label col-md-2" })
+            @Html.Label("E-mail (он же логин):", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.EMail, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.EMail, "", new { @class = "text-danger" })
@@ -28,7 +28,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Phone, new { @class = "control-label col-md-2" })
+            @Html.Label("Контактный телефон:", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
@@ -36,7 +36,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Region, new { @class = "control-label col-md-2" })
+            @Html.Label("Регион:", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Region, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Region, "", new { @class = "text-danger" })
@@ -44,7 +44,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ConfirmEmail, new { @class = "control-label col-md-2" })
+            @Html.Label("E-mail подтвержден?", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
                     @Html.EditorFor(model => model.ConfirmEmail)
@@ -54,7 +54,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Block, new { @class = "control-label col-md-2" })
+            @Html.Label("Блокировать пользователя:", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
                     @Html.EditorFor(model => model.Block)
@@ -64,7 +64,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.UsrRoles, new { @class = "control-label col-md-2" })
+            @Html.Label("Роль пользователя:", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownListFor(model => model.UsrRoles.Id, @ViewBag.Roles as SelectList, Model.UsrRoles.Descr)
                 @Html.ValidationMessageFor(model => model.PasswordHash, "", new { @class = "text-danger" })

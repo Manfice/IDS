@@ -22,7 +22,12 @@ namespace IndDev.Controllers
         {
            return View();
         }
-        
+
+        public ActionResult Test()
+        {
+            ViewBag.Title = "TEST";
+            return View();
+        }
         public ActionResult About()
         {
             return View();
@@ -44,6 +49,11 @@ namespace IndDev.Controllers
         }
 
         public PartialViewResult Currensy()
+        {
+            var cur = _home.GetCurses(DateTime.Today);
+            return PartialView(cur);
+        }
+        public PartialViewResult CurrensyNew()
         {
             var cur = _home.GetCurses(DateTime.Today);
             return PartialView(cur);

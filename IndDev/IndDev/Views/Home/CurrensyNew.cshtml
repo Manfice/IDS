@@ -1,0 +1,6 @@
+﻿@model IndDev.Domain.ViewModels.CursViewModel
+    <li class="hidden-sm hidden-xs">@Model.CursDate.ToLongDateString()</li>
+@foreach (var item in Model.Curses)
+{
+    <li class="">@item.Stitle: @item.CurValue.ToString("C")</li>
+}

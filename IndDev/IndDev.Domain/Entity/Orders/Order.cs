@@ -10,10 +10,10 @@ namespace IndDev.Domain.Entity.Orders
         public int Id { get; set; }
         public int Number { get; set; }
         public DateTime OrderDate { get; set; }
-        public bool Submit { get; set; }
         public string Notes { get; set; }
         public virtual Customer Customer { get; set; }
         public virtual Delivery Delivery { get; set; }
+        public virtual OrderStatus OrderStatus { get; set; }
         public virtual ICollection<OrderLine> OrderLines { get; set; }
     }
 
@@ -48,4 +48,21 @@ namespace IndDev.Domain.Entity.Orders
         public virtual DeliveryType DeliveryType { get; set; }
     }
 
+    public class OrderStatus
+    {
+        public int Id { get; set; }
+        public bool Moderated { get; set; }
+        public bool Paid { get; set; }
+        public bool UnderDelivery { get; set; }
+        public virtual DeliveryData DeliveryData { get; set; }
+    }
+
+    public class DeliveryData
+    {
+        public int Id { get; set; }
+        public string ShipmentCompany { get; set; }
+        public string Number { get; set; }
+        public DateTime DeliveryDate { get; set; }
+
+    }
 }

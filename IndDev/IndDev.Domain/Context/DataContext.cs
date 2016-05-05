@@ -44,6 +44,8 @@ namespace IndDev.Domain.Context
         public DbSet<OrderLine> OrderLines { get; set; }
         public DbSet<Delivery> Deliveries { get; set; }
         public DbSet<DeliveryType> DeliveryTypes { get; set; }
+        public DbSet<OrderStatus> OrderStatuses { get; set; }
+        public DbSet<DeliveryData> DeliveryDatas { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

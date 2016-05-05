@@ -208,6 +208,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\animate.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -215,6 +216,9 @@
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\fonts.css" />
+    <Content Include="Content\images\CP42.png" />
+    <Content Include="Content\images\FOC.png" />
+    <Content Include="Content\images\bgHOT.jpg" />
     <Content Include="Content\images\colors2.jpg" />
     <Content Include="Content\images\coper_systems.jpg" />
     <Content Include="Content\images\datacenter.jpg" />
@@ -252,6 +256,7 @@
     <Content Include="Content\images\mairala\skills.jpg" />
     <Content Include="Content\images\mairala\slide-pagenat.png" />
     <Content Include="Content\images\man_dc.png" />
+    <Content Include="Content\images\netlan42.png" />
     <Content Include="Content\images\noimage.png" />
     <Content Include="Content\images\patchcord.png" />
     <Content Include="Content\images\prFon.jpg" />
@@ -309,6 +314,7 @@
     <Content Include="Content\images\Uploads\Categories\Планка сменная 8FC %28пластик%29.jpg" />
     <Content Include="Content\images\Uploads\Categories\Планка сменная 8SC %28пластик%29.jpg" />
     <Content Include="Content\images\Uploads\Categories\Планка сменная глухая %28пластик%29.jpg" />
+    <Content Include="Content\images\ykn.png" />
     <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\Main.css" />
     <Content Include="Content\mairala\fwslider.css" />
@@ -319,6 +325,7 @@
     <Content Include="Content\slider.css" />
     <Content Include="Content\mairala\style.css" />
     <Content Include="Content\images\vols.jpg" />
+    <Content Include="Content\Test.css" />
     <Content Include="Download\2.jpg" />
     <Content Include="Download\4.jpg" />
     <Content Include="Download\5.jpg" />
@@ -375,6 +382,7 @@
     <None Include="Scripts\jquery-2.2.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\carousels.js" />
     <Content Include="Scripts\jquery-2.2.2.js" />
     <Content Include="Scripts\jquery-2.2.2.min.js" />
     <Content Include="Scripts\jquery-2.2.2.min.map" />
@@ -671,6 +679,14 @@
     <Content Include="Views\Security\ForgotPassword.cshtml" />
     <Content Include="Views\Home\MessageScreen.cshtml" />
     <Content Include="Views\Security\ResetPassword.cshtml" />
+    <Content Include="Views\Admin\CustomersList.cshtml" />
+    <Content Include="Views\Admin\CustomerData.cshtml" />
+    <Content Include="Views\Customer\Orders.cshtml" />
+    <Content Include="Views\Shared\_NewDesing.cshtml" />
+    <Content Include="Views\Home\Test.cshtml" />
+    <Content Include="Views\Home\CurrensyNew.cshtml" />
+    <Content Include="Views\Customer\Logon.cshtml" />
+    <Content Include="Views\Shared\_TopSlider.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

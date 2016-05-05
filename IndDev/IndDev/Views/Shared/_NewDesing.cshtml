@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/Test.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet"/>
+    <link href="~/Content/owl.carousel.css" rel="stylesheet" />
+    <link href="~/Content/fonts.css" rel="stylesheet" />
+    <link href="~/Content/animate.css" rel="stylesheet" />
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+<div class="header_new">
+    <div class="container">
+        <div class="row">
+            <h1 class="navbar-brand">Industrial Development</h1>
+            <ul class="currensyUl hidden-xs">
+                @Html.Action("CurrensyNew", "Home")
+            </ul>
+            @if (!User.Identity.IsAuthenticated)
+            {
+                <ul class="loginPartial">
+                    <li><a href="@Url.Action("Register", "Security")">РЕГИСТРАЦИЯ</a><span>/</span></li>
+                    <li><a href="@Url.Action("Login", "Security")">ВХОД</a></li>
+                </ul>
+            }
+            else
+            {
+                @Html.Action("Logon", "Customer")
+            }
+        </div>
+    </div>
+</div>
+<div class="bodyContent">
+    @RenderBody()
+</div>
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    &#169 Copyright @DateTime.Today.Year All Rights Reserved <a href="/"> Industrial Development</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="~/Scripts/jquery-2.2.2.js"></script>
+    <script src="~/Scripts/owl.carousel.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/carousels.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

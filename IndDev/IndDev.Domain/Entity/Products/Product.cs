@@ -12,6 +12,8 @@ namespace IndDev.Domain.Entity.Products
         public string Articul { get; set; }
         public bool IsService { get; set; } 
         public string Warranty { get; set; }
+        public bool Reclama { get; set; }
+        public decimal Rate { get; set; }
         public virtual MesureUnit MesureUnit { get; set; }
         public virtual Brand Brand { get; set; }
         public virtual Vendor Vendor { get; set; }
@@ -20,7 +22,4 @@ namespace IndDev.Domain.Entity.Products
         public virtual ICollection<Price> Prices { get; set; }
         public virtual ICollection<ProductPhoto> ProductPhotos { get; set; } 
     }
-
-    
-
 }

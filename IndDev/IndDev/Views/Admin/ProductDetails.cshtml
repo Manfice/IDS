@@ -34,7 +34,9 @@
                     @Html.TextAreaFor(model => model.Product.Description)<br/>
 
                     @Html.LabelFor(model => model.Product.IsService, "Товар является услугой:")
-                    @Html.CheckBoxFor(model => model.Product.IsService)
+                    @Html.CheckBoxFor(model => model.Product.IsService)<br/>
+                    @Html.LabelFor(model=>model.Product.Reclama, "Рекламируем?")
+                    @Html.CheckBoxFor(model => model.Product.Reclama)
                 </div>
                 <input type="submit" value="Сохранить"/>
             }

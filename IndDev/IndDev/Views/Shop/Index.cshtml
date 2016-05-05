@@ -18,7 +18,7 @@
                     0: {
                         items: 1
                     },
-                    800: {
+                    1000: {
                         items: 3
                     },
                     1200: {
@@ -56,41 +56,4 @@
         <hr/>
     }
 </div>
-    @*<div class="productGroupe">
-       @foreach (var item in Model)
-       {
-           <div class="pg">
-               <ul class="pgList">
-                   <li>
-                       <a href="@Url.Action("CatDetails","Shop",new {catId = item.Id})">
-                           <div class="pgItem">
-                               <img src="@item.Image.Path" alt="@item.Image.AltText" />
-                               <h5>@item.Title</h5>
-                               <p>@item.Descr</p>
-                           </div>
-                       </a>
-                   </li>
-                   @foreach (var subItem in item.MenuItems.Take(5))
-                   {
-                       <li>
-                           <a href="#">
-                               <div class="pgItem">
-                                   <img src="@subItem.Image.Path" alt="@subItem.Image.AltText"/>
-                                   <h5>@subItem.Title</h5>
-                                   <p>@subItem.Descr</p>
-                                   @if (subItem.IsRus)
-                                   {
-                                       <img src="@Url.Content("~/Content/images/RusFlag.png")" alt="made in Russia" class="flag"/>
-                                   }
-                               </div>
-                           </a>
-                       </li>
-                   }
-               </ul>
-           </div>
-       }
-    </div>*@
-    @*<div class="menuShop">
-        @Html.Action("Navigation")
-    </div>*@
-
+  

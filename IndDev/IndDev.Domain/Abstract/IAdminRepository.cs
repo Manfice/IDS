@@ -15,6 +15,8 @@ namespace IndDev.Domain.Abstract
         IEnumerable<User> Users();
         Customer Customer(int id);
         IEnumerable<UsrRoles> Roleses { get; }
+        IEnumerable<CustomerStatus> GetCustomerStatuses { get; }
+        IEnumerable<Customer> GetCustomers { get; }
         ValidationInfo UpdateUser(User user);
         IEnumerable<ProductMenu> ProductMenus();
         ValidEvent AddCategory(ProductMenu menu);
@@ -44,5 +46,6 @@ namespace IndDev.Domain.Abstract
         PriceSetter GetPriceSetter(int id);
         ValidEvent SetPrice(PriceSetter model);
         Product UpdateProduct(Product model);
+        Customer SaveCustomer(EditCustomer model);
     }
 }

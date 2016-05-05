@@ -50,13 +50,20 @@ namespace IndDev.Domain.Context
                 Comment = preOrder.Delivery.Comment,
                 DeliveryCost = cart.CalcTotalSumm() >= dType.FreeFrom ? 0 : dType.Cost
             };
+            var ordNew = new OrderStatus
+            {
+                Moderated = false,
+                Paid = false,
+                UnderDelivery = false,
+                DeliveryData = new DeliveryData()
+            };
             var ord = new Order
             {
                 Customer = customer,
                 OrderDate = DateTime.Today.Date,
-                Submit = false,
                 Number = OrderNumber(),
-                Delivery = deliv
+                Delivery = deliv,
+                OrderStatus = ordNew
             };
             _context.Orders.Add(ord);
 
@@ -75,7 +82,7 @@ namespace IndDev.Domain.Context
 
                 _context.OrderLines.Add(oLine);
             }
-            //_context.SaveChanges();
+            _context.SaveChanges();
             return ord;
         }
 
@@ -99,6 +106,11 @@ namespace IndDev.Domain.Context
         public List<DeliveryType> GetDeliveryTypes()
         {
             return _context.DeliveryTypes.ToList();
-        } 
+        }
+
+        public IEnumerable<Order> GetOrders(int custId)
+        {
+            return _context.Orders.Where(order => order.Customer.Id==custId).ToList();
+        }
     }
 }

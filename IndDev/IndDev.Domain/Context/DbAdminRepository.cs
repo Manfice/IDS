@@ -19,9 +19,13 @@ namespace IndDev.Domain.Context
 
         public IEnumerable<UsrRoles> Roleses => _context.Roles.ToList();
 
+        public IEnumerable<CustomerStatus> GetCustomerStatuses => _context.CustomerStatuses.ToList();
+
+        public IEnumerable<Customer> GetCustomers => _context.Customers.ToList();
+
         public Customer Customer(int id)
         {
-            return _context.Customers.FirstOrDefault(c => c.Id == id);
+            return _context.Customers.Find(id);
         }
 
         public ValidationInfo UpdateUser(User user)
@@ -410,8 +414,29 @@ namespace IndDev.Domain.Context
             dbProduct.Articul = model.Articul;
             dbProduct.Description = model.Description;
             dbProduct.IsService = model.IsService;
+            dbProduct.Reclama = model.Reclama;
             _context.SaveChanges();
             return dbProduct;
+        }
+
+        public Customer SaveCustomer(EditCustomer model)
+        {
+            var customer = _context.Customers.Find(model.Id);
+            if (string.IsNullOrEmpty(customer.Adress))
+            {
+                customer.Adress = model.Details.RealAdress;
+            }
+            var dbDetails = _context.Detailses.Find(model.Details.Id);
+            dbDetails.CompanyName = model.Details.CompanyName;
+            dbDetails.Inn = model.Details.Inn;
+            dbDetails.Kpp = model.Details.Kpp;
+            dbDetails.UrAdress = model.Details.UrAdress;
+            dbDetails.RealAdress = model.Details.RealAdress;
+            dbDetails.Ogrn = model.Details.Ogrn;
+            var cStat = _context.CustomerStatuses.Find(model.Status);
+            customer.CustomerStatus = cStat;
+            _context.SaveChanges();
+            return customer;
         }
     }
 }

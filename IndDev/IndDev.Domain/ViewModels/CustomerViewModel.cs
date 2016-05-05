@@ -1,4 +1,7 @@
-﻿using IndDev.Domain.Entity.Auth;
+﻿using System;
+using System.Collections.Generic;
+using System.Web.Mvc;
+using IndDev.Domain.Entity.Auth;
 using IndDev.Domain.Entity.Customers;
 
 namespace IndDev.Domain.ViewModels
@@ -14,5 +17,17 @@ namespace IndDev.Domain.ViewModels
         public string Title { get; set; }
         public string MenuLink { get; set; }
         public bool IsActive { get; set; }
+    }
+
+    public class EditCustomer
+    {
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public string Adress { get; set; }
+        public DateTime Register { get; set; }
+        public Details Details { get; set; }
+        public int Status { get; set; }
+        public IEnumerable<SelectListItem> CustStatus { get; set; }
+
     }
 }

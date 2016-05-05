@@ -40,13 +40,19 @@ namespace IndDev.Controllers
         {
             var nav = new List<CustMenuItems>
             {
+                new CustMenuItems {Title = "Сводка", MenuLink = "/Customer/Index"},
                 new CustMenuItems {Title = "Личные данные", MenuLink = "/Customer/CustomerDetails"},
-                new CustMenuItems {Title = "Заказы", MenuLink = "/Customer/Index"},
+                new CustMenuItems {Title = "Заказы", MenuLink = "/Customer/Orders"},
                 new CustMenuItems {Title = "Сальдо", MenuLink = "/Customer/Index"}
             };
             return PartialView(nav);
         }
 
+        public ActionResult Orders()
+        {
+            var model = _repository.GetOrders(_user);
+            return View(model);
+        }
         public PartialViewResult About()
         {
             var customer = _repository.GetUserById(_user);
@@ -102,8 +108,13 @@ namespace IndDev.Controllers
                     new { message = "Заказ не сохранен. Попробуйте еще раз." });
             cart.ClearList();
             return RedirectToAction("MessageScreen", "Home",
-                    new { message = "отправлен менеджерам для проверки и выставления счета.", paragraf = $" Заказ №{order.Number} от {order.OrderDate.ToLongDateString()}" });
+                    new { message = "отправлен менеджерам для проверки и выставления счета. Все свои заказы Вы можете просмотреть в личном кабинете.", paragraf = $" Заказ №{order.Number} от {order.OrderDate.ToLongDateString()}" });
         }
 
+        public PartialViewResult Logon()
+        {
+            var customer = _repository.GetCustomerByUserId(_user);
+            return PartialView(customer);
+        }
     }
 }

@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using IndDev.Domain.Abstract;
 using IndDev.Domain.Entity;
 using IndDev.Domain.Entity.Auth;
+using IndDev.Domain.Entity.Customers;
 using IndDev.Domain.Entity.Menu;
 using IndDev.Domain.Entity.Products;
 using IndDev.Domain.ViewModels;
@@ -56,6 +57,7 @@ namespace IndDev.Controllers
         public ActionResult EditUser(int id)
         {
             var user = _repository.User(id);
+            ViewBag.Title = user.Name;
             return View(user);
         }
 
@@ -66,7 +68,9 @@ namespace IndDev.Controllers
 
         public PartialViewResult UserSummary(int userId)
         {
-            return PartialView(_repository.User(userId));
+            var model = _repository.User(userId);
+            ViewBag.Title = model.Name;
+            return PartialView(model);
         }
 
         public PartialViewResult ChangeUser(int id)
@@ -390,6 +394,40 @@ namespace IndDev.Controllers
         {
             var result = _repository.RemoveProduct(id);
             return RedirectToAction("SubCatDetails", new {id=result.Code, returnUrl=returnUrl});
+        }
+
+        public ActionResult CustomersList()
+        {
+            return View(_repository.GetCustomers);
+        }
+
+        public ActionResult CustomerData(int cust)
+        {
+            ViewBag.Title = "Данные клиента";
+            var customer = _repository.Customer(cust);
+            var custStat = _repository.GetCustomerStatuses.Select(status => new SelectListItem
+            {
+                Value = status.Id.ToString(),
+                Text = status.Title
+            });
+            var model = new EditCustomer
+            {
+                Id = customer.Id,
+                Title = customer.Title,
+                Adress = customer.Adress,
+                Register = customer.Register,
+                Status = customer.CustomerStatus.Id,
+                CustStatus = custStat,
+                Details = customer.Details
+            };
+            return View(model);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult SaveCustomerData(EditCustomer model)
+        {
+            var result = _repository.SaveCustomer(model);
+            return RedirectToAction("CustomerData", new {cust = result.Id});
         }
     }
 }
