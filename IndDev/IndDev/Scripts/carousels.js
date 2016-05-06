@@ -1,6 +1,7 @@
 ﻿$(document).ready(function () {
     var owlTop = $('#topSlide');
     var owlHot = $('#hotCarousel');
+    var owlAforizm = $('#aforizmi');
     owlTop.owlCarousel({
         items: 1,
         loop: true,
@@ -43,6 +44,13 @@
                 autoplayHoverPause: true
             }
         }
+    });
+    owlAforizm.owlCarousel({
+        items: 1,
+        autoplay: true,
+        autoplayTimeout: 20000,
+        autoplayHoverPause: true,
+        loop: true
 });
 });
 var stickyOffset = $('#mainNav').offset().top;

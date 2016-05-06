@@ -161,7 +161,8 @@ footer {
 /*End top slider*/
 .specPredlog {
     text-align: center;
-    padding: 40px 0;
+    padding: 40px 0 10px 0;
+    border-bottom: solid 40px rgb(0, 122, 203);
 }
 .specPredlog h1 {
     color: rgb(0, 122, 203);
@@ -248,17 +249,34 @@ footer {
 /*end navString*/
 /*catalog*/
 .catalog {
-    height: 2000px;
 }
 .catDescr {
     margin: 0;
+    background: url("/Content/images/skills_new.jpg") no-repeat center center;
     padding: 50px;
     background-color: black;
     text-align: center;
     color: white;
 }
-.catDescr h1 {
+.catDescr a {
     margin: 0;
+    font-family: "RobotoCondensedRegular";
+    font-size: 3em;
+    cursor: pointer;
+    letter-spacing: 10px;
+    color: rgb(0, 122, 203);
+}
+.catDescr a:hover {
+    text-decoration: none;
+    font-weight: bold;
+    color: rgb(0, 122, 203);
+}
+.catDescr span {
+    border-top: 3px solid #0697fe;
+    padding: 0 200px;
+}
+.catDescr p {
+    letter-spacing: 3px;
 }
 .catalog ul {
     list-style: none;
@@ -276,7 +294,7 @@ footer {
 }
 .v1 {
     background: url("/Content/images/products/twist-pair.jpg") no-repeat center center;
-    background-size: 100% 100%;
+    background-size: 100%;
     width: 100%;
     height: 100%;
 }
@@ -284,50 +302,228 @@ footer {
     background: url("/Content/images/products/foc.jpg") no-repeat center center;
     width: 100%;
     height: 100%;
-    background-size: 100% 100%;
+    background-size: 100%;
 }
 .v3 {
     background: url("/Content/images/products/plint.jpg") no-repeat center center;
     width: 100%;
     height: 100%;
-    background-size: 100% 100%;
+    background-size: 100%;
 }
 .v4 {
     background: url("/Content/images/products/944_big.jpg") no-repeat center center;
     width: 100%;
     height: 100%;
-    background-size: 100% 100%;
+    background-size: 100%;
 }
 .v5 {
     background: url("/Content/images/products/sip.jpg") no-repeat center center;
     width: 100%;
     height: 100%;
-    background-size: 100% 100%;
+    background-size: 100%;
 }
 .v6 {
     background: url("/Content/images/products/fiber.jpg") no-repeat center center;
     width: 100%;
     height: 100%;
-    background-size: 100% 100%;
+    background-size: 100%;
 }
 .v7 {
     background: url("/Content/images/products/racks.jpg") no-repeat center center;
     width: 100%;
     height: 100%;
-    background-size: 100% 100%;
+    background-size: 100%;
 }
 .v8 {
     background: url("/Content/images/products/fsm-80.jpg") no-repeat center center;
     width: 100%;
     height: 100%;
-    background-size: 100% 100%;
+    background-size: 100%;
 }
 .v1_descr {
     position: absolute;
     bottom: 0;
-    background-color: #a9a9a9;
+    background-color: #0a538b;
+    background-color: rgba(10, 83, 139, 0.73);
     width: 100%;
+    overflow: hidden;
+    height: 50px;
     text-align: center;
+    transition: all .5s;
+}
+
+.v1_descr p {
+    color: white;
+}
+.v1_descr p:first-child {
+    font-weight: 700;
+}
+.v1_descr span {
+    border-top: solid 1px white;
+    padding: 0 150px; 
+}
+.v1:hover .v1_descr {
+    padding: 3%;
+    height: 100%;
+    bottom: 0;
+    transition: all .5s;
+}
+.v2:hover .v1_descr {
+    padding: 3%;
+    height: 100%;
+    bottom: 0;
+    transition: all .5s;
+}
+.v3:hover .v1_descr {
+    padding: 3%;
+    height: 100%;
+    bottom: 0;
+    transition: all .5s;
+}
+.v4:hover .v1_descr {
+    padding: 3%;
+    height: 100%;
+    bottom: 0;
+    transition: all .5s;
+}
+.v2_descr {
+    position: absolute;
+    top: 0;
+    background-color: #0a538b;
+    background-color: rgba(10, 83, 139, 0.73);
+    width: 100%;
+    overflow: hidden;
+    height: 50px;
+    text-align: center;
+    transition: all .5s;
+}
+
+.v2_descr p {
+    color: white;
+}
+.v2_descr p:first-child {
+    font-weight: 700;
+}
+.v2_descr span {
+    border-top: solid 1px white;
+    padding: 0 150px; 
+}
+.v5:hover .v2_descr {
+    padding: 3%;
+    height: 100%;
+    bottom: 0;
+    transition: all .5s;
+}
+.v6:hover .v2_descr {
+    padding: 3%;
+    height: 100%;
+    bottom: 0;
+    transition: all .5s;
+}
+.v7:hover .v2_descr {
+    padding: 3%;
+    height: 100%;
+    bottom: 0;
+    transition: all .5s;
+}
+.v8:hover .v2_descr {
+    padding: 3%;
+    height: 100%;
+    bottom: 0;
+    transition: all .5s;
 }
 
 /*end catalog*/
+/*ABOUT SEC*/
+.aboutTitle {
+    background-color: white;
+    padding: 50px 0;
+    text-align: center;
+    font-family: "Raleway", sans-serif;
+    font-weight: bold;
+    color:#0697fe;
+}
+.aboutTitle span {
+    border-top: solid 2px #0697fe;
+    padding: 0 150px;
+}
+.aboutTitle p {
+    color: rgb(26, 26, 26);
+}
+.aboutShotStory {
+    background-color: black;
+    padding: 0 0 0 200px;
+}
+.aboutShotStory img {
+    float: right;
+}
+.aboutShotStory h3 {
+    font-weight: 700;
+    color: #0697fe;
+    margin: 0;
+    padding: 50px 20px;
+}
+.aboutShotStory h6 {
+    color: whitesmoke;
+    font-size: 15px;
+    letter-spacing: 2px;
+}
+.aboutShotStory p {
+    line-height: 25px;
+    padding: 20px 0;
+    color: darkgrey;
+    text-align: justify;
+}
+.aboutShotStory p:first-letter {
+    margin: 0 0 0 30px;
+}
+.aboutShotStory a {
+    padding: 25px 30px;
+    color: white;
+    border: solid 2px white;
+    display: inline-block;
+    margin: 50px 0;
+}
+/*END ABOUT*/
+/*advantages*/
+.advantages {
+    padding: 50px;
+    text-align: center;
+}
+.advantages h1 {
+    color: #0697fe;
+    font-family: "RobotoCondensedRegular";
+    font-size: 2.5em;
+    margin: 0 0 10px;
+}
+.advantages span {
+    border-top: solid 2px #0697fe;
+    padding: 0 150px;
+}
+.advantages > p {
+    margin: 20px;
+    font-size: 20px;
+}
+.advantages h3 {
+    color: #0697fe;
+    font-family: "RobotoCondensedRegular";
+}
+/*end advantages*/
+/*aforizm*/
+.aforizm {
+    padding: 50px;
+    background-color: #1a1a1a;
+    text-align: center;
+}
+.aforizm h1 {
+    color: whitesmoke;
+    font-family: "RobotoCondensedRegular";
+    letter-spacing: 2px;
+}
+.aforizm p {
+    color: rgb(241, 218, 188);
+    font-family: "RobotoCondensedRegular";
+    letter-spacing: 3px;
+    font-size: 25px;
+}
+/*end aforizm*/

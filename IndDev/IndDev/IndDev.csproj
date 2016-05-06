@@ -321,6 +321,8 @@
     <Content Include="Content\mairala\slider.css" />
     <Content Include="Content\media.css" />
     <Content Include="Content\owl.carousel.css" />
+    <Content Include="Content\owl.theme.css" />
+    <Content Include="Content\owl.transitions.css" />
     <Content Include="Content\reset.css" />
     <Content Include="Content\slider.css" />
     <Content Include="Content\mairala\style.css" />
@@ -687,6 +689,7 @@
     <Content Include="Views\Home\CurrensyNew.cshtml" />
     <Content Include="Views\Customer\Logon.cshtml" />
     <Content Include="Views\Shared\_TopSlider.cshtml" />
+    <Content Include="Views\Home\FeedBack.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

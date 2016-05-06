@@ -3,6 +3,7 @@ using System.Security.Cryptography;
 using System.Web.Mvc;
 using IndDev.Domain.Abstract;
 using IndDev.Domain.Context;
+using IndDev.Models;
 
 namespace IndDev.Controllers
 {
@@ -59,6 +60,10 @@ namespace IndDev.Controllers
             return PartialView(cur);
         }
 
+        public ActionResult FeedBack()
+        {
+            return PartialView(new MailMessageModel());
+        }
         public ActionResult MessageScreen(string message, string paragraf)
         {
             ViewBag.Paragraf = paragraf;

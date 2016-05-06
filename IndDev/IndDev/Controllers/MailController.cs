@@ -21,12 +21,6 @@ namespace IndDev.Controllers
         {
             _repository = repository;
         }
-        // GET: Mail
-        public ActionResult Index()
-        {
-            return View();
-        }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult SendQuestion(MailMessageModel message)

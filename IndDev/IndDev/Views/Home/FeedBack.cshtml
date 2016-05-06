@@ -1,0 +1,18 @@
+﻿@model IndDev.Models.MailMessageModel
+    
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            @using (Html.BeginForm("SendQuestion", "Mail", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <h1>ОБРАТНАЯ СВЯЗЬ</h1>
+                @Html.TextBoxFor(model => model.SenderName)
+                @Html.TextBoxFor(model => model.From)
+                @Html.TextAreaFor(model => model.Body)
+                <input type="submit" value="ОТПРАВИТЬ"/>
+            }
+        </div>
+    </div>
+</div>
+
