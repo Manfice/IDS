@@ -26,12 +26,18 @@ namespace IndDev.Controllers
             return View(catList);
         }
 
-        public PartialViewResult Navigation()
+        public PartialViewResult Navigation(string selected="0",string product="0")
         {
-            var m = _repository.GetTopMenus();
-            return PartialView(m);
+            var catList = _repository.GetProductMenus();
+            ViewBag.Selected = selected;
+            ViewBag.Product = product;
+            return PartialView(catList);
         }
 
+        public ActionResult ShopBlock(Cart cart)
+        {
+            return PartialView(cart);
+        }
         public PartialViewResult SubMenu(string id) //Curent menu item 
         {
             var curId = 0;
@@ -43,11 +49,11 @@ namespace IndDev.Controllers
             return PartialView(sm);
         }
 
-        public ActionResult CatDetails(int catId, int selCat)
+        public ActionResult CatDetails(int catId)
         {
             var model = _repository.GetProductMenu(catId);
             ViewBag.Title = model.Title;
-            ViewBag.Products = selCat;
+            ViewBag.Products = model.Id;
             return View(model);
         }
 

@@ -7,9 +7,9 @@
             {
                 @Html.AntiForgeryToken()
                 <h1>ОБРАТНАЯ СВЯЗЬ</h1>
-                @Html.TextBoxFor(model => model.SenderName)
-                @Html.TextBoxFor(model => model.From)
-                @Html.TextAreaFor(model => model.Body)
+                @Html.TextBoxFor(model => model.SenderName, new {placeholder="Ваше имя"})
+                @Html.TextBoxFor(model => model.From, new { placeholder = "Электронная почта"})<br/>
+                @Html.TextAreaFor(model => model.Body, new { placeholder = "Сообщение" })<br/>
                 <input type="submit" value="ОТПРАВИТЬ"/>
             }
         </div>

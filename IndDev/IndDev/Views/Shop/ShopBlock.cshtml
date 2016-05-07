@@ -1,0 +1,35 @@
+﻿@model IndDev.Domain.Entity.Cart.Cart
+
+
+<div class="shopHelper">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="cartBloc">
+                    <img src="@Url.Content("~/Content/images/cart_logo.png")" alt=""/>
+                    <h4>КОРЗИНА</h4>
+                    <p>@Model.CartItems.Count() выбрано</p>
+                    <p>@Model.CalcTotalSumm().ToString("C")</p>
+                </div>
+
+                <div class="search">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        <input type="text" name="search" tabindex="1" placeholder="Поиск по каталогу..."/><input type="submit" value="Поиск"/>
+                    }
+                </div>
+                <div class="reclama">
+                    <div class="owl-carousel" id="reclShop">
+                        <div class="item">
+                            <p>САМЫЕ НИЗКИЕ ЦЕНЫ !!!</p>
+                        </div>
+                        <div class="item">
+                            <p>ШИРОКИЙ ВЫБОР</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -10,17 +10,30 @@
 <div class="navString" id="mainNav">
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12 topNav">
                 <ul>
-                    <li><a>ГЛАВНАЯ</a></li>
-                    <li><a>КАТАЛОГ</a></li>
-                    <li><a>О КОМПАНИИ</a></li>
-                    <li><a>КОНТАКТЫ</a></li>
+                    <li><a href="/">ГЛАВНАЯ</a></li>
+                    <li class="item1">
+                        <a href="@Url.Action("Index", "Shop")">КАТАЛОГ</a>
+                        <ul class="subMenuList">
+                            <li><a>ПРОДУКЦИЯ</a></li>
+                            <li><a>АКЦИИ</a></li>
+                            <li><a>РАСПРОДАЖА</a></li>
+                            <li><a>БАРАХОЛКА</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="@Url.Action("About")">О КОМПАНИИ</a></li>
+                    <li><a href="@Url.Action("Contact")">КОНТАКТЫ</a></li>
                 </ul>
+                <div class="tel">
+                    <h4>8(8652)99-05-82</h4>
+                    <p>заказать обратный звонок</p>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
 <div class="specPredlog">
     <h1>ГОРЯЧЕЕ ПРЕДЛОЖЕНИЕ</h1>
     <a>45 товаров по спец-цене</a>
@@ -123,7 +136,7 @@
         </li>
     </ul>
     <div class="catDescr">
-        <a>КАТАЛОГ</a><br/>
+        <a href="@Url.Action("Index","Shop")">КАТАЛОГ</a><br/>
         <span> </span>
         <p>все товары протестированы и сертифицированы</p>
     </div>
@@ -196,7 +209,7 @@
                     <p>
                         Компания ООО «Научно-Производственное объединение Индастриал Дивелопмент» работает с 2010 года и предлагает вам рассмотреть наше предложение по сотрудничеству в области поставки антивандальных конструктивов 19» стандарта, телекоммуникационных шкафов, пассивного оборудования для телефонии, оптического волокна, оптических компонентов, медного кабеля. Основное направление деятельности компании «INDUSTRIAL DEVELOPMENT» это разработка, внедрение и поддержка высококачественных решений по оборудованию связи.
                     </p>
-                    <a>ПОДРОБНЕЕ</a>
+                    <a href="@Url.Action("About")">ПОДРОБНЕЕ</a>
                 </div>
             </div>
         </div>
@@ -256,3 +269,8 @@
 <div class="feedBack">
     @Html.Action("FeedBack")
 </div>
+
+@section scripts
+{
+<script src="~/Scripts/carousels.js"></script>
+}

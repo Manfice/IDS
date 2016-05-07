@@ -1,28 +1,41 @@
-﻿@model IEnumerable<IndDev.Domain.Entity.Menu.Menu>
+﻿@model IEnumerable<IndDev.Domain.Entity.Menu.ProductMenu>
 
-<div class="myCart">
-    <div class="goToCart"> 
-        <a href="@Url.Action("Index")"><i class="fa fa-shopping-cart"></i></a>
-    </div>
-    <div class="stat">
-        <h3>ООО "Связь-Инвест"</h3>
-        <p>Романов Юрий</p>
-        <p>Статус: "Дружище"</p>
-    </div>
-</div>
-<ul id="menu">
-    @foreach (var item in Model)
-    {
-        <li>
-            @{if (@item.HasChild)
-              {<a><i class="fa fa-arrow-circle-o-left"></i>@item.Title</a>}
+<div class="" id="cssmenu">
+    <ul>
+        @if (ViewBag.Selected == "0")
+        {
+            <li class="activeItem"><a href="@Url.Action("Index")">Каталог</a></li>
+        }
+        else
+        {
+            <li><a href="@Url.Action("Index")">Каталог</a></li>
+        }
+        @foreach (var item in Model)
+        {
+            if (item.Id.ToString() == ViewBag.Selected)
+            {
+                <li class="activeItem">
+                    <a href="@Url.Action("CatDetails","Shop",new {selected=item.Id})">@item.Title</a>
+                    <ul>
+                        @foreach (var menus in item.MenuItems)
+                        {
+                            if (menus.Id.ToString() == ViewBag.Product)
+                            {
+                                <li class="selectedMenu"><a>@menus.Title</a></li>
+                            }
+                            else
+                            {
+                                <li><a>@menus.Title</a></li>
+                            }
+                        }
+                    </ul>
+                </li>
+
+            }
             else
             {
-              @Html.ActionLink(@item.Title, "Index")
-  }
+                <li><a>@item.Title</a></li>
             }
-
-            @Html.Action("SubMenu", new {id = item.Id.ToString()})
-        </li>
-    }
-</ul>
+        }
+    </ul>
+</div>

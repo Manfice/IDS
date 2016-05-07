@@ -56,10 +56,15 @@
 var stickyOffset = $('#mainNav').offset().top;
 $(window).scroll(function() {
     var sticky = $('#mainNav');
+    var subStick = $('.subMenuList');
     var scrol = $(window).scrollTop();
     if (scrol >= stickyOffset+700) {
         sticky.addClass('fixTop');
+        sticky.addClass('blueList');
+        subStick.addClass('blueList');
     } else {
         sticky.removeClass('fixTop');
+        sticky.removeClass('blueList');
+        subStick.removeClass('blueList');
     }
 });

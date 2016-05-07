@@ -54,6 +54,11 @@ namespace IndDev.Controllers
             var cur = _home.GetCurses(DateTime.Today);
             return PartialView(cur);
         }
+
+        public ActionResult TopNavigation()
+        {
+            return PartialView();
+        }
         public PartialViewResult CurrensyNew()
         {
             var cur = _home.GetCurses(DateTime.Today);

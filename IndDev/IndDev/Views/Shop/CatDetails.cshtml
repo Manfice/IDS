@@ -1,8 +1,51 @@
 ﻿@model IndDev.Domain.Entity.Menu.ProductMenu
 @{
-    Layout = "~/Views/Shared/_LayoutShop.cshtml";
+    Layout = "~/Views/Shared/_NewDesing.cshtml";
 }
-<div class="shopSubCat row">
+@Html.Action("TopNavigation", "Home")
+@Html.Action("ShopBlock", "Shop")
+
+<div class="catalogBody">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <h1>@Model.Title</h1>
+                <div class="navPagination">
+                    <a href="@Url.Action("Index")">Главная</a>
+                    <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                    <a>@Model.Title</a>
+                    <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                </div>
+                @foreach (var item in Model.MenuItems)
+                {
+                    <div class="col-md-4">
+                        <div class="product">
+                            <a href="@Url.Action("CatDetails", "Shop", new {catId = item.Id})">
+                                <img src="@item.Image.Path" alt="@item.Image.AltText"/>
+                                <div class="categoryName">
+                                    <p>@item.Title</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <div class="col-md-3">
+                <div class="sideNavigation">
+                    <ul>
+                        <li class="navReclama"><i class="fa fa-money" aria-hidden="true"></i><a>Акции</a></li>
+                        <li class="navReSale"><i class="fa fa-refresh" aria-hidden="true"></i><a>Барахолочка</a></li>
+                        <li class="navFavourites"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i><a>Избранное</a></li>
+                    </ul>
+                </div>
+                @Html.Action("Navigation", "Shop", new {selected = Model.Id.ToString()})
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<div class="shopSubCat row">
     <div class="productsSection col-md-9 col-lg-10">
         @Html.Action("ShowProducts", new {catId = @Model.Id, subCat = ViewBag.Products})
     </div>
@@ -43,4 +86,4 @@
             }
         }
     </ul>
-</div>
+</div>*@
