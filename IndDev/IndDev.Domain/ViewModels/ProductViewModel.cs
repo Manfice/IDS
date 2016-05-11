@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Globalization;
 using System.Web;
+using System.Web.Mvc;
 using IndDev.Domain.Context;
 using IndDev.Domain.Entity;
+using IndDev.Domain.Entity.Menu;
 using IndDev.Domain.Entity.Products;
 
 namespace IndDev.Domain.ViewModels
@@ -32,13 +34,15 @@ namespace IndDev.Domain.ViewModels
     {
         public Product Product { get; set; }
         public ProductPhoto Avatar { get; set; }
-        public IEnumerable<Brand> Brands { get; set; }
-        public IEnumerable<MesureUnit> MesureUnits { get; set; }
-        public IEnumerable<Vendor> Vendors { get; set; }
-        public IEnumerable<Price> Prices { get; set; } 
+        public IEnumerable<SelectListItem> Brands { get; set; }
+        public IEnumerable<SelectListItem> MesureUnits { get; set; }
+        public IEnumerable<SelectListItem> Vendors { get; set; }
+        public IEnumerable<SelectListItem> Valuta { get; set; }
+        public List<PriceSetter> Prices { get; set; } 
         public int SelBr { get; set; }
         public int SelVr { get; set; }
         public int SelMu { get; set; }
+        public int SelValuta { get; set; }
     }
 
     public class PriceViewModel
@@ -85,10 +89,9 @@ namespace IndDev.Domain.ViewModels
         public bool Public { get; set; }
         public int SelCurr { get; set; }
         public int PriceFrom { get; set; }
-        public IEnumerable<Currency> Currencies { get; set; }
+        public string Valuta { get; set; }
+        public IEnumerable<SelectListItem> Currencies { get; set; }
         public PriceType PriceType { get; set; }
-        public PriceViewModel PriceViewModel { get; set; }
-
     }
 
     public class AddPhotoViewModel
@@ -99,11 +102,13 @@ namespace IndDev.Domain.ViewModels
 
     public class ShopProductView
     {
-        public Product Product { get; set; }
-        public ProductPhoto Avatar { get; set; }    
-        public IEnumerable<PriceViewModel> Prices { get; set; }
-        public int SubCategory { get; set; }
-        public bool IsSale { get; set; }
-        public bool Byeble { get; set; } // можно ли эту хрень купить?
+        public ProductMenuItem ProductMenuItem { get; set; }
+        //public Product Product { get; set; }
+        //public ProductPhoto Avatar { get; set; }    
+        //public IEnumerable<PriceViewModel> Prices { get; set; }
+        //public ProductMenuItem MenuItem { get; set; }
+        //public ProductMenu ProductMenu { get; set; }
+        //public bool IsSale { get; set; }
+        //public bool Byeble { get; set; } // можно ли эту хрень купить?
     }
 }

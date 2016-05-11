@@ -13,7 +13,7 @@ namespace IndDev
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapRoute(null,"",new{controller = "Home",action = "Landing" });//Title page!
+            routes.MapRoute(null,"",new{controller = "Home",action = "Test" });//Title page!
 
             routes.MapRoute(null, "{controller}/{action}");
 

@@ -15,17 +15,17 @@
             if (item.Id.ToString() == ViewBag.Selected)
             {
                 <li class="activeItem">
-                    <a href="@Url.Action("CatDetails","Shop",new {selected=item.Id})">@item.Title</a>
+                    <a href="@Url.Action("CatDetails","Shop",new {catId=item.Id})">@item.Title</a>
                     <ul>
                         @foreach (var menus in item.MenuItems)
                         {
                             if (menus.Id.ToString() == ViewBag.Product)
                             {
-                                <li class="selectedMenu"><a>@menus.Title</a></li>
+                                <li class="selectedMenu"><a href="@Url.Action("ShowProducts", "Shop", new {catId = menus.Id})">@menus.Title</a></li>
                             }
                             else
                             {
-                                <li><a>@menus.Title</a></li>
+                                <li><a href="@Url.Action("ShowProducts", "Shop", new {catId = menus.Id})">@menus.Title</a></li>
                             }
                         }
                     </ul>
@@ -34,7 +34,7 @@
             }
             else
             {
-                <li><a>@item.Title</a></li>
+                <li><a href="@Url.Action("CatDetails","Shop",new {catId=item.Id})">@item.Title</a></li>
             }
         }
     </ul>

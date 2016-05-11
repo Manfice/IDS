@@ -1,5 +1,4 @@
-﻿@using System
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html>
 <head>
@@ -10,7 +9,8 @@
     <link href="~/Content/owl.carousel.css" rel="stylesheet" />
     <link href="~/Content/fonts.css" rel="stylesheet" />
     <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
-    <link href="~/Content/animate.css" rel="stylesheet" />
+    <link href="~/Content/animate.css" rel="stylesheet"/>
+    @RenderSection("links", required: false)
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
@@ -52,7 +52,22 @@
     <script src="~/Scripts/jquery-2.2.2.js"></script>
     <script src="~/Scripts/owl.carousel.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
-    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        if ($('.bodyContent').height() + 80 < $(window).height()) {
+            $('footer').css({
+                position: 'absolute',
+                bottom: 0,
+                width: '100%'
+            });
+        } else {
+            $('footer').css({
+                position: 'relative'
+            });
+        };
+    });
+</script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

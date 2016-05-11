@@ -20,7 +20,7 @@
                 {
                     <div class="col-md-4">
                         <div class="product">
-                            <a href="@Url.Action("CatDetails", "Shop", new {catId = item.Id})">
+                            <a href="@Url.Action("ShowProducts", "Shop", new {catId = item.Id})">
                                 <img src="@item.Image.Path" alt="@item.Image.AltText"/>
                                 <div class="categoryName">
                                     <p>@item.Title</p>
@@ -45,6 +45,11 @@
     </div>
 </div>
 
+@section scripts
+{
+
+    <script src="~/Scripts/shopScripts.js"></script>
+}
 @*<div class="shopSubCat row">
     <div class="productsSection col-md-9 col-lg-10">
         @Html.Action("ShowProducts", new {catId = @Model.Id, subCat = ViewBag.Products})

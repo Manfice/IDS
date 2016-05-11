@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Web.Mvc;
 using IndDev.Auth.Logic;
 using IndDev.Domain.Abstract;
 using IndDev.Domain.Entity;
@@ -331,16 +332,8 @@ namespace IndDev.Domain.Context
         public ValidEvent AddPhotoToProduct(int prodId, ProductPhoto photo)
         {
             var product = _context.Products.Find(prodId);
-            var avatar = product.ProductPhotos.Count(productPhoto => productPhoto.PhotoType == PhotoType.Avatar);
-            var image = new ProductPhoto
-            {
-                AltText = photo.AltText,
-                FullPath = photo.FullPath,
-                PhotoType = avatar>0? PhotoType.Photo : PhotoType.Avatar,
-                Path = photo.Path,
-                Product = product
-            };
-            _context.ProductPhotos.Add(image);
+            photo.Product = product;
+            _context.ProductPhotos.Add(photo);
             _context.SaveChanges();
             return new ValidEvent {Code = product.Id};
         }
@@ -381,9 +374,8 @@ namespace IndDev.Domain.Context
             };
             return new PriceSetter
             {
-                PriceViewModel = pvm,
                 PriceType = price.PriceType,
-                Currencies = _context.Currencies.ToList(),
+                Currencies = _context.Currencies.Select(currency => new SelectListItem {Text = currency.StringCode, Value = currency.Id.ToString()}),
                 Public = price.Publish,
                 Title = price.Title,
                 Value = price.Value,
@@ -404,17 +396,31 @@ namespace IndDev.Domain.Context
                 dbPrice.Currency = curr;
             }
             _context.SaveChanges();
-            return new ValidEvent {Code = model.PriceViewModel.Product.Id};
+            return new ValidEvent {Code = dbPrice.Product.Id};
         }
 
-        public Product UpdateProduct(Product model)
+        public Product UpdateProduct(ProductDetailsViewModel model)
         {
-            var dbProduct = _context.Products.Find(model.Id);
-            dbProduct.Title = model.Title;
-            dbProduct.Articul = model.Articul;
-            dbProduct.Description = model.Description;
-            dbProduct.IsService = model.IsService;
-            dbProduct.Reclama = model.Reclama;
+            var dbProduct = _context.Products.Find(model.Product.Id);
+            var brand = _context.Brands.Find(model.SelBr);
+            var vendor = _context.Vendors.Find(model.SelVr);
+            var mu = _context.MesureUnits.Find(model.SelMu);
+            
+            dbProduct.Articul = model.Product.Articul;
+            dbProduct.Title = model.Product.Title;
+            dbProduct.Description = model.Product.Description;
+            dbProduct.IsService = model.Product.IsService;
+            dbProduct.Reclama = model.Product.Reclama;
+            dbProduct.Brand = brand;
+            dbProduct.Vendor = vendor;
+            dbProduct.MesureUnit = mu;
+            foreach (var price in model.Prices)
+            {
+                var dbPrice = _context.Prices.Find(price.Id);
+                dbPrice.Currency = _context.Currencies.Find(price.SelCurr);
+                dbPrice.Title = price.Title;
+                dbPrice.Value = price.Value;
+            }
             _context.SaveChanges();
             return dbProduct;
         }
@@ -437,6 +443,52 @@ namespace IndDev.Domain.Context
             customer.CustomerStatus = cStat;
             _context.SaveChanges();
             return customer;
+        }
+
+        public List<PriceSetter> GetPrices(int prodId)
+        {
+            var prs = _context.Products.Find(prodId).Prices.ToList();
+            var psl = new List<PriceSetter>();
+            foreach (var price in prs)
+            {
+                var ps = new PriceSetter
+                {
+                    Value = price.Value,
+                    Title = price.Title,
+                    Id = price.Id,
+                    PriceType = price.PriceType,
+                    Currencies = _context.Currencies.Select(currency => new SelectListItem {Text = currency.StringCode, Value = currency.Id.ToString()}),
+                    PriceFrom = 1,
+                    Public = price.Publish,
+                    SelCurr = price.Currency.Id,
+                    Valuta = price.Currency.Code
+                };
+                psl.Add(ps);
+            }
+            return psl;
+        }
+
+        public ValidEvent RemoveImage(int id)
+        {
+            var dbImage = _context.ProductPhotos.Find(id);
+            var result = new ValidEvent {Code = dbImage.Product.Id, Messge = "Ok"};
+            _context.ProductPhotos.Remove(dbImage);
+            _context.SaveChanges();
+            return result;
+        }
+
+        public void RemovePhoto(int id)
+        {
+            var img = _context.ProductPhotos.Find(id);
+            _context.ProductPhotos.Remove(img);
+            _context.SaveChanges();
+        }
+
+        public IEnumerable<SelectListItem> GetValutes()
+        {
+            return
+                _context.Currencies.Select(
+                    currency => new SelectListItem {Text = currency.StringCode, Value = currency.Id.ToString()});
         }
     }
 }

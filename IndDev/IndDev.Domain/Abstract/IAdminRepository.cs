@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Web.Mvc;
 using IndDev.Auth.Logic;
 using IndDev.Domain.Entity;
 using IndDev.Domain.Entity.Auth;
@@ -45,7 +46,11 @@ namespace IndDev.Domain.Abstract
         IEnumerable<PriceViewModel> GetProdPrices(int prodId);
         PriceSetter GetPriceSetter(int id);
         ValidEvent SetPrice(PriceSetter model);
-        Product UpdateProduct(Product model);
+        Product UpdateProduct(ProductDetailsViewModel model);
         Customer SaveCustomer(EditCustomer model);
+        List<PriceSetter> GetPrices(int prodId);
+        ValidEvent RemoveImage(int id);
+        void RemovePhoto(int id);
+        IEnumerable<SelectListItem> GetValutes();
     }
 }

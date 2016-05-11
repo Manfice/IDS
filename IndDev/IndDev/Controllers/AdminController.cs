@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -328,22 +329,79 @@ namespace IndDev.Controllers
             var pdvm = new ProductDetailsViewModel
             {
                 Product = product,
-                Brands = _repository.GetAllBrands(),
-                Vendors = _repository.GetAllVendors(),
-                MesureUnits = _repository.GetAllMesureUnits(),
-                Avatar = prodAva
+                Brands = _repository.GetAllBrands().Select(brand=>new SelectListItem { Text = brand.FullName, Value = brand.Id.ToString()}),
+                Vendors = _repository.GetAllVendors().Select(vendor=>new SelectListItem {Text = vendor.Title,Value = vendor.Id.ToString()}),
+                MesureUnits = _repository.GetAllMesureUnits().Select(mu=>new SelectListItem {Text = mu.FullName, Value = mu.Id.ToString()}),
+                Valuta = _repository.GetValutes(),
+                Avatar = prodAva,
+                Prices = _repository.GetPrices(product.Id),
+                SelBr = product.Brand.Id,
+                SelVr = product.Vendor.Id,
+                SelMu = product.MesureUnit.Id
             };
+            ViewBag.Title = product.Title;
             return View(pdvm);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult UpdateProduct(ProductDetailsViewModel model)
         {
-            var prod = model.Product;
-            var p = _repository.UpdateProduct(prod);
+            var p = _repository.UpdateProduct(model);
             return RedirectToAction("ProductDetails", new {id=p.Id});
         }
 
+        public ActionResult AddAvatar(int id, HttpPostedFileBase photo)
+        {
+            if (photo!=null)
+            {
+                var fileName = Guid.NewGuid()+"_"+photo.FileName;
+                var filePath = Server.MapPath("/Content/images/Uploads/Categories");
+                var fullPath = Path.Combine(filePath, fileName);
+                photo.SaveAs(fullPath);
+                var ava = _repository.GetProduct(id).ProductPhotos.FirstOrDefault(productPhoto => productPhoto.PhotoType == PhotoType.Avatar);
+                if (ava != null)
+                {
+                    if (System.IO.File.Exists(ava.FullPath))
+                    {
+                        System.IO.File.Delete(ava.FullPath);
+                    }
+                    _repository.RemovePhoto(ava.Id);
+                }
+                var image = new ProductPhoto
+                {
+                    AltText = fileName,
+                    FullPath = fullPath,
+                    Path = "/Content/images/Uploads/Categories/" + fileName,
+                    PhotoType = PhotoType.Avatar
+                };
+                var result = _repository.AddPhotoToProduct(id, image);
+            }
+            return RedirectToAction("ProductDetails", new { id });
+        }
+        public ActionResult AddPhoto(int id, HttpPostedFileBase photo)
+        {
+            if (photo != null)
+            {
+                var fileName = Guid.NewGuid() + "_" + photo.FileName;
+                var filePath = Server.MapPath("/Content/images/Uploads/Categories");
+                var fullPath = Path.Combine(filePath, fileName);
+                photo.SaveAs(fullPath);
+                var image = new ProductPhoto
+                {
+                    AltText = fileName,
+                    FullPath = fullPath,
+                    Path = "/Content/images/Uploads/Categories/" + fileName,
+                    PhotoType = PhotoType.Photo
+                };
+                var result = _repository.AddPhotoToProduct(id, image);
+            }
+            return RedirectToAction("ProductDetails", new {id});
+        }
+        public ActionResult RemoveImage(int id)
+        {
+            var result = _repository.RemoveImage(id);
+            return RedirectToAction("ProductDetails", new {id=result.Code});
+        }
         public PartialViewResult SetPriceSection(int pId)
         {
             var p = _repository.GetProduct(pId);

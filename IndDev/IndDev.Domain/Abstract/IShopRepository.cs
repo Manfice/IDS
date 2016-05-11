@@ -13,5 +13,6 @@ namespace IndDev.Domain.Abstract
         ProductMenu GetProductMenu(int id);
         IEnumerable<ShopProductView> GetProducts(int catId, int selCat);
         ShopProductView GetProduct(int id, int mCat);
+        ShopProductView GetProduct(int id);
     }
 }

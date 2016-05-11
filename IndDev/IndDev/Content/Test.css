@@ -905,11 +905,7 @@ footer {
   content: "";
 }
 .selectedMenu {
-    background: #ffffff;
-    background: -moz-linear-gradient(bottom, #abeb8e, #ffffff);
-    background: -webkit-linear-gradient(bottom, #abeb8e, #ffffff);
-    background: -o-linear-gradient(bottom, #abeb8e, #ffffff);
-    background: -ms-linear-gradient(bottom, #abeb8e, #ffffff);
-    background: linear-gradient(to top, #abeb8e, #ffffff);
+    background: #62e393;
+    text-shadow: 0 1px 1px #268c43;
 }
 /*End catalogBlock*/

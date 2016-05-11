@@ -1,0 +1,38 @@
+﻿.productForm {
+    padding: 10px 0;
+}
+.productForm img {
+    width: 100%;
+}
+.productForm input[type="text"] {
+    margin: 5px 10px;
+    padding: 0 15px;
+    width: 70%
+}
+.productForm textarea {
+    width: 100%;
+    padding: 5px;
+    height: 100px;
+}
+.productForm input[type="checkbox"] {
+    margin: 10px;
+}
+.productForm select {
+    width: 170px;
+}
+.blockChar {
+    background-color: burlywood;
+    padding: 15px;
+}
+.blockPrice {
+    background-color: #66cdaa;
+    padding: 15px;
+}
+.blockPrice input[type="text"] {
+    margin: 5px 10px;
+    padding: 0 15px;
+    width: 150px;
+}
+.productForm input[type="submit"] {
+    margin: 25px;
+}

@@ -57,11 +57,11 @@ namespace IndDev.Controllers
             return View(model);
         }
 
-        public PartialViewResult ShowProducts(int catId, string subCat)
+        public ActionResult ShowProducts(int catId)
         {
-            var sCatId = 0; int.TryParse(subCat, out sCatId);
-            var model = _repository.GetProducts(catId, sCatId);
-            return PartialView(model);
+            var model = _repository.GetProduct(catId);
+            ViewBag.Title = model.ProductMenuItem.Title;
+            return View(model);
         }
 
         public PartialViewResult ProductView(int id, int subCat=0)

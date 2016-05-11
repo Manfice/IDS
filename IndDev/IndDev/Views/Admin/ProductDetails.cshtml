@@ -1,11 +1,144 @@
-﻿@using IndDev.Domain.Entity
+﻿@using System.ServiceModel.Configuration
+@using IndDev.Domain.Entity
 @model IndDev.Domain.ViewModels.ProductDetailsViewModel
-@{
-    ViewBag.Title = "ProductDetails";
-    Layout = "~/Views/Shared/_LayoutSFoot.cshtml";
-}
 
-<div class="well-lg">
+@{
+    Layout = "~/Views/Shared/_NewDesing.cshtml";
+}
+@section links
+{
+    <link href="~/Content/admin.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-fileupload.min.css" rel="stylesheet" />
+}
+<div class="productForm">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                @if (Model.Avatar != null)
+                {
+                    using (Html.BeginForm("AddAvatar", "Admin", FormMethod.Post, new {enctype = "multipart/form-data"}))
+                     {
+                         @Html.AntiForgeryToken()
+                         @Html.Hidden("id", Model.Product.Id)
+                         <div class="formControl">
+                             <p>Аватар продукта</p>
+                             <div class="fileupload fileupload-new" data-provides="fileupload">
+                                 <div class="fileupload-new thumbnail" style="width: 100%; overflow: hidden;">
+                                     <img src="@Model.Avatar.Path" alt=""/>
+                                 </div>
+                                 <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 100%; line-height: 20px; background-color: #999"></div>
+                                 <div>
+                                     <span class="btn btn-file btn-primary"><span class="fileupload-new">Выбрать</span><span class="fileupload-exists">Заменить</span><input type="file" name="photo"></span><input type="submit" class="btn btn-file btn-primary fileupload-exists" value="Сохранить"/>
+                                     <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload">Отменить</a>
+                                 </div>
+                             </div>
+                         </div>
+                     }
+                }
+                else
+                {
+                    using (Html.BeginForm("AddAvatar", "Admin", FormMethod.Post, new {enctype = "multipart/form-data"}))
+                     {
+                         @Html.AntiForgeryToken()
+                         @Html.Hidden("id", Model.Product.Id)
+                         <div class="formControl">
+                             <p>Аватар продукта</p>
+                             <div class="fileupload fileupload-new" data-provides="fileupload">
+                                 <div class="fileupload-new thumbnail" style="width: 100%; overflow: hidden; background-color: #999">
+                                     <img src="~/Content/images/noimage.png" alt=""/>
+                                 </div>
+                                 <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 100%; line-height: 20px; background-color: #999"></div>
+                                 <div>
+                                     <span class="btn btn-file btn-primary"><span class="fileupload-new">Выбрать</span><span class="fileupload-exists">Заменить</span><input type="file" name="photo"></span><input type="submit" class="btn btn-file btn-primary fileupload-exists" value="Сохранить"/>
+                                     <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload">Отменить</a>
+                                 </div>
+                             </div>
+                         </div>
+                     }
+                }
+                <div class="aditionalImages">
+                    @foreach (var item in Model.Product.ProductPhotos.Where(photo => photo.PhotoType != PhotoType.Avatar))
+                    {
+                        <div class="thumbnail">
+                            <img src="@item.Path" alt="@item.AltText"/>
+                            <div class="caption">
+                                @Html.ActionLink("Удалить","RemoveImage","Admin",new {id=item.Id},null)
+                            </div>
+                        </div>
+                    }
+                    @using (Html.BeginForm("AddPhoto","Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.Hidden("id", Model.Product.Id)
+                        <div class="formControl">
+                            <p>Фото продукта</p>
+                            <div class="fileupload fileupload-new" data-provides="fileupload">
+                                <div class="fileupload-new thumbnail" style="width: 100%; overflow: hidden; background-color: #999">
+                                    <img src="~/Content/images/noimage.png" alt="" />
+                                </div>
+                                <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 100%; line-height: 20px; background-color: #999"></div>
+                                <div>
+                                    <span class="btn btn-file btn-primary"><span class="fileupload-new">Выбрать</span><span class="fileupload-exists">Заменить</span><input type="file" name="photo"></span><input type="submit" class="btn btn-file btn-primary fileupload-exists" value="Сохранить" />
+                                    <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload">Отменить</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="col-md-9">
+                @using (Html.BeginForm("UpdateProduct", "Admin", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(model => model.Product.Id)
+                    <p>Редактировать: @Model.Product.Title</p>
+                    @Html.Label("Артикул:")
+                    @Html.TextBoxFor(model => model.Product.Articul)<br/>
+                    @Html.Label("Наименование:")
+                    @Html.TextBoxFor(model => model.Product.Title)<br/>
+                    @Html.Label("Описание:")<br/>
+                    @Html.TextAreaFor(model => model.Product.Description)<br/>
+                    @Html.Label("Товар является услугой:")
+                    @Html.CheckBoxFor(model => model.Product.IsService)<br/>
+                    @Html.Label("Товар выставить на распродажу:")
+                    @Html.CheckBoxFor(model => model.Product.Reclama)
+                    <div class="blockChar">
+                        @Html.Label("Брэнд:")
+                        @Html.DropDownListFor(model => model.SelBr, Model.Brands, Model.SelBr)<br/>
+                        @Html.Label("Вендор:")
+                        @Html.DropDownListFor(model => model.SelVr, Model.Vendors, Model.SelVr)<br/>
+                        @Html.Label("Еденица измерения:")
+                        @Html.DropDownListFor(model => model.SelMu, Model.MesureUnits, Model.SelMu)<br/>
+                    </div>
+                    <div class="blockPrice">
+                        <ul>
+                            @for (var i = 0; i < Model.Prices.Count; i++)
+                            {
+                                var price = Model.Prices[i];
+                                @Html.HiddenFor(model => model.Prices[i].Id)
+                                <li>
+                                    @Html.Label(Model.Prices[i].PriceType.ToString())
+                                    @Html.EditorFor(model => model.Prices[i].Title)
+                                    @Html.DropDownListFor(model => model.Prices[i].SelCurr, Model.Prices[i].Currencies, price.SelCurr)
+                                    @Html.EditorFor(model => model.Prices[i].Value)
+                                    @Html.Label(Model.Prices[i].Valuta)
+
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                    @Html.ActionLink("Назад", "SubCatDetails", new { id = Model.Product.Categoy.Id }, new { @class = "btn btn-info btn-sm" })
+                    <input type="submit" value="Сохранить" class="btn btn-success btn-sm"/>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts
+{
+<script src="~/Scripts/bootstrap-fileupload.js"></script>
+}
+@*<div class="well-lg">
     <h2>@Model.Product.Title</h2>
     <div class="formProduct">
         <div class="row">
@@ -101,4 +234,4 @@
         <hr/>
     </div>
     @Html.ActionLink("Back","SubCatDetails",new {id=Model.Product.Categoy.Id})
-</div>
+</div>*@

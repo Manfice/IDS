@@ -1,5 +1,37 @@
-﻿@model IEnumerable<IndDev.Domain.ViewModels.ShopProductView>
-<div class="row">
+﻿@model IndDev.Domain.ViewModels.ShopProductView
+@{
+    Layout = "~/Views/Shared/_NewDesing.cshtml";
+}
+@Html.Action("TopNavigation", "Home")
+@Html.Action("ShopBlock", "Shop")
+<div class="catalogBody">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <h1>@Model.ProductMenuItem.Title</h1>
+                <div class="navPagination">
+                    <a href="@Url.Action("Index")">Главная</a>
+                    <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                    <a href="@Url.Action("CatDetails","Shop", new { catId = Model.ProductMenuItem.ProductMenu.Id})">@Model.ProductMenuItem.ProductMenu.Title</a>
+                    <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                    <a>@Model.ProductMenuItem.Title</a>
+                    <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="sideNavigation">
+                    <ul>
+                        <li class="navReclama"><i class="fa fa-money" aria-hidden="true"></i><a>Акции</a></li>
+                        <li class="navReSale"><i class="fa fa-refresh" aria-hidden="true"></i><a>Барахолочка</a></li>
+                        <li class="navFavourites"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i><a>Избранное</a></li>
+                    </ul>
+                    @Html.Action("Navigation","Shop",new {selected = Model.ProductMenuItem.ProductMenu.Id, product = Model.ProductMenuItem.Id})
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*<div class="row">
     @foreach (var item in Model)
     {
         <div class="col-md-2 shopView">
@@ -28,4 +60,4 @@
             </div>
         </div>
     }
-</div>
+</div>*@

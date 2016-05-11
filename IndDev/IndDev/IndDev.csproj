@@ -212,7 +212,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\admin.css" />
     <Content Include="Content\animate.css" />
+    <Content Include="Content\bootstrap-fileupload.min.css" />
+    <Content Include="Content\bootstrap-social.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -299,12 +302,29 @@
     <Content Include="Content\images\Sertificates\ipcom.jpg" />
     <Content Include="Content\images\tele960_640.jpg" />
     <Content Include="Content\images\twisted_pair.jpg" />
+    <Content Include="Content\images\Uploads\Categories\022ab783-cd4f-43fc-a9ee-83614757393b_lclc.png" />
     <Content Include="Content\images\Uploads\Categories\2-psba-provoda-atmosferostojkie.png" />
     <Content Include="Content\images\Uploads\Categories\24.jpg" />
+    <Content Include="Content\images\Uploads\Categories\28b0c191-3fb0-4343-a85b-ce0371523add_fcfc.png" />
     <Content Include="Content\images\Uploads\Categories\2c3c307740815695e65ab4d10bcd5c46.png" />
+    <Content Include="Content\images\Uploads\Categories\2f3ca363-6cba-42c4-9d88-0b10774bf23b_ptsc.png" />
+    <Content Include="Content\images\Uploads\Categories\3912fa76-f16c-45e3-8458-0cbb713b491c_lclc.png" />
+    <Content Include="Content\images\Uploads\Categories\3a1afa37-7af1-475e-b4ef-93c267d1d6b2_lclc.png" />
     <Content Include="Content\images\Uploads\Categories\445376.jpg" />
+    <Content Include="Content\images\Uploads\Categories\45c900b2-3abb-465a-8190-b1bccadcf433_fcfc.png" />
+    <Content Include="Content\images\Uploads\Categories\4fc9a41f-4bc1-47cd-aea8-fa1ecb10362f_fcfc.png" />
     <Content Include="Content\images\Uploads\Categories\583274eff7198274651c0629536dedad.jpg" />
+    <Content Include="Content\images\Uploads\Categories\68efb777-84e1-439b-b40b-85f772660318_fcfc.png" />
     <Content Include="Content\images\Uploads\Categories\6a65c7a8f1a6dfbc8b2c8195d9f6ca44.jpg" />
+    <Content Include="Content\images\Uploads\Categories\7723cbae-ba1c-480f-81ab-c0addda6a1ad_fcfc.png" />
+    <Content Include="Content\images\Uploads\Categories\77cf83c0-fd62-4afa-a120-0a76b53c822f_fcfc.png" />
+    <Content Include="Content\images\Uploads\Categories\8700d538-15b8-4cbf-91bd-0e9d1b448086_lclc.png" />
+    <Content Include="Content\images\Uploads\Categories\b28b9351-0dfe-406e-a111-484e9822eb56_lclc.png" />
+    <Content Include="Content\images\Uploads\Categories\b3e09532-a08c-4847-9027-447dc350f470_ptfc.png" />
+    <Content Include="Content\images\Uploads\Categories\d2f397a8-fc7d-4bc4-bb55-e138729878da_ptlc.png" />
+    <Content Include="Content\images\Uploads\Categories\da452044-c39d-4d36-a7d2-5d31aae22a5e_lclc.png" />
+    <Content Include="Content\images\Uploads\Categories\e7363603-d8c2-44f6-8818-6c3d0d2550e8_lclc.png" />
+    <Content Include="Content\images\Uploads\Categories\ecb06cb3-a2e3-422c-9d80-52e78ba0b918_fcfc.png" />
     <Content Include="Content\images\Uploads\Categories\ee5ad7187398ed700c9783993e3c6ac4.png" />
     <Content Include="Content\images\Uploads\Categories\fc-fc.jpg" />
     <Content Include="Content\images\Uploads\Categories\fcscpc.png" />
@@ -387,6 +407,7 @@
     <None Include="Properties\PublishProfiles\id-racks - Web Deploy %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\id-racks - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-2.2.2.intellisense.js" />
+    <Content Include="Scripts\bootstrap-fileupload.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\carousels.js" />
