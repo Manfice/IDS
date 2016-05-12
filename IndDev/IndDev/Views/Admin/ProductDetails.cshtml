@@ -98,17 +98,25 @@
                     @Html.TextBoxFor(model => model.Product.Title)<br/>
                     @Html.Label("Описание:")<br/>
                     @Html.TextAreaFor(model => model.Product.Description)<br/>
+                    @Html.Label("Предупреждение:")<br />
+                    @Html.TextAreaFor(model => model.Product.Warning)<br />
                     @Html.Label("Товар является услугой:")
                     @Html.CheckBoxFor(model => model.Product.IsService)<br/>
                     @Html.Label("Товар выставить на распродажу:")
                     @Html.CheckBoxFor(model => model.Product.Reclama)
                     <div class="blockChar">
                         @Html.Label("Брэнд:")
-                        @Html.DropDownListFor(model => model.SelBr, Model.Brands, Model.SelBr)<br/>
+                        @Html.DropDownListFor(model => model.SelBr, Model.Brands, Model.SelBr)
+                        @Html.Label("Гарантия:")
+                        @Html.TextBoxFor(model => model.Product.Warranty)
+                        <br/>
                         @Html.Label("Вендор:")
                         @Html.DropDownListFor(model => model.SelVr, Model.Vendors, Model.SelVr)<br/>
                         @Html.Label("Еденица измерения:")
                         @Html.DropDownListFor(model => model.SelMu, Model.MesureUnits, Model.SelMu)<br/>
+                        @Html.Label("Склад отгрузки:")
+                        @Html.DropDownListFor(model => model.SelStock, Model.Stocks, Model.SelStock)<br />
+
                     </div>
                     <div class="blockPrice">
                         <ul>

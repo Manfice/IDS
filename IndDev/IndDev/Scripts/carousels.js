@@ -5,8 +5,6 @@
     owlTop.owlCarousel({
         items: 1,
         loop: true,
-        animateOut: 'rollOut',
-        animateIn: 'zoomIn',
         autoplay: true,
         autoplayTimeout: 10000,
         autoplayHoverPause: true,

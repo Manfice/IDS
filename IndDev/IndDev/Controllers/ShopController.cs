@@ -64,10 +64,15 @@ namespace IndDev.Controllers
             return View(model);
         }
 
+        public ActionResult ProductDetails(int id)
+        {
+            var model = _repository.GetProductDetails(id);
+            return View(model);
+        }
         public PartialViewResult ProductView(int id, int subCat=0)
         {
             ViewBag.SubCat = subCat;
-            return PartialView(_repository.GetProduct(id, subCat));
+            return PartialView(_repository.GetProduct(id));
         }
     }
 }

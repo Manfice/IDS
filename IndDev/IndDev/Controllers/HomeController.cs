@@ -26,7 +26,7 @@ namespace IndDev.Controllers
 
         public ActionResult Test()
         {
-            ViewBag.Title = "TEST";
+            ViewBag.Title = "Industrial Development";
             return View();
         }
         public ActionResult About()

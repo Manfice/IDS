@@ -1,4 +1,5 @@
-﻿@model IndDev.Domain.ViewModels.ShopProductView
+﻿@using IndDev.Domain.Entity
+@model IndDev.Domain.ViewModels.ShopProductView
 @{
     Layout = "~/Views/Shared/_NewDesing.cshtml";
 }
@@ -12,11 +13,46 @@
                 <div class="navPagination">
                     <a href="@Url.Action("Index")">Главная</a>
                     <i class="fa fa-chevron-right" aria-hidden="true"></i>
-                    <a href="@Url.Action("CatDetails","Shop", new { catId = Model.ProductMenuItem.ProductMenu.Id})">@Model.ProductMenuItem.ProductMenu.Title</a>
+                    <a href="@Url.Action("CatDetails", "Shop", new {catId = Model.ProductMenuItem.ProductMenu.Id})">@Model.ProductMenuItem.ProductMenu.Title</a>
                     <i class="fa fa-chevron-right" aria-hidden="true"></i>
                     <a>@Model.ProductMenuItem.Title</a>
                     <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                    <a><strong>@Model.Products.Count()</strong> позиций</a>
                 </div>
+                @foreach (var item in Model.Products)
+                {
+                    <div class="col-md-6 productView">
+
+                        <div class="goods">
+                            <a href="@Url.Action("ProductDetails","Shop", new {id=item.Product.Id})">
+                                @if (item.Avatar != null)
+                                {
+                                    <img src="@item.Avatar.Path" alt="@item.Product.Title"/>
+                                }
+                                else
+                                {
+                                    <img src="~/Content/images/noimage.png" alt=""/>
+                                }
+                                <div class="goodsDescr">
+                                    <h3>АРТ : @item.Product.Articul</h3>
+                                    <p>@item.Product.Title</p>
+                                </div>
+                            </a>
+                            <div class="actionSection">
+                                @if (item.Prices.Any())
+                                {
+                                    <p>от @item.Prices.Max(price => price.ConvValue).ToString("C")/@item.Product.MesureUnit.ShortName</p>
+                                }
+                                else
+                                {
+                                    <p>НЕТ В НАЛИЧИИ</p>
+                                }
+                                <a>КУПИТЬ</a>
+                            </div>
+                        </div>
+                        
+                    </div>
+                }
             </div>
             <div class="col-md-3">
                 <div class="sideNavigation">
@@ -25,12 +61,16 @@
                         <li class="navReSale"><i class="fa fa-refresh" aria-hidden="true"></i><a>Барахолочка</a></li>
                         <li class="navFavourites"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i><a>Избранное</a></li>
                     </ul>
-                    @Html.Action("Navigation","Shop",new {selected = Model.ProductMenuItem.ProductMenu.Id, product = Model.ProductMenuItem.Id})
+                    @Html.Action("Navigation", "Shop", new {selected = Model.ProductMenuItem.ProductMenu.Id, product = Model.ProductMenuItem.Id})
                 </div>
             </div>
         </div>
     </div>
 </div>
+@section scripts
+{
+<script src="~/Scripts/shopScripts.js"></script>
+}
 @*<div class="row">
     @foreach (var item in Model)
     {

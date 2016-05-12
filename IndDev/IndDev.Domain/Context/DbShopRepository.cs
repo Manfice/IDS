@@ -18,56 +18,6 @@ namespace IndDev.Domain.Context
             return _context.ProductMenus.Find(id);
         }
 
-        public IEnumerable<ShopProductView> GetProducts(int catId, int selCat)
-        {
-            var pvm = new List<ShopProductView>();
-            var sMenuItem = _context.ProductMenuItems.Find(catId);
-            //if (selCat!=0)
-            //{
-            //    var products = _context.Products.Where(product => product.Categoy.Id == selCat).ToList();
-            //    foreach (var product in products)
-            //    {
-            //        var pv = new ShopProductView
-            //        {
-            //            Product = product,
-            //            Avatar =
-            //                product.ProductPhotos.Any(photo => photo.PhotoType == PhotoType.Avatar)
-            //                    ? product.ProductPhotos.FirstOrDefault(photo => photo.PhotoType == PhotoType.Avatar)
-            //                    : new ProductPhoto {AltText = "нет фотки", Path = "/Content/images/noimage.png"}
-            //        };
-            //        var pr = product.Prices.Select(price => new PriceViewModel {Id = price.Id, Currency = price.Currency, OriginalPrice = price.Value, Title = price.Title, PriceFrom = price.QuanttityFrom}).ToList();
-            //        pv.Prices = pr;
-            //        pv.IsSale = IsSale(pr);
-            //        pv.Byeble = CheckPrice(pr);
-            //        pv.SubCategory = catId;
-            //        pvm.Add(pv);
-            //    }
-            //    return pvm;
-            //}
-            //var sCat = _context.ProductMenus.Find(catId).MenuItems.ToList();
-            //foreach (var p in sCat.Select(item => _context.Products.Where(product => product.Categoy.Id == item.Id).ToList()))
-            //{
-            //    foreach (var product in p)
-            //    {
-            //        var pv = new ShopProductView
-            //        {
-            //            Product = product,
-            //            Avatar =
-            //                product.ProductPhotos.Any(photo => photo.PhotoType == PhotoType.Avatar)
-            //                    ? product.ProductPhotos.FirstOrDefault(photo => photo.PhotoType == PhotoType.Avatar)
-            //                    : new ProductPhoto { AltText = "нет фотки", Path = "/Content/images/noimage.png" }
-            //        };
-            //        var pr = product.Prices.Select(price => new PriceViewModel { Id = price.Id, Currency = price.Currency, OriginalPrice = price.Value, Title = price.Title, PriceFrom = price.QuanttityFrom}).ToList();
-            //        pv.Prices = pr;
-            //        pv.Byeble = CheckPrice(pr);
-            //        pv.IsSale = IsSale(pr);
-            //        pv.SubCategory = catId;
-            //        pvm.Add(pv);
-            //    }
-            //}
-            return pvm;
-        }
-
         private bool IsSale(List<PriceViewModel> model)
         {
             return model.Any(item => item.Title == "Sale" && item.ConvValue > 0);
@@ -93,32 +43,27 @@ namespace IndDev.Domain.Context
             return _context.Menus.Where(menu => menu.ParentItem==null).ToList();
         }
 
-        public ShopProductView GetProduct(int id) //menu item 
+        public ShopProductView GetProduct(int id) //menu item ID
         {
-            //var product = _context.Products.Find(id);
-            //var pv = new ShopProductView();
-            //{
-            //    Product = product,
-            //    Avatar =
-            //        product.ProductPhotos.Any(photo => photo.PhotoType == PhotoType.Avatar)
-            //            ? product.ProductPhotos.FirstOrDefault(photo => photo.PhotoType == PhotoType.Avatar)
-            //            : new ProductPhoto { AltText = "нет фотки", Path = "/Content/images/noimage.png" }
-            //};
-            //var pr = product.Prices.Where(price => price.Value>0).Select(price => new PriceViewModel { Id = price.Id, Currency = price.Currency, OriginalPrice = price.Value, Title = price.Title, PriceFrom = price.QuanttityFrom}).ToList();
-            //pv.Prices = pr;
-            //pv.Byeble = CheckPrice(pr);
-            //pv.IsSale = IsSale(pr);
-            //pv.SubCategory = mCat;
-            var model = new ShopProductView
+            var menuItem = _context.ProductMenuItems.Find(id);
+            var products = menuItem.Products.Select(product => new ProductView
             {
-                ProductMenuItem = _context.ProductMenuItems.Find(id)
-            };
-            return model;
+                Product = product, Avatar = product.ProductPhotos.FirstOrDefault(p => p.PhotoType == PhotoType.Avatar), Prices = product.Prices.Where(price => price.Value > 0).Select(price => new PriceViewModel {Id = price.Id, Currency = price.Currency, OriginalPrice = price.Value, Title = price.Title, PriceFrom = price.QuanttityFrom, PriceType = price.PriceType}).ToList()
+            }).ToList();
+
+            return new ShopProductView {ProductMenuItem = menuItem, Products = products};
         }
 
-        public ShopProductView GetProduct(int id, int mCat)
+        public ProductView GetProductDetails(int id)
         {
-            throw new NotImplementedException();
+            var prod = _context.Products.Find(id);
+            var pvm = new ProductView
+            {
+                Product = prod,
+                Avatar = prod.ProductPhotos.FirstOrDefault(p => p.PhotoType == PhotoType.Avatar),
+                Prices = prod.Prices.Where(price => price.Value > 0).Select(price => new PriceViewModel { Id = price.Id, Currency = price.Currency, OriginalPrice = price.Value, Title = price.Title, PriceFrom = price.QuanttityFrom, PriceType = price.PriceType}).ToList()
+            };
+            return pvm;
         }
     }
 }

@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Data.Entity;
+using System.Data.Entity.Core.Common.CommandTrees;
 using IndDev.Domain.Entity;
 using IndDev.Domain.Entity.Auth;
 using IndDev.Domain.Entity.Customers;
 using IndDev.Domain.Entity.Menu;
 using IndDev.Domain.Entity.Orders;
 using IndDev.Domain.Entity.Products;
+using IndDev.Domain.Entity.Stock;
 
 namespace IndDev.Domain.Context
 {
@@ -27,6 +29,7 @@ namespace IndDev.Domain.Context
         public DbSet<Bank> Banks { get; set; }
         public DbSet<CustomerStatus> CustomerStatuses { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<Stock> Stocks { get; set; }
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Currency> Currencies { get; set; }
         public DbSet<MesureUnit> MesureUnits { get; set; }

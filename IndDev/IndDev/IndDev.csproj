@@ -321,7 +321,9 @@
     <Content Include="Content\images\Uploads\Categories\8700d538-15b8-4cbf-91bd-0e9d1b448086_lclc.png" />
     <Content Include="Content\images\Uploads\Categories\b28b9351-0dfe-406e-a111-484e9822eb56_lclc.png" />
     <Content Include="Content\images\Uploads\Categories\b3e09532-a08c-4847-9027-447dc350f470_ptfc.png" />
+    <Content Include="Content\images\Uploads\Categories\CP42.png" />
     <Content Include="Content\images\Uploads\Categories\d2f397a8-fc7d-4bc4-bb55-e138729878da_ptlc.png" />
+    <Content Include="Content\images\Uploads\Categories\d5a67f04-54a1-4b9b-993d-ff46bf931c60_fcfc.png" />
     <Content Include="Content\images\Uploads\Categories\da452044-c39d-4d36-a7d2-5d31aae22a5e_lclc.png" />
     <Content Include="Content\images\Uploads\Categories\e7363603-d8c2-44f6-8818-6c3d0d2550e8_lclc.png" />
     <Content Include="Content\images\Uploads\Categories\ecb06cb3-a2e3-422c-9d80-52e78ba0b918_fcfc.png" />
@@ -329,13 +331,19 @@
     <Content Include="Content\images\Uploads\Categories\fc-fc.jpg" />
     <Content Include="Content\images\Uploads\Categories\fcscpc.png" />
     <Content Include="Content\images\Uploads\Categories\i.jpg" />
+    <Content Include="Content\images\Uploads\Categories\lclc.png" />
     <Content Include="Content\images\Uploads\Categories\lp8989.jpg" />
     <Content Include="Content\images\Uploads\Categories\opticb-500x500.jpeg" />
     <Content Include="Content\images\Uploads\Categories\pc.png" />
+    <Content Include="Content\images\Uploads\Categories\pt.png" />
     <Content Include="Content\images\Uploads\Categories\ptfcsclc.jpg" />
     <Content Include="Content\images\Uploads\Categories\racks.jpg" />
+    <Content Include="Content\images\Uploads\Categories\sclc.png" />
     <Content Include="Content\images\Uploads\Categories\scpc.jpg" />
     <Content Include="Content\images\Uploads\Categories\scsc.png" />
+    <Content Include="Content\images\Uploads\Categories\sip.png" />
+    <Content Include="Content\images\Uploads\Categories\twistedPair.png" />
+    <Content Include="Content\images\Uploads\Categories\ykn.png" />
     <Content Include="Content\images\Uploads\Categories\Планка сменная 8FC %28пластик%29.jpg" />
     <Content Include="Content\images\Uploads\Categories\Планка сменная 8SC %28пластик%29.jpg" />
     <Content Include="Content\images\Uploads\Categories\Планка сменная глухая %28пластик%29.jpg" />
@@ -719,6 +727,7 @@
     <Content Include="Scripts\tinymce\langs\readme.md" />
     <Content Include="Views\Home\TopNavigation.cshtml" />
     <Content Include="Views\Shop\ShopBlock.cshtml" />
+    <Content Include="Views\Shop\ProductDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

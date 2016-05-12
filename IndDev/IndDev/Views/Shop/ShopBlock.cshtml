@@ -6,10 +6,12 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="cartBloc">
-                    <img src="@Url.Content("~/Content/images/cart_logo.png")" alt=""/>
-                    <h4>КОРЗИНА</h4>
-                    <p>@Model.CartItems.Count() выбрано</p>
-                    <p>@Model.CalcTotalSumm().ToString("C")</p>
+                    <a href="@Url.Action("Index", "Cart")">
+                        <img src="@Url.Content("~/Content/images/cart_logo.png")" alt="" />
+                        <h4>КОРЗИНА</h4>
+                        <p>@Model.CartItems.Count() выбрано</p>
+                        <p>@Model.CalcTotalSumm().ToString("C")</p>
+                    </a>
                 </div>
 
                 <div class="search">
@@ -26,6 +28,9 @@
                         </div>
                         <div class="item">
                             <p>ШИРОКИЙ ВЫБОР</p>
+                        </div>
+                        <div class="item">
+                            <p>ДОСТАВКА ПО РОССИИ</p>
                         </div>
                     </div>
                 </div>

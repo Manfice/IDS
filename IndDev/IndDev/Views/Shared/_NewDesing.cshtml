@@ -42,6 +42,15 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
+                <div class="yCounter">
+                    <!-- Yandex.Metrika informer -->
+                    <a href="https://metrika.yandex.ru/stat/?id=37292330&amp;from=informer"
+                       target="_blank" rel="nofollow">
+                        <img src="https://informer.yandex.ru/informer/37292330/3_1_FFFFFFFF_EFEFEFFF_0_pageviews"
+                             style="width:88px; height:31px; border:0;" alt="Яндекс.Метрика" title="Яндекс.Метрика: данные за сегодня (просмотры, визиты и уникальные посетители)" onclick="try{Ya.Metrika.informer({i:this,id:37292330,lang:'ru'});return false}catch(e){}" />
+                    </a>
+                    <!-- /Yandex.Metrika informer -->
+                </div>
                 <p>
                     &#169 Copyright @DateTime.Today.Year All Rights Reserved <a href="/"> Industrial Development</a>
                 </p>
@@ -53,21 +62,34 @@
     <script src="~/Scripts/owl.carousel.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
 <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
-<script type="text/javascript">
-    $(document).ready(function() {
-        if ($('.bodyContent').height() + 80 < $(window).height()) {
-            $('footer').css({
-                position: 'absolute',
-                bottom: 0,
-                width: '100%'
-            });
-        } else {
-            $('footer').css({
-                position: 'relative'
-            });
-        };
-    });
-</script>
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter37292330 = new Ya.Metrika({
+                    id:37292330,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
+            f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/37292330" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
     @RenderSection("scripts", required: false)
 </body>
 </html>

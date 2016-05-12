@@ -1,0 +1,101 @@
+﻿@using IndDev.Domain.Entity.Products
+@using Microsoft.Ajax.Utilities
+@model IndDev.Domain.ViewModels.ProductView
+@{
+    ViewBag.Title = Model.Product.Title;
+    Layout = "~/Views/Shared/_NewDesing.cshtml";
+}
+
+@Html.Action("TopNavigation", "Home")
+@Html.Action("ShopBlock", "Shop")
+
+<div class="catalogBody">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <h1>@Model.Product.Title</h1>
+                <div class="navPagination">
+                    <a href="@Url.Action("Index")">Главная</a>
+                    <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                    <a href="@Url.Action("CatDetails", "Shop", new {catId = Model.Product.Categoy.ProductMenu.Id})">@Model.Product.Categoy.ProductMenu.Title</a>
+                    <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                    <a href="@Url.Action("ShowProducts", "Shop", new {catId = Model.Product.Categoy.Id})">@Model.Product.Categoy.Title</a>
+                    <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                    <div class="productTop">
+                        
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="productPhoto">
+                                    @if (Model.Avatar != null)
+                                    {
+                                        <img src="@Model.Avatar.Path" alt=""/>
+                                    }
+                                    else
+                                    {
+                                        <img src="~/Content/images/noimage.png" alt=""/>
+                                    }
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <h4>Описание:</h4>
+                                <p>@Model.Product.Description</p>
+                                @if (!Model.Product.Warning.IsNullOrWhiteSpace())
+                                {
+                                    <h3>Внимание - важно учесть:</h3>
+                                    <p>@Model.Product.Warning</p>
+                                }
+                            </div>
+                            <div class="col-md-4">
+                                <div class="stockBlock">
+                                    <p>Отгрузка со склада:</p>
+                                    <h3>@Model.Product.Stock.Title</h3>    
+                                </div>
+                                <div class="priceBlock">
+                                    
+                                    <p>Цены:</p>
+                                    @if (Model.Prices.Any(model => model.PriceType == PriceType.Sale && model.ConvValue > 0))
+                                    {
+                                        <h4>РАСПРОДАЖА</h4>
+                                        <h3>@Model.Prices.FirstOrDefault(model => model.PriceType == PriceType.Sale).ConvValue.ToString("C")</h3>
+
+                                    }
+                                    else
+                                    {
+                                        foreach (var item in Model.Prices.Where(model => model.PriceType != PriceType.Sale))
+                                        {
+                                            <h3>@item.Title: @item.ConvValue.ToString("C")</h3>
+                                        }
+                                    }
+                                </div>
+                                <div class="buyBloc">
+                                    @using (Html.BeginForm("AddToCart", "Cart", FormMethod.Post))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        @Html.Hidden("productId", Model.Product.Id)
+                                        <input type="number" min="1" name="quantity" value="1"/>
+                                        <input type="submit" value="КУПИТЬ"/>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="sideNavigation">
+                    <ul>
+                        <li class="navReclama"><i class="fa fa-money" aria-hidden="true"></i><a>Акции</a></li>
+                        <li class="navReSale"><i class="fa fa-refresh" aria-hidden="true"></i><a>Барахолочка</a></li>
+                        <li class="navFavourites"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i><a>Избранное</a></li>
+                    </ul>
+                    @Html.Action("Navigation", "Shop", new {selected = Model.Product.Categoy.ProductMenu.Id, product = Model.Product.Categoy.Id})
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+<script src="~/Scripts/shopScripts.js"></script>
+}

@@ -35,7 +35,7 @@ namespace IndDev.Controllers
             var product = _repository.GetProduct(productId);
             if (product == null) return View("Index");
             cart.AddItem(product,quantity);
-            return RedirectToAction("CatDetails","Shop",new {catId = sCat, selCat = product.Categoy.Id});
+            return RedirectToAction("ProductDetails","Shop",new { id = product.Id});
         }
 
         [HttpPost]

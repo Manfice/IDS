@@ -25,7 +25,7 @@
             <input type="text" name="title" value="@Model.Title"/>
             <br/>
             <label>Описание: </label>
-            <textarea name="descr" maxlength="120" rows="3">@Model.Descr</textarea>
+            <textarea name="descr" rows="3">@Model.Descr</textarea>
             <br/>
             <label>Приоритет: </label>
             <input name="priority" value="@Model.Priority" type="number" max="999" min="1"/><br/>
@@ -62,7 +62,7 @@
             <tr>
                 <td>@Html.Hidden("menuId",Model.Id)</td>
                 <td><input type="text" name="title" placeholder="Наименование"/></td>
-                <td><textarea name="descr" placeholder="Описание подкатегории" maxlength="120" rows="3"></textarea></td>
+                <td><textarea name="descr" placeholder="Описание подкатегории" rows="3"></textarea></td>
                 <td>@Html.CheckBox("IsRus",false)</td>
                 <td><input type="file" name="photo"/></td>
                 <td><input type="submit" class="btn btn-success btn-sm" value="Сохранить"/></td>

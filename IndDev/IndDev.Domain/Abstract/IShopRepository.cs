@@ -11,8 +11,7 @@ namespace IndDev.Domain.Abstract
         IEnumerable<Menu> GetSubMenu(int id);//Curent menu ID
         IEnumerable<ProductMenu> GetProductMenus();
         ProductMenu GetProductMenu(int id);
-        IEnumerable<ShopProductView> GetProducts(int catId, int selCat);
-        ShopProductView GetProduct(int id, int mCat);
+        ProductView GetProductDetails(int id);
         ShopProductView GetProduct(int id);
     }
 }

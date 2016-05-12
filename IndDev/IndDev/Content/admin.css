@@ -24,6 +24,9 @@
     background-color: burlywood;
     padding: 15px;
 }
+.blockChar input[type="text"] {
+    width: 200px;
+}
 .blockPrice {
     background-color: #66cdaa;
     padding: 15px;

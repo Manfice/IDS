@@ -10,6 +10,7 @@ using IndDev.Domain.Entity.Auth;
 using IndDev.Domain.Entity.Customers;
 using IndDev.Domain.Entity.Menu;
 using IndDev.Domain.Entity.Products;
+using IndDev.Domain.Entity.Stock;
 using IndDev.Domain.ViewModels;
 
 namespace IndDev.Domain.Context
@@ -23,6 +24,8 @@ namespace IndDev.Domain.Context
         public IEnumerable<CustomerStatus> GetCustomerStatuses => _context.CustomerStatuses.ToList();
 
         public IEnumerable<Customer> GetCustomers => _context.Customers.ToList();
+
+        public IEnumerable<Stock> GetStocks => _context.Stocks.ToList();
 
         public Customer Customer(int id)
         {
@@ -269,6 +272,7 @@ namespace IndDev.Domain.Context
             var brand = _context.Brands.Find(model.SelBrand);
             var mu = _context.MesureUnits.Find(model.SelMU);
             var cat = _context.ProductMenuItems.Find(model.SubCatId);
+            var stock = _context.Stocks.Find(model.StockId);
             var product = new Product
             {
                 Articul = model.Product.Articul,
@@ -279,7 +283,8 @@ namespace IndDev.Domain.Context
                 IsService = model.Product.IsService,
                 Title = model.Product.Title,
                 Vendor = brand.Vendor,
-                Warranty = model.Product.Warranty
+                Warranty = model.Product.Warranty,
+                Stock = stock
             };
             _context.Products.Add(product);
             var pTypes = Enum.GetNames(typeof (PriceType));
@@ -405,7 +410,8 @@ namespace IndDev.Domain.Context
             var brand = _context.Brands.Find(model.SelBr);
             var vendor = _context.Vendors.Find(model.SelVr);
             var mu = _context.MesureUnits.Find(model.SelMu);
-            
+            var stock = _context.Stocks.Find(model.SelStock);
+            dbProduct.Warranty = model.Product.Warranty;
             dbProduct.Articul = model.Product.Articul;
             dbProduct.Title = model.Product.Title;
             dbProduct.Description = model.Product.Description;
@@ -414,6 +420,8 @@ namespace IndDev.Domain.Context
             dbProduct.Brand = brand;
             dbProduct.Vendor = vendor;
             dbProduct.MesureUnit = mu;
+            dbProduct.Stock = stock;
+            dbProduct.Warning = model.Product.Warning;
             foreach (var price in model.Prices)
             {
                 var dbPrice = _context.Prices.Find(price.Id);

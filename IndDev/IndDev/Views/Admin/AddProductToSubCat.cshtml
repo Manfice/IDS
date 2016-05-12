@@ -9,8 +9,9 @@
         <td>@Html.EditorFor(model => model.Product.Title, new { placeholder = "Наименование" })</td>
         <td>@Html.TextAreaFor(model => model.Product.Description, new { placeholder = "Описание товара", rows = "3" })</td>
         <td>@Html.EditorFor(model => model.Product.Warranty, new { placeholder = "Гарантия" })</td>
-        <td>@Html.DropDownListFor(model => model.SelMU,new SelectList(Model.MesureUnits,"Id","FullName"))</td>
-        <td>@Html.DropDownListFor(model => model.SelBrand, new SelectList(Model.Brands,"Id","FullName"))</td>
+                    <td>@Html.DropDownListFor(model => model.SelMU, new SelectList(Model.MesureUnits, "Id", "FullName"))</td>
+                    <td>@Html.DropDownListFor(model => model.SelBrand, new SelectList(Model.Brands, "Id", "FullName"))</td>
+                    <td>@Html.DropDownListFor(model => model.StockId, new SelectList(Model.Stocks,"Id","Title"))</td>
         <td>@Html.CheckBox("isservice", false)</td>
         <td><input type="submit" class="btn btn-success btn-sm" value="Сохранить" /></td>
     </tr>

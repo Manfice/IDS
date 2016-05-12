@@ -296,6 +296,7 @@ namespace IndDev.Controllers
                 ReturnUrl = returnUrl,
                 Brands = _repository.GetAllBrands(),
                 MesureUnits = _repository.GetAllMesureUnits(),
+                Stocks = _repository.GetStocks,
                 Product = new Product()
             };
 
@@ -332,12 +333,13 @@ namespace IndDev.Controllers
                 Brands = _repository.GetAllBrands().Select(brand=>new SelectListItem { Text = brand.FullName, Value = brand.Id.ToString()}),
                 Vendors = _repository.GetAllVendors().Select(vendor=>new SelectListItem {Text = vendor.Title,Value = vendor.Id.ToString()}),
                 MesureUnits = _repository.GetAllMesureUnits().Select(mu=>new SelectListItem {Text = mu.FullName, Value = mu.Id.ToString()}),
-                Valuta = _repository.GetValutes(),
+                Stocks = _repository.GetStocks.Select(stock => new SelectListItem {Value = stock.Id.ToString(),Text = stock.Title}),
                 Avatar = prodAva,
                 Prices = _repository.GetPrices(product.Id),
                 SelBr = product.Brand.Id,
                 SelVr = product.Vendor.Id,
-                SelMu = product.MesureUnit.Id
+                SelMu = product.MesureUnit.Id,
+                SelStock = product.Stock.Id
             };
             ViewBag.Title = product.Title;
             return View(pdvm);

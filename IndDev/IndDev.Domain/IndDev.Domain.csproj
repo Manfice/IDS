@@ -116,6 +116,7 @@
     <Compile Include="Entity\Products\Price.cs" />
     <Compile Include="Entity\Products\Product.cs" />
     <Compile Include="Entity\Products\Vendor.cs" />
+    <Compile Include="Entity\Stock\Stock.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\CartViewModel.cs" />
@@ -129,9 +130,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Entity\Stock\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\IndDev.Auth\IndDev.Auth.csproj">
       <Project>{9c41963e-8c6f-413b-b3ff-ed328c1ae3a5}</Project>

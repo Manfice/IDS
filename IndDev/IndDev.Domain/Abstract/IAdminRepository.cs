@@ -6,6 +6,7 @@ using IndDev.Domain.Entity.Auth;
 using IndDev.Domain.Entity.Customers;
 using IndDev.Domain.Entity.Menu;
 using IndDev.Domain.Entity.Products;
+using IndDev.Domain.Entity.Stock;
 using IndDev.Domain.ViewModels;
 
 namespace IndDev.Domain.Abstract
@@ -52,5 +53,6 @@ namespace IndDev.Domain.Abstract
         ValidEvent RemoveImage(int id);
         void RemovePhoto(int id);
         IEnumerable<SelectListItem> GetValutes();
+        IEnumerable<Stock> GetStocks { get; }
     }
 }

@@ -25,7 +25,7 @@
             <input type="text" name="title" value="@Model.Title" />
             <br />
             <label>Описание: </label>
-            <textarea name="descr" maxlength="120" rows="3">@Model.Descr</textarea>
+            <textarea name="descr" rows="3">@Model.Descr</textarea>
             <br />
             @Html.CheckBox("IsRus", @Model.IsRus)
             @Html.LabelFor(item => item.IsRus, "Произведено в России?")
@@ -42,7 +42,7 @@
             <tr>
                 <td>Код:</td>
                 <td>Артикул:</td>
-                <td colspan="2">Наименование:</td>
+                <td>Наименование:</td>
                 <td>Закуп:</td>
                 <td>Валюта:</td>
                 <td>Розница:</td>
@@ -60,6 +60,7 @@
                 <td>Гарантия:</td>
                 <td>Ед. изм.:</td>
                 <td>Брэнд:</td>
+                <td>Склад:</td>
                 <td>Услуга:</td>
                 <td>Действия:</td>
             </tr>

@@ -21,7 +21,7 @@ namespace IndDev.Domain.Entity.Menu
         public bool IsRus { get; set; }
         public virtual ProdMenuImage Image { get; set; }
         public virtual ProductMenu ProductMenu { get; set; }
-        public ICollection<Product> Products { get; set; }  
+        public virtual ICollection<Product> Products { get; set; }  
     }
 
     public class ProdMenuImage
