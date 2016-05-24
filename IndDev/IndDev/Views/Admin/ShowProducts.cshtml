@@ -1,13 +1,15 @@
-﻿@model IEnumerable<IndDev.Domain.ViewModels.ProductViewModel>
+﻿@model IEnumerable<IndDev.Domain.Entity.Products.Product>
 @foreach (var item in Model)
 {
     <tr>
         <td>@item.Id</td>
         <td>@item.Articul</td>
         <td>@item.Title</td>
-        <td>@item.PriceIn</td>
-        <td>@item.Currency</td>
-        <td>@item.PriceOut</td>
+        @foreach (var pr in item.Prices)
+        {
+            <td>@pr.Value @pr.Currency.Code</td>
+        }
+        <td>@item.UpdateTime</td>
         <td>
             @Html.ActionLink("Подробнее","ProductDetails",new {id=@item.Id})
             @Html.ActionLink("Удалить","RemoveProduct", new {id=@item.Id, returnUrl=Request.Url.PathAndQuery})

@@ -7,4 +7,18 @@
         autoplayHoverPause: true,
         loop: true
     });
+    var visible = false;
+    $('#call').click(function () {
+        if (visible === false) {
+            $('.callMe').css({
+                'visibility': 'visible'
+            });
+            visible = true;
+        } else {
+            $('.callMe').css({
+                'visibility': 'collapse'
+            });
+            visible = false;
+        }
+    });
 });

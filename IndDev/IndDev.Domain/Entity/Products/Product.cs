@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using IndDev.Domain.Entity.Menu;
 
 namespace IndDev.Domain.Entity.Products
@@ -14,6 +15,8 @@ namespace IndDev.Domain.Entity.Products
         public string Warranty { get; set; }
         public bool Reclama { get; set; }
         public decimal Rate { get; set; }
+        public DateTime UpdateTime { get; set; }
+        public bool Show { get; set; }
         public virtual MesureUnit MesureUnit { get; set; }
         public virtual Brand Brand { get; set; }
         public virtual Vendor Vendor { get; set; }

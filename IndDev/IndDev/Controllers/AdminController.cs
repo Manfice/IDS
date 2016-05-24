@@ -12,6 +12,8 @@ using IndDev.Domain.Entity.Menu;
 using IndDev.Domain.Entity.Products;
 using IndDev.Domain.ViewModels;
 using IndDev.Models;
+using NPOI.HSSF.UserModel;
+using NPOI.XSSF.UserModel;
 
 namespace IndDev.Controllers
 {
@@ -215,6 +217,48 @@ namespace IndDev.Controllers
             return RedirectToAction("CatDetails", new {id = menuId});
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult UpdateProducts(int catId,HttpPostedFileBase prodList)
+        {
+            if (prodList.ContentLength>0)
+            {
+                if (prodList.FileName.EndsWith("xls")|| prodList.FileName.EndsWith("xlsx"))
+                {
+                    var path = Server.MapPath("~/Upload/" + prodList.FileName);
+                    if (System.IO.File.Exists(path))
+                    {
+                        System.IO.File.Delete(path);
+                    }
+                    prodList.SaveAs(path);
+                    var pList = new List<ProductExcell>();
+                    using (var fs = System.IO.File.OpenRead(path))
+                    {
+                        var wb = new XSSFWorkbook(fs);
+                        var wsh = wb.GetSheetAt(0);
+                        for (var row = 1; row < wsh.LastRowNum+1; row++)
+                        {
+                            var p = new ProductExcell();
+                            p.Art = wsh.GetRow(row).GetCell(0).StringCellValue;
+                            p.Title= wsh.GetRow(row).GetCell(1).StringCellValue;
+                            p.Retail = (decimal)wsh.GetRow(row).GetCell(2).NumericCellValue;
+                            p.Opt = (decimal)wsh.GetRow(row).GetCell(3).NumericCellValue;
+                            p.Partner = (decimal)wsh.GetRow(row).GetCell(4).NumericCellValue;
+                            p.Sale = (decimal)wsh.GetRow(row).GetCell(5).NumericCellValue;
+                            p.Brand = wsh.GetRow(row).GetCell(6).StringCellValue;
+                            p.Curr = (int)wsh.GetRow(row).GetCell(7).NumericCellValue;
+                            p.Stock = (int) wsh.GetRow(row).GetCell(8).NumericCellValue;
+                            p.MeasureUnit = (int) wsh.GetRow(row).GetCell(9).NumericCellValue;
+                            p.Warranty = (int)wsh.GetRow(row).GetCell(10).NumericCellValue;
+                            pList.Add(p);
+                        }
+                    }
+                    _repository.UpToDateProducts(pList,catId);
+                }
+            }
+            return RedirectToAction("SubCatDetails",new {id=catId});
+        }
+
         public ActionResult SubCatDetails(int id, string returnUrl)
         {
             var sc = _repository.GetSubCat(id);
@@ -320,7 +364,7 @@ namespace IndDev.Controllers
                 };
                 pvm.Add(pvmItem);
             }
-            return PartialView(pvm);
+            return PartialView(p);
         }
 
         public ActionResult ProductDetails(int id)

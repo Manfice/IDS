@@ -94,6 +94,7 @@ namespace IndDev.Domain.ViewModels
         public int SelCurr { get; set; }
         public int PriceFrom { get; set; }
         public string Valuta { get; set; }
+        public Currency Currency { get; set; }
         public IEnumerable<SelectListItem> Currencies { get; set; }
         public PriceType PriceType { get; set; }
     }
@@ -122,5 +123,20 @@ namespace IndDev.Domain.ViewModels
         //public ProductMenu ProductMenu { get; set; }
         //public bool IsSale { get; set; }
         //public bool Byeble { get; set; } // можно ли эту хрень купить?
+    }
+
+    public class ProductExcell
+    {
+        public string Art { get; set; }
+        public string Title { get; set; }
+        public decimal Retail { get; set; }
+        public decimal Opt { get; set; }
+        public decimal Partner { get; set; }
+        public decimal Sale { get; set; }
+        public string Brand { get; set; }
+        public int Curr { get; set; }
+        public int Stock { get; set; }
+        public int MeasureUnit { get; set; }
+        public int Warranty { get; set; }
     }
 }

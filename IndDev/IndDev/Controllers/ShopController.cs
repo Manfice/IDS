@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using IndDev.Domain.Abstract;
 using IndDev.Domain.Entity.Cart;
 using IndDev.Domain.Entity.Menu;
+using IndDev.Domain.Entity.Products;
+using IndDev.Domain.ViewModels;
 using IndDev.Models;
 
 namespace IndDev.Controllers
@@ -73,6 +75,20 @@ namespace IndDev.Controllers
         {
             ViewBag.SubCat = subCat;
             return PartialView(_repository.GetProduct(id));
+        }
+
+        public ActionResult Search(IEnumerable<ProductView> products, string searchString)
+        {
+            ViewBag.Search = searchString;
+            return View(products);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Search(string search)
+        {
+            var sProd = new List<ProductView>();
+            return RedirectToAction("Search",new {products=sProd, searchString=search });
         }
     }
 }

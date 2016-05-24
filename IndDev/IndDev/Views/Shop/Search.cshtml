@@ -1,0 +1,68 @@
+﻿@model IEnumerable<IndDev.Domain.ViewModels.ProductView>
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_NewDesing.cshtml";
+}
+@Html.Action("TopNavigation", "Home")
+@Html.Action("ShopBlock", "Shop")
+<div class="catalogBody">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <h1>Поиск по запросу:"@ViewBag.Search"</h1>
+                <div class="navPagination">
+                    <a href="@Url.Action("Index")">Главная</a>
+                    <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                    <a>Результат поиска</a>
+                    <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                    <a><strong>@Model.Count()</strong> позиций</a>
+                </div>
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-6 productView">
+
+                        <div class="goods">
+                            <a href="@Url.Action("ProductDetails","Shop", new {id=item.Product.Id})">
+                                @if (item.Avatar != null)
+                                {
+                                    <img src="@item.Avatar.Path" alt="@item.Product.Title" />
+                                }
+                                else
+                                {
+                                    <img src="~/Content/images/noimage.png" alt="" />
+                                }
+                                <div class="goodsDescr">
+                                    <h3>АРТ : @item.Product.Articul</h3>
+                                    <p>@item.Product.Title</p>
+                                </div>
+                            </a>
+                            <div class="actionSection">
+                                @if (item.Prices.Any())
+                                {
+                                    <p>от @item.Prices.Max(price => price.ConvValue).ToString("C")/@item.Product.MesureUnit.ShortName</p>
+                                }
+                                else
+                                {
+                                    <p>НЕТ В НАЛИЧИИ</p>
+                                }
+                                <a>КУПИТЬ</a>
+                            </div>
+                        </div>
+
+                    </div>
+                }
+            </div>
+            <div class="col-md-3">
+                <div class="sideNavigation">
+                    <ul>
+                        <li class="navReclama"><i class="fa fa-money" aria-hidden="true"></i><a>Акции</a></li>
+                        <li class="navReSale"><i class="fa fa-refresh" aria-hidden="true"></i><a>Барахолочка</a></li>
+                        <li class="navFavourites"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i><a>Избранное</a></li>
+                    </ul>
+                    @Html.Action("Navigation", "Shop")
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

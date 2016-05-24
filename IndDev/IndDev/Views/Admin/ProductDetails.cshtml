@@ -127,7 +127,7 @@
                                 <li>
                                     @Html.Label(Model.Prices[i].PriceType.ToString())
                                     @Html.EditorFor(model => model.Prices[i].Title)
-                                    @Html.DropDownListFor(model => model.Prices[i].SelCurr, Model.Prices[i].Currencies, price.SelCurr)
+                                    @Html.DropDownListFor(model => model.Prices[i].SelCurr, Model.Prices[i].Currencies, price.Currency.StringCode)
                                     @Html.EditorFor(model => model.Prices[i].Value)
                                     @Html.Label(Model.Prices[i].Valuta)
 

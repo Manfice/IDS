@@ -26,6 +26,104 @@ namespace IndDev.Domain.Context
         public IEnumerable<Customer> GetCustomers => _context.Customers.ToList();
 
         public IEnumerable<Stock> GetStocks => _context.Stocks.ToList();
+        public void UpToDateProducts(IEnumerable<ProductExcell> products, int cat)
+        {
+            var productExcells = products as IList<ProductExcell> ?? products.ToList();
+            if (!productExcells.Any()) return;
+            foreach (var item in productExcells)
+            {
+                if (!string.IsNullOrWhiteSpace(item.Art))
+                {
+
+
+                    var product = _context.Products.FirstOrDefault(product1 => product1.Articul == item.Art);
+                    if (product != null)
+                    {
+                        var currensy = _context.Currencies.Find(item.Curr);
+                        if (product.Prices.Any(price => price.PriceType == PriceType.Retail))
+                        {
+                            product.Prices.FirstOrDefault(p => p.PriceType == PriceType.Retail).Currency = currensy;
+                            product.Prices.FirstOrDefault(p => p.PriceType == PriceType.Retail).Value = item.Retail;
+                        }
+                        if (product.Prices.Any(price => price.PriceType == PriceType.LowOpt))
+                        {
+                            product.Prices.FirstOrDefault(p => p.PriceType == PriceType.LowOpt).Currency = currensy;
+                            product.Prices.FirstOrDefault(p => p.PriceType == PriceType.LowOpt).Value = item.Opt;
+                        }
+                        if (product.Prices.Any(price => price.PriceType == PriceType.Opt))
+                        {
+                            product.Prices.FirstOrDefault(p => p.PriceType == PriceType.Opt).Currency = currensy;
+                            product.Prices.FirstOrDefault(p => p.PriceType == PriceType.Opt).Value = item.Partner;
+                        }
+                        if (product.Prices.Any(price => price.PriceType == PriceType.Sale))
+                        {
+                            product.Prices.FirstOrDefault(p => p.PriceType == PriceType.Sale).Currency = currensy;
+                            product.Prices.FirstOrDefault(p => p.PriceType == PriceType.Sale).Value = item.Sale;
+                        }
+                        product.MesureUnit = _context.MesureUnits.Find(item.MeasureUnit);
+                        product.Stock = _context.Stocks.Find(item.Stock);
+                        product.Warranty = item.Warranty.ToString();
+                        product.UpdateTime = DateTime.Now;
+                        product.Warranty = item.Warranty.ToString();
+                        product.Brand = _context.Brands.FirstOrDefault(p => p.FullName == item.Brand);
+                    }
+                    else
+                    {
+                        var br = _context.Brands.FirstOrDefault(b => b.FullName.Contains(item.Brand));
+                        var ct = _context.ProductMenuItems.Find(cat);
+                        var p = new Product
+                        {
+                            Articul = item.Art,
+                            Title = item.Title,
+                            Brand = br,
+                            Vendor = br?.Vendor,
+                            Categoy = ct,
+                            IsService = false,
+                            Reclama = false,
+                            UpdateTime = DateTime.Now,
+                            Show = false,
+                            MesureUnit = _context.MesureUnits.Find(item.MeasureUnit),
+                            Stock = _context.Stocks.Find(item.Stock),
+                            Warranty = item.Warranty.ToString()
+                        };
+                        _context.Products.Add(p);
+                        var pTypes = Enum.GetNames(typeof (PriceType));
+                        foreach (var s in pTypes)
+                        {
+                            var price = new Price
+                            {
+                                PriceType = (PriceType) Enum.Parse(typeof (PriceType), s),
+                                Currency = _context.Currencies.Find(item.Curr),
+                                Product = p,
+                                Publish = false,
+                                QuanttityFrom = 1
+                            };
+                            switch (price.PriceType)
+                            {
+                                case PriceType.Retail:
+                                    price.Value = item.Retail;
+                                    price.Title = "Розница";
+                                    break;
+                                case PriceType.LowOpt:
+                                    price.Value = item.Opt;
+                                    price.Title = "Опт";
+                                    break;
+                                case PriceType.Opt:
+                                    price.Title = "Партнер";
+                                    price.Value = item.Partner;
+                                    break;
+                                case PriceType.Sale:
+                                    price.Title = "Распродажа";
+                                    price.Value = item.Sale;
+                                    break;
+                            }
+                            _context.Prices.Add(price);
+                        }
+                    }
+                }
+                _context.SaveChanges();
+            }
+        }
 
         public Customer Customer(int id)
         {
@@ -284,7 +382,9 @@ namespace IndDev.Domain.Context
                 Title = model.Product.Title,
                 Vendor = brand.Vendor,
                 Warranty = model.Product.Warranty,
-                Stock = stock
+                Stock = stock,
+                Show = false,
+                UpdateTime = DateTime.Now
             };
             _context.Products.Add(product);
             var pTypes = Enum.GetNames(typeof (PriceType));
@@ -296,10 +396,20 @@ namespace IndDev.Domain.Context
                     Currency = _context.Currencies.FirstOrDefault(currency => currency.Code=="RUB"),
                     Product = product,
                     Publish = false,
-                    Title = s,
                     Value = 0,
                     QuanttityFrom = 1
                 };
+                switch (price.PriceType)
+                {
+                        case PriceType.Sale:
+                        price.Title = "Распродажа";break;
+                    case PriceType.Retail:
+                        price.Title = "Розница"; break;
+                    case PriceType.LowOpt:
+                        price.Title = "Опт"; break;
+                    case PriceType.Opt:
+                        price.Title = "Партнер"; break;
+                }
                 _context.Prices.Add(price);
             }
             _context.SaveChanges();
@@ -422,6 +532,8 @@ namespace IndDev.Domain.Context
             dbProduct.MesureUnit = mu;
             dbProduct.Stock = stock;
             dbProduct.Warning = model.Product.Warning;
+            dbProduct.UpdateTime = DateTime.Now;
+            dbProduct.Show = model.Product.Show;
             foreach (var price in model.Prices)
             {
                 var dbPrice = _context.Prices.Find(price.Id);
@@ -463,13 +575,14 @@ namespace IndDev.Domain.Context
                 {
                     Value = price.Value,
                     Title = price.Title,
-                    Id = price.Id,
                     PriceType = price.PriceType,
+                    Id = price.Id,
                     Currencies = _context.Currencies.Select(currency => new SelectListItem {Text = currency.StringCode, Value = currency.Id.ToString()}),
                     PriceFrom = 1,
                     Public = price.Publish,
                     SelCurr = price.Currency.Id,
-                    Valuta = price.Currency.Code
+                    Valuta = price.Currency.Code,
+                    Currency = price.Currency
                 };
                 psl.Add(ps);
             }

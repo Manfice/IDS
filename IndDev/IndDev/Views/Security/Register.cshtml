@@ -1,7 +1,12 @@
 ﻿@model IndDev.Auth.Model.RegisterViewModel
 @{
     ViewBag.Title = "Register";
-    Layout = "~/Views/Shared/_LayoutSFoot.cshtml";
+    Layout = "~/Views/Shared/_NewDesing.cshtml";
+}
+@section links
+{
+    
+<link href="~/Content/Main.css" rel="stylesheet" />
 }
 
 @if (TempData["secureMessage"] != null)
@@ -52,7 +57,7 @@
     @Scripts.Render("~/bundles/jqueryval")
 <script type="text/javascript">
     if ($('.loginForm').height() + 80 < $(window).height()) {
-            $('.footer').css({
+            $('footer').css({
                 position: 'absolute',
                 bottom: 0,
                 width:'100%'
@@ -62,7 +67,7 @@
                 'background-size':'100%'
             });
         } else {
-            $('.footer').css({
+            $('footer').css({
                 position: 'relative'
             });
         }

@@ -19,13 +19,18 @@ body {
     height: 30px;
     z-index: 100;
 }
-.header_new h1 {
+.brandView {
     margin: 0;
     font-size: 15px;
-    padding: 7px;
+    padding: 5px 0;
     font-weight: 700;
     max-height: 50px;
     float: left;
+    color: white;
+}
+.brandView:hover {
+    text-decoration: none;
+    color: orangered;
 }
 .currensyUl {
     float: left;
@@ -230,6 +235,7 @@ footer p {
     width: 100%;
     height: 50px;
     background-color: black;
+    position: relative;
 }
 .tel {
     float: right;
@@ -242,12 +248,31 @@ footer p {
     margin: 0;
     padding: 0;
 }
-.tel p {
+.tel a {
     color: white;
     letter-spacing: 1px;
     font-size: 12px;
     border-bottom: dotted 1px wheat;
     margin: 0;
+    cursor: pointer;
+}
+.tel a:hover {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+}
+.callMe {
+    position: absolute;
+    right: 0;
+    bottom: -95px;
+    background-color: rgb(0, 122, 202);
+    height: 105px;
+    visibility: collapse;
+}
+.callMe input {
+    margin: 5px;
+    height: 25px;
+    font-weight: bold;
 }
 .subMenuList {
     list-style: none;
@@ -313,7 +338,7 @@ footer p {
     font-size: 3em;
     cursor: pointer;
     letter-spacing: 10px;
-    color: rgb(0, 122, 203);
+    color: orangered;
 }
 .catDescr a:hover {
     text-decoration: none;
@@ -342,52 +367,52 @@ footer p {
     height: 300px;
 }
 .v1 {
-    background: url("/Content/images/products/twist-pair.jpg") no-repeat center center;
-    background-size: 100%;
+    background: url("/Content/images/products/twist-pair.jpg") no-repeat bottom center;
+    background-size: auto 100%;
     width: 100%;
     height: 100%;
 }
 .v2 {
-    background: url("/Content/images/products/foc.jpg") no-repeat center center;
+    background: url("/Content/images/products/foc.jpg") no-repeat bottom center;
     width: 100%;
     height: 100%;
-    background-size: 100%;
+    background-size: auto 100%;
 }
 .v3 {
-    background: url("/Content/images/products/plint.jpg") no-repeat center center;
+    background: url("/Content/images/products/plint.jpg") no-repeat bottom center;
     width: 100%;
     height: 100%;
-    background-size: 100%;
+    background-size: auto 100%;
 }
 .v4 {
-    background: url("/Content/images/products/944_big.jpg") no-repeat center center;
+    background: url("/Content/images/products/944_big.jpg") no-repeat bottom center;
     width: 100%;
     height: 100%;
-    background-size: 100%;
+    background-size: auto 100%;
 }
 .v5 {
-    background: url("/Content/images/products/sip.jpg") no-repeat center center;
+    background: url("/Content/images/products/sip.jpg") no-repeat top center;
     width: 100%;
     height: 100%;
-    background-size: 100%;
+    background-size: auto 100%;
 }
 .v6 {
-    background: url("/Content/images/products/fiber.jpg") no-repeat center center;
+    background: url("/Content/images/products/fiber.jpg") no-repeat top center;
     width: 100%;
     height: 100%;
-    background-size: 100%;
+    background-size: auto 100%;
 }
 .v7 {
-    background: url("/Content/images/products/racks.jpg") no-repeat center center;
+    background: url("/Content/images/products/racks.jpg") no-repeat top center;
     width: 100%;
     height: 100%;
-    background-size: 100%;
+    background-size: auto 100%;
 }
 .v8 {
-    background: url("/Content/images/products/fsm-80.jpg") no-repeat center center;
+    background: url("/Content/images/products/fsm-80.jpg") no-repeat top center;
     width: 100%;
     height: 100%;
-    background-size: 100%;
+    background-size: auto 100%;
 }
 .v1_descr {
     position: absolute;
@@ -613,7 +638,7 @@ footer p {
 /*end feedback*/
 /*product Categories*/
 .product {
-    border: none;
+    border: solid 1px green;
     text-align: center;
     overflow: hidden;
     padding: 10px;
@@ -655,7 +680,7 @@ footer p {
     position: fixed;
     width: 100%;
     top: 79px;
-    z-index: 999;
+    z-index: 998;
     background-color: white;
     margin: 0;
     padding: 0;
@@ -693,7 +718,7 @@ footer p {
     margin: 0;
 }
 .search input[type="text"] {
-    width: 250px;
+    width: 200px;
     margin: 0;
     padding: 5px;
     border-right: none;
@@ -1023,3 +1048,14 @@ footer p {
     text-shadow: 0 2px 2px #2b5270;
 }
 /* end product view*/
+/*Shop description*/
+.aboutId {
+    font-family: "RobotoCondensedRegular";
+    margin: 0;
+    padding: 10px;
+    color: rgb(83, 145, 208);
+}
+.aboutId article {
+    color: #444444;
+}
+/*end Shop description*/

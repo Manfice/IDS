@@ -51,7 +51,7 @@ namespace IndDev.Controllers
                         }
                     }
                     TempData["secureMessage"] = string.Format(svm.Message);
-                    return RedirectToAction("Landing","Home");
+                    return RedirectToAction("Index","Home");
                 }
             
             TempData["secureMessage"] = string.Format("Указаны не корректные данные.");
@@ -84,10 +84,10 @@ namespace IndDev.Controllers
                         {
                             return Redirect(decodeUrl);
                         }
-                        return RedirectToAction("Landing", "Home");
+                        return RedirectToAction("Index", "Home");
                     }
                     TempData["secureMessage"] = string.Format(rvm.Message);
-                    return RedirectToAction("Landing", "Home");
+                    return RedirectToAction("Index", "Home");
                 }
             TempData["secureMessage"] = rvm.Message;
             }
@@ -148,7 +148,7 @@ namespace IndDev.Controllers
         public ActionResult LogOut()
         {
             FormsAuthentication.SignOut();
-            return RedirectToAction("Landing","Home");
+            return RedirectToAction("Index","Home");
         }
     }
 }

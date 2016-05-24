@@ -54,5 +54,6 @@ namespace IndDev.Domain.Abstract
         void RemovePhoto(int id);
         IEnumerable<SelectListItem> GetValutes();
         IEnumerable<Stock> GetStocks { get; }
+        void UpToDateProducts(IEnumerable<ProductExcell> products, int cat);
     }
 }

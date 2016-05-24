@@ -18,7 +18,16 @@
                 </ul>
                 <div class="tel">
                     <h4>8(8652)99-05-82</h4>
-                    <p>заказать обратный звонок</p>
+                    <a id="call">заказать обратный звонок</a>
+                </div>
+                <div class="callMe">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.TextBox("name")<br/>
+                        <input type="tel" name="phone"/><br/>
+                        <input type="submit" value="ЗАКАЗАТЬ"/>
+                    }
                 </div>
             </div>
         </div>

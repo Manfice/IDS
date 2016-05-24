@@ -21,14 +21,15 @@ namespace IndDev.Controllers
         
         public ActionResult Index()
         {
-           return View();
-        }
-
-        public ActionResult Test()
-        {
             ViewBag.Title = "Industrial Development";
             return View();
         }
+
+        //public ActionResult Test()
+        //{
+        //    ViewBag.Title = "Industrial Development";
+        //    return View();
+        //}
         public ActionResult About()
         {
             return View();
@@ -38,10 +39,10 @@ namespace IndDev.Controllers
         {
             return View();
         }
-        public ActionResult Landing()
-        {
-            return View();
-        }
+        //public ActionResult Landing()
+        //{
+        //    return View();
+        //}
 
         public PartialViewResult Login(int id)
         {
@@ -79,7 +80,7 @@ namespace IndDev.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult SendMessage(string fio, string email, string message)
         {
-            return RedirectToAction("Landing");
+            return RedirectToAction("Index");
         }
     }
 }
