@@ -12,6 +12,10 @@ using IndDev.Domain.Entity.Menu;
 using IndDev.Domain.Entity.Products;
 using IndDev.Domain.Entity.Stock;
 using IndDev.Domain.ViewModels;
+using NPOI.HSSF.Util;
+using NPOI.SS.UserModel;
+using NPOI.SS.Util;
+using NPOI.XSSF.UserModel;
 
 namespace IndDev.Domain.Context
 {
@@ -34,8 +38,6 @@ namespace IndDev.Domain.Context
             {
                 if (!string.IsNullOrWhiteSpace(item.Art))
                 {
-
-
                     var product = _context.Products.FirstOrDefault(product1 => product1.Articul == item.Art);
                     if (product != null)
                     {
@@ -418,7 +420,7 @@ namespace IndDev.Domain.Context
 
         public IEnumerable<Product> GetCatProduct(int catId)
         {
-            return _context.Products.Where(product => product.Categoy.Id == catId).ToList();
+            return _context.Products.Where(product => product.Categoy.Id == catId).OrderByDescending(product => product.UpdateTime).ToList();
         }
 
         public Product GetProduct(int id)
@@ -610,6 +612,75 @@ namespace IndDev.Domain.Context
             return
                 _context.Currencies.Select(
                     currency => new SelectListItem {Text = currency.StringCode, Value = currency.Id.ToString()});
+        }
+
+        public IWorkbook GetPrice()
+        {
+            IWorkbook price = new XSSFWorkbook();
+            ISheet sheet = price.CreateSheet(DateTime.Now.ToShortDateString());
+            sheet.CreateRow(0).CreateCell(1).SetCellValue("Industrial Development");
+
+            var style = price.CreateCellStyle();
+
+            var font = price.CreateFont();
+            font.FontHeightInPoints=24;
+            style.SetFont(font);
+            sheet.GetRow(0).GetCell(1).CellStyle=style;
+
+            sheet.SetColumnWidth(0,7000);
+            sheet.SetColumnWidth(1,25000);
+            sheet.SetColumnWidth(2,3000);
+            sheet.SetColumnWidth(3,3000);
+            sheet.SetColumnWidth(4,3000);
+            sheet.SetColumnWidth(5,3000);
+            sheet.SetColumnWidth(6,5000);
+            sheet.SetColumnWidth(7,1000);
+            sheet.SetColumnWidth(8,1000);
+            sheet.SetColumnWidth(9,1000);
+
+            var cellBorderStyle = price.CreateCellStyle();
+            cellBorderStyle.BorderBottom=BorderStyle.Thin;
+            cellBorderStyle.BorderLeft=BorderStyle.Thin;
+            cellBorderStyle.BorderRight=BorderStyle.Thin;
+            cellBorderStyle.BorderTop=BorderStyle.Thin;
+            cellBorderStyle.FillForegroundColor = IndexedColors.LightGreen.Index;
+
+
+            var startRow = 2;
+            var pCat = _context.ProductMenus.ToList();
+            foreach (var menu in pCat)
+            {
+                var mRow = sheet.CreateRow(startRow);
+                var mCell = mRow.CreateCell(0);
+                mCell.SetCellValue(menu.Title);
+                mCell.CellStyle = cellBorderStyle;
+                sheet.AddMergedRegion(new CellRangeAddress(startRow, startRow, 0, 10));
+                
+                startRow++;
+                foreach (var cat in menu.MenuItems)
+                {
+                    sheet.CreateRow(startRow).CreateCell(2).SetCellValue(cat.Title);
+                    startRow++;
+                    foreach (var product in cat.Products)
+                    {
+                        var rw = sheet.CreateRow(startRow);
+                        rw.CreateCell(0).SetCellValue(product.Articul);
+                        rw.CreateCell(1).SetCellValue(product.Title);
+                        rw.CreateCell(2).SetCellValue((double)product.Prices.FirstOrDefault(p=>p.PriceType==PriceType.Retail)?.Value);
+                        rw.CreateCell(3).SetCellValue((double)product.Prices.FirstOrDefault(p => p.PriceType == PriceType.LowOpt)?.Value);
+                        rw.CreateCell(4).SetCellValue((double)product.Prices.FirstOrDefault(p => p.PriceType == PriceType.Opt)?.Value);
+                        rw.CreateCell(5).SetCellValue((double)product.Prices.FirstOrDefault(p => p.PriceType == PriceType.Sale)?.Value);
+                        rw.CreateCell(6).SetCellValue(product.Brand.FullName);
+                        rw.CreateCell(7).SetCellValue(product.Prices.FirstOrDefault(p => p.PriceType == PriceType.Retail)?.Currency.Id.ToString());
+                        rw.CreateCell(8).SetCellValue(product.Stock.Id);
+                        rw.CreateCell(9).SetCellValue(product.MesureUnit.Id);
+                        rw.CreateCell(10).SetCellValue(product.Warranty);
+                        startRow++;
+                    }
+                }
+
+            }
+            return price;
         }
     }
 }

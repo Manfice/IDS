@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
 using IndDev.Domain.Abstract;
 using IndDev.Domain.Entity;
 using IndDev.Domain.Entity.Auth;
@@ -257,6 +258,17 @@ namespace IndDev.Controllers
                 }
             }
             return RedirectToAction("SubCatDetails",new {id=catId});
+        }
+
+        public ActionResult GetPriceList()
+        {
+            var doc = _repository.GetPrice();
+            var path = Server.MapPath("~/Content/report.xlsx");
+            var report = System.IO.File.Create(path);
+            doc.Write(report);
+            report.Close();
+            var result = System.IO.File.OpenRead(path);
+            return File(result, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "price.xlsx");
         }
 
         public ActionResult SubCatDetails(int id, string returnUrl)

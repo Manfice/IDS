@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Web.Mvc;
 using IndDev.Auth.Logic;
 using IndDev.Domain.Entity;
@@ -8,6 +9,7 @@ using IndDev.Domain.Entity.Menu;
 using IndDev.Domain.Entity.Products;
 using IndDev.Domain.Entity.Stock;
 using IndDev.Domain.ViewModels;
+using NPOI.SS.UserModel;
 
 namespace IndDev.Domain.Abstract
 {
@@ -55,5 +57,6 @@ namespace IndDev.Domain.Abstract
         IEnumerable<SelectListItem> GetValutes();
         IEnumerable<Stock> GetStocks { get; }
         void UpToDateProducts(IEnumerable<ProductExcell> products, int cat);
+        IWorkbook GetPrice();
     }
 }
