@@ -5,7 +5,7 @@
     <tr>
         <td>@item.Id</td>
         <td>@item.Title</td>
-        <td>@item.Descr</td>
+        <td>@Html.Raw(item.Descr)</td>
         <td><input type="checkbox" checked="@item.IsRus" disabled="disabled"/></td>
         <td>@if (item.Image != null)
             {

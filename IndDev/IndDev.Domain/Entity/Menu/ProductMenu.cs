@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Web.Mvc;
 using IndDev.Domain.Entity.Products;
 
 namespace IndDev.Domain.Entity.Menu
@@ -7,6 +8,7 @@ namespace IndDev.Domain.Entity.Menu
     {
         public int Id { get; set; }
         public string Title { get; set; }
+        [AllowHtml]
         public string Descr { get; set; }
         public int Priority { get; set; }
         public virtual ProdMenuImage Image { get; set; }    
@@ -17,6 +19,7 @@ namespace IndDev.Domain.Entity.Menu
     {
         public int Id { get; set; }
         public string Title { get; set; }
+        [AllowHtml]
         public string Descr { get; set; }
         public bool IsRus { get; set; }
         public virtual ProdMenuImage Image { get; set; }

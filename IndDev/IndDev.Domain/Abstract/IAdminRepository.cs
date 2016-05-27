@@ -58,5 +58,6 @@ namespace IndDev.Domain.Abstract
         IEnumerable<Stock> GetStocks { get; }
         void UpToDateProducts(IEnumerable<ProductExcell> products, int cat);
         IWorkbook GetPrice();
+        void UpdateByPrice(IList<ProductExcell> price);
     }
 }

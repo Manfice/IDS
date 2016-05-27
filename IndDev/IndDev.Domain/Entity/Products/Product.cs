@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Web.Mvc;
 using IndDev.Domain.Entity.Menu;
 
 namespace IndDev.Domain.Entity.Products
@@ -8,7 +9,9 @@ namespace IndDev.Domain.Entity.Products
     {
         public int Id { get; set; }
         public string Title { get; set; }
+        [AllowHtml]
         public string Description { get; set; }
+        [AllowHtml]
         public string Warning { get; set; }
         public string Articul { get; set; }
         public bool IsService { get; set; } 

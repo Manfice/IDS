@@ -97,9 +97,9 @@
                     @Html.Label("Наименование:")
                     @Html.TextBoxFor(model => model.Product.Title)<br/>
                     @Html.Label("Описание:")<br/>
-                    @Html.TextAreaFor(model => model.Product.Description)<br/>
+                    @Html.TextAreaFor(model => model.Product.Description, new {@class="editorTiny"})<br/>
                     @Html.Label("Предупреждение:")<br />
-                    @Html.TextAreaFor(model => model.Product.Warning)<br />
+                    @Html.TextAreaFor(model => model.Product.Warning, new { @class = "editorTiny" })<br />
                     @Html.Label("Товар является услугой:")
                     @Html.CheckBoxFor(model => model.Product.IsService)<br/>
                     @Html.Label("Товар выставить на распродажу:")

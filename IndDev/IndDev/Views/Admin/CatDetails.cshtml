@@ -1,9 +1,12 @@
 ﻿@model IndDev.Domain.Entity.Menu.ProductMenu
 @{
     ViewBag.Title = "CatDetails";
-    Layout = "~/Views/Shared/_LayoutSFoot.cshtml";
+    Layout = "~/Views/Shared/_NewDesing.cshtml";
 }
-
+@section links
+{
+    <link href="~/Content/Main.css" rel="stylesheet"/>
+}
 <div class="productCategory">
     <h3>Категория продуктов @Model.Title</h3>
     <div class="picture pull-left">
@@ -24,12 +27,12 @@
             <label>Наименование: </label>
             <input type="text" name="title" value="@Model.Title"/>
             <br/>
-            <label>Описание: </label>
-            <textarea name="descr" rows="3">@Model.Descr</textarea>
-            <br/>
             <label>Приоритет: </label>
             <input name="priority" value="@Model.Priority" type="number" max="999" min="1"/><br/>
-            <input type="file" name="photo"/>
+            <input type="file" name="photo"/><br/>
+            <label>Описание: </label>
+            @Html.TextAreaFor(menu => menu.Descr, new { @class = "editorTiny" })
+            <br />
             <input type="submit" class="btn btn-primary btn-lg" value="Сохранить"/>
 
         }

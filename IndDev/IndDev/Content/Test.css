@@ -1047,6 +1047,18 @@ footer p {
     letter-spacing: 2px;
     text-shadow: 0 2px 2px #2b5270;
 }
+.photoBlock {
+    padding: 20px 0;
+}
+.photos {
+    width: 100%;
+    margin: 10px;
+    overflow: hidden;
+}
+.photos img {
+    height: 200px;
+}
+
 /* end product view*/
 /*Shop description*/
 .aboutId {

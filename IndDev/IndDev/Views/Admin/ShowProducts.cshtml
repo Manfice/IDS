@@ -4,7 +4,7 @@
     <tr>
         <td>@item.Id</td>
         <td>@item.Articul</td>
-        <td>@item.Title</td>
+        <td>@Html.Raw(item.Title)</td>
         @foreach (var pr in item.Prices)
         {
             <td>@pr.Value @pr.Currency.Code</td>

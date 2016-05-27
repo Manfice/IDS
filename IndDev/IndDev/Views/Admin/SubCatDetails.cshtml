@@ -1,8 +1,11 @@
 ﻿@model IndDev.Domain.Entity.Menu.ProductMenuItem
 @{
-    Layout = "~/Views/Shared/_LayoutSFoot.cshtml";
+Layout = "~/Views/Shared/_NewDesing.cshtml";
 }
-
+@section links
+{
+<link href="~/Content/Main.css" rel="stylesheet" />
+}
 <div class="productCategory">
     <h3>Категория продуктов @Model.Title</h3>
     <div class="picture pull-left">
@@ -24,12 +27,12 @@
             <label>Наименование: </label>
             <input type="text" name="title" value="@Model.Title" />
             <br />
-            <label>Описание: </label>
-            <textarea name="descr" rows="3">@Model.Descr</textarea>
             <br />
             @Html.CheckBox("IsRus", @Model.IsRus)
             @Html.LabelFor(item => item.IsRus, "Произведено в России?")
             <input type="file" name="photo" />
+            <label>Описание: </label>
+            @Html.TextAreaFor(item => item.Descr, new { @class = "editorTiny" })
             <input type="submit" class="btn btn-primary btn-lg" value="Сохранить" />
         }
     </div>

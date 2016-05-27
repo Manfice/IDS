@@ -1,9 +1,19 @@
-﻿@using IndDev.Domain.Entity.Products
+﻿@using IndDev.Domain.Entity
+@using IndDev.Domain.Entity.Products
 @using Microsoft.Ajax.Utilities
 @model IndDev.Domain.ViewModels.ProductView
 @{
     ViewBag.Title = Model.Product.Title;
     Layout = "~/Views/Shared/_NewDesing.cshtml";
+}
+
+@section links
+{
+    <link href="~/Content/jquery.fancybox-buttons.css" rel="stylesheet"/>
+
+    <link href="~/Content/jquery.fancybox-thumbs.css" rel="stylesheet"/>
+
+    <link href="~/Content/jquery.fancybox.css" rel="stylesheet"/>
 }
 
 @Html.Action("TopNavigation", "Home")
@@ -22,9 +32,9 @@
                     <a href="@Url.Action("ShowProducts", "Shop", new {catId = Model.Product.Categoy.Id})">@Model.Product.Categoy.Title</a>
                     <i class="fa fa-chevron-right" aria-hidden="true"></i>
                     <div class="productTop">
-                        
+
                         <div class="row">
-                            <div class="col-md-3">
+                            <div class="col-md-5">
                                 <div class="productPhoto">
                                     @if (Model.Avatar != null)
                                     {
@@ -36,22 +46,13 @@
                                     }
                                 </div>
                             </div>
-                            <div class="col-md-5">
-                                <h4>Описание:</h4>
-                                <p>@Model.Product.Description</p>
-                                @if (!Model.Product.Warning.IsNullOrWhiteSpace())
-                                {
-                                    <h3>Внимание - важно учесть:</h3>
-                                    <p>@Model.Product.Warning</p>
-                                }
-                            </div>
-                            <div class="col-md-4">
+                            <div class="col-md-offset-1 col-md-4">
                                 <div class="stockBlock">
                                     <p>Отгрузка со склада:</p>
-                                    <h3>@Model.Product.Stock.Title</h3>    
+                                    <h3>@Model.Product.Stock.Title</h3>
                                 </div>
                                 <div class="priceBlock">
-                                    
+
                                     <p>Цены:</p>
                                     @if (Model.Prices.Any(model => model.PriceType == PriceType.Sale && model.ConvValue > 0))
                                     {
@@ -78,6 +79,29 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="photoBlock">
+                            <h3>Дополнительные фото товара</h3>
+                            <div class="row">
+                                <p class="photos">
+                                @foreach (var photo in Model.Product.ProductPhotos.Where(photo => photo.PhotoType!=PhotoType.Avatar))
+                                {
+                                    <a class="funShow" href="@Url.Content(photo.Path)" title="@photo.Product.Title"><img src="@photo.Path" alt=""/></a>
+                                }
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h4>Описание:</h4>
+                                <p>@Html.Raw(Model.Product.Description)</p>
+
+                                @if (!Model.Product.Warning.IsNullOrWhiteSpace())
+                                {
+                                    <h3>Внимание - важно учесть:</h3>
+                                    <p>@Html.Raw(Model.Product.Warning)</p>
+                                }
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -97,5 +121,10 @@
 
 @section scripts
 {
+<script src="~/Scripts/funcybox/jquery.fancybox-buttons.js"></script>
+<script src="~/Scripts/funcybox/jquery.fancybox-media.js"></script>
+<script src="~/Scripts/funcybox/jquery.fancybox-thumbs.js"></script>
+<script src="~/Scripts/funcybox/jquery.fancybox.js"></script>
+<script src="~/Scripts/funcybox/jquery.mousewheel-3.0.6.pack.js"></script>
 <script src="~/Scripts/shopScripts.js"></script>
 }

@@ -11,6 +11,22 @@
     <link href="~/Content/fonts.css" rel="stylesheet" />
     <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
     <link href="~/Content/animate.css" rel="stylesheet"/>
+    <script src="~/Scripts/jquery-2.2.2.js"></script>
+    <script type="text/javascript" src='//cdn.tinymce.com/4/tinymce.min.js'></script>
+    <script type="text/javascript">
+  tinymce.init({
+    selector: '.editorTiny',
+    theme: 'modern',
+    height: 300,
+    plugins: [
+      'advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker',
+      'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
+      'save table contextmenu directionality emoticons template paste textcolor'
+    ],
+    content_css: 'css/content.css',
+    toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons'
+  });
+    </script>
     @RenderSection("links", required: false)
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -59,7 +75,7 @@
         </div>
     </div>
 </footer>
-    <script src="~/Scripts/jquery-2.2.2.js"></script>
+
     <script src="~/Scripts/owl.carousel.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
 <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>

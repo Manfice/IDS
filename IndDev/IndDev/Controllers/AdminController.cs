@@ -14,6 +14,7 @@ using IndDev.Domain.Entity.Products;
 using IndDev.Domain.ViewModels;
 using IndDev.Models;
 using NPOI.HSSF.UserModel;
+using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 
 namespace IndDev.Controllers
@@ -260,6 +261,67 @@ namespace IndDev.Controllers
             return RedirectToAction("SubCatDetails",new {id=catId});
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult UpdateByPrice(HttpPostedFileBase price)
+        {
+            if (price.ContentLength <= 0) return RedirectToAction("Products");
+            if (price.FileName.EndsWith("xls")||price.FileName.EndsWith("xlsx"))
+            {
+                var path = Server.MapPath("~/Upload/" + price.FileName);
+                if (System.IO.File.Exists(path))
+                {
+                    System.IO.File.Delete(path);
+                }
+                price.SaveAs(path);
+                var pList = new List<ProductExcell>();
+                using (var pL = System.IO.File.OpenRead(path))
+                {
+                    var wb = new XSSFWorkbook(pL);
+                    var sheet = wb.GetSheetAt(0);
+                    for (var row = 0; row < sheet.LastRowNum+1; row++)
+                    {
+                        var currRow = sheet.GetRow(row);
+                        if (IsProduct(currRow))
+                        {
+                            var p = new ProductExcell();
+                            p.Art = currRow.GetCell(0).StringCellValue;
+                            p.Title = currRow.GetCell(1).StringCellValue;
+                            p.Retail = (decimal)currRow.GetCell(2).NumericCellValue;
+                            p.Opt = (decimal)currRow.GetCell(3).NumericCellValue;
+                            p.Partner = (decimal)currRow.GetCell(4).NumericCellValue;
+                            p.Sale = (decimal)currRow.GetCell(5).NumericCellValue;
+                            p.Brand = currRow.GetCell(6).StringCellValue;
+                            p.Curr = int.Parse(currRow.GetCell(7).StringCellValue);
+                            p.Stock = (int)currRow.GetCell(8).NumericCellValue;
+                            p.MeasureUnit = (int)currRow.GetCell(9).NumericCellValue;
+                            p.Warranty = (int) currRow.GetCell(10).NumericCellValue;
+                            pList.Add(p);
+                        }
+                    }
+                }
+                _repository.UpdateByPrice(pList);
+            }
+            return RedirectToAction("Products");
+        }
+
+        private bool IsProduct(IRow row)
+        {
+            var result = false;
+            if (row==null)
+            {
+                return false;
+            }
+            if (row.GetCell(0)!=null && !string.IsNullOrWhiteSpace(row.GetCell(0).StringCellValue))
+            {
+                if (row.GetCell(0).StringCellValue == "Артикул") return false;
+                if (!string.IsNullOrWhiteSpace(row.GetCell(1).StringCellValue))
+                {
+                    result = true;
+                }
+            }
+            return result;
+        }
         public ActionResult GetPriceList()
         {
             var doc = _repository.GetPrice();

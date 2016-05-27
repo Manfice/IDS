@@ -68,6 +68,7 @@ namespace IndDev.Domain.Context
                         product.UpdateTime = DateTime.Now;
                         product.Warranty = item.Warranty.ToString();
                         product.Brand = _context.Brands.FirstOrDefault(p => p.FullName == item.Brand);
+                        product.Title = item.Title;
                     }
                     else
                     {
@@ -127,6 +128,45 @@ namespace IndDev.Domain.Context
             }
         }
 
+        public void UpdateByPrice (IList<ProductExcell> priceItems)
+        {
+            if (priceItems.Any()) return;
+            foreach (var item in priceItems)
+            {
+                if (string.IsNullOrWhiteSpace(item.Art)) continue;
+                var product = _context.Products.FirstOrDefault(product1 => product1.Articul == item.Art);
+                if (product == null) continue;
+                var currensy = _context.Currencies.Find(item.Curr);
+                if (product.Prices.Any(price => price.PriceType == PriceType.Retail))
+                {
+                    product.Prices.FirstOrDefault(p => p.PriceType == PriceType.Retail).Currency = currensy;
+                    product.Prices.FirstOrDefault(p => p.PriceType == PriceType.Retail).Value = item.Retail;
+                }
+                if (product.Prices.Any(price => price.PriceType == PriceType.LowOpt))
+                {
+                    product.Prices.FirstOrDefault(p => p.PriceType == PriceType.LowOpt).Currency = currensy;
+                    product.Prices.FirstOrDefault(p => p.PriceType == PriceType.LowOpt).Value = item.Opt;
+                }
+                if (product.Prices.Any(price => price.PriceType == PriceType.Opt))
+                {
+                    product.Prices.FirstOrDefault(p => p.PriceType == PriceType.Opt).Currency = currensy;
+                    product.Prices.FirstOrDefault(p => p.PriceType == PriceType.Opt).Value = item.Partner;
+                }
+                if (product.Prices.Any(price => price.PriceType == PriceType.Sale))
+                {
+                    product.Prices.FirstOrDefault(p => p.PriceType == PriceType.Sale).Currency = currensy;
+                    product.Prices.FirstOrDefault(p => p.PriceType == PriceType.Sale).Value = item.Sale;
+                }
+                product.MesureUnit = _context.MesureUnits.Find(item.MeasureUnit);
+                product.Stock = _context.Stocks.Find(item.Stock);
+                product.Warranty = item.Warranty.ToString();
+                product.UpdateTime = DateTime.Now;
+                product.Warranty = item.Warranty.ToString();
+                product.Brand = _context.Brands.FirstOrDefault(p => p.FullName == item.Brand);
+                product.Title = item.Title;
+            }
+            _context.SaveChanges();
+        }
         public Customer Customer(int id)
         {
             return _context.Customers.Find(id);
@@ -634,16 +674,27 @@ namespace IndDev.Domain.Context
             sheet.SetColumnWidth(4,3000);
             sheet.SetColumnWidth(5,3000);
             sheet.SetColumnWidth(6,5000);
-            sheet.SetColumnWidth(7,1000);
-            sheet.SetColumnWidth(8,1000);
-            sheet.SetColumnWidth(9,1000);
+            sheet.SetColumnWidth(7,3000);
+            sheet.SetColumnWidth(8,3000);
+            sheet.SetColumnWidth(9,3000);
 
-            var cellBorderStyle = price.CreateCellStyle();
-            cellBorderStyle.BorderBottom=BorderStyle.Thin;
-            cellBorderStyle.BorderLeft=BorderStyle.Thin;
-            cellBorderStyle.BorderRight=BorderStyle.Thin;
-            cellBorderStyle.BorderTop=BorderStyle.Thin;
-            cellBorderStyle.FillForegroundColor = IndexedColors.LightGreen.Index;
+            var cellMenuStyle = price.CreateCellStyle();
+            cellMenuStyle.FillForegroundColor = IndexedColors.LightGreen.Index;
+            cellMenuStyle.FillPattern = FillPattern.SolidForeground;
+            cellMenuStyle.BorderBottom = BorderStyle.Thin;
+            cellMenuStyle.BorderLeft = BorderStyle.Thin;
+            cellMenuStyle.BorderRight = BorderStyle.Thin;
+            cellMenuStyle.BorderTop = BorderStyle.Thin;
+
+            var cellBorderProduct = price.CreateCellStyle();
+            cellBorderProduct.BorderBottom = BorderStyle.Thin;
+            cellBorderProduct.BorderLeft = BorderStyle.Thin;
+            cellBorderProduct.BorderRight = BorderStyle.Thin;
+            cellBorderProduct.BorderTop = BorderStyle.Thin;
+
+            var cellSmenu = price.CreateCellStyle();
+            cellSmenu.FillForegroundColor = IndexedColors.LightOrange.Index;
+            cellSmenu.FillPattern = FillPattern.SolidForeground;
 
 
             var startRow = 2;
@@ -651,30 +702,81 @@ namespace IndDev.Domain.Context
             foreach (var menu in pCat)
             {
                 var mRow = sheet.CreateRow(startRow);
+                for (int i = 0; i < 11; i++)
+                {
+                    mRow.CreateCell(i);
+                    mRow.GetCell(i).CellStyle = cellMenuStyle;
+                }
                 var mCell = mRow.CreateCell(0);
                 mCell.SetCellValue(menu.Title);
-                mCell.CellStyle = cellBorderStyle;
+                mCell.CellStyle = cellMenuStyle;
                 sheet.AddMergedRegion(new CellRangeAddress(startRow, startRow, 0, 10));
-                
                 startRow++;
                 foreach (var cat in menu.MenuItems)
                 {
-                    sheet.CreateRow(startRow).CreateCell(2).SetCellValue(cat.Title);
+                    var sRow = sheet.CreateRow(startRow);
+                    for (int i = 0; i < 11; i++)
+                    {
+                        sRow.CreateCell(i);
+                        sRow.GetCell(i).CellStyle = cellSmenu;
+                    }
+                    sRow.GetCell(0).SetCellValue(cat.Title);
+                    sheet.AddMergedRegion(new CellRangeAddress(startRow, startRow, 0, 10));
+                    startRow++;
+                    sRow = sheet.CreateRow(startRow);
+                    sRow.CreateCell(0).CellStyle = cellBorderProduct;
+                    sRow.GetCell(0).SetCellValue("Артикул");
+                    sRow.CreateCell(1).CellStyle = cellBorderProduct;
+                    sRow.GetCell(1).SetCellValue("Наименование");
+                    sRow.CreateCell(2).CellStyle = cellBorderProduct;
+                    sRow.GetCell(2).SetCellValue("Розница");
+                    sRow.CreateCell(3).CellStyle = cellBorderProduct;
+                    sRow.GetCell(3).SetCellValue("Опт");
+                    sRow.CreateCell(4).CellStyle = cellBorderProduct;
+                    sRow.GetCell(4).SetCellValue("Партнер");
+                    sRow.CreateCell(5).CellStyle = cellBorderProduct;
+                    sRow.GetCell(5).SetCellValue("Распродажа");
+                    sRow.CreateCell(6).CellStyle = cellBorderProduct;
+                    sRow.GetCell(6).SetCellValue("Брэнд");
+                    sRow.CreateCell(7).CellStyle = cellBorderProduct;
+                    sRow.GetCell(7).SetCellValue("Валюта");
+                    sRow.CreateCell(8).CellStyle = cellBorderProduct;
+                    sRow.GetCell(8).SetCellValue("Склад");
+                    sRow.CreateCell(9).CellStyle = cellBorderProduct;
+                    sRow.GetCell(9).SetCellValue("Ед.изм.");
+                    sRow.CreateCell(10).CellStyle = cellBorderProduct;
+                    sRow.GetCell(10).SetCellValue("Гарантия");
                     startRow++;
                     foreach (var product in cat.Products)
                     {
                         var rw = sheet.CreateRow(startRow);
                         rw.CreateCell(0).SetCellValue(product.Articul);
+                        rw.GetCell(0).CellStyle = cellBorderProduct;
                         rw.CreateCell(1).SetCellValue(product.Title);
+                        rw.GetCell(1).CellStyle = cellBorderProduct;
+                        rw.GetCell(1).CellStyle.WrapText = true;
                         rw.CreateCell(2).SetCellValue((double)product.Prices.FirstOrDefault(p=>p.PriceType==PriceType.Retail)?.Value);
+                        rw.GetCell(2).CellStyle = cellBorderProduct;
                         rw.CreateCell(3).SetCellValue((double)product.Prices.FirstOrDefault(p => p.PriceType == PriceType.LowOpt)?.Value);
+                        rw.GetCell(3).CellStyle = cellBorderProduct;
                         rw.CreateCell(4).SetCellValue((double)product.Prices.FirstOrDefault(p => p.PriceType == PriceType.Opt)?.Value);
+                        rw.GetCell(4).CellStyle = cellBorderProduct;
                         rw.CreateCell(5).SetCellValue((double)product.Prices.FirstOrDefault(p => p.PriceType == PriceType.Sale)?.Value);
+                        rw.GetCell(5).CellStyle = cellBorderProduct;
                         rw.CreateCell(6).SetCellValue(product.Brand.FullName);
-                        rw.CreateCell(7).SetCellValue(product.Prices.FirstOrDefault(p => p.PriceType == PriceType.Retail)?.Currency.Id.ToString());
+                        rw.GetCell(6).CellStyle = cellBorderProduct;
+                        var curId = (int)product.Prices.FirstOrDefault(p => p.PriceType == PriceType.Retail)?.Currency.Id;
+                        rw.CreateCell(7).SetCellType(CellType.Numeric);
+                        rw.GetCell(7).SetCellValue(curId);
+                        rw.GetCell(7).CellStyle = cellBorderProduct;
                         rw.CreateCell(8).SetCellValue(product.Stock.Id);
+                        rw.GetCell(8).CellStyle = cellBorderProduct;
                         rw.CreateCell(9).SetCellValue(product.MesureUnit.Id);
-                        rw.CreateCell(10).SetCellValue(product.Warranty);
+                        rw.GetCell(9).CellStyle = cellBorderProduct;
+                        double war = int.Parse(product.Warranty);
+                        rw.CreateCell(10).SetCellType(CellType.Numeric);
+                        rw.GetCell(10).SetCellValue(war);
+                        rw.GetCell(10).CellStyle = cellBorderProduct;
                         startRow++;
                     }
                 }

@@ -6,6 +6,12 @@
 <div class="tab-content">
     <div class="tab-pane bordered" id="productList">
         @Html.ActionLink("Прайс", "GetPriceList")
+        @using (Html.BeginForm("UpdateByPrice", "Admin", FormMethod.Post, new {enctype = "multipart/form-data"}))
+        {
+            @Html.AntiForgeryToken()
+            <input name="price" id="price" type="file" />
+            <input type="submit" value="Обновить" />
+        }
     </div>
     <div class="tab-pane bordered" id="menuList">
         @Html.Action("RootMenu")
