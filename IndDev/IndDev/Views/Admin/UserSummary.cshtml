@@ -36,6 +36,11 @@
         <tr>
             <td class="col-md-3">Роль пользователя:</td>
             <td class="col-md-9">@Model.UsrRoles.Descr</td>
+        </tr>
+        <tr>
+            <td class="col-md-3">Статус пользователя:</td>
+            <td class="col-md-9">@Model.Customer.CustomerStatus.Title скидка: @Model.Customer.CustomerStatus.Discount.ToString("####")%</td>
+        </tr>
         </tbody>
     </table>
 

@@ -1,16 +1,23 @@
 ﻿/*font-family: 'Oswald', sans-serif;*/
 /*font-family: "RobotoLight"*/
+html {
+    height: 100%;
+}
 body {
     margin: 0;
     padding: 0;
     font-family: "RobotoLight";
     padding: 30px 0 0 0;
     min-width: 360px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 .yCounter {
     float: left;
 }
 .header_new {
+    flex: 0 0 auto;
     position: fixed;
     top: 0;
     width: 100%;
@@ -64,12 +71,70 @@ body {
     color: orangered;
     font-weight: 700;
 }
+.bodyContent {
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+.loginForm {
+    background: url("/Content/images/servers.jpg") no-repeat center top;
+    background-size:100% 100%;
+    position: relative;
+    text-align: center;
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.logForm {
+    border: solid 2px;
+    margin: auto auto;
+    padding: 50px;
+    width: 400px;
+    background-color: rgba(220, 237, 255, 0.8);
+}
+.logForm h1 {
+    margin: 0px 0;
+    font-weight: 500;
+    font-size: 2em;
+    color: rgb(28, 28, 28);
+}
+.logForm label {
+    margin: 10px;
+}
+.logForm input[type="text"], .logForm input[type="password"], .logForm input[type="number"] {
+    border: none;
+    border-bottom: solid 3px green;
+    width: 100%;
+    text-align: center;
+}
+.logForm input[type="submit"] {
+    background-color: rgb(74, 184, 254);
+    margin: 20px 0 0 0;
+    padding: 10px 20px;
+    border: none;
+    color: whitesmoke;
+    font-weight: 600;
+}
+.logForm textarea {
+    width: 100%;
+}
+.logForm input[type="submit"]:hover {
+    background-color: green;
+}
+.logForm a {
+    display: inline-block;
+    cursor: pointer;
+    padding: 0 0 0 30px;
+}
 footer {
     width: 100%;
     padding: 30px 0;
     background-color: black;
     text-align: center;
     color: white;
+    flex: 0 0 auto;
 }
 footer p {
     margin: 6px 0 0 0;
@@ -530,6 +595,7 @@ footer p {
 }
 .aboutShotStory img {
     float: right;
+    max-width: 100%;
 }
 .aboutShotStory h3 {
     font-weight: 700;

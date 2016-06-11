@@ -23,12 +23,12 @@ namespace IndDev.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult SendQuestion(MailMessageModel message)
+        public async Task<ActionResult> SendQuestion(MailMessageModel message)
         {
             if (!ModelState.IsValid) return View("Error");
             var bdy = System.IO.File.ReadAllText(Server.MapPath("~/Views/Mails/LetterFromTitle.html"));
-            _repository.SendMessage(message,bdy);
-            return RedirectToAction("About", "Home");
+            await _repository.MessageFromTitle(bdy,message);
+            return RedirectToAction("Index", "Home");
         }
     }
 }

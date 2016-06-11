@@ -39,7 +39,7 @@ namespace IndDev.Controllers
                     if (svm.Code>0)
                     {
                         FormsAuthentication.SetAuthCookie(svm.Code.ToString(),model.RememberMe);
-                        cart.Discount = _repository.GetUserById(svm.Code).Customer.CustomerStatus.Discount;
+                        cart.Customer = _repository.GetUserById(svm.Code).Customer;
                         TempData["secureMessage"] = string.Format(svm.Message);
                         if (!string.IsNullOrEmpty(returnUrl))
                         {

@@ -54,10 +54,13 @@ namespace IndDev.Domain.Abstract
         List<PriceSetter> GetPrices(int prodId);
         ValidEvent RemoveImage(int id);
         void RemovePhoto(int id);
+        bool CheckPhotoToDelete(string fullPath);
         IEnumerable<SelectListItem> GetValutes();
         IEnumerable<Stock> GetStocks { get; }
         void UpToDateProducts(IEnumerable<ProductExcell> products, int cat);
         IWorkbook GetPrice();
         void UpdateByPrice(IList<ProductExcell> price);
+        ProductPhoto GetProductPhoto(int id);
+        CustomerStatus GetCustomerStatus(int id);// User Id not Customer
     }
 }

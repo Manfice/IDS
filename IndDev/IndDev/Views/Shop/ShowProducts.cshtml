@@ -45,14 +45,20 @@
                                 }
                                 else
                                 {
-                                    <p>НЕТ В НАЛИЧИИ</p>
+                                    <p>Уточняйте цену...</p>
                                 }
-                                <a>КУПИТЬ</a>
+                                @*<a>КУПИТЬ</a>*@ @Html.ActionLink("КУПИТЬ","QuickAddToCart","Cart", new { prodId = item.Product.Id, returnUrl = Request.Url.PathAndQuery},null)
                             </div>
                         </div>
                         
                     </div>
                 }
+                <div class="col-md-12">
+                    <article>
+                        <h1>@Model.ProductMenuItem.Title</h1>
+                        @Html.Raw(Model.ProductMenuItem.Descr)
+                    </article>
+                </div>
             </div>
             <div class="col-md-3">
                 <div class="sideNavigation">

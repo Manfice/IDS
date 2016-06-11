@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using IndDev.Domain.Entity.Customers;
 using IndDev.Domain.Entity.Products;
 using IndDev.Domain.ViewModels;
 
@@ -10,48 +11,22 @@ namespace IndDev.Domain.Entity.Cart
     {
         private readonly List<CartItem> _cartItems = new List<CartItem>();
         public IEnumerable<CartItem> CartItems => _cartItems;
-        public decimal Discount { get; set; }
+        public Customer Customer { get; set; }
 
-        private static PriceViewModel GetActualPrice(Product product, int quantity)
-        {
-            PriceViewModel p = null;
-            foreach (var source in product.Prices.Where(price1 => price1.Value > 0).Where(source => quantity >= source.QuanttityFrom))
-            {
-                if (p==null)
-                {
-                    p = new PriceViewModel
-                    {
-                        Id = source.Id,
-                        Product = source.Product,
-                        Title = source.Title,
-                        Currency = source.Currency,
-                        OriginalPrice = source.Value,
-                        PriceFrom = source.QuanttityFrom
-                    };
-                }
-            }
-
-            return p;
-        }
 
         public void AddItem(Product product, int quantity)
         {
             var cItem = _cartItems.FirstOrDefault(item => item.Product.Id == product.Id);
             if (cItem == null)
             {
-                var price = GetActualPrice(product, quantity);
-                if (price == null) return;
-                _cartItems.Add(new CartItem
+                _cartItems.Add(new CartItem(product)
                 {
-                    Product = product,
-                    Quantity = quantity,
-                    ActualPrice = price
+                    Quantity = quantity
                 });
             }
             else
             {
                 cItem.Quantity += quantity;
-                cItem.ActualPrice = GetActualPrice(product, cItem.Quantity);
             }
         }
 
@@ -59,10 +34,7 @@ namespace IndDev.Domain.Entity.Cart
         {
             var line = _cartItems.FirstOrDefault(item => item.Product.Id == product.Id);
             if (line == null) return;
-            var price = GetActualPrice(product, quantity);
-            if (price==null) return;
             line.Quantity = quantity;
-            line.ActualPrice = price;
         }
 
         public void RemoveLine(Product product)
@@ -72,16 +44,17 @@ namespace IndDev.Domain.Entity.Cart
 
         public decimal CalcTotalSumm()
         {
-            var summ = _cartItems.Sum(item => Math.Round(item.Quantity * item.ActualPrice.ConvValue, 2));
+            var summ = _cartItems.Sum(item => Math.Round(item.Quantity * item.RetailPrice.ConvValue, 2));
             return summ;
         }
 
         public decimal CalcTotalWithDiscount()
         {
-            var summ = _cartItems.Sum(item => Math.Round(item.Quantity * item.ActualPrice.ConvValue, 2));
-            if (Discount>0)
+            var summ = _cartItems.Sum(item => Math.Round(item.Quantity * item.RetailPrice.ConvValue, 2));
+            if (Customer == null) return summ;
+            if (Customer.CustomerStatus.Discount > 0)
             {
-                summ = summ - ((summ*Discount)/100);
+                summ = summ - ((summ * Customer.CustomerStatus.Discount) / 100);
             }
             return summ;
         }
@@ -96,7 +69,23 @@ namespace IndDev.Domain.Entity.Cart
     {
         public Product Product { get; set; }
         public PriceViewModel ActualPrice { get; set; }
+        public PriceViewModel RetailPrice { get; }
+
         public int Quantity { get; set; }
-        public decimal SubTotal => Math.Round(Quantity*ActualPrice.ConvValue,2);
+        public decimal SubTotal => Math.Round(Quantity*RetailPrice.ConvValue,2);
+
+        public CartItem(Product product)
+        {
+            Product = product;
+            RetailPrice = new PriceViewModel();
+            var priceRetail = product.Prices.FirstOrDefault(p => p.PriceType == PriceType.Retail);
+            var priceSale = product.Prices.FirstOrDefault(p=>p.PriceType==PriceType.Sale);
+
+            if (priceSale != null && priceSale.Value > 0) priceRetail = priceSale;
+            if (priceRetail == null || priceRetail.Value <= 0) return;
+            RetailPrice.Id = priceRetail.Id;
+            RetailPrice.Currency = priceRetail.Currency;
+            RetailPrice.OriginalPrice = priceRetail.Value;
+        }
     }
 }

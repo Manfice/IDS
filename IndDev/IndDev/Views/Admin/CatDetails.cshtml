@@ -50,6 +50,7 @@
             <td>Код:</td>
             <td>Наименование:</td>
             <td>Описание:</td>
+            <td>Приоритет:</td>
             <td>Россия:</td>
             <td>Картинка:</td>
             <td>Действия:</td>
@@ -66,6 +67,7 @@
                 <td>@Html.Hidden("menuId",Model.Id)</td>
                 <td><input type="text" name="title" placeholder="Наименование"/></td>
                 <td><textarea name="descr" placeholder="Описание подкатегории" rows="3"></textarea></td>
+                <td>@Html.EditorFor(menu => menu.Priority)</td>
                 <td>@Html.CheckBox("IsRus",false)</td>
                 <td><input type="file" name="photo"/></td>
                 <td><input type="submit" class="btn btn-success btn-sm" value="Сохранить"/></td>

@@ -16,12 +16,19 @@
                     <a>@Model.Title</a>
                     <i class="fa fa-chevron-right" aria-hidden="true"></i>
                 </div>
-                @foreach (var item in Model.MenuItems)
+                @foreach (var item in Model.MenuItems.OrderBy(item => item.Priority))
                 {
                     <div class="col-md-4">
                         <div class="product">
                             <a href="@Url.Action("ShowProducts", "Shop", new {catId = item.Id})">
-                                <img src="@item.Image.Path" alt="@item.Image.AltText"/>
+                                @if (item.Image != null)
+                                {
+                                    <img src="@item.Image.Path" alt="@item.Image.AltText"/>
+                                }
+                                else
+                                {
+                                    <img src="@Url.Content("~/Content/images/noimage.png")" alt="no image" />
+                                }
                                 <div class="categoryName">
                                     <p>@item.Title</p>
                                 </div>
@@ -34,6 +41,15 @@
                         <h1>@Model.Title</h1>
                         @Html.Raw(Model.Descr)
                     </article>
+                </div>
+                <div class="col-md-12">
+                    @foreach (var descr in Model.MenuItems)
+                    {
+                        <article>
+                            <h1>@descr.Title</h1>
+                            @Html.Raw(descr.Descr)
+                        </article>
+                    }
                 </div>
             </div>
             <div class="col-md-3">

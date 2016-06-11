@@ -22,9 +22,11 @@ namespace IndDev.Domain.Entity.Menu
         [AllowHtml]
         public string Descr { get; set; }
         public bool IsRus { get; set; }
+        public int Priority { get; set; }
         public virtual ProdMenuImage Image { get; set; }
         public virtual ProductMenu ProductMenu { get; set; }
-        public virtual ICollection<Product> Products { get; set; }  
+        public virtual ICollection<Product> Products { get; set; }
+        public virtual ProductMenuItem ParentMenuItem { get; set; }
     }
 
     public class ProdMenuImage

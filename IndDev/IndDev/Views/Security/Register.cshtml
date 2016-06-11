@@ -9,13 +9,6 @@
 <link href="~/Content/Main.css" rel="stylesheet" />
 }
 
-@if (TempData["secureMessage"] != null)
-{
-    <div class="alert alert-danger">
-        <h4>@TempData["secureMessage"]</h4>
-    </div>
-}
-
 <div class="loginForm">
     <div class="logForm">
         <h1>Регистрация нового пользователя.</h1>
@@ -55,21 +48,4 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-<script type="text/javascript">
-    if ($('.loginForm').height() + 80 < $(window).height()) {
-            $('footer').css({
-                position: 'absolute',
-                bottom: 0,
-                width:'100%'
-            });
-            $('body').css({
-                'background': 'url("/Content/images/servers.jpg") no-repeat center center fixed',
-                'background-size':'100%'
-            });
-        } else {
-            $('footer').css({
-                position: 'relative'
-            });
-        }
-</script>
 }

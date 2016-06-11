@@ -2,7 +2,11 @@
 @model IndDev.Domain.Entity.Cart.Cart
 @{
     ViewBag.Title = "Корзина";
-    Layout = "~/Views/Shared/_LayoutShop.cshtml";
+    Layout = "~/Views/Shared/_NewDesing.cshtml";
+}
+@section links
+{
+    <link href="~/Content/Test.css" rel="stylesheet"/>
 }
 <div class="cart">
     <div class="container">
@@ -82,7 +86,7 @@
                                 @Html.Hidden("prodId", item.Product.Id)
                                 <td>@item.Product.Id</td>
                                 <td data-toggle="collapse" data-target="#@item.Product.Id" style="cursor: pointer">@item.Product.Title</td>
-                                <td>@item.ActualPrice.ConvValue.ToString("C")</td>
+                                <td>@item.RetailPrice.ConvValue.ToString("C")</td>
                                 <td>@Html.TextBox("quantity", item.Quantity, new {@type = "number", min = "1", style = "width: 70px;"})</td>
                                 <td>@item.SubTotal.ToString("C")</td>
                                 <td>
@@ -95,7 +99,7 @@
                             <td colspan="6">
                                 <div class="lineDetails">
                                     <img src="@item.Product.ProductPhotos.FirstOrDefault(photo => photo.PhotoType == PhotoType.Avatar).Path" alt="avatarka" width="100" style="float: right"/>
-                                    <p>@item.Product.Description</p>
+                                    <p>@Html.Raw(item.Product.Description)</p>
                                 </div>
                             </td>
                         </tr>
@@ -108,8 +112,8 @@
                     </tr>
                     <tr>
                         <td colspan="3">Скидка:</td>
-                        <td>@Model.Discount %</td>
-                        <td colspan="2">@(((Model.CalcTotalSumm()*Model.Discount)/100).ToString("C"))</td>
+                        <td>@(Model.Customer?.CustomerStatus.Discount) %</td>
+                        <td colspan="2">@(((Model.CalcTotalSumm()*Model.Customer?.CustomerStatus.Discount)/100))</td>
                     </tr>
                         <tr>
                             <td colspan="4">Итого с учетом скидки:</td>

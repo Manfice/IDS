@@ -26,8 +26,9 @@ Layout = "~/Views/Shared/_NewDesing.cshtml";
             @Html.Hidden("retUrl", Request.Url.PathAndQuery)
             <label>Наименование: </label>
             <input type="text" name="title" value="@Model.Title" />
-            <br />
-            <br />
+            <br/>
+            @Html.Label("Приоритет:")
+            @Html.EditorFor(item => item.Priority)<br />
             @Html.CheckBox("IsRus", @Model.IsRus)
             @Html.LabelFor(item => item.IsRus, "Произведено в России?")
             <input type="file" name="photo" />

@@ -767,51 +767,8 @@ a,a:focus, a:active {
 /*----------------------------------------
     Login Form
 ----------------------------------------*/
-.loginForm {
-    position: relative;
-    text-align: center;
-    padding: 100px 0;
-}
-.logForm {
-    border: solid 2px;
-    margin: auto;
-    padding: 50px;
-    width: 400px;
-    background-color: rgba(220, 237, 255, 0.8);
-}
-.logForm h1 {
-    margin: 20px 0;
-    font-weight: 600;
-    color: rgb(28, 28, 28);
-}
-.logForm label {
-    margin: 10px;
-}
-.logForm input[type="text"], .logForm input[type="password"], .logForm input[type="number"] {
-    border: none;
-    border-bottom: solid 3px green;
-    width: 100%;
-    text-align: center;
-}
-.logForm input[type="submit"] {
-    background-color: rgb(74, 184, 254);
-    margin: 20px 0 0 0;
-    padding: 10px 20px;
-    border: none;
-    color: whitesmoke;
-    font-weight: 600;
-}
-.logForm textarea {
-    width: 100%;
-}
-.logForm input[type="submit"]:hover {
-    background-color: green;
-}
-.logForm a {
-    display: inline-block;
-    cursor: pointer;
-    padding: 0 0 0 30px;
-}
+
+
 /*----------------------------------------
     END Login Form
 ----------------------------------------*/

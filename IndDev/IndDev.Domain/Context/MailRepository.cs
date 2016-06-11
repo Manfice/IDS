@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
+using System.Net.Security;
+using System.Security.Cryptography.X509Certificates;
 using System.Security.Policy;
 using System.Threading.Tasks;
 using IndDev.Auth.Model;
@@ -16,16 +19,18 @@ namespace IndDev.Domain.Context
         
         private async Task<string> SendMyMailAsync(string body, string to, string subject)
         {
-            var fromAddress = new MailAddress("manfice@gmail.com", "Industrial Development");
+            var fromAddress = new MailAddress("admin@id-racks.ru", "Industrial Development");
             var smtp = new SmtpClient
             {
-                Host = "smtp.gmail.com",
-                Port = 587,
+                Host = "smtp.yandex.ru",
+                Port = 25,
                 EnableSsl = true,
                 DeliveryMethod = SmtpDeliveryMethod.Network,
                 UseDefaultCredentials = false,
-                Credentials = new NetworkCredential(fromAddress.Address, "1q2w3eQW")
+                Credentials = new NetworkCredential(fromAddress.Address, "1q2w3eZX")
             };
+            System.Net.ServicePointManager.ServerCertificateValidationCallback =
+                (sender, certificate, chain, errors) => true;
             using (var message = new MailMessage(fromAddress, new MailAddress(to))
             {
                 Subject = subject,
@@ -33,7 +38,6 @@ namespace IndDev.Domain.Context
                 IsBodyHtml = true
             })
             {
-                //message.To.Add(new MailAddress("ka.id@yandex.ru"));
                 await smtp.SendMailAsync(message);
             }
             return $"Письмо отправленно на адрес: {to}";
@@ -43,41 +47,33 @@ namespace IndDev.Domain.Context
         {
             var bd = body.Replace("{0}", model.Email);
             bd = bd.Replace("{1}", model.Password);
+            var mails = new List<MailAddress>
+            {
+                new MailAddress("c592@yandex.ru")
+            };
+            foreach (var address in mails)
+            {
+                await SendMyMailAsync(bd, address.Address, "Регистрация нового пользователя");
+            }
             return await SendMyMailAsync(bd, model.Email, "Спасибо за регистрацию на сайте www.id-racks.ru");
         }
 
-
-
-        public void SendMessage(MailMessageModel model, string body)
+        public async Task<string> MessageFromTitle(string body, MailMessageModel model)
         {
-            var fromAddress = new MailAddress("manfice@gmail.com", "Industrial Development");
-            var toAddress = new MailAddress(model.From, "Customer");
-            const string fromPassword = "1q2w3eQW";
-            const string subject = "Отправленно с сайта, с главной формы";
-
-            var smtp = new SmtpClient
+            body = body.Replace("{0}", model.SenderName);
+            body = body.Replace("{1}", DateTime.Today.ToShortDateString());
+            body = body.Replace("{3}", model.From);
+            body = body.Replace("{2}", model.Body);
+            var mails = new List<MailAddress>
             {
-                Host = "smtp.gmail.com",
-                Port = 587,
-                EnableSsl = true,
-                DeliveryMethod = SmtpDeliveryMethod.Network,
-                UseDefaultCredentials = false,
-                Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+                new MailAddress("ka.id@yandex.ru"),
+                new MailAddress("c592@yandex.ru")
             };
-            var bd = body.Replace("{0}", model.SenderName);
-            bd = bd.Replace("{1}", DateTime.Now.ToString("f"));
-            bd = bd.Replace("{2}", model.Body);
-            bd = bd.Replace("{3}", model.From);
-            using (var message = new MailMessage(fromAddress, toAddress)
+            foreach (var address in mails)
             {
-                Subject = subject,
-                Body = bd,
-                IsBodyHtml = true
-            })
-            {
-                message.To.Add(new MailAddress("ka.id@yandex.ru"));
-                smtp.Send(message);
+                await SendMyMailAsync(body, address.Address, "Вопрос с сайта");
             }
+            return await SendMyMailAsync(body, model.From, "Вопрос с сайта www.id-racks.ru");
         }
 
         public async Task<string> ResetPassword(string body, string to, string resetLink)

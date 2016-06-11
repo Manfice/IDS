@@ -11,6 +11,7 @@ using IndDev.Domain.Entity.Customers;
 using IndDev.Domain.Entity.Menu;
 using IndDev.Domain.Entity.Products;
 using IndDev.Domain.Entity.Stock;
+using IndDev.Domain.Logic;
 using IndDev.Domain.ViewModels;
 using NPOI.HSSF.Util;
 using NPOI.SS.UserModel;
@@ -124,6 +125,61 @@ namespace IndDev.Domain.Context
                         }
                     }
                 }
+                else
+                {
+                    var br = _context.Brands.FirstOrDefault(b => b.FullName.Contains(item.Brand));
+                    var ct = _context.ProductMenuItems.Find(cat);
+                    var p = new Product
+                    {
+                        Title = item.Title,
+                        Brand = br,
+                        Vendor = br?.Vendor,
+                        Categoy = ct,
+                        IsService = false,
+                        Reclama = false,
+                        UpdateTime = DateTime.Now,
+                        Show = false,
+                        MesureUnit = _context.MesureUnits.Find(item.MeasureUnit),
+                        Stock = _context.Stocks.Find(item.Stock),
+                        Warranty = item.Warranty.ToString()
+                    };
+                    _context.Products.Add(p);
+                    _context.SaveChanges();
+                    p = _context.Products.Find(p.Id);
+                    p.Articul = new ExternalLogic().GetArt(p.Id);
+                    var pTypes = Enum.GetNames(typeof (PriceType));
+                    foreach (var s in pTypes)
+                    {
+                        var price = new Price
+                        {
+                            PriceType = (PriceType) Enum.Parse(typeof (PriceType), s),
+                            Currency = _context.Currencies.Find(item.Curr),
+                            Product = p,
+                            Publish = false,
+                            QuanttityFrom = 1
+                        };
+                        switch (price.PriceType)
+                        {
+                            case PriceType.Retail:
+                                price.Value = item.Retail;
+                                price.Title = "Розница";
+                                break;
+                            case PriceType.LowOpt:
+                                price.Value = item.Opt;
+                                price.Title = "Опт";
+                                break;
+                            case PriceType.Opt:
+                                price.Title = "Партнер";
+                                price.Value = item.Partner;
+                                break;
+                            case PriceType.Sale:
+                                price.Title = "Распродажа";
+                                price.Value = item.Sale;
+                                break;
+                        }
+                        _context.Prices.Add(price);
+                    }
+                }
                 _context.SaveChanges();
             }
         }
@@ -184,6 +240,7 @@ namespace IndDev.Domain.Context
                 usr.ConfirmEmail = user.ConfirmEmail;
                 usr.Block = user.Block;
                 usr.UsrRoles = role;
+                usr.Customer.CustomerStatus = ctx.CustomerStatuses.Find(user.Customer.CustomerStatus.Id);
                 ctx.SaveChanges();
             }
             return new ValidationInfo {Code = user.Id, Message = "Данные успешно обновлены"};
@@ -293,6 +350,7 @@ namespace IndDev.Domain.Context
             dbMenu.Descr = menu.Descr;
             dbMenu.Title = menu.Title;
             dbMenu.IsRus = menu.IsRus;
+            dbMenu.Priority = menu.Priority;
             if (image != null)
             {
                 if (dbMenu.Image != null) DeleteCatImage(dbMenu.Image);
@@ -647,6 +705,16 @@ namespace IndDev.Domain.Context
             _context.SaveChanges();
         }
 
+        public bool CheckPhotoToDelete(string fullPath)
+        {
+            var photoInUse = _context.ProductPhotos.Where(photo => photo.FullPath == fullPath).ToList();
+            return photoInUse.Count <= 1;
+        }
+
+        public ProductPhoto GetProductPhoto(int id)
+        {
+            return _context.ProductPhotos.Find(id);
+        }
         public IEnumerable<SelectListItem> GetValutes()
         {
             return
@@ -783,6 +851,11 @@ namespace IndDev.Domain.Context
 
             }
             return price;
+        }
+
+        public CustomerStatus GetCustomerStatus(int id)
+        {
+            return _context.Users.Find(id).Customer.CustomerStatus;
         }
     }
 }

@@ -1,28 +1,10 @@
 ﻿
 @{
     ViewBag.Title = "MessageScreen";
-    Layout = "~/Views/Shared/_LayoutSFoot.cshtml";
+    Layout = "~/Views/Shared/_NewDesing.cshtml";
 }
 
 <div class="messageScreen">
     <h1>@ViewBag.Paragraf</h1>
     <p>@ViewBag.Message</p>
 </div>
-@section scripts{
-    <script type="text/javascript">
-        if ($('.messageScreen').height() + 80 < $(window).height()) {
-            $('.footer').css({
-                position: 'absolute',
-                bottom: 0,
-                width:'100%'
-            });
-            $('body').css({
-                'background': 'url("/Content/images/twisted_pair.jpg") no-repeat center center fixed'
-            });
-        } else {
-            $('.footer').css({
-                position: 'relative'
-            });
-        }
-    </script>
-}

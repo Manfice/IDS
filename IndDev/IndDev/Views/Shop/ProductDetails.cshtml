@@ -62,7 +62,7 @@
                                     }
                                     else
                                     {
-                                        foreach (var item in Model.Prices.Where(model => model.PriceType != PriceType.Sale))
+                                        foreach (var item in Model.Prices.Where(model => model.PriceType != PriceType.Sale).OrderByDescending(model => model.PriceType))
                                         {
                                             <h3>@item.Title: @item.ConvValue.ToString("C")</h3>
                                         }
@@ -102,6 +102,12 @@
                                 }
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                @Html.Raw(Model.Product.Categoy.Descr)
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>

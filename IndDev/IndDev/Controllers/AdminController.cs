@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -81,8 +82,22 @@ namespace IndDev.Controllers
         public PartialViewResult ChangeUser(int id)
         {
             var roles = new SelectList(_repository.Roleses, "Id", "Descr");
-            ViewBag.Roles = roles;
-            return PartialView(_repository.User(id));
+            var ststus = _repository.GetCustomerStatuses.Select(status => new SelectListItem
+            {
+                Text = status.Title+" скидка:"+status.Discount+"%",
+                Value = status.Id.ToString()
+            });
+            var model = new UserViewModel
+            {
+                User = _repository.User(id),
+                Roles = _repository.Roleses.Select(usrRoles => new SelectListItem
+                {
+                    Text = usrRoles.Descr,
+                    Value = usrRoles.Id.ToString()
+                }),
+                Status = ststus
+            };
+            return PartialView(model);
         }
 
         public ActionResult Products()
@@ -102,9 +117,9 @@ namespace IndDev.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult ChangeUser(User user)
+        public ActionResult ChangeUser(UserViewModel model)
         {
-            var result = _repository.UpdateUser(user);
+            var result = _repository.UpdateUser(model.User);
             if (result.Code < 0)
             {
                 ViewBag.ReturnUrl = "//Admin/UserList";
@@ -187,7 +202,7 @@ namespace IndDev.Controllers
         public PartialViewResult SubCutList(int id)
         {
             var cat = _repository.GetProductMenu(id);
-            return PartialView(cat.MenuItems);
+            return PartialView(cat.MenuItems.OrderBy(item => item.Priority));
         }
 
         [HttpPost]
@@ -199,7 +214,8 @@ namespace IndDev.Controllers
                 Title = item.Title,
                 Descr = item.Descr,
                 IsRus = item.IsRus,
-                ProductMenu = _repository.GetProductMenu(menuId)
+                ProductMenu = _repository.GetProductMenu(menuId),
+                Priority = item.Priority
             };
 
             if (photo != null)
@@ -477,19 +493,23 @@ namespace IndDev.Controllers
                 var fileName = Guid.NewGuid()+"_"+photo.FileName;
                 var filePath = Server.MapPath("/Content/images/Uploads/Categories");
                 var fullPath = Path.Combine(filePath, fileName);
+                var altText = fileName;
                 photo.SaveAs(fullPath);
                 var ava = _repository.GetProduct(id).ProductPhotos.FirstOrDefault(productPhoto => productPhoto.PhotoType == PhotoType.Avatar);
                 if (ava != null)
                 {
                     if (System.IO.File.Exists(ava.FullPath))
                     {
-                        System.IO.File.Delete(ava.FullPath);
+                        if (_repository.CheckPhotoToDelete(ava.FullPath))
+                        {
+                            System.IO.File.Delete(ava.FullPath);
+                        }
                     }
                     _repository.RemovePhoto(ava.Id);
                 }
                 var image = new ProductPhoto
                 {
-                    AltText = fileName,
+                    AltText = altText,
                     FullPath = fullPath,
                     Path = "/Content/images/Uploads/Categories/" + fileName,
                     PhotoType = PhotoType.Avatar
@@ -517,8 +537,16 @@ namespace IndDev.Controllers
             }
             return RedirectToAction("ProductDetails", new {id});
         }
-        public ActionResult RemoveImage(int id)
+        public ActionResult RemoveImage(int id)//id of image in ProductPhoto table
         {
+            var pp = _repository.GetProductPhoto(id);
+            if (System.IO.File.Exists(pp.FullPath))
+            {
+                if (_repository.CheckPhotoToDelete(pp.FullPath))
+                {
+                    System.IO.File.Delete(pp.FullPath);
+                }
+            }
             var result = _repository.RemoveImage(id);
             return RedirectToAction("ProductDetails", new {id=result.Code});
         }

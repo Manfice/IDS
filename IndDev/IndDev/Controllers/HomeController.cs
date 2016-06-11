@@ -76,6 +76,7 @@ namespace IndDev.Controllers
             ViewBag.Message = message;
             return View();
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult SendMessage(string fio, string email, string message)

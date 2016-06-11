@@ -1,4 +1,4 @@
-﻿@model IndDev.Domain.Entity.Auth.User
+﻿@model IndDev.Domain.ViewModels.UserViewModel
 
 
 @using (Html.BeginForm("ChangeUser", "Admin", FormMethod.Post))
@@ -9,37 +9,37 @@
         <h4>Изменить данные пользователя.</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.User.Id)
 
         <div class="form-group">
             @Html.Label("Имя пользователя:", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.User.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.User.Name, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             @Html.Label("E-mail (он же логин):", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.EMail, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.EMail, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.User.EMail, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.User.EMail, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             @Html.Label("Контактный телефон:", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.User.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.User.Phone, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             @Html.Label("Регион:", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Region, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Region, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.User.Region, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.User.Region, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -47,8 +47,8 @@
             @Html.Label("E-mail подтвержден?", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
-                    @Html.EditorFor(model => model.ConfirmEmail)
-                    @Html.ValidationMessageFor(model => model.ConfirmEmail, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.User.ConfirmEmail)
+                    @Html.ValidationMessageFor(model => model.User.ConfirmEmail, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>
@@ -57,8 +57,8 @@
             @Html.Label("Блокировать пользователя:", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
-                    @Html.EditorFor(model => model.Block)
-                    @Html.ValidationMessageFor(model => model.Block, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.User.Block)
+                    @Html.ValidationMessageFor(model => model.User.Block, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>
@@ -66,8 +66,13 @@
         <div class="form-group">
             @Html.Label("Роль пользователя:", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.UsrRoles.Id, @ViewBag.Roles as SelectList, Model.UsrRoles.Descr)
-                @Html.ValidationMessageFor(model => model.PasswordHash, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(model => model.User.UsrRoles.Id, Model.Roles, Model.User.UsrRoles.Descr)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Статус пользователя:", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.User.Customer.CustomerStatus.Id, @Model.Status, Model.User.Customer.CustomerStatus.Title)
             </div>
         </div>
 
