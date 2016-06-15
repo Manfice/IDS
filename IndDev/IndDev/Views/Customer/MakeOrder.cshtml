@@ -1,9 +1,12 @@
 ﻿@model IndDev.Domain.ViewModels.PreOrder
 @{
     ViewBag.Title = "MakeOrder";
-    Layout = "~/Views/Shared/_LayoutShop.cshtml";
+    Layout = "~/Views/Shared/_NewDesing.cshtml";
 }
-
+@section links
+{
+<link href="~/Content/Main.css" rel="stylesheet" />}
+@Html.Action("TopNavigation","Home")
 
 <div class="preOrder">
     <h1>Еще пара вопросов</h1>
@@ -23,6 +26,7 @@
             @Html.Label("Комментарий к доставке:")
             @Html.TextAreaFor(order => order.Delivery.Comment)
         </div>
+        @Html.ActionLink("ВЕРНУТЬСЯ К КОРЗИНЕ","Index","Cart",null ,new {@class="btn btn-primary btn-sm"})
         <input class="btn btn-success btn-lg" type="submit" value="ЗАКАЗАТЬ"/>
     }
 <div class="delDescr">

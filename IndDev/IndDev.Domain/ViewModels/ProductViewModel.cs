@@ -4,6 +4,7 @@ using System.Web;
 using System.Web.Mvc;
 using IndDev.Domain.Context;
 using IndDev.Domain.Entity;
+using IndDev.Domain.Entity.Cart;
 using IndDev.Domain.Entity.Menu;
 using IndDev.Domain.Entity.Products;
 using IndDev.Domain.Entity.Stock;
@@ -115,6 +116,7 @@ namespace IndDev.Domain.ViewModels
     public class ShopProductView
     {
         public ProductMenuItem ProductMenuItem { get; set; }
+        public Cart Cart { get; set; }
         public IEnumerable<ProductView> Products { get; set; }
         //public Product Product { get; set; }
         //public ProductPhoto Avatar { get; set; }    

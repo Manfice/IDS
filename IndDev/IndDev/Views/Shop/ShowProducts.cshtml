@@ -1,4 +1,5 @@
 ﻿@using IndDev.Domain.Entity
+@using IndDev.Domain.Entity.Products
 @model IndDev.Domain.ViewModels.ShopProductView
 @{
     Layout = "~/Views/Shared/_NewDesing.cshtml";
@@ -19,7 +20,7 @@
                     <i class="fa fa-chevron-right" aria-hidden="true"></i>
                     <a><strong>@Model.Products.Count()</strong> позиций</a>
                 </div>
-                @foreach (var item in Model.Products)
+                @foreach (var item in Model.Products.OrderBy(view => view.Prices.FirstOrDefault(model => model.PriceType==PriceType.Retail)?.ConvValue))
                 {
                     <div class="col-md-6 productView">
 
@@ -47,7 +48,13 @@
                                 {
                                     <p>Уточняйте цену...</p>
                                 }
-                                @*<a>КУПИТЬ</a>*@ @Html.ActionLink("КУПИТЬ","QuickAddToCart","Cart", new { prodId = item.Product.Id, returnUrl = Request.Url.PathAndQuery},null)
+                                @if (Model.Cart.CartItems.Any(cartItem => cartItem.Product.Id == item.Product.Id))
+                                {
+                                    @Html.ActionLink("В КОРЗИНЕ: "+Model.Cart.CartItems.FirstOrDefault(cartItem => cartItem.Product.Id==item.Product.Id)?.Quantity+item.Product.MesureUnit.ShortName, "QuickAddToCart", "Cart", new { prodId = item.Product.Id, returnUrl = Request.Url.PathAndQuery }, null)
+                                }
+                                else {
+                                    @Html.ActionLink("КУПИТЬ","QuickAddToCart","Cart", new { prodId = item.Product.Id, returnUrl = Request.Url.PathAndQuery},null)
+                                }
                             </div>
                         </div>
                         

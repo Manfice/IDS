@@ -6,7 +6,7 @@
 }
 @section links
 {
-    <link href="~/Content/Test.css" rel="stylesheet"/>
+    <link href="~/Content/Main.css" rel="stylesheet"/>
 }
 <div class="cart">
     <div class="container">
@@ -86,7 +86,7 @@
                                 @Html.Hidden("prodId", item.Product.Id)
                                 <td>@item.Product.Id</td>
                                 <td data-toggle="collapse" data-target="#@item.Product.Id" style="cursor: pointer">@item.Product.Title</td>
-                                <td>@item.RetailPrice.ConvValue.ToString("C")</td>
+                                <td>@item.ActualPrice.ConvValue.ToString("C")</td>
                                 <td>@Html.TextBox("quantity", item.Quantity, new {@type = "number", min = "1", style = "width: 70px;"})</td>
                                 <td>@item.SubTotal.ToString("C")</td>
                                 <td>
@@ -98,7 +98,14 @@
                         <tr id="@item.Product.Id" class="collapse">
                             <td colspan="6">
                                 <div class="lineDetails">
-                                    <img src="@item.Product.ProductPhotos.FirstOrDefault(photo => photo.PhotoType == PhotoType.Avatar).Path" alt="avatarka" width="100" style="float: right"/>
+                                    @if (item.Product.ProductPhotos.FirstOrDefault(photo => photo.PhotoType == PhotoType.Avatar) == null)
+                                    {
+                                        <img src="~/Content/images/noimage.png" alt="нет изображения"/>
+                                    }
+                                    else
+                                    {
+                                        <img src="@item.Product.ProductPhotos.FirstOrDefault(photo => photo.PhotoType == PhotoType.Avatar).Path" alt="avatarka" width="100" style="float: right" />
+                                    }
                                     <p>@Html.Raw(item.Product.Description)</p>
                                 </div>
                             </td>
@@ -107,22 +114,22 @@
                     </tbody>
                     <tfoot>
                     <tr>
-                        <td colspan="4">Итого:</td>
+                        <td colspan="4">Итого по розничной цене:</td>
                         <td colspan="2">@Model.CalcTotalSumm().ToString("C")</td>
                     </tr>
                     <tr>
                         <td colspan="3">Скидка:</td>
                         <td>@(Model.Customer?.CustomerStatus.Discount) %</td>
-                        <td colspan="2">@(((Model.CalcTotalSumm()*Model.Customer?.CustomerStatus.Discount)/100))</td>
+                        <td colspan="2">@(((Model.CalcTotalSumm()*Model.Customer?.CustomerStatus.Discount)/100)?.ToString("C"))</td>
                     </tr>
                         <tr>
                             <td colspan="4">Итого с учетом скидки:</td>
-                            <td colspan="2">@Model.CalcTotalWithDiscount().ToString("C")</td>
+                            <td colspan="2">@Model.CalcActualTotalWithDiscount().ToString("C")</td>
                         </tr>
 
                     <tr>
                         <td colspan="4">НДС:</td>
-                        <td colspan="2">@((Model.CalcTotalWithDiscount()*18/118).ToString("C"))</td>
+                        <td colspan="2">@((Model.CalcActualTotalWithDiscount()*18/118).ToString("C"))</td>
                     </tr>
                     </tfoot>
                 </table>

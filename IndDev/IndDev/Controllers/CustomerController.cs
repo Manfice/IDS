@@ -17,11 +17,13 @@ namespace IndDev.Controllers
     public class CustomerController : Controller
     {
         private readonly ICustomer _repository;
+        private readonly IMailRepository _mail;
         private int _user;
 
-        public CustomerController(ICustomer repo)
+        public CustomerController(ICustomer repo, IMailRepository mail)
         {
             _repository = repo;
+            _mail = mail;
         }
         protected override void Initialize(RequestContext context)
         {
@@ -78,12 +80,13 @@ namespace IndDev.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult MakeOrder()
+        public ActionResult MakeOrder(Cart cart)
         {
+            var total = cart.CalcActualTotalWithDiscount();
             var customer = _repository.GetCustomerByUserId(_user);
             var delTypes = _repository.GetDeliveryTypes().Select(type => new SelectListItem
             {
-                Text = type.Title+" - "+type.Cost.ToString("C"),
+                Text = (total>20000)? type.Title+" - БЕСПЛАТНО!" : type.Title + " - " + type.Cost.ToString("C"),
                 Value = type.Id.ToString()
             });
             var preOrder = new PreOrder
@@ -106,11 +109,15 @@ namespace IndDev.Controllers
             if (order == null)
                 return RedirectToAction("MessageScreen", "Home",
                     new { message = "Заказ не сохранен. Попробуйте еще раз." });
-            cart.ClearList();
-            return RedirectToAction("MessageScreen", "Home",
-                    new { message = "отправлен менеджерам для проверки и выставления счета. Все свои заказы Вы можете просмотреть в личном кабинете.", paragraf = $" Заказ №{order.Number} от {order.OrderDate.ToLongDateString()}" });
+
+            //cart.ClearList();
+            return RedirectToAction("MyOrder",new {id=order.Id});
         }
 
+        public ActionResult MyOrder(int id)
+        {
+            return View(_repository.GetOrderById(id));
+        }
         public PartialViewResult Logon()
         {
             var customer = _repository.GetCustomerByUserId(_user);

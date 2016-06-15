@@ -73,6 +73,7 @@
                                     {
                                         @Html.AntiForgeryToken()
                                         @Html.Hidden("productId", Model.Product.Id)
+                                        @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
                                         <input type="number" min="1" name="quantity" value="1"/>
                                         <input type="submit" value="КУПИТЬ"/>
                                     }

@@ -996,7 +996,7 @@ a,a:focus, a:active {
 /*Pre order screen*/
 .preOrder {
     max-width: 960px;
-    margin: 20px auto;
+    margin: 40px auto;
     text-align: center;
 }
 .preOrder h1 {

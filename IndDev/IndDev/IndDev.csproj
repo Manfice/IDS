@@ -253,6 +253,7 @@
     <Content Include="Content\images\dc960_640.jpg" />
     <Content Include="Content\images\fiber_optic.jpg" />
     <Content Include="Content\images\id_logo.svg" />
+    <Content Include="Content\images\invoice.jpg" />
     <Content Include="Content\images\Letters\bm.jpg" />
     <Content Include="Content\images\logoTopWhite.png" />
     <Content Include="Content\images\mairala\about.jpg" />
@@ -478,6 +479,7 @@
     <Content Include="Scripts\shopScripts.js" />
     <Content Include="Scripts\slider.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="sitemap.xml" />
     <Content Include="Views\Mails\LetterFromTitle.html" />
     <Content Include="Views\Mails\ResetPassword.html" />
     <Content Include="Views\Mails\ThankYou.html" />
@@ -591,6 +593,7 @@
     <Content Include="Views\Shop\ProductDetails.cshtml" />
     <Content Include="Views\Shop\Search.cshtml" />
     <Content Include="Upload\NKL.xlsx" />
+    <Content Include="Views\Customer\MyOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

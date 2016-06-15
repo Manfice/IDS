@@ -1,5 +1,7 @@
-﻿User-agent: /
+﻿User-agent: *
+Host:id-racks.azurewebsites.net
 Allow:/shop/
 Allow:/home/
 Allow:/contacts/
 Disallow: /admin/
+Disallow: /Security/

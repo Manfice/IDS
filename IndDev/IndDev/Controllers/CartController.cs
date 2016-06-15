@@ -28,6 +28,10 @@ namespace IndDev.Controllers
         // GET: Cart
         public ActionResult Index(Cart cart)
         {
+            if (_user>0)
+            {
+                cart.Customer = _repository.GetCustomer(_user);
+            }
             return View(cart);
         }
 

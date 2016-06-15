@@ -50,22 +50,26 @@ namespace IndDev.Domain.Context
                 Comment = preOrder.Delivery.Comment,
                 DeliveryCost = cart.CalcTotalSumm() >= dType.FreeFrom ? 0 : dType.Cost
             };
+            _context.Deliveries.Add(deliv);
             var ordNew = new OrderStatus
             {
                 Moderated = false,
                 Paid = false,
                 UnderDelivery = false,
-                DeliveryData = new DeliveryData()
+                DeliveryData = new DeliveryData() { DeliveryDate = DateTime.Now}
             };
+            _context.OrderStatuses.Add(ordNew);
             var ord = new Order
             {
                 Customer = customer,
-                OrderDate = DateTime.Today.Date,
+                OrderDate = DateTime.Now,
                 Number = OrderNumber(),
                 Delivery = deliv,
                 OrderStatus = ordNew
             };
+
             _context.Orders.Add(ord);
+
 
             foreach (var item in cart.CartItems)
             {
@@ -86,6 +90,10 @@ namespace IndDev.Domain.Context
             return ord;
         }
 
+        public Order GetOrderById(int id)
+        {
+            return _context.Orders.Find(id);
+        }
         public ValidEvent UpdateCustomer(User model)
         {
             var dbUser = _context.Users.Find(model.Id);

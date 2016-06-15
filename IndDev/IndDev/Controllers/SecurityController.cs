@@ -145,8 +145,9 @@ namespace IndDev.Controllers
             var result = _repository.ConfirmEmail(email, confirmation);
             return RedirectToAction("MessageScreen", "Home", new { message = result.Messge, paragraf = "ПОДТВЕРЖДЕНИЕ E-MAIL" });
         }
-        public ActionResult LogOut()
+        public ActionResult LogOut(Cart cart)
         {
+            cart.Customer = null;
             FormsAuthentication.SignOut();
             return RedirectToAction("Index","Home");
         }

@@ -59,9 +59,10 @@ namespace IndDev.Controllers
             return View(model);
         }
 
-        public ActionResult ShowProducts(int catId)
+        public ActionResult ShowProducts(int catId, Cart cart)
         {
             var model = _repository.GetProduct(catId);
+            model.Cart = cart;
             ViewBag.Title = model.ProductMenuItem.Title;
             return View(model);
         }
