@@ -17,6 +17,6 @@ namespace IndDev.Domain.Abstract
         Order MakeOrder(int userId, Cart cart, PreOrder preOrder);
         List<DeliveryType> GetDeliveryTypes();
         IEnumerable<Order> GetOrders(int custId);
-        Order GetOrderById(int id);
+        Order GetOrderById(int id, int custId);
     }
 }

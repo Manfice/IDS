@@ -90,9 +90,9 @@ namespace IndDev.Domain.Context
             return ord;
         }
 
-        public Order GetOrderById(int id)
+        public Order GetOrderById(int id, int custId)
         {
-            return _context.Orders.Find(id);
+            return _context.Orders.Where(order => order.Customer.Id==custId).FirstOrDefault(order => order.Id==id);
         }
         public ValidEvent UpdateCustomer(User model)
         {

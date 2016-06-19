@@ -1,4 +1,4 @@
-﻿.productForm {
+﻿/*.productForm {
     padding: 10px 0;
 }
 .productForm img {
@@ -38,4 +38,91 @@
 }
 .productForm input[type="submit"] {
     margin: 25px;
+}*/
+.admin-nav {
+    padding: 15px;
+}
+.box-title h3 {
+    margin: 0 0 15px;
+}
+.adminIndex {
+    display: flex;
+    flex-flow: row nowrap;
+
+}
+.ordersContent {
+    flex: 1 0 auto;
+
+    display: flex;
+    flex-flow: column nowrap;
+}
+.ordersContent table {
+    width: 100%;
+    text-align: center;
+}
+.ordersContent table thead {
+    background-color: #00bfff;
+    border-bottom: solid 1px whitesmoke;
+}
+.ordersContent table thead tr td {
+    border-right: solid 1px whitesmoke;
+    color: whitesmoke;
+    font-weight: bold;
+}
+.ordersContent table tbody tr:hover{
+    background-color: #008b8b;
+    color: white;
+}
+.ordersContent table tbody tr td {
+    border: dotted 1px black;
+}
+.ordersContent table tbody tr td a {
+    cursor: pointer;
+    color: black;
+    font-weight: bold;
+}
+.ordersContent table tbody tr td:hover a {
+    color: white;
+}
+.orderDetails {
+    display: flex;
+    flex-flow: row nowrap;
+    border: solid;
+
+}
+.orderData {
+    flex: 1 0 auto;
+    display: flex;
+    flex-flow: column nowrap;
+}
+.orderForms {
+    display: flex;
+    justify-content: space-around;
+}
+.formItem {
+    flex: 0 0 auto;
+}
+.orderContains {
+    flex: 0 0 auto;
+    display: flex;
+    flex-flow: column nowrap;
+}
+.orderContains h1 {
+    align-self: center;
+}
+.orderContains table {
+    width: 100%;
+}
+.orderContains table tr td {
+    border: dotted 1px;
+    text-align: center;
+}
+.orderContains table tr td a {
+    cursor: pointer;
+    margin: 15px;
+    color: black;
+    font-weight: bold;
+}
+.orderContains table tr:hover {
+    background-color: darkseagreen;
 }

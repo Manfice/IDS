@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using IndDev.Auth.Model;
 using IndDev.Domain.Abstract;
 using IndDev.Domain.Entity.Auth;
+using IndDev.Domain.Entity.Orders;
 using IndDev.Models;
 
 namespace IndDev.Domain.Context
@@ -91,6 +92,11 @@ namespace IndDev.Domain.Context
                 return $"Пользователь с логином {to} не найден в бд.";
             } 
 
+        }
+
+        public async Task<string> OrderNotify(Order order,string body)
+        {
+            throw new NotImplementedException();
         }
     }
 }

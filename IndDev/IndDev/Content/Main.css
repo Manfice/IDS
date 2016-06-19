@@ -547,27 +547,54 @@ a,a:focus, a:active {
 /*Попытка удалась.*/
 /*Contacts*/
 .contact-bg {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
     background: url("/Content/images/dc960_640.jpg") center no-repeat;
     background-size: 100% 100%;
     padding: 3% 0;
+    letter-spacing: 1px;
+}
+.contact-bg h1 {
+    align-self: center;
+    color: whitesmoke;
+    font-weight: bold;
 }
 .contact-bg address {
     margin-bottom: 3%;
     color: white;
     line-height: 25px;
     font-weight: bold;
+    padding: 15px;
+    flex: 1 0 auto;
+    align-self: center;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 .contact-bg address a {
+    color: whitesmoke;
+    letter-spacing: 2px;
+   
+}
+.phones {
+    display: flex;
+    flex-flow: row nowrap;
+}
+.phones p {
+    margin: 0 20px 20px;
+    font-size: 2em;
     color: orangered;
 }
 #map {
-    margin: 0 10%;
+    flex: 1 0 auto;
+    align-self: center;
+    width: 800px;
 }
 /*/Contacts*/
 /*About*/
 .about-bg {
     background: url("/Content/images/colors2.jpg") no-repeat;
     background-size: 100% 100%;
+    padding: 50px 0 0 0;
 }
 .about-history-box {
     position: relative;
@@ -613,6 +640,7 @@ a,a:focus, a:active {
     color: rgba(132, 177, 168, 0.75);
 }
 .about-tabs ul {
+    list-style: none;
     margin: 0 0 20px;
     height: 50px;
     text-align: center;
@@ -903,6 +931,11 @@ a,a:focus, a:active {
 .loginCart a {
     border: none;
 }
+.benefit {
+    background-color: #0083fe;
+    font-size: 2em;
+    color: whitesmoke;
+}
 /*END CART*/
 /*CUSTOMER LK*/
 /*NAV MENU*/
@@ -913,6 +946,7 @@ a,a:focus, a:active {
 .custNav ul {
     display: block;
     position: relative;
+    list-style: none;
 }
 .custNav ul li{
     float: left;

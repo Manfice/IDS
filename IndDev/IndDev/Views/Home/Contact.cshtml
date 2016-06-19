@@ -1,34 +1,32 @@
 ﻿@{
     ViewBag.Title = "Контакты";
     Layout = "~/Views/Shared/_NewDesing.cshtml";
+    ViewBag.description = "Контактная информация компании Industrial Development. Мы будем рады вас видеть в нашем офисе в г. Ставрополе. ";
 }
 @section links{
 <link href="~/Content/Main.css" rel="stylesheet" />
 }
+@Html.Action("TopNavigation")
 <div class="contact-bg">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <address>
-                    <p>Наши контакты</p>
-                    <p>Адрес офиса:</p>
-                    <p>Российская Федерация 355041, Ставропольский край, г. Ставрополь, ул. Л. Толстого, д.53</p>
-
-                    <p>Телефоны компании:</p>
-
-                    <p>+7 (8652) 99-05-82</p>
-                    <p>+7 (8652) 99-05-83 </p>
-                    <p>+7 (8652) 99-05-84</p>
-                    <p>+7 (962) 403-11-03</p>
-                    <p>+7 (988) 705-23-26</p>
-                </address>
-                <div id="map" class="well" style="width: 100%; height: 600px;"></div>
-                <address>
-                    <strong>Почта:</strong> <a href="mailto:79624031103@yandex.ru">79624031103@yandex.ru</a><br/>
-                </address>
-            </div>
+    <h1>Наши контакты</h1>
+    <address>
+        
+        <p>Телефоны компании:</p>
+        <div class="phones">
+            <p>+7 (8652) 99-05-82</p>
+            <p>+7 (8652) 99-05-83 </p>
+            <p>+7 (8652) 99-05-84</p>
         </div>
-    </div>
+
+
+        <strong>Почта:</strong> <a href="mailto:990582@id-racks.ru">Отдел продаж - 990582@id-racks.ru</a><br/>
+        <strong>Почта:</strong> <a href="mailto:id@id-racks.ru">Отдел по работе с поставщиками - id@id-racks.ru</a><br/>
+
+        <p>Адрес офиса:</p>
+        <p>Российская Федерация 355041, Ставропольский край, г. Ставрополь, ул. Л. Толстого, д.53</p>
+    </address>
+    <div id="map" class="well" style="height: 600px;"></div>
+
 </div>
 
 

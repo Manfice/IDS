@@ -1,10 +1,12 @@
 ﻿
 @{
-    ViewBag.Title = "MessageScreen";
+    ViewBag.Title = "Информация для пользователя.";
     Layout = "~/Views/Shared/_NewDesing.cshtml";
 }
-
+@Html.Action("TopNavigation")
 <div class="messageScreen">
-    <h1>@ViewBag.Paragraf</h1>
-    <p>@ViewBag.Message</p>
+    <div class="contentMessage">
+        <h1>@ViewBag.Paragraf</h1>
+        <p>@ViewBag.Message</p>
+    </div>
 </div>

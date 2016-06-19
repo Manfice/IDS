@@ -45,7 +45,7 @@ namespace IndDev.Controllers
                 new CustMenuItems {Title = "Сводка", MenuLink = "/Customer/Index"},
                 new CustMenuItems {Title = "Личные данные", MenuLink = "/Customer/CustomerDetails"},
                 new CustMenuItems {Title = "Заказы", MenuLink = "/Customer/Orders"},
-                new CustMenuItems {Title = "Сальдо", MenuLink = "/Customer/Index"}
+                //new CustMenuItems {Title = "Сальдо", MenuLink = "/Customer/Index"}
             };
             return PartialView(nav);
         }
@@ -54,6 +54,18 @@ namespace IndDev.Controllers
         {
             var model = _repository.GetOrders(_user);
             return View(model);
+        }
+
+        public ActionResult OrderDetails(int id)
+        {
+            var cust = _repository.GetCustomerByUserId(_user).Id;
+            var model = _repository.GetOrderById(id, cust);
+            if (model!=null)
+            {
+                return View(model);
+            }
+            return RedirectToAction("MessageScreen", "Home",
+                new { message = "Заказ не найден. Попробуйте еще раз.", paragraf = "Ошибка поиска заказа!" });
         }
         public PartialViewResult About()
         {
@@ -108,15 +120,23 @@ namespace IndDev.Controllers
             var order = _repository.MakeOrder(_user, cart, preorder);
             if (order == null)
                 return RedirectToAction("MessageScreen", "Home",
-                    new { message = "Заказ не сохранен. Попробуйте еще раз." });
+                    new { message = "Заказ не сохранен. Попробуйте еще раз.", paragraf= "Ошибка записи заказа!" });
 
-            //cart.ClearList();
+            cart.ClearList();
+            _mail.OrderNotify(order, "");
             return RedirectToAction("MyOrder",new {id=order.Id});
         }
 
         public ActionResult MyOrder(int id)
         {
-            return View(_repository.GetOrderById(id));
+            var cust = _repository.GetCustomerByUserId(_user).Id;
+            var model = _repository.GetOrderById(id, cust);
+            if (model != null)
+            {
+                return View(_repository.GetOrderById(id, cust));
+            }
+            return RedirectToAction("MessageScreen", "Home",
+                new { message = "Заказ не найден. Попробуйте еще раз.", paragraf = "Ошибка поиска заказа!" });
         }
         public PartialViewResult Logon()
         {

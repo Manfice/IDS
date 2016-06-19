@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using IndDev.Domain.Entity.Customers;
 using IndDev.Domain.Entity.Products;
 
@@ -15,6 +16,18 @@ namespace IndDev.Domain.Entity.Orders
         public virtual Delivery Delivery { get; set; }
         public virtual OrderStatus OrderStatus { get; set; }
         public virtual ICollection<OrderLine> OrderLines { get; set; }
+
+        public decimal CalcTotalSumm()
+        {
+            var summ = decimal.Round(OrderLines.Sum(line => line.Price * line.Quantity), 2);
+            summ = summ + Delivery.DeliveryCost;
+            return summ;
+        }
+
+        public decimal CalcNds()
+        {
+            return decimal.Round(CalcTotalSumm()*18/118, 2);
+        }
     }
 
     public class OrderLine
@@ -27,6 +40,8 @@ namespace IndDev.Domain.Entity.Orders
         public virtual Currency Currency { get; set; }
         public virtual Product Product { get; set; }
         public virtual Order Order { get; set; }
+
+        public decimal TotalSumm => Quantity*Price;
     }
 
     public class DeliveryType

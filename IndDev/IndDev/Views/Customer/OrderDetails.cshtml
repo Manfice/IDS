@@ -1,16 +1,14 @@
 ﻿@model IndDev.Domain.Entity.Orders.Order
 @{
-    ViewBag.Title = "Заказ №"+Model.Number+" от "+Model.OrderDate.ToLongDateString();
+    ViewBag.Title = "OrderDetails";
     Layout = "~/Views/Shared/_NewDesing.cshtml";
     var i = 0;
 }
 
-
-
 <div class="order">
-    <div class="headInfo">
+        <div class="headInfo">
         <div class="itemHead">
-            <img src="~/Content/images/idlgfpngblue.png" alt="logo"/>
+            <img src="~/Content/images/idlgfpngblue.png" alt="logo" />
         </div>
         <div class="itemHead">
             <h1>Информация о заказе:</h1>
@@ -43,9 +41,11 @@
             @if (Model.Delivery.DeliveryType.Id == 6)
             {
                 <h3>Самовывоз.</h3>
-                <p><strong>Забор груза осуществляется по адресу:</strong>г. Ставрополь, ул. Льва Толстого, д.№53.
+                <p>
+                    <strong>Забор груза осуществляется по адресу:</strong>г. Ставрополь, ул. Льва Толстого, д.№53.
                 </p>
-                <p><strong>Время работы:</strong>пн-пт с 9:30 до 17:00
+                <p>
+                    <strong>Время работы:</strong>пн-пт с 9:30 до 17:00
                 </p>
             }
             else
@@ -65,9 +65,10 @@
                     </tr>
                     <tr>
                         <td>Cтоимость:</td>
-                        <td>@(Model.Delivery.DeliveryCost > 0 ? Model.Delivery.DeliveryCost.ToString("c"): "БЕСПЛАТНО")</td>
-                    </tr>                </table>
-                <p><strong>Отгрузка осуществляется по средам и пятницам.</strong></p>
+                        <td>@(Model.Delivery.DeliveryCost > 0 ? Model.Delivery.DeliveryCost.ToString("c") : "БЕСПЛАТНО")</td>
+                    </tr>
+                </table>
+                    <p><strong>Отгрузка осуществляется по средам и пятницам.</strong></p>
             }
         </div>
     </div>
@@ -75,37 +76,37 @@
         <h1>Заказ №@Model.Number от @Model.OrderDate.ToLongDateString()</h1>
         <table>
             <thead>
-            <tr>
-                <td>#</td>
-                <td>Артикул</td>
-                <td>Наименование</td>
-                <td>Цена</td>
-                <td>Кол-во</td>
-                <td>Ед. изм.</td>
-                <td>Сумма</td>
-            </tr>
+                <tr>
+                    <td>#</td>
+                    <td>Артикул</td>
+                    <td>Наименование</td>
+                    <td>Цена</td>
+                    <td>Кол-во</td>
+                    <td>Ед. изм.</td>
+                    <td>Сумма</td>
+                </tr>
             </thead>
             <tbody>
-            @foreach (var item in Model.OrderLines)
+                @foreach (var item in Model.OrderLines)
             {
                 i++;
-                <tr>
-                    <td>@i</td>
-                    <td>@item.Product.Articul</td>
-                    <td>@item.Product.Title</td>
-                    <td>@item.Price</td>
-                    <td>@item.Quantity</td>
-                    <td>@item.Product.MesureUnit.ShortName</td>
-                    <td>@(Math.Round(item.Quantity*item.Price, 2).ToString("C"))</td>
-                </tr>
-            }
+                    <tr>
+                        <td>@i</td>
+                        <td>@item.Product.Articul</td>
+                        <td>@item.Product.Title</td>
+                        <td>@item.Price</td>
+                        <td>@item.Quantity</td>
+                        <td>@item.Product.MesureUnit.ShortName</td>
+                        <td>@(Math.Round(item.Quantity * item.Price, 2).ToString("C"))</td>
+                    </tr>
+                }
             </tbody>
             <tfoot>
-            <tr>
-                <td colspan="5"></td>
-                <td style="border: dotted 1px">ИТОГО:</td>
-                <td style="border: dotted 1px">@Model.CalcTotalSumm().ToString("C")</td>
-            </tr>
+                <tr>
+                    <td colspan="5"></td>
+                    <td style="border: dotted 1px">ИТОГО:</td>
+                    <td style="border: dotted 1px">@Model.CalcTotalSumm().ToString("C")</td>
+                </tr>
                 @if (Model.Delivery.DeliveryCost > 0)
                 {
                     <tr>
@@ -114,11 +115,11 @@
                         <td style="border: dotted 1px">@Model.Delivery.DeliveryCost.ToString("C")</td>
                     </tr>
                 }
-            <tr>
-                <td colspan="5"></td>
-                <td style="border: dotted 1px">НДС:</td>
-                <td style="border: dotted 1px">@Model.CalcNds().ToString("C")</td>
-            </tr>
+                <tr>
+                    <td colspan="5"></td>
+                    <td style="border: dotted 1px">НДС:</td>
+                    <td style="border: dotted 1px">@Model.CalcNds().ToString("C")</td>
+                </tr>
                 <tr>
                     <td colspan="5"></td>
                     <td style="border: dotted 1px">ИТОГО К ОПЛАТЕ:</td>
@@ -128,10 +129,7 @@
         </table>
     </div>
     <div class="orderControls">
-        <div class="orderThanks">
-            <h1>СПАСИБО ЗА ЗАЯВКУ</h1>
-            <p>В ближайшее время наши менеджеры обработают вашу заявку и свяжутся с вами. После подтверждения заказа вам вышлют счет на электронную почту. Все свои заказы вы сможете контролировать в личном кабинете.</p>
-            <a href="@Url.Action("Orders")">Перейти в личный кабинет</a>
-        </div>
+       @Html.ActionLink("ЗАКАЗЫ", "Orders")
     </div>
 </div>
+

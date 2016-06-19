@@ -1,10 +1,13 @@
 ﻿@model IndDev.Domain.Entity.Auth.User
 @{
     ViewBag.Title = Model.Customer.Title;
-    Layout = "~/Views/Shared/_LayoutSFoot.cshtml";
+    Layout = "~/Views/Shared/_NewDesing.cshtml";
 }
-
-
+@section links
+{
+    <link href="~/Content/Main.css" rel="stylesheet"/>
+}
+@Html.Action("LkNavigation")
 <div class="container">
     <div class="row">
         @using (Html.BeginForm("SaveCustomerData","Customer", FormMethod.Post))

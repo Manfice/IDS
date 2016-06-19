@@ -1,12 +1,16 @@
 ﻿@model IndDev.Domain.Entity.Auth.User
 @{
     ViewBag.Title = "AdminPage";
-    Layout = "~/Views/Shared/_LayoutSFoot.cshtml";
+    Layout = "~/Views/Shared/_NewDesing.cshtml";
+}
+@section links
+{
+    <link href="~/Content/admin.css" rel="stylesheet"/>
 }
 
-<div class="row">
-<div class="col-md-3 left-navigation">
-    @Html.Action("AdminNavigation")
-</div>
+
+<div class="adminIndex">
+@Html.Action("AdminNavigation")
+    
 </div>
 

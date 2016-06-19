@@ -1,0 +1,54 @@
+﻿@model IndDev.Domain.Entity.Orders.Order
+@{
+    ViewBag.Title = "OrderDetails";
+    Layout = "~/Views/Shared/_NewDesing.cshtml";
+    var i = 0;
+}
+@section links
+{
+<link href="~/Content/admin.css" rel="stylesheet" />
+}
+<div class="orderDetails">
+    @Html.Action("AdminNavigation")
+    <div class="orderData">
+        <div class="orderForms">
+            <div class="formItem">
+                <h3>@Model.Customer.Title</h3>
+                <p>@Model.Customer.Details.Inn / @Model.Customer.Details.Kpp</p>
+                <p>@Model.Customer.Adress</p>
+                <p>@Model.Customer.CustomerStatus.Title</p>
+                <p></p>
+            </div>
+            <div class="formItem">
+                <h3>@Model.Delivery.DeliveryType.Title</h3>
+                <p>@Model.Delivery.To</p>
+                <p>@Model.Delivery.DeliveryCost.ToString("C")</p>
+            </div>
+            <div class="formItem">
+                
+            </div>
+        </div>
+        <div class="orderContains">
+            <h1>Заказ №@Model.Number от @Model.OrderDate</h1>
+            <table>
+                @foreach (var item in Model.OrderLines)
+                {
+                    i++;
+                    <tr>
+                        <td>@i</td>
+                        <td>@item.Product.Articul</td>
+                        <td>@item.Product.Title</td>
+                        <td>@item.Price.ToString("c")</td>
+                        <td>@item.Quantity</td>
+                        <td>@item.TotalSumm.ToString("C")</td>
+                        <td>
+                            <a>Заменить</a>
+                            <a>Удалить</a>
+                        </td>
+                    </tr>
+                    
+                }
+            </table>
+        </div>
+    </div>
+</div>

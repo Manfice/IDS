@@ -6,6 +6,7 @@ using IndDev.Domain.Entity;
 using IndDev.Domain.Entity.Auth;
 using IndDev.Domain.Entity.Customers;
 using IndDev.Domain.Entity.Menu;
+using IndDev.Domain.Entity.Orders;
 using IndDev.Domain.Entity.Products;
 using IndDev.Domain.Entity.Stock;
 using IndDev.Domain.ViewModels;
@@ -62,5 +63,8 @@ namespace IndDev.Domain.Abstract
         void UpdateByPrice(IList<ProductExcell> price);
         ProductPhoto GetProductPhoto(int id);
         CustomerStatus GetCustomerStatus(int id);// User Id not Customer
+        string MakeProductsXml();
+        IEnumerable<Order> GetOrders();
+        Order GetOrderById(int id);
     }
 }

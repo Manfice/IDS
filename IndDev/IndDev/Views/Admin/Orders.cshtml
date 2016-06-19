@@ -1,0 +1,62 @@
+﻿@model IEnumerable<IndDev.Domain.Entity.Orders.Order>
+@{
+    ViewBag.Title = "Orders";
+    Layout = "~/Views/Shared/_NewDesing.cshtml";
+    var i = Model.Count();
+}
+@section links
+{
+    <link href="~/Content/admin.css" rel="stylesheet" />
+}
+
+
+<div class="adminIndex">
+    @Html.Action("AdminNavigation")
+    <div class="ordersContent">
+        <div class="menegment">
+
+        </div>
+        <table class="table-striped">
+            <thead>
+            <tr>
+                <td>#</td>
+                <td>Номер</td>
+                <td>Дата</td>
+                <td>Сумма</td>
+                <td>Клиент</td>
+                <td>Доставка</td>
+                <td>Принят</td>
+                <td>Оплачен</td>
+                <td>Отгружен</td>
+                <td>Исполнен</td>
+                <td>Действия</td>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var order in Model)
+            {
+                <tr>
+                    <td>@i</td>
+                    <td>@order.Number</td>
+                    <td>@order.OrderDate</td>
+                    <td>@order.CalcTotalSumm().ToString("C")</td>
+                    <td>@order.Customer.Title</td>
+                    <td>@(order.Delivery.DeliveryType.Id == 6 ? "САМОВЫВОЗ" : order.Delivery.DeliveryType.Title + " " + order.Delivery.To)</td>
+                    <td>@order.OrderStatus.Moderated</td>
+                    <td>@order.OrderStatus.Paid</td>
+                    <td>@order.OrderStatus.UnderDelivery</td>
+                    <td>@order.OrderStatus.Moderated</td>
+                    <td>
+                        <a href="@Url.Action("OrderDetails","Admin",new {id=order.Id})">Перейти к заказу >>></a>
+                    </td>
+                </tr>
+
+                i--;
+            }
+            </tbody>
+            <tfoot></tfoot>
+        </table>
+    </div>
+</div>
+
+

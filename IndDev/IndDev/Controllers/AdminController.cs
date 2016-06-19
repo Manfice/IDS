@@ -1,20 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.UI;
+using System.Web.Routing;
 using IndDev.Domain.Abstract;
 using IndDev.Domain.Entity;
-using IndDev.Domain.Entity.Auth;
-using IndDev.Domain.Entity.Customers;
 using IndDev.Domain.Entity.Menu;
 using IndDev.Domain.Entity.Products;
 using IndDev.Domain.ViewModels;
-using IndDev.Models;
-using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 
@@ -24,13 +19,18 @@ namespace IndDev.Controllers
     public class AdminController : Controller
     {
         private readonly IAdminRepository _repository;
+        private int _user;
 
         public AdminController(IAdminRepository repository)
         {
             _repository = repository;
         }
-
-
+        protected override void Initialize(RequestContext context)
+        {
+            base.Initialize(context);
+            if (!context.HttpContext.User.Identity.IsAuthenticated) return;
+            _user = int.Parse(context.HttpContext.User.Identity.Name);
+        }
         // GET: Admin
         public ActionResult AdminPage(int userId)
         {
@@ -38,6 +38,11 @@ namespace IndDev.Controllers
             return View(user);
         }
 
+        public PartialViewResult ShowSm()
+        {
+            ViewBag.Mystr = _repository.MakeProductsXml();
+            return PartialView();
+        }
         public ActionResult MyProfile(int custId)
         {
             return View(_repository.Customer(custId));
@@ -46,10 +51,20 @@ namespace IndDev.Controllers
         public PartialViewResult AdminNavigation(string selCat = null)
         {
             ViewBag.Category = selCat;
-
-            return PartialView();
+            var model = _repository.User(_user);
+            return PartialView(model);
         }
 
+        public ActionResult Orders()
+        {
+            var model = _repository.GetOrders();
+            return View(model);
+        }
+
+        public ActionResult OrderDetails(int id)
+        {
+            return View(_repository.GetOrderById(id));
+        }
         public ActionResult UserList()
         {
             return View();
@@ -97,6 +112,7 @@ namespace IndDev.Controllers
                 }),
                 Status = ststus
             };
+            ViewBag.Rol = roles;
             return PartialView(model);
         }
 

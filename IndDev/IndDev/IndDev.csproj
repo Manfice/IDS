@@ -252,6 +252,7 @@
     <Content Include="Content\images\datacenter.jpg" />
     <Content Include="Content\images\dc960_640.jpg" />
     <Content Include="Content\images\fiber_optic.jpg" />
+    <Content Include="Content\images\idlgfpngblue.png" />
     <Content Include="Content\images\id_logo.svg" />
     <Content Include="Content\images\invoice.jpg" />
     <Content Include="Content\images\Letters\bm.jpg" />
@@ -594,6 +595,10 @@
     <Content Include="Views\Shop\Search.cshtml" />
     <Content Include="Upload\NKL.xlsx" />
     <Content Include="Views\Customer\MyOrder.cshtml" />
+    <Content Include="Views\Admin\ShowSm.cshtml" />
+    <Content Include="Views\Customer\OrderDetails.cshtml" />
+    <Content Include="Views\Admin\Orders.cshtml" />
+    <Content Include="Views\Admin\OrderDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1145,22 +1145,111 @@ footer p {
 }
 .order {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-flow: column;
+    justify-content: flex-start;
 }
 .headInfo {
-    max-width: 1200px;
-}
-.orderHead {
     display: flex;
+    flex-flow: row nowrap;
+    max-width: 1200px;
+    width: 100%;
     justify-content: space-between;
-    background-color: orangered;
-    
+    align-self: center;
+    border-bottom: solid 1px;
 }
-.customerInfo {
+.itemHead {
+    flex: 0 0 auto;
+    max-width: 400px;
+    display: flex;
+    flex-flow: column;
+    width: 100%;
+    padding: 10px;
+}
+.itemHead img {
+    align-self: flex-end;
+    max-width: 300px;
+    margin: 20px;
+}
+.itemHead h1 {
+    margin: 0 0 10px;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+.itemHead table tr td {
+    padding: 0 5px;
+    border-bottom: dashed 1px;
+}
+.orderBody {
+    display: flex;
+    flex-flow: column nowrap;
+    max-width: 1200px;
+    width: 100%;
+    align-self: center;
+    align-items: center;
+}
+.orderBody table {
+    width: 100%;
+}
+.orderBody table thead {
+    background-color: #0697fe;
+    color: white;
+    text-align: center;
+    font-weight: lighter;
+    font-size: 1.3em;
+    letter-spacing: 2px;
+}
+.orderBody table tbody {
+    text-align: center;
+}
+.orderBody table tbody tr td {
+    border: dotted 1px;
+}
+.orderBody table tfoot {
+    text-align: center;
+    font-weight: bold;
+    border-top: solid 2px;
+}
+.orderControls {
+    display: flex;
+    flex-flow: row wrap;
+    max-width: 1200px;
+    width: 100%;
+    align-self: center;
 
 }
-.sellerInfo {
-
+.orderControls a {
+    border: solid;
+    padding: 10px; 
+}
+.orderThanks {
+    flex: 1 0 auto;
+    text-align: center;
+    max-width: 1200px;
+    padding: 20px;
+}
+.orderThanks a {
+    line-height: 50px;
 }
 /*End CustomerOrder*/
+.messageScreen {
+    flex: 1 0 auto;
+    background: url("/Content/images/twisted_pair.jpg") no-repeat top center;
+    -ms-background-size: 100% 100%;
+    background-size: 100% 100%;
+    display: flex;
+    flex-flow: column nowrap;
+}
+.contentMessage {
+    background-color: rgb(255, 255, 255);
+    max-width: 1200px;
+    flex: 0 0 auto;
+    align-self: center;
+    display: flex;
+    flex-flow: column nowrap;
+    margin: auto;
+    padding: 15px;
+    text-align: center;
+}
+.contentMessage h1 {
+    align-self: center;
+}

@@ -138,6 +138,7 @@
     <Compile Include="Entity\Products\Vendor.cs" />
     <Compile Include="Entity\Stock\Stock.cs" />
     <Compile Include="Logic\ExternalLogic.cs" />
+    <Compile Include="Logic\sitemap.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\CartViewModel.cs" />

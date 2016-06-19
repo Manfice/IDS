@@ -118,19 +118,20 @@
                         <td colspan="2">@Model.CalcTotalSumm().ToString("C")</td>
                     </tr>
                     <tr>
-                        <td colspan="3">Скидка:</td>
-                        <td>@(Model.Customer?.CustomerStatus.Discount) %</td>
-                        <td colspan="2">@(((Model.CalcTotalSumm()*Model.Customer?.CustomerStatus.Discount)/100)?.ToString("C"))</td>
+                        <td colspan="4">Сумма по вашей цене:</td>
+                        <td colspan="2">@Model.CalcActualTotalWithDiscount().ToString("C")</td>
                     </tr>
-                        <tr>
-                            <td colspan="4">Итого с учетом скидки:</td>
-                            <td colspan="2">@Model.CalcActualTotalWithDiscount().ToString("C")</td>
-                        </tr>
-
                     <tr>
                         <td colspan="4">НДС:</td>
                         <td colspan="2">@((Model.CalcActualTotalWithDiscount()*18/118).ToString("C"))</td>
                     </tr>
+                        @if ((Model.CalcTotalSumm() - Model.CalcActualTotalWithDiscount()) > 0)
+                        {
+                            <tr class="benefit">
+                                <td colspan="4">Ваша выгода:</td>
+                                <td colspan="2">@((Model.CalcTotalSumm() - Model.CalcActualTotalWithDiscount()).ToString("C"))</td>
+                            </tr>
+                        }
                     </tfoot>
                 </table>
             </div>

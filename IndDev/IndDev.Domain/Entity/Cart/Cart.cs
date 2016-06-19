@@ -43,47 +43,69 @@ namespace IndDev.Domain.Entity.Cart
                     Currency = price.Currency,
                     OriginalPrice = price.Value
                 };
+                if (item.Discount <= 0) return;
+                var sum = item.ActualPrice.OriginalPrice;
+                item.ActualPrice.OriginalPrice = sum - ((sum*item.Discount)/100);
             }
             else
             {
                 item.ActualPrice = item.RetailPrice;
+                if (item.Discount <= 0) return;
+                var sum = item.ActualPrice.OriginalPrice;
+                item.ActualPrice.OriginalPrice = sum - ((sum * item.Discount) / 100);
             }
         }
 
         private void UpdatePrice()
         {
             var curentTotal = CalcTotalSumm();
-            if (curentTotal>=350000 && Customer==null)
+            if (curentTotal>=300000 && Customer==null)
             {
                 foreach (var item in _cartItems)
                 {
                     SetPrice(item,PriceType.Opt);
+                    item.Discount = 0;
                 }
-            }else if (curentTotal>=60000 && Customer==null)
+            }else if (curentTotal>=100000 && Customer==null)
             {
                 foreach (var item in _cartItems)
                 {
+                    item.Discount = 0;
                     SetPrice(item,PriceType.LowOpt);
                 }
-            }else if (curentTotal<60000 && Customer==null)
+            }else if (curentTotal<100000 && Customer==null)
             {
                 foreach (var item in _cartItems)
                 {
+                    item.Discount = 0;
                     SetPrice(item,item.RetailPrice.PriceType);
                 }
             }
-            if (Customer != null && curentTotal >= 350000)
+            if (Customer != null && curentTotal >= 300000)
             {
                 foreach (var item in _cartItems)
                 {
+                    item.Discount = 0;
                     SetPrice(item, PriceType.Opt);
+                }
+            }
+            else if (Customer != null && curentTotal >= 100000)
+            {
+                foreach (var item in _cartItems)
+                {
+                    item.Discount = 0;
+                    SetPrice(item, PriceType.LowOpt);
                 }
             }
             else
             {
                 foreach (var item in _cartItems)
                 {
-                    if (Customer != null) SetPrice(item,Customer.CustomerStatus.PriceType);
+                    if (Customer != null)
+                    {
+                        item.Discount = Customer.CustomerStatus.Discount;
+                        SetPrice(item,Customer.CustomerStatus.PriceType);
+                    }
                 }
             }
         }
@@ -158,7 +180,7 @@ namespace IndDev.Domain.Entity.Cart
         public Product Product { get; set; }
         public PriceViewModel ActualPrice { get; set; }
         public PriceViewModel RetailPrice { get; }
-
+        public decimal Discount { get; set; }
         public int Quantity { get; set; }
         public decimal SubTotal => Math.Round(Quantity*ActualPrice.ConvValue,2);
 

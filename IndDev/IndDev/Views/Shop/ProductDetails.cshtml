@@ -5,6 +5,7 @@
 @{
     ViewBag.Title = Model.Product.Title;
     Layout = "~/Views/Shared/_NewDesing.cshtml";
+    ViewBag.description = Model.Product.Title;
 }
 
 @section links
@@ -56,7 +57,7 @@
                                     <p>Цены:</p>
                                     @if (Model.Prices.Any(model => model.PriceType == PriceType.Sale && model.ConvValue > 0))
                                     {
-                                        <h4>РАСПРОДАЖА</h4>
+                                        <h4>@Model.Prices.FirstOrDefault(model => model.PriceType == PriceType.Sale).Title</h4>
                                         <h3>@Model.Prices.FirstOrDefault(model => model.PriceType == PriceType.Sale).ConvValue.ToString("C")</h3>
 
                                     }

@@ -2,11 +2,13 @@
     ViewBag.Title = "О компании";
     Layout = "~/Views/Shared/_NewDesing.cshtml";
     var date = DateTime.Now.Year - 2010;
+    ViewBag.description = "История компании Industrial Development. Здесь вы найдете информацию о наших партнерах, сертификаты и реквизиты компании.";
 }
 @section links
 {
 <link href="~/Content/Main.css" rel="stylesheet" />
 }
+@Html.Action("TopNavigation")
 <div class="about-bg">
     <div class="container">
         <div class="row">

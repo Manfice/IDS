@@ -9,6 +9,7 @@ using IndDev.Domain.Entity;
 using IndDev.Domain.Entity.Auth;
 using IndDev.Domain.Entity.Customers;
 using IndDev.Domain.Entity.Menu;
+using IndDev.Domain.Entity.Orders;
 using IndDev.Domain.Entity.Products;
 using IndDev.Domain.Entity.Stock;
 using IndDev.Domain.Logic;
@@ -856,6 +857,21 @@ namespace IndDev.Domain.Context
         public CustomerStatus GetCustomerStatus(int id)
         {
             return _context.Users.Find(id).Customer.CustomerStatus;
+        }
+
+        public string MakeProductsXml()
+        {
+            return Sitemap.MakeXmlList(_context.Products.ToList());
+        }
+
+        public IEnumerable<Order> GetOrders()
+        {
+            return _context.Orders.OrderByDescending(order => order.OrderDate).ToList();
+        }
+
+        public Order GetOrderById(int id)
+        {
+            return _context.Orders.Find(id);
         }
     }
 }

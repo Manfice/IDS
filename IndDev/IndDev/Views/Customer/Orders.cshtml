@@ -1,9 +1,12 @@
 ﻿@model IEnumerable<IndDev.Domain.Entity.Orders.Order>
 @{
     ViewBag.Title = "Мои заказы";
-    Layout = "~/Views/Shared/_LayoutShop.cshtml";
+    Layout = "~/Views/Shared/_NewDesing.cshtml";
 }
-
+@section links
+{
+    <link href="~/Content/Main.css" rel="stylesheet"/>
+}
 <div class="container">
     <div class="row">
         @Html.Action("LkNavigation", "Customer")        
@@ -33,15 +36,15 @@ else
                 </tr>
                 </thead>
                 <tbody>
-                @foreach (var item in Model)
+                @foreach (var item in Model.OrderByDescending(order => order.Number))
                 {
                     <tr>
                         <td>@item.Number</td>
                         <td>@item.OrderDate.ToLongDateString()</td>
                         <td>@item.OrderLines.Sum(line => Math.Round(line.Quantity * line.Price, 2))</td>
-                        <td>@item.OrderStatus.Moderated</td>
-                        <td>@item.OrderStatus.Paid</td>
-                        <td>@item.Number</td>
+                        <td>@(item.OrderStatus.Moderated?"ПОДТВЕРЖДЕН":"В ОБРАБОТКЕ")</td>
+                        <td>@(item.OrderStatus.Paid?"ОПЛАЧЕН":"ЖДЕТ ОПЛАТЫ")</td>
+                        <td>@Html.ActionLink("ПОДРОБНЕЕ", "OrderDetails", "Customer", new {id = item.Id}, null)</td>
                     </tr>
                 }
                 </tbody>
