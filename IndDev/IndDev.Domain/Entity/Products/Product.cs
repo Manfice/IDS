@@ -14,6 +14,7 @@ namespace IndDev.Domain.Entity.Products
         [AllowHtml]
         public string Warning { get; set; }
         public string Articul { get; set; }
+        public string ShotDescription { get; set; }
         public bool IsService { get; set; } 
         public string Warranty { get; set; }
         public bool Reclama { get; set; }

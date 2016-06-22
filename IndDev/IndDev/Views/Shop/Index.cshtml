@@ -1,11 +1,18 @@
 ﻿@model IEnumerable<IndDev.Domain.Entity.Menu.ProductMenu>
 @{
-    ViewBag.Title = "Магазин";
+    ViewBag.Title = @"Каталог ООО ""Торговый дом ""АЙДИ-С""";
     Layout = "~/Views/Shared/_NewDesing.cshtml";
+    ViewBag.description = @"В нашем каталоге вы найдете широкий ассортимент товаров для строительства линий связи, телекоммуникационного оборудования, инстркмент, расходные материалы для локальных сетей. Мы предлагаем товары как Российского, так и импортного производства. Вся продукция сертифицированна и проверена на качество нашими постоянными клиентами.";
+}
+
+@section links
+{
+    <link href="~/Content/ShopHelper.css" rel="stylesheet" />
 }
 
 @Html.Action("TopNavigation","Home")
-@Html.Action("ShopBlock","Shop")
+@Html.Action("ShopBlock", "Shop")
+
 <div class="catalogBody">
     <div class="container">
         <div class="row">

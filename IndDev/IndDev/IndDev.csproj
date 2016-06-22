@@ -254,8 +254,17 @@
     <Content Include="Content\images\fiber_optic.jpg" />
     <Content Include="Content\images\idlgfpngblue.png" />
     <Content Include="Content\images\id_logo.svg" />
+    <Content Include="Content\images\info.png" />
     <Content Include="Content\images\invoice.jpg" />
     <Content Include="Content\images\Letters\bm.jpg" />
+    <Content Include="Content\images\logoId300.png" />
+    <Content Include="Content\images\logos\ec1.png" />
+    <Content Include="Content\images\logos\ecopl.jpg" />
+    <Content Include="Content\images\logos\Gigalink150.png" />
+    <Content Include="Content\images\logos\netlan300.png" />
+    <Content Include="Content\images\logos\nikolan150.png" />
+    <Content Include="Content\images\logos\NIKOMAX300.png" />
+    <Content Include="Content\images\logos\TLK.png" />
     <Content Include="Content\images\logoTopWhite.png" />
     <Content Include="Content\images\mairala\about.jpg" />
     <Content Include="Content\images\mairala\ad300x250.jpg" />
@@ -380,6 +389,8 @@
     <Content Include="Content\media.css" />
     <Content Include="Content\owl.carousel.css" />
     <Content Include="Content\reset.css" />
+    <Content Include="Content\Shop.css" />
+    <Content Include="Content\ShopHelper.css" />
     <Content Include="Content\slider.css" />
     <Content Include="Content\mairala\style.css" />
     <Content Include="Content\images\vols.jpg" />

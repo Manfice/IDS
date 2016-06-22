@@ -11,6 +11,8 @@ namespace IndDev.Domain.Entity.Menu
         [AllowHtml]
         public string Descr { get; set; }
         public int Priority { get; set; }
+        public string ShotDescription { get; set; }
+        public string TitleText { get; set; }
         public virtual ProdMenuImage Image { get; set; }    
         public virtual ICollection<ProductMenuItem> MenuItems { get; set; }
     }
@@ -23,6 +25,9 @@ namespace IndDev.Domain.Entity.Menu
         public string Descr { get; set; }
         public bool IsRus { get; set; }
         public int Priority { get; set; }
+        public string ShotDescription { get; set; }
+        public string TitleText { get; set; }
+
         public virtual ProdMenuImage Image { get; set; }
         public virtual ProductMenu ProductMenu { get; set; }
         public virtual ICollection<Product> Products { get; set; }

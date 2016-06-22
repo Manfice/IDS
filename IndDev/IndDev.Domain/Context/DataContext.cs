@@ -31,6 +31,7 @@ namespace IndDev.Domain.Context
         public DbSet<Product> Products { get; set; }
         public DbSet<Stock> Stocks { get; set; }
         public DbSet<Brand> Brands { get; set; }
+        public DbSet<BrandImage> BrandImages { get; set; }
         public DbSet<Currency> Currencies { get; set; }
         public DbSet<MesureUnit> MesureUnits { get; set; }
         public DbSet<Price> Prices { get; set; }

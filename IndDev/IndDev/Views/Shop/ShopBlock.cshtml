@@ -1,7 +1,37 @@
 ﻿@model IndDev.Domain.Entity.Cart.Cart
 
+<div class="cartSectionBlock">
+    <div class="shopTop">
+        <div class="search">
+            @using (Html.BeginForm("Search", "Shop", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <input type="text" name="search" tabindex="1" placeholder="Поиск по каталогу..." /><input type="submit" value="Поиск" />
+            }
+        </div>
+        <div class="midleBlock">
+            <div id="vasia" class="carousel" data-interval="15000" data-ride="carousel">
+                <div class="carousel-inner myText">
+                    <p class="active item">цены от производителя</p>
+                    <p class="item">доставка в регионы</p>
+                    <p class="item">широкий выбор</p>
+                </div>
+            </div>
+        </div>
+        <div class="cartBloc">
+            <a href="@Url.Action("Index", "Cart")">
+                <img src="@Url.Content("~/Content/images/cart_logo.png")" alt="" />
+                <h4>КОРЗИНА</h4>
+                <p>@Model.CartItems.Count() выбрано</p>
+                <p>@Model.CalcTotalSumm().ToString("C")</p>
+            </a>
+        </div>
+    </div>    
+</div>
 
-<div class="shopHelper">
+
+
+@*<div class="shopHelper">
     <div class="container">
         <div class="row">
             <div class="col-md-4">
@@ -40,4 +70,4 @@
             </div>
         </div>
     </div>
-</div>
+</div>*@

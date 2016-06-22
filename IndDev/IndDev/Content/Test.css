@@ -8,7 +8,6 @@ body {
     padding: 0;
     font-family: "RobotoLight";
     padding: 30px 0 0 0;
-    min-width: 360px;
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -751,82 +750,15 @@ footer p {
     margin: 0;
     padding: 0;
 }
-.cartBloc {
-    float: right;
-    right: 0;
-    top: 0;
-    text-align: right;
-    width: 200px;
-    padding: 15px;
-    border-bottom: dotted 1px #666;
-}
-.cartBloc a {
-    cursor: pointer;
-}
-.cartBloc img {
-    float: left;
-    width: 45px;
-    margin: 7px 0;
-}
-.cartBloc h4 {
-    margin: 0;
-    padding: 0;
-}
-.cartBloc p {
-    margin: 0;
-    padding: 0;
-}
-.search {
-    float: left;
-    margin: 30px;
-}
-.search input {
-    margin: 0;
-}
-.search input[type="text"] {
-    width: 200px;
-    margin: 0;
-    padding: 5px;
-    border-right: none;
-    border-left: solid 1px gray;
-    border-top: solid 1px gray;
-    border-bottom: solid 1px gray; 
-}
-.search input[type="text"]:focus {
-    outline: none;
-}
-.search input[type="submit"] {
-    margin: 0;
-    border-left: none;
-    border-bottom: solid 1px orangered;
-    border-right: solid 1px orangered;
-    border-top: solid 1px orangered;
-    padding: 5px 10px;
-    background-color: orangered;
-    color: white;
-    letter-spacing: 1px;
-    font-family: "RobotoCondensedRegular";
-    transition: all 1s;
-}
-.search input[type="submit"]:hover {
-    background-color: #0697fe;
-    transition: all 1s;
-}
-.reclama {
-    margin: 19px;
-}
-.reclama p {
-    font-family: "RobotoCondensedRegular";
-    letter-spacing: 2px;
-    color: orangered;
-    font-size: 2.5em;
-}
+
 /*end shop helper*/
 /*CatalogBlock*/
 .catalogBody {
     background-color: #fff;
-    margin: 147px 0 0 0;
     font-family: "RobotoMedium";
+    display: flex;
+    flex-flow: column nowrap;
+    margin: 149px 0 0 0;
 }
 .navPagination {
     font-family: "RobotoLight";
@@ -852,10 +784,11 @@ footer p {
 }
 .sideNavigation ul {
     list-style: none;
+    display: none;
 }
 .sideNavigation ul li i {
     font-size: 20px;
-    margin: 0 10px;
+    margin: 0 20px;
 }
 .sideNavigation ul li a {
     cursor: pointer;
@@ -892,11 +825,12 @@ footer p {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+    max-width: 300px;
 }
 #cssmenu {
     width: 80%;
     z-index: 10;
-    margin: 0 0 0 50px;
+    margin: 0 0 0 20px
 }
 #cssmenu ul {
   border: 1px solid #cccccc;
@@ -937,61 +871,64 @@ footer p {
     background: linear-gradient(to top, #abeb8e, #ffffff);
 }
 #cssmenu ul li.activeItem {
-  left: -8px;
+  left: -7px;
   width: 105%;
   padding: 2px;
-  background: #ce4c4a;
+  background: #007aca;
   /*background: -moz-linear-gradient(bottom, #c43735, #d56462);
   background: -webkit-linear-gradient(bottom, #c43735, #d56462);
   background: -o-linear-gradient(bottom, #c43735, #d56462);
   background: -ms-linear-gradient(bottom, #c43735, #d56462);
   background: linear-gradient(to top, #c43735, #d56462);*/
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
+  /*box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);*/
 }
 #cssmenu ul li.activeItem > a {
-  padding: 12px 12px 12px 16px;
-  border-left: 1px dashed #de8886;
-  border-top: 1px dashed #de8886;
-  border-bottom: 1px dashed #de8886;
+  padding: 12px;
+    margin: 2px;
+  border-left: 1px dashed #fff;
+  border-right: 1px dashed #fff;
+  border-top: 1px dashed #fff;
+  border-bottom: 1px dashed #fff;
   color: #ffffff;
-  text-shadow: 0 1px 1px #8c2726;
+  /*text-shadow: 0 1px 1px #8c2726;*/
 }
-#cssmenu ul li.activeItem:after {
+/*#cssmenu ul li.activeItem:after {
   position: absolute;
-  right: -16px;
-  top: 7px;
-  width: 31.526911934581186px;
-  height: 31.526911934581186px;
-  background: #ce4c4a;
-  background: -moz-linear-gradient(-45deg, #c43735, #d56462);
+  left: -15px;
+  top: 6px;
+  width: 31px;
+  height: 31px;
+  background: #007aca;*/
+  /*background: -moz-linear-gradient(-45deg, #c43735, #d56462);
   background: -webkit-linear-gradient(-45deg, #c43735, #d56462);
   background: -o-linear-gradient(-45deg, #c43735, #d56462);
   background: -ms-linear-gradient(-45deg, #c43735, #d56462);
-  background: linear-gradient(-45deg, #c43735, #d56462);
-  -webkit-transform: rotate(45deg);
+  background: linear-gradient(-45deg, #007aca, #d56462);*/
+  /*-webkit-transform: rotate(45deg);
   -moz-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   -o-transform: rotate(45deg);
   transform: rotate(45deg);
   content: "";
-}
-#cssmenu ul li.activeItem:before {
+    z-index: 0;
+}*/
+/*#cssmenu ul li.activeItem:before {
   position: absolute;
-  right: -12px;
+  left: -11px;
   top: 9px;
-  z-index: 10;
-  width: 28.526911934581186px;
-  height: 28.526911934581186px;
-  border-right: 1px dashed #e9afae;
-  border-top: 1px dashed #e9afae;
+  z-index: 2;
+  width: 26px;
+  height: 26px;
+  border-left: 1px dashed #fff;
+  border-bottom: 1px dashed #fff;
   -webkit-transform: rotate(45deg);
   -moz-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   -o-transform: rotate(45deg);
   transform: rotate(45deg);
   content: "";
-}
-#cssmenu ul li.activeItem a:after {
+}*/
+/*#cssmenu ul li.activeItem a:after {
   position: absolute;
   bottom: -7px;
   left: -11px;
@@ -1001,12 +938,13 @@ footer p {
   border-top: 4px solid transparent;
   border-bottom: 4px solid transparent;
   border-left: 8px solid transparent;
-  border-right: 8px solid #982b29;
+  border-right: 8px solid #007aca;
   content: "";
-}
+}*/
 .selectedMenu {
     background: #62e393;
-    text-shadow: 0 1px 1px #268c43;
+
+    /*text-shadow: 0 1px 1px #268c43;*/
 }
 /*End catalogBlock*/
 /*GOODS*/
@@ -1095,17 +1033,23 @@ footer p {
 .stockBlock h3 {
     margin: 10px 0 0 0;
     padding: 0 0 10px 0;
-}
-.priceBlock {
-    width: 100%;
-    padding: 0 10px;
+    font-size: 1.2em;
 }
 .priceBlock p {
     font-weight: bold;
-
     letter-spacing: 1px;
-    font-size: 20px;
+    font-size: 1.2em;
     padding: 10px 0 0 0;
+}
+.priceBlock h3 {
+    margin: 10px;
+    font-size: 1.2em;
+    width: 100%;
+}
+.priceBlock h3 strong {
+    color: white;
+    background-color: #16a86e;
+    padding: 5px;   
 }
 .priceBlock h4 {
     text-align: center;

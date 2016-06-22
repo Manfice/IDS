@@ -1,0 +1,193 @@
+﻿/*ProductDetails*/
+.productDetails {
+    flex: 1 0 auto;
+    margin: 142px 0 0 0;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    max-width: 1200px;
+    align-self: center;
+    width: 100%
+}
+.productContainer {
+    flex: 1 0 auto;
+    order: 1;
+    display: flex;
+    flex-flow: column nowrap;
+    padding: 10px;
+}
+.productContainer h1 {
+    font-size: 2em;
+    white-space: normal;
+    max-width: 600px;
+    margin: 0;
+}
+.productContainer h2 {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 0;
+    border: dotted 1px;
+    padding: 5px 20px;
+    align-self: flex-start
+}
+.productHead {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+.productPhoto {
+    flex: 1 1 auto;
+    order: 0;
+}
+.productPhoto img {
+    max-width: 400px;
+}
+.priceSection {
+    flex: 1 1 auto;
+    order: 1;
+    max-width: 300px;
+    width: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    border: solid 3px rgb(0, 122, 202);
+    padding: 5px;
+}
+.stockBlock {
+    flex: 0 0 auto;
+
+}
+.priceBlock {
+    flex: 1 0 auto;
+    display: flex;
+    flex-flow: column nowrap;
+}
+.priceBlock p {
+    flex: 0 0 auto;
+    align-self: flex-start;
+}
+.priceBlock table {
+    width: 100%;
+    text-align: right;
+}
+.priceBlock table tr td {
+    border-bottom: dotted 1px;
+    padding: 5px;
+}
+.priceBlock a {
+    align-self: center;
+    color: rgb(22, 168, 110);
+    font-weight: bold;
+    margin: 5px;
+}
+.priceBlock a:before {
+    content: "";
+    background: url("/Content/images/info.png") 0 0 no-repeat;
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 0;
+    left: -16px;
+}
+#pricerules {
+    border: solid 3px rgb(0, 122, 202);
+    display: flex;
+    flex-flow: column nowrap;
+    padding: 20px;
+}
+#pricerules h1 {
+    padding: 0;
+    margin: 0 0 10px;
+    align-self: center;
+    font-size: 2em;
+    border-bottom: dashed 1px;
+    color: green;
+    font-weight: bold;
+}
+.des {
+    text-align: center;
+}
+#pricerules p span {
+    margin: 0 0 0 20px;
+    font-weight: bold;
+}
+.buyBloc {
+    flex: 0 0 auto;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    background-color: rgb(22, 168, 110);
+    padding: 20px;
+}
+.buyBloc input[type="number"] {
+    flex: 0 0 auto;
+    border: solid 2px rgb(22, 168, 110);
+    width: 70px;
+    font-weight: bold;
+    font-size: 2em;
+    text-align: right;
+    color: white;
+    background-color: transparent;
+}
+.buyBloc input[type="submit"] {
+    flex: 1 0 auto;
+    color: white;
+    font-weight: bold;
+    font-size: 2em;
+    background-color: transparent;
+    border: none;
+}
+.brandBlock {
+    flex: 0 1 auto;
+    display: flex;
+    flex-flow: column;
+}
+.brandBlock a {
+    align-self: center;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.brandBlock a img {
+    flex: 1 0 auto;
+    align-self: center;
+    max-width: 60%;
+    margin: 10px;
+}
+.additionalPhotos {
+    flex: 0 0 auto;
+    margin: 10px 0;
+    display: flex;
+    flex-flow: row nowrap;
+}
+.additionalPhotos p {
+    max-width: 800px;
+}
+.additionalPhotos p a:hover {
+    text-decoration: none;
+}
+.additionalPhotos p a img {
+    max-width: 100px;
+}
+.bigView {
+    max-width: 700px;
+}
+.productDescription {
+    flex: 1 0 auto;
+    max-width: 900px;
+    display: flex;
+    flex-direction: column;
+}
+.atantionDescr {
+    flex: 0 0 auto;
+    width: 100%;
+    border: solid 3px red;
+    padding: 15px;
+}
+.sideNavigation {
+    flex: 0 0 auto;
+    order: 2;
+}
+/*End ProductDetails*/

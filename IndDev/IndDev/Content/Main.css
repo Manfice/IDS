@@ -555,29 +555,50 @@ a,a:focus, a:active {
     padding: 3% 0;
     letter-spacing: 1px;
 }
-.contact-bg h1 {
+.contComp {
+    flex: 1 0 auto;
+    align-self: center;
+    display: flex;
+    flex-flow: row nowrap;
+    max-width: 1200px;
+    justify-content: center;
+    align-items: baseline;
+}
+.contText {
+    flex: 0 1 auto;
+    display: flex;
+    flex-flow: column nowrap;
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 600px;
+    justify-content: center;
+}
+.contText h1 {
     align-self: center;
     color: whitesmoke;
     font-weight: bold;
 }
-.contact-bg address {
+.contText h3 {
+    text-align: center;
+    color: whitesmoke;
+    margin: 0;
+}
+.contText address {
     margin-bottom: 3%;
     color: white;
     line-height: 25px;
     font-weight: bold;
     padding: 15px;
-    flex: 1 0 auto;
+    flex: 0 0 auto;
     align-self: center;
-    background-color: rgba(0, 0, 0, 0.5);
+
 }
-.contact-bg address a {
+.contText address a {
     color: whitesmoke;
-    letter-spacing: 2px;
    
 }
 .phones {
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
 }
 .phones p {
     margin: 0 20px 20px;
@@ -585,9 +606,21 @@ a,a:focus, a:active {
     color: orangered;
 }
 #map {
-    flex: 1 0 auto;
+    flex: 0 0 auto;
     align-self: center;
     width: 800px;
+}
+.deliveryToRegions {
+    background-color: rgba(0, 0, 0, 0.5);
+    flex: 1 0 auto;
+    max-width: 1200px;
+    align-self: center;
+    color: whitesmoke;
+    padding: 15px;
+}
+.deliveryToRegions h1 {
+    text-align: center;
+    font-weight: bold;
 }
 /*/Contacts*/
 /*About*/
@@ -605,18 +638,27 @@ a,a:focus, a:active {
     text-align: center;
     border: solid 3px rgba(0, 128, 0, 0.7);
 }
+.about-history-box h1 {
+    color: #fda15e;
+    color: rgba(253, 161, 94, 0.75);    
+}
+
 .about-history-box h2 {
     font-size: 25px;
     font-weight: 500;
     letter-spacing: 2px;
+    color: #fda15e;
     color: rgba(253, 161, 94, 0.75);
 }
+
 .about-history-box h3 {
     font-weight: 200;
     letter-spacing: 2px;
+    color: #fda15e;
     color: rgba(253, 161, 94, 0.75);
     font-size: 25px;
 }
+
 .about-history-box img {
     width: 30%;
     padding: 4% 0 0 0;
@@ -626,8 +668,10 @@ a,a:focus, a:active {
     font-family: "NautilusPompiliusRegular";
     text-align: justify;
     font-size: 17px;
+    color: #cebd95;
     color: rgba(206, 189, 149, 0.75);
 }
+
 .cool-text:first-letter {
     padding: 0 0 0 2%;
     font-weight: bold;
@@ -637,8 +681,10 @@ a,a:focus, a:active {
 .cool-text a {
     font-family: "RobotoMedium";
     text-decoration: none;
+    color: #84b1a8;
     color: rgba(132, 177, 168, 0.75);
 }
+
 .about-tabs ul {
     list-style: none;
     margin: 0 0 20px;
@@ -651,10 +697,13 @@ a,a:focus, a:active {
     margin: 0 2%;
 }
 .about-tabs ul .active a {
+    background-color: #31adff;
     background-color: rgba(49,173,255,0.70);
 }
+
 /*class="nav nav-tabs nav-justified"*/
 .about-tabs ul li a {
+    background-color: #1e1e1e;
     background-color: rgba(30, 30, 30, 0.78);
     color: white;
     display: block;
@@ -665,10 +714,13 @@ a,a:focus, a:active {
     letter-spacing: 2px;
     font-weight: 600;
 }
+
 .about-tabs ul li a:hover {
     text-decoration: none;
+    background-color: #1e1e1e;
     background-color: rgba(30, 30, 30, 0.78);
 }
+
 .about-tabs ul li a:active, .about-tabs ul li a:focus {
     text-decoration: none;
 }
