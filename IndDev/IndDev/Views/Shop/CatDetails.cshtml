@@ -1,11 +1,16 @@
 ﻿@model IndDev.Domain.Entity.Menu.ProductMenu
 @{
     Layout = "~/Views/Shared/_NewDesing.cshtml";
+    ViewBag.description = Model.ShotDescription;
+}
+@section links
+{
+    <link href="~/Content/ShopHelper.css" rel="stylesheet" />
 }
 @Html.Action("TopNavigation", "Home")
-@Html.Action("ShopBlock", "Shop")
 
 <div class="catalogBody">
+@Html.Action("ShopBlock", "Shop")
     <div class="container">
         <div class="row">
             <div class="col-md-9">

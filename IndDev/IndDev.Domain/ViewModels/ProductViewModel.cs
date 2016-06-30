@@ -141,4 +141,10 @@ namespace IndDev.Domain.ViewModels
         public int MeasureUnit { get; set; }
         public int Warranty { get; set; }
     }
+
+    public class MenuVm
+    {
+        public ProductMenuItem Parent { get; set; }
+        public IEnumerable<ProductMenuItem> Childs { get; set; } 
+    }
 }

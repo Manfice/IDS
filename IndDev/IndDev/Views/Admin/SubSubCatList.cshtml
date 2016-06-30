@@ -1,0 +1,26 @@
+﻿@model IEnumerable<IndDev.Domain.Entity.Menu.ProductMenuItem>
+
+@foreach (var www in Model)
+{
+    <tr>
+        <td>@www.Id</td>
+        <td>@www.Title</td>
+        <td>@www.Products.Count()</td>
+        <td>2</td>
+        <td><input type="checkbox" checked="@www.IsRus" disabled="disabled" /></td>
+        <td>3
+            @*@if (www.Image != null)
+        {
+            <img src="@Url.Content(www.Image.Path)" alt="@Url.Content(www.Image.AltText)" width="100" />
+        }
+        else
+        {
+            <p>NO IMAGE</p>
+        }*@
+    </td>
+    <td>
+        @Html.ActionLink("Подробнее", "AddReqSubCat", new { parent = www.Id, returnUrl = Request.Url.PathAndQuery }, new { @class = "btn btn-success btn-sm" })
+        @*@Html.ActionLink("Удалить", "RemoveSubCat", new { id = www.Id, root = www.ProductMenu.Id }, new { @class = "btn btn-danger btn-sm" })*@
+    </td>
+</tr>
+}

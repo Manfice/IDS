@@ -83,5 +83,11 @@ namespace IndDev.Controllers
         {
             return RedirectToAction("Index");
         }
+
+        public ActionResult TopRetail()
+        {
+            var model = _home.GetTopProducts;
+            return PartialView(model);
+        }
     }
 }

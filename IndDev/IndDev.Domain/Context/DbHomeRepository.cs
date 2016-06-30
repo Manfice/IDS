@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using IndDev.Domain.Abstract;
+using IndDev.Domain.Entity;
+using IndDev.Domain.Entity.Products;
 using IndDev.Domain.ViewModels;
 
 namespace IndDev.Domain.Context
@@ -9,6 +11,33 @@ namespace IndDev.Domain.Context
     public class DbHomeRepository : IHomeRepository
     {
         private readonly DataContext _context = new DataContext();
+
+        public IEnumerable<ProductView> GetTopProducts
+        {
+            get
+            {
+                var products =
+                    _context.Products.Where(
+                        p => p.Prices.FirstOrDefault(price => price.PriceType == PriceType.Sale).Value > 0).ToList();
+                var model = products.Select(product => new ProductView
+                {
+                    Product = product,
+                    Avatar = product.ProductPhotos.FirstOrDefault(photo => photo.PhotoType==PhotoType.Avatar),
+                    Prices = product.Prices.Where(price => price.PriceType==PriceType.Sale).Select(price => new PriceViewModel
+                    {
+                        Product = product,
+                        Title = price.Title,
+                        PriceType = price.PriceType,
+                        Id = price.Id,
+                        Currency = price.Currency,
+                        OriginalPrice = price.Value,
+                        PriceFrom = price.QuanttityFrom
+                    }).ToList()
+                }).ToList();
+
+                return model;
+            }
+        }
 
         public CursViewModel GetCurses(DateTime date)
         {

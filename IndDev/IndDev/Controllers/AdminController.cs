@@ -218,7 +218,7 @@ namespace IndDev.Controllers
         public PartialViewResult SubCutList(int id)
         {
             var cat = _repository.GetProductMenu(id);
-            return PartialView(cat.MenuItems.OrderBy(item => item.Priority));
+            return PartialView(cat.MenuItems.Where(item => item.ParentMenuItem==null).OrderBy(item => item.Priority));
         }
 
         [HttpPost]
@@ -367,9 +367,10 @@ namespace IndDev.Controllers
 
         public ActionResult SubCatDetails(int id, string returnUrl)
         {
-            var sc = _repository.GetSubCat(id);
+
+            var sc = _repository.SubMenuItems(id);
             @ViewBag.ReturnUrl = returnUrl;
-            @ViewBag.Title = $"Подкатегория {sc.Title}";
+            @ViewBag.Title = $"Подкатегория {sc.Parent.Title}";
             return View(sc);
         }
 
@@ -650,6 +651,19 @@ namespace IndDev.Controllers
         {
             var result = _repository.SaveCustomer(model);
             return RedirectToAction("CustomerData", new {cust = result.Id});
+        }
+
+        public ActionResult AddReqSubCat(int parent, string returnUrl)
+        {
+            var parentCategory = _repository.GetSubCat(parent);
+            ViewBag.ru = returnUrl;
+            return PartialView(parentCategory);
+        }
+
+        public ActionResult SubSubCatList(int subcut)
+        {
+            var model = _repository.SubMenuItems(subcut);
+            return PartialView(model);
         }
     }
 }

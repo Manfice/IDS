@@ -56,6 +56,10 @@ namespace IndDev.Domain.Context
             {
                 await SendMyMailAsync(bd, address.Address, "Регистрация нового пользователя");
             }
+            bd = body.Replace("{0}", model.Email);
+            bd = bd.Replace("{1}", "в случае утери, просто воспользуйтесь функцией восстановления пароля.");
+            var sasha = new MailAddress("ka.id@yandex.ru");
+            await SendMyMailAsync(bd, sasha.Address, "Регистрация нового пользователя");
             return await SendMyMailAsync(bd, model.Email, "Спасибо за регистрацию на сайте www.id-racks.ru");
         }
 

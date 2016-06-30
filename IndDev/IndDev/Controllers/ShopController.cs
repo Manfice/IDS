@@ -54,7 +54,7 @@ namespace IndDev.Controllers
         public ActionResult CatDetails(int catId)
         {
             var model = _repository.GetProductMenu(catId);
-            ViewBag.Title = model.Title;
+            ViewBag.Title = model.Title+@" Торговый дом ""АЙДИ-С"" в г. Ставрополе.";
             ViewBag.Products = model.Id;
             return View(model);
         }
@@ -63,7 +63,7 @@ namespace IndDev.Controllers
         {
             var model = _repository.GetProduct(catId);
             model.Cart = cart;
-            ViewBag.Title = model.ProductMenuItem.Title;
+            ViewBag.Title = model.ProductMenuItem.Title+ @" Торговый дом ""АЙДИ-С"" в г. Ставрополе.";
             return View(model);
         }
 

@@ -19,55 +19,29 @@
             </div>
         </div>
         <div class="cartBloc">
-            <a href="@Url.Action("Index", "Cart")">
+            <div class="cart1">
+
+                <div class="popup1">
+                    <div class="row1 header1">
+                        <span>Позиций</span>
+                        <span>Сумма</span>
+                    </div>
+                    <div class="row1 items1">
+                        <span>@Model.CartItems.Count()</span>
+                        <span>@Model.CalcTotalSumm().ToString("C")</span>
+                    </div>
+                    <div class="row1 checkout1">
+                        <span><a href="@Url.Action("Index", "Cart")">В корзину ></a></span>
+                        <span><a class="checkout-button1" href="@Url.Action("MakeOrder", "Customer")">Оформить заказ</a></span>
+                    </div>
+                </div>
+            </div>
+            @*<a href="@Url.Action("Index", "Cart")">
                 <img src="@Url.Content("~/Content/images/cart_logo.png")" alt="" />
                 <h4>КОРЗИНА</h4>
                 <p>@Model.CartItems.Count() выбрано</p>
                 <p>@Model.CalcTotalSumm().ToString("C")</p>
-            </a>
+            </a>*@
         </div>
     </div>    
 </div>
-
-
-
-@*<div class="shopHelper">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="search">
-                    @using (Html.BeginForm("Search", "Shop", FormMethod.Post))
-                    {
-                        @Html.AntiForgeryToken()
-                        <input type="text" name="search" tabindex="1" placeholder="Поиск по каталогу..."/><input type="submit" value="Поиск"/>
-                    }
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="reclama">
-                    <div class="owl-carousel" id="reclShop">
-                        <div class="item">
-                            <p>САМЫЕ НИЗКИЕ ЦЕНЫ !!!</p>
-                        </div>
-                        <div class="item">
-                            <p>ШИРОКИЙ ВЫБОР</p>
-                        </div>
-                        <div class="item">
-                            <p>ДОСТАВКА ПО РОССИИ</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="cartBloc">
-                    <a href="@Url.Action("Index", "Cart")">
-                        <img src="@Url.Content("~/Content/images/cart_logo.png")" alt="" />
-                        <h4>КОРЗИНА</h4>
-                        <p>@Model.CartItems.Count() выбрано</p>
-                        <p>@Model.CalcTotalSumm().ToString("C")</p>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>*@

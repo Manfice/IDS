@@ -66,5 +66,6 @@ namespace IndDev.Domain.Abstract
         string MakeProductsXml();
         IEnumerable<Order> GetOrders();
         Order GetOrderById(int id);
+        MenuVm SubMenuItems(int parent);
     }
 }

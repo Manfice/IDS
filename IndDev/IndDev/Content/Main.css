@@ -556,7 +556,7 @@ a,a:focus, a:active {
     letter-spacing: 1px;
 }
 .contComp {
-    flex: 1 0 auto;
+    flex: 0 0 auto;
     align-self: center;
     display: flex;
     flex-flow: row nowrap;
@@ -598,7 +598,7 @@ a,a:focus, a:active {
 }
 .phones {
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: column wrap;
 }
 .phones p {
     margin: 0 20px 20px;
@@ -864,14 +864,13 @@ a,a:focus, a:active {
     width: 150px;
 }
 .detCatForm {
-
     margin: 10px 0 0 250px
 }
 .detCatForm input {
     margin: 10px;
 }
 .detCatForm textarea {
-    width: 300px;
+    width: 800px;
 }
 .detCatForm input[type="number"] {
     max-width: 50px;
@@ -885,6 +884,17 @@ a,a:focus, a:active {
 }
 .subCat textarea {
     width: 100%;
+}
+.CatCont table {
+    width: 100%;
+}
+.CatCont table thead {
+    background-color: #007acb;
+    color: whitesmoke;    
+}
+.CatCont table tr td {
+    border: dotted 1px;
+    text-align: center;
 }
 /*----------------------------------------
     END Sub Cat

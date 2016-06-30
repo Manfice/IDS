@@ -331,6 +331,7 @@ namespace IndDev.Domain.Context
             dbMenu.Descr = menu.Descr;
             dbMenu.Title = menu.Title;
             dbMenu.Priority = menu.Priority;
+            dbMenu.ShotDescription = menu.ShotDescription;
             if (image!=null)
             {
                 if (dbMenu.Image!=null)DeleteCatImage(dbMenu.Image);
@@ -872,6 +873,16 @@ namespace IndDev.Domain.Context
         public Order GetOrderById(int id)
         {
             return _context.Orders.Find(id);
+        }
+
+        public MenuVm SubMenuItems(int parent)
+        {
+            var wow = new MenuVm
+            {
+                Parent = _context.ProductMenuItems.Find(parent),
+                Childs = _context.ProductMenuItems.Where(item => item.ParentMenuItem.Id==parent)
+            };
+            return wow;
         }
     }
 }

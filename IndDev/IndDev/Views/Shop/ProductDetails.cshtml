@@ -14,42 +14,46 @@
     <link href="~/Content/jquery.fancybox-thumbs.css" rel="stylesheet"/>
     <link href="~/Content/jquery.fancybox.css" rel="stylesheet"/>
     <link href="~/Content/Shop.css" rel="stylesheet" />
+    <link href="~/Content/ShopHelper.css" rel="stylesheet" />
 }
 
 @Html.Action("TopNavigation", "Home")
-@Html.Action("ShopBlock", "Shop")
-
-<div class="productDetails">
-    <div class="productContainer">
-        <h1>@Model.Product.Title</h1>
-        <h2>АРТИКУЛ: @Model.Product.Articul.ToUpper()</h2>
-        <div class="productHead">
-            <div class="productPhoto">
-                @if (Model.Avatar != null)
+<div class="catalogBody">
+    @Html.Action("ShopBlock", "Shop")
+    <div class="productDetails">
+        <div class="productContainer">
+            <div class="prDetNav">
+                <h2>АРТИКУЛ: @Model.Product.Articul.ToUpper()</h2>
+                <a href="@Url.Action("ShowProducts", "Shop", new {catId = Model.Product.Categoy.Id})"> &lArr; Обратно в категорию</a>
+            </div>
+            <h1>@Model.Product.Title</h1>
+            <div class="productHead">
+                <div class="productPhoto">
+                    @if (Model.Avatar != null)
                 {
-                    <img src="@Model.Avatar.Path" alt=""/>
+                <img src="@Model.Avatar.Path" alt="" />
                 }
                 else
                 {
-                    <img src="~/Content/images/noimage.png" alt=""/>
+                <img src="~/Content/images/noimage.png" alt="" />
                 }
-            </div>
-            <div class="priceSection">
-                <div class="stockBlock">
-                    <p>Отгрузка со склада:</p>
-                    <h3>@Model.Product.Stock.Title</h3>
                 </div>
-                <div class="priceBlock">
-                    <p>Цены:</p>
-                    @if (Model.Prices.Any(model => model.PriceType == PriceType.Sale && model.ConvValue > 0))
+                <div class="priceSection">
+                    <div class="stockBlock">
+                        <p>Отгрузка со склада:</p>
+                        <h3>@Model.Product.Stock.Title</h3>
+                    </div>
+                    <div class="priceBlock">
+                        <p>Цены:</p>
+                        @if (Model.Prices.Any(model => model.PriceType == PriceType.Sale && model.ConvValue > 0))
                     {
-                        <h4>@Model.Prices.FirstOrDefault(model => model.PriceType == PriceType.Sale).Title</h4>
-                        <h3>@Model.Prices.FirstOrDefault(model => model.PriceType == PriceType.Sale).ConvValue.ToString("C")</h3>
+                    <h4>@Model.Prices.FirstOrDefault(model => model.PriceType == PriceType.Sale).Title</h4>
+                    <h4 title="На данную цену скидки не расспространяются.">@Model.Prices.FirstOrDefault(model => model.PriceType == PriceType.Sale).ConvValue.ToString("C") *</h4>
                     }
                     else
                     {
-                        <table>
-                            <tbody>
+                    <table>
+                        <tbody>
                             @foreach (var item in Model.Prices.Where(model => model.PriceType != PriceType.Sale).OrderByDescending(model => model.PriceType))
                             {
                                 <tr>
@@ -57,78 +61,86 @@
                                     <td><strong>@item.ConvValue.ToString("C")</strong></td>
                                 </tr>
                             }
-                            </tbody>
-                        </table>
+                        </tbody>
+                    </table>
                     }
-                    <a href="#pricerules" class="fansy">Правила получения скидки</a>
-                    <div id="pricerules" style="width: 700px; display: none;">
-                        <h1>Общие правила получения скидок</h1>
-                        <p class="des">Дорогие друзья, наша компания работает на рынке телекоммуникаций более @(DateTime.Now.Year-2010) лет. За это время у нас сформировались некоторые правила предоставления цен.</p>
-                        <h3>Розница</h3>
-                        <p><span>П</span>режде, чем говорить о скидке сравните нашу розничную цену с ценами конкурентов. Имейте в виду, что там где торгуют дешевле - как правило у этих компаний нет склада, там не включена доставка или это аналоги оригинальных продуктов.</p>
-                        <h3>Оптовая</h3>
-                        <p><span>О</span>птовые цены предоставляются при условии закупки от 100.000р. в месяц или в случае единоразового заказа от 100.000р. Если ваш суммарный оборот за месяц составляет сто и более тысяч рублей, то на следующий месяц вы получаете оптовую цену на любой объем отгрузок.</p>
-                        <h3>Партнерская</h3>
-                        <p><span>П</span>артнерская цена предоставляется при разовой закупке от 200.000р. Партнерскую цену предоставляем нашим постоянным клиентам, которые регулярно закупаются у нас.</p>
-                        <h3>Красная цена или Распродажа</h3>
-                        <p><span>Э</span>то окончательная стоимость - торг не уместен.
-                        </p>
-                        <h2>Спасибо</h2>
+                        <a href="#pricerules" class="fansy">Правила получения скидки</a>
+                        <div id="pricerules" style="width: 700px; display: none;">
+                            <h1>Общие правила получения скидок</h1>
+                            <p class="des">Дорогие друзья, наша компания работает на рынке телекоммуникаций более @(DateTime.Now.Year - 2010) лет. За это время у нас сформировались некоторые правила предоставления цен.</p>
+                            <h3>Розница</h3>
+                            <p>
+                                <span>П</span>режде, чем говорить о скидке сравните нашу розничную цену с ценами конкурентов. Имейте в виду, что там где торгуют дешевле - как правило у этих компаний нет склада, там не включена доставка или это аналоги оригинальных продуктов.
+                            </p>
+                            <h3>Оптовая</h3>
+                            <p>
+                                <span>О</span>птовые цены предоставляются при условии закупки от 100.000р. в месяц или в случае единоразового заказа от 100.000р. Если ваш суммарный оборот за месяц составляет сто и более тысяч рублей, то на следующий месяц вы получаете оптовую цену на любой объем отгрузок.
+                            </p>
+                            <h3>Партнерская</h3>
+                            <p>
+                                <span>П</span>артнерская цена предоставляется при разовой закупке от 200.000р. Партнерскую цену предоставляем нашим постоянным клиентам, которые регулярно закупаются у нас.
+                            </p>
+                            <h3>Красная цена или Распродажа</h3>
+                            <p>
+                                <span>Э</span>то окончательная стоимость - торг не уместен.
+                            </p>
+                            <h2>Спасибо</h2>
+                        </div>
+                    </div>
+                    <div class="buyBloc">
+                        @using (Html.BeginForm("AddToCart", "Cart", FormMethod.Post))
+                    {
+                    @Html.AntiForgeryToken()
+                    @Html.Hidden("productId", Model.Product.Id)
+                    @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+                    <input type="submit" value="КУПИТЬ" />
+                    <input type="number" min="1" name="quantity" value="1" />
+                    }
+                    </div>
+                    <div class="brandBlock">
+                        <a href="@Model.Product.Brand.BrandLink" title="Перейти на сайт производителя" target="blank">
+                            <img src="@Url.Content(Model.Product.Brand.BrandImage.Path)" alt="@Model.Product.Brand.FullName" />
+                        </a>
                     </div>
                 </div>
-                <div class="buyBloc">
-                    @using (Html.BeginForm("AddToCart", "Cart", FormMethod.Post))
-                    {
-                        @Html.AntiForgeryToken()
-                        @Html.Hidden("productId", Model.Product.Id)
-                        @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
-                        <input type="submit" value="КУПИТЬ"/>
-                        <input type="number" min="1" name="quantity" value="1"/>
-                    }
-                </div>
-                <div class="brandBlock">
-                    <a href="@Model.Product.Brand.BrandLink" title="Перейти на сайт производителя" target="blank">
-                        <img src="@Url.Content(Model.Product.Brand.BrandImage.Path)" alt="@Model.Product.Brand.FullName"/>
-                    </a>
-                </div>
             </div>
-        </div>
-        @if (Model.Product.ProductPhotos.Any(photo => photo.PhotoType == PhotoType.Photo))
-        {
-            <div class="additionalPhotos">
-                <p>
-                    @foreach (var photo in Model.Product.ProductPhotos.Where(photo => photo.PhotoType != PhotoType.Avatar))
-                    {
-                        <a class="fancybox-thumbs" data-fancybox-group="thumb" href="@photo.Path" title="@photo.Product.Title">
-                            <img class="bigView" src="@Url.Content(photo.Path)" alt="@photo.Product.Articul @photo.Product.Title"/>
-                        </a>
-                    }
-                </p>
-            </div>
-        }
-        <div class="productDescription">
-            @if (!Model.Product.Warning.IsNullOrWhiteSpace())
+            @if (Model.Product.ProductPhotos.Any(photo => photo.PhotoType == PhotoType.Photo))
             {
-                <div class="atantionDescr">
-                    <h3>Внимание - важно учесть:</h3>
-                    <p>@Html.Raw(Model.Product.Warning)</p>
+                <div class="additionalPhotos">
+                    <p>
+                        @foreach (var photo in Model.Product.ProductPhotos.Where(photo => photo.PhotoType != PhotoType.Avatar))
+                    {
+                    <a class="fancybox-thumbs" data-fancybox-group="thumb" href="@photo.Path" title="@photo.Product.Title">
+                        <img class="bigView" src="@Url.Content(photo.Path)" alt="@photo.Product.Articul @photo.Product.Title" />
+                    </a>
+                    }
+                    </p>
                 </div>
             }
-            <h4>Описание:</h4>
-            <p>@Html.Raw(Model.Product.Description)</p>
-            <p>
-                @Html.Raw(Model.Product.Categoy.Descr)
-            </p>
+            <div class="productDescription">
+                @if (!Model.Product.Warning.IsNullOrWhiteSpace())
+            {
+            <div class="atantionDescr">
+                <h3>Внимание - важно учесть:</h3>
+                <p>@Html.Raw(Model.Product.Warning)</p>
+            </div>
+            }
+                <h4>Описание:</h4>
+                <p>@Html.Raw(Model.Product.Description)</p>
+                <p>
+                    @Html.Raw(Model.Product.Categoy.Descr)
+                </p>
+            </div>
         </div>
-    </div>
 
-    <div class="sideNavigation">
-        <ul>
-            <li class="navReclama"><i class="fa fa-money" aria-hidden="true"></i><a>Акции</a></li>
-            <li class="navReSale"><i class="fa fa-refresh" aria-hidden="true"></i><a>Барахолочка</a></li>
-            <li class="navFavourites"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i><a>Избранное</a></li>
-        </ul>
-        @Html.Action("Navigation", "Shop", new {selected = Model.Product.Categoy.ProductMenu.Id, product = Model.Product.Categoy.Id})
+        <div class="sideNavigation">
+            <ul>
+                <li class="navReclama"><i class="fa fa-money" aria-hidden="true"></i><a>Акции</a></li>
+                <li class="navReSale"><i class="fa fa-refresh" aria-hidden="true"></i><a>Барахолочка</a></li>
+                <li class="navFavourites"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i><a>Избранное</a></li>
+            </ul>
+            @Html.Action("Navigation", "Shop", new { selected = Model.Product.Categoy.ProductMenu.Id, product = Model.Product.Categoy.Id })
+        </div>
     </div>
 </div>
 @*<div class="catalogBody">

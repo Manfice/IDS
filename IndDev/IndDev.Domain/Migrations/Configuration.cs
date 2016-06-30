@@ -44,7 +44,7 @@ namespace IndDev.Domain.Migrations
                 new DeliveryType { Id = 9, Title = "Доставка по городу Ставрополю",Cost = 500, FreeFrom = 20000, Description = ""}
                 );
             context.CustomerStatuses.AddOrUpdate(status => status.Id, 
-                new CustomerStatus { Id = 5, Title = "Новичок",Discount = 2,PriceType = PriceType.Retail},
+                new CustomerStatus { Id = 5, Title = "Новичок",Discount = 0,PriceType = PriceType.Retail},
                 new CustomerStatus { Id = 6, Title = "Партнер",Discount = 0, PriceType = PriceType.LowOpt },
                 new CustomerStatus { Id = 7, Title = "Постоянный клиент",Discount = 0, PriceType = PriceType.LowOpt },
                 new CustomerStatus { Id = 8, Title = "Оптовик",Discount = 0, PriceType = PriceType.Opt }
