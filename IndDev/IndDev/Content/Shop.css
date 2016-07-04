@@ -14,7 +14,8 @@
     display: flex;
     flex-flow: column nowrap;
     padding: 10px;
-    border: solid 1px red
+    border: solid 1px red;
+    width: 900px;
 }
 .productContainer h1 {
     font-size: 2em;
@@ -58,7 +59,7 @@
     max-width: 400px;
 }
 .priceSection {
-    flex: 1 1 auto;
+    flex: 1 0 auto;
     order: 1;
     max-width: 300px;
     width: 100%;
@@ -92,9 +93,10 @@
 }
 .priceBlock a {
     align-self: center;
-    color: rgb(22, 168, 110);
+    color: #1686a8;
     font-weight: bold;
     margin: 5px;
+    font-size: 120%;
 }
 .priceBlock a:before {
     content: "";

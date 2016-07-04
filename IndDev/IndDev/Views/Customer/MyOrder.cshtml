@@ -5,7 +5,9 @@
     var i = 0;
 }
 
+@Html.Action("TopNavigation", "Home")
 
+<div class="cartFon"></div>
 
 <div class="order">
     <div class="headInfo">
@@ -80,8 +82,8 @@
                 <td>Артикул</td>
                 <td>Наименование</td>
                 <td>Цена</td>
-                <td>Кол-во</td>
-                <td>Ед. изм.</td>
+                <td class="wsnw">Кол-во</td>
+                <td class="wsnw">Ед. изм.</td>
                 <td>Сумма</td>
             </tr>
             </thead>
@@ -96,7 +98,7 @@
                     <td>@item.Price</td>
                     <td>@item.Quantity</td>
                     <td>@item.Product.MesureUnit.ShortName</td>
-                    <td>@(Math.Round(item.Quantity*item.Price, 2).ToString("C"))</td>
+                    <td>@(decimal.Round(item.Quantity*item.Price, 2).ToString("C"))</td>
                 </tr>
             }
             </tbody>

@@ -319,6 +319,10 @@ namespace IndDev.Domain.Context
            return _context.ProductMenus.Find(id);
         }
 
+        public IEnumerable<ProductMenuItem> GetProductMenuItems(int id)
+        {
+            return _context.ProductMenuItems.Where(item => item.ParentMenuItem.Id == id).ToList();
+        } 
         public void AddSubCategory(ProductMenuItem item)
         {
             _context.ProductMenuItems.Add(item);

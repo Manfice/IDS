@@ -407,13 +407,12 @@ namespace IndDev.Controllers
 
         public PartialViewResult RootMenu()
         {
-            return PartialView(_repository.GetrootMenuItems());
+            return PartialView(_repository.ProductMenus());
         }
-
-        public PartialViewResult SubMenu(int id)
+        public ActionResult SubMenu(int id)
         {
-            var b = _repository.GetSubMenuItems(id);
-            return PartialView(b);
+            var b = _repository.SubMenuItems(id);
+            return View(b);
         }
 
         public PartialViewResult AddSubMenu(int parent)

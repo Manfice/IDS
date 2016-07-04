@@ -24,6 +24,7 @@ namespace IndDev.Domain.Abstract
         IEnumerable<Customer> GetCustomers { get; }
         ValidationInfo UpdateUser(User user);
         IEnumerable<ProductMenu> ProductMenus();
+        IEnumerable<ProductMenuItem> GetProductMenuItems(int id);
         ValidEvent AddCategory(ProductMenu menu);
         void DeleteCatImage(ProdMenuImage image);
         ValidEvent RemoveCategory(int id);
@@ -67,5 +68,6 @@ namespace IndDev.Domain.Abstract
         IEnumerable<Order> GetOrders();
         Order GetOrderById(int id);
         MenuVm SubMenuItems(int parent);
+
     }
 }

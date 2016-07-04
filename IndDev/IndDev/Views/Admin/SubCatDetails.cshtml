@@ -25,11 +25,11 @@ Layout = "~/Views/Shared/_NewDesing.cshtml";
             @Html.HiddenFor(menu => menu.Parent.Id)
             @Html.Hidden("retUrl", Request.Url.PathAndQuery)
             <label>Наименование: </label>
-            <input type="text" name="title" value="@Model.Parent.Title"/>
+            @Html.TextBoxFor(vm => vm.Parent.Title, Model.Parent.Title)
             <br/>
             @Html.Label("Приоритет:")
             @Html.EditorFor(item => item.Parent.Priority)<br/>
-            @Html.CheckBox("IsRus", @Model.Parent.IsRus)
+            @Html.CheckBoxFor(vm => vm.Parent.IsRus, @Model.Parent.IsRus)
             @Html.LabelFor(item => item.Parent.IsRus, "Произведено в России?")
             <input type="file" name="photo"/>
             <label>Описание: </label>
@@ -39,7 +39,7 @@ Layout = "~/Views/Shared/_NewDesing.cshtml";
     </div>
 </div>
 
-<div class="CatCont">
+@*<div class="CatCont">
     <table>
         <thead>
         <tr>
@@ -90,7 +90,7 @@ Layout = "~/Views/Shared/_NewDesing.cshtml";
 
         </tfoot>
     </table>
-</div>
+</div>*@
 
 <div class="subCat">
     <h2>Продукты в категории:</h2>

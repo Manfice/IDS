@@ -4,13 +4,22 @@
     ViewBag.Title = "Корзина";
     Layout = "~/Views/Shared/_NewDesing.cshtml";
 }
+@Html.Action("TopNavigation", "Home")
+<div class="cartFon"></div>
 
 <div class="cartBody">
     <div class="cartNavigation">
         <ul>
-            <li><a class="activeStep"><span>шаг 1</span>Корзина</a></li>
-            <li><a><span>шаг 2</span>Персональная информация</a></li>
-            <li><a><span>шаг 3</span>Подтверждение заказа</a></li>
+            <li><a class="activeStep" href="@Url.Action("Index","Cart")"><span>шаг 1</span>Корзина</a></li>
+            <li><a class="" href="@Url.Action("MakeOrder","Customer")"><span>шаг 2</span>доставка</a></li>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <li><a href=""><span>шаг 3</span>Подтверждение заказа</a></li>
+            }
+            else
+            {
+                <li title="Укажите личные данные и способ доставки"><a class="disableStep"><span>шаг 3</span>Подтверждение заказа</a></li>
+            }
         </ul>
     </div>
     <h1>корзина</h1>
@@ -22,10 +31,74 @@
             <td>цена</td>
             <td>кол-во</td>
             <td>сумма</td>
-            <td><a>очистить корзину</a></td>
+            <td>действия</td>
         </tr>
         </thead>
+        <tbody>
+        @foreach (var item in Model.CartItems)
+        {
+            <tr>
+                @using (Html.BeginForm("ReCalc", "Cart", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.Hidden("prodId", item.Product.Id)
+                    <td class="wsnw">@item.Product.Articul</td>
+
+                    <td>@item.Product.Title</td>
+
+                    <td class="wsnw">@item.ActualPrice.ConvValue.ToString("C")</td>
+
+                    <td>@Html.TextBox("quantity", item.Quantity, new {@type = "number", min = "1"})</td>
+
+                    <td class="wsnw">@item.SubTotal.ToString("C")</td>
+
+                    <td>
+                        <input type="submit" value="Пересчитать" class=""/>
+                        <a class="" href="@Url.Action("RemoveItem", "Cart", new {prodId = item.Product.Id})">Удалить</a>
+                    </td>
+                }
+
+            </tr>
+        }
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="4">Итого по розничной цене:</td>
+            <td colspan="2">@Model.CalcTotalSumm().ToString("C")</td>
+        </tr>
+        <tr>
+            <td colspan="4">Сумма по вашей цене:</td>
+            <td colspan="2">@Model.CalcActualTotalWithDiscount().ToString("C")</td>
+        </tr>
+        <tr>
+            <td colspan="4">НДС:</td>
+            <td colspan="2">@((Model.CalcActualTotalWithDiscount()*18/118).ToString("C"))</td>
+        </tr>
+        @if ((Model.CalcTotalSumm() - Model.CalcActualTotalWithDiscount()) > 0)
+        {
+            <tr class="benefit">
+                <td colspan="4">Ваша выгода:</td>
+                <td colspan="2">@((Model.CalcTotalSumm() - Model.CalcActualTotalWithDiscount()).ToString("C"))</td>
+            </tr>
+        }
+            <tr>
+                <td colspan="4">К оплате:</td>
+                <td colspan="2">@Model.CalcActualTotalWithDiscount().ToString("C")</td>
+            </tr>
+        </tfoot>
     </table>
+    <div class="cartControls">
+        <a href="@Url.Action("Index", "Shop")">в каталог</a>
+        @if (!User.Identity.IsAuthenticated)
+        {
+            <a href="@Url.Action("Register","Security", new {returnUrl=Request.Url.PathAndQuery})">регистрация</a>
+            <a href="@Url.Action("Login","Security",new {returnUrl=Request.Url.PathAndQuery})">вход</a>
+        }
+        else
+        {
+            <a href="@Url.Action("MakeOrder","Customer")">далее</a>
+        }
+    </div>
 </div>
 
 @*<div class="cart">

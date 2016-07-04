@@ -1,7 +1,49 @@
-﻿@model IEnumerable<IndDev.Domain.Entity.Menu.Menu>
+﻿@model IEnumerable<IndDev.Domain.Entity.Menu.ProductMenu>
 
 <div class="myMenuAdm">
-    <ul id="menu">
+    <table class="table table-responsive table-striped">
+        <thead>
+        <tr>
+            <td>Id</td>
+            <td>Title</td>
+            <td>ShortDescr</td>
+            <td>Priority</td>
+            <td>Edit</td>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model.OrderBy(menu => menu.Priority))
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Title</td>
+                <td>@item.ShotDescription</td>
+                <td>@item.Priority</td>
+                <td>
+                    <a href="@Url.Action("SubMenu", "Admin", new {id = item.Id})">Edit</a>
+                    <a href="@Url.Action("DeleteCat", "Admin", new {id = item.Id})">Delete</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+        <tfoot>
+            @using (Html.BeginForm("AddProdCat", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                <tr>
+                    <td>Новая</td>
+                    <td><input name="title" type="text" /></td>
+                    <td><textarea name="descr" type="text" rows="3"></textarea></td>
+                    <td><input name="photo" type="file" /></td>
+                    <td><input name="priority" type="number" value="999" max="999" min="1" /></td>
+                    <td><input type="submit" value="Добавить" /></td>
+                </tr>
+            }
+
+        </tfoot>
+    </table>
+
+    @*<ul id="menu">
         @foreach (var item in Model)
         {
             <li>
@@ -24,5 +66,5 @@
 
             </li>
                     }
-    </ul>
+    </ul>*@
 </div>

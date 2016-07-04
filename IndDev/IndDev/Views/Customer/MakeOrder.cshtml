@@ -3,12 +3,53 @@
     ViewBag.Title = "MakeOrder";
     Layout = "~/Views/Shared/_NewDesing.cshtml";
 }
-@section links
-{
-<link href="~/Content/Main.css" rel="stylesheet" />}
-@Html.Action("TopNavigation","Home")
 
-<div class="preOrder">
+@Html.Action("TopNavigation","Home")
+<div class="cartFon"></div>
+<div class="cartBody">
+    <div class="cartNavigation">
+        <ul>
+            <li><a class="" href="@Url.Action("Index","Cart")"><span>шаг 1</span>Корзина</a></li>
+            <li><a class="activeStep" href="@Url.Action("MakeOrder","Customer")"><span>шаг 2</span>доставка</a></li>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <li><a href=""><span>шаг 3</span>Подтверждение заказа</a></li>
+            }
+            else
+            {
+                <li title="Укажите личные данные и способ доставки"><a class="disableStep"><span>шаг 3</span>Подтверждение заказа</a></li>
+            }
+        </ul>
+    </div>
+    <h1>доставка</h1>
+    @using (Html.BeginForm("MakeOrder", "Customer", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <div class="delivery">
+            <h3>Укажите, как Вы планируете получить заказ:</h3>
+            @Html.DropDownListFor(order => order.DeliveryTypeCode, Model.DeliveryTypes, Model.DeliveryTypeCode)
+            <div class="delivFields">
+                <div class="whoWhere">
+                    @Html.Label("Наименование получателя:")
+                    @Html.TextBoxFor(order => order.Delivery.Recipient)
+                    <br/>
+                    @Html.Label("Куда доставить:")
+                    @Html.TextBoxFor(order => order.Delivery.To)
+                </div>
+                <div class="comment">
+                    @Html.Label("Комментарий к доставке:")
+                    @Html.TextAreaFor(order => order.Delivery.Comment)                    
+                </div>
+            </div>
+            <div class="cartControls">
+                @Html.ActionLink("ВЕРНУТЬСЯ К КОРЗИНЕ", "Index", "Cart")
+                <input type="submit" value="ЗАКАЗАТЬ" />                
+            </div>
+        </div>
+    }
+</div>
+
+@*<div class="preOrder">
     <h1>Еще пара вопросов</h1>
     @using (Html.BeginForm("MakeOrder","Customer", FormMethod.Post))
     {
@@ -68,4 +109,4 @@
         <h4>Стоимость:<strong> 500р.</strong></h4>
     </div>
 </div>
-</div>
+</div>*@

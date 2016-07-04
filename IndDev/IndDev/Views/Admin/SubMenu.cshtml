@@ -1,29 +1,19 @@
-﻿@model IEnumerable<IndDev.Domain.Entity.Menu.Menu>
+﻿@model IndDev.Domain.ViewModels.MenuVm
 
-@if (Model.Any())
-{
-    <ul class="subMenuItem">
-        @foreach (var item in Model)
-        {
-            <li>
-                @{
-                    if (@item.HasChild)
-                    {
-                        @Html.ActionLink("-", "RemoveSubMenu", new {id = item.Id}, new {@class = "btn btn-warning btn-sm"})
-                        <a class="titleA" href="@Url.Action("ProductList",new {menuId=item.Id})">@item.Title<i class="fa fa-arrow-right"></i></a>
-                        @Ajax.ActionLink("+", "AddSubMenu", new {parent = item.Id}, new AjaxOptions {HttpMethod = "post", UpdateTargetId = "addSubMenu", InsertionMode = InsertionMode.Replace}, new {@class = "btn btn-success btn-sm"})
-                    }
-                    else
-                    {
-                        @Html.ActionLink("-", "RemoveSubMenu", new {id = item.Id}, new {@class = "btn btn-warning btn-sm"})
-                        @Html.ActionLink(@item.Title, "ProductList", new {menuId=item.Id}, new {@class = "titleA"})
-                        @Ajax.ActionLink("+", "AddSubMenu", new {parent = item.Id}, new AjaxOptions {HttpMethod = "post", UpdateTargetId = "addSubMenu", InsertionMode = InsertionMode.Replace}, new {@class = "btn btn-success btn-sm"})
-                    }
-                }
-                @Html.Action("SubMenu", new {id = item.Id})
-            </li>
-        }
-    </ul>
-
+@{
+    ViewBag.Title = "Products";
+    Layout = "~/Views/Shared/_NewDesing.cshtml";
 }
 
+<div class="row">
+    <div class="col-md-3 left-navigation">
+        @Html.Action("AdminNavigation")
+    </div>
+    <div class="col-md-9">
+        @if (TempData["message"] != null)
+        {
+            <h3 style="color: red">@TempData["message"]</h3>
+        }
+        
+    </div>
+</div>

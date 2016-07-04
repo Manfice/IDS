@@ -565,14 +565,16 @@ a,a:focus, a:active {
     align-items: baseline;
 }
 .contText {
-    flex: 0 1 auto;
+    flex: 1 0 auto;
     display: flex;
     flex-flow: column nowrap;
     background-color: rgba(0, 0, 0, 0.5);
     height: 600px;
     justify-content: center;
+    width: 600px;
 }
 .contText h1 {
+    flex: auto;
     align-self: center;
     color: whitesmoke;
     font-weight: bold;
@@ -581,6 +583,7 @@ a,a:focus, a:active {
     text-align: center;
     color: whitesmoke;
     margin: 0;
+    flex: auto;
 }
 .contText address {
     margin-bottom: 3%;
@@ -588,19 +591,21 @@ a,a:focus, a:active {
     line-height: 25px;
     font-weight: bold;
     padding: 15px;
-    flex: 0 0 auto;
+    flex: 1 1 auto;
     align-self: center;
-
+    width: 600px;
 }
 .contText address a {
     color: whitesmoke;
-   
+    flex: auto;
 }
 .phones {
+    flex: auto;
     display: flex;
     flex-flow: column wrap;
 }
 .phones p {
+    flex: auto;
     margin: 0 20px 20px;
     font-size: 2em;
     color: orangered;

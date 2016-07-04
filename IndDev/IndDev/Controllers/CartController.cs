@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using IndDev.Domain.Abstract;
 using IndDev.Domain.Entity.Cart;
+using IndDev.Domain.Entity.Orders;
+using IndDev.Domain.ViewModels;
 
 namespace IndDev.Controllers
 {

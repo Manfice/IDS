@@ -1,5 +1,8 @@
 ﻿/*font-family: 'Oswald', sans-serif;*/
 /*font-family: "RobotoLight"*/
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { 
+    display: block;
+}
 html {
     height: 100%;
 }
@@ -11,7 +14,6 @@ a:hover {
 }
 body {
     margin: 0;
-    padding: 0;
     font-family: "RobotoLight";
     padding: 30px 0 0 0;
     display: flex;
@@ -80,6 +82,7 @@ body {
     flex: 1 0 auto;
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 .loginForm {
     background: url("/Content/images/servers.jpg") no-repeat center top;
@@ -1092,10 +1095,15 @@ footer p {
 
 }
 .order {
+    flex: 1 0 auto;
     display: flex;
     flex-flow: column;
     justify-content: flex-start;
+    margin-top: 49px;
+    background-color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.7);
 }
+
 .headInfo {
     display: flex;
     flex-flow: row nowrap;
@@ -1145,6 +1153,9 @@ footer p {
     font-weight: lighter;
     font-size: 1.3em;
     letter-spacing: 2px;
+}
+.orderBody table thead tr td {
+    padding: 0 10px;
 }
 .orderBody table tbody {
     text-align: center;
@@ -1202,16 +1213,30 @@ footer p {
     align-self: center;
 }
 /*Cart Block*/
+.cartFon {
+    flex: 1 0 auto;
+    position: absolute;
+    top: 49px;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background: url("/Content/images/twisted_pair.jpg") no-repeat 0 center;
+    background-size: 100% 100%;
+    z-index: -1;
+}
 .cartBody {
     flex: 1 0 auto;
-    background-color: #fff;
+    background-color: #ffffff;
+    background-color: rgba(255,255,255,0.7);
     font-family: "RobotoMedium";
     display: flex;
     flex-flow: column nowrap;
     max-width: 1200px;
     align-self: center;
     width: 100%;
+    margin-top: 49px;
 }
+
 .cartNavigation {
     flex: 0 0 auto;
 }
@@ -1270,7 +1295,6 @@ footer p {
 }
 .cartBody table {
     width: 100%;
-    border: solid 2px red;
     flex: 1 0 auto;
 }
 .cartBody table thead {
@@ -1282,23 +1306,192 @@ footer p {
 }
 .cartBody table thead tr td {
     flex: 1 0 auto;
+    padding: 20px 0;
 }
-.cartBody table thead tr td:last-child {
+.cartBody table tbody {
+    border-bottom: solid 2px 
+}
+.cartBody table tbody tr:hover {
+    background-color: lightgray;
+    cursor: pointer;
+}
+.cartBody table tbody tr td {
+    padding: 10px;
     flex: 1 0 auto;
-    max-width: 120px;
-    display: flex;
-    flex-flow: column wrap;
-    justify-content: space-around;
-    align-items: center;
 }
-.cartBody table thead tr td a {
+.wsnw {
+    white-space: nowrap;
+}
+.cartBody table tbody tr td input[type="number"] {
+    max-width: 50px;
+    margin: 0 20px;
+}
+.cartBody table tbody tr td:last-child {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around
+}
+.cartBody table tbody tr td:last-child a {
+    flex: 1 0 auto;
+    text-align: center;
+    padding: 10px;
+    color: gray;
+}
+.cartBody table tbody tr td:last-child a:hover {
+    background-color: orangered;
     color: whitesmoke;
     text-decoration: none;
-    flex: 0 0 auto;
-    padding: 0 20px;
-    background-color: orangered;
 }
-.cartBody table thead tr td a:hover{
-    background-color: orangered;
+.cartBody table tbody tr td:last-child input[type="submit"] {
+    flex: 1 0 auto;
+    border: none;
+}
+.cartBody table tbody tr td:last-child input[type="submit"]:hover {
+    background-color: lightgreen;
+}
+.benefit td:last-child {
+    background-color: lightgreen
+}
+.cartBody table tfoot tr {
+    text-align: right;
+}
+.cartBody table tfoot tr td:last-child {
+    border-bottom: dotted 1px;
+    padding: 0 20px 0 0;
+}
+.cartBody table tfoot tr:last-child td:last-child {
+    background-color: dodgerblue;
+    color: whitesmoke;
+    font-size: 1.5em;
+}
+.cartControls {
+    flex: 0 0 auto;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+.cartControls a {
+    padding: 10px 30px;
+    width: 250px;
+    text-align: center;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    color: gray;
+    background-color: lightgray;
+}
+.cartControls a:hover {
+    background-color: green;
+    color: whitesmoke;
+    text-decoration: none;
+}
+.cartControls input[type="submit"] {
+    padding: 10px 30px;
+    width: 250px;
+    text-align: center;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    color: whitesmoke;
+    background-color: green;
+    border: none;    
+}
+.disableStep {
+    cursor: progress !important;
+    color: gray !important;
+}
+.disableStep span {
+    background-color: lightgray !important;
+    color: gray !important;
+}
+.disableStep:hover {
+    background-color: transparent !important;
+}
+.delivery {
+    flex: 1 0 auto;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+}
+.delivery h3 {
+    text-align: center;
+}
+.delivery select {
+    flex: 0 0 auto;
+    align-self: center;
+    font-size: 1.5em;
+    border: none;
+    border-bottom: solid 3px dodgerblue;
+}
+.delivFields {
+    flex: 1 0 auto;
+    display: flex;
+    flex-flow: row nowrap;
+}
+.whoWhere {
+    flex: 1 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-flow: column;
+}
+.whoWhere label {
+    
+}
+.whoWhere input {
+    flex: 1 0 auto;
+    border: none;
+    border-bottom: solid 3px dodgerblue;
+}
+.comment {
+    flex: 1 0 auto;
+    display: flex;
+    flex-flow: column nowrap;
+    padding: 20px;
+}
+.comment textarea {
+    flex: 1 0 auto;
+    border: none;
+    border-bottom: solid 3px dodgerblue;
 }
 /*End cart block*/
+/*News*/
+.newsBlock {
+    flex: 0 0 auto;
+    display: flex;
+    flex-flow: column nowrap;
+}
+.newsContent {
+    flex: 0 0 auto;
+    display: flex;
+    flex-flow: column nowrap;
+    width: 1200px;
+    align-self: center;
+}
+.newsContent h2 {
+    flex: auto;
+    margin: 10px 0;
+    text-align: center;
+    color: dodgerblue;
+}
+.newsRow {
+    flex: none;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+.newsRow iframe {
+    flex: 1 0 auto;
+}
+.newsColumn {
+    flex: 1 0 auto;
+    padding: 0 0 0 10px;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    width: 500px;
+}
+.newsColumn h3 {
+    flex: auto;
+}
+.newsColumn p {
+    flex: auto;
+}
