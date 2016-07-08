@@ -57,7 +57,7 @@ namespace IndDev.Domain.Context
             //modelBuilder.Entity<Details>().HasRequired(d => d.CustomerOf).WithRequiredDependent(c=>c.Details);          
             //modelBuilder.Entity<UserPhoto>().HasRequired(p => p.CustomerOf).WithOptional(c => c.Photo);
             //modelBuilder.Entity<User>().HasRequired(u => u.Customer).WithRequiredPrincipal(c => c.User);
-            
+
         }
     }
 }

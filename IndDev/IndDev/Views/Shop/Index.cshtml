@@ -14,7 +14,34 @@
 
 <div class="catalogBody">
 @Html.Action("ShopBlock", "Shop")
-    <div class="container">
+    <div class="mainGroupes">
+        @foreach (var item in Model)
+        {
+            <div class="mainMenuItem" style="background: url('@item.Image.Path') no-repeat center center">
+
+                <div class="menuItemDescr">
+                    <a href="@Url.Action("CatDetails", "Shop", new {catId = item.Id})">перейти</a>
+                    <h1>@item.Title</h1>
+                    <p>@item.ShotDescription</p>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="menuSertif">
+        <img src="~/Content/images/Sertificates/sert.jpeg" alt=""/>
+        <div class="sertDescr">
+            <h1>сертификаты</h1>
+            <h3>Компания Inductrial Development - сертифицированный поставщик</h3>
+            <p>Торговый дом "АЙДИ-С" - авторизованный и сертифицированный поставщик телекоммуникационного, сетевого оборудования
+                на территории СКФО и ЮФО. Мы поставляем более 10 000 наименований продукции от ведущих производителей России и ближнего зарубежья.
+            </p>
+            <p>Так же наша компания осуществляет поддержку начинающим производителям - инвестируя средства в производство и реализуя товары под своей торговой маркой: <span>IDs - Industrial Development</span>
+            </p>
+            <a href="@Url.Action("About","Home")" target="blank">подробнее</a>
+        </div>
+    </div>
+</div>
+@*<div class="container">
         <div class="row">
             <div class="col-md-9">
                 <h1>Каталог продукции</h1>
@@ -62,9 +89,8 @@
                 </div>
             </div>
         </div>
-    </div>   
-</div>
-
+    </div>*@
+   
 @section scripts
 {
 <script src="~/Scripts/shopScripts.js"></script>

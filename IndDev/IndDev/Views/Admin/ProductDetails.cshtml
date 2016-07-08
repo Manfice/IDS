@@ -115,8 +115,9 @@
                         @Html.Label("Еденица измерения:")
                         @Html.DropDownListFor(model => model.SelMu, Model.MesureUnits, Model.SelMu)<br/>
                         @Html.Label("Склад отгрузки:")
-                        @Html.DropDownListFor(model => model.SelStock, Model.Stocks, Model.SelStock)<br />
-
+                        @Html.DropDownListFor(model => model.SelStock, Model.Stocks, Model.SelStock)<br/>
+                        @Html.Label("Код категории:")
+                        @Html.EditorFor(model => model.Product.Categoy.Id)
                     </div>
                     <div class="blockPrice">
                         <ul>

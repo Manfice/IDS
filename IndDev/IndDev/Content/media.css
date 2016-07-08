@@ -2,56 +2,55 @@
 
 /* Large Devices, Wide Screens */
 @media only screen and (max-width : 1200px) {
-    .margin-top-65px {
-        margin-top: 25px;
-    }
+       .mainMenuItem {
+    flex: 1 1 100%;
+    height: 500px;
+}
+       .menuSertif img {
+    margin: 50px;
+    width: 30%;
+    flex-grow: 0;
+}
 }
 
 /* Medium Devices, Desktops */
 @media only screen and (max-width : 992px) {
-    .slider {
-        height: 480px;
-    }
-    #val {
-        display: none;
-    }
-    .margin-top-65px {
-        margin-top: 25px;
-    }
+           .mainMenuItem {
+    flex: 1 1 100%;
+    height: 500px;
+}
+       .menuSertif img {
+    margin: 50px;
+    width: 30%;
+    flex-grow: 0;
+}
 }
 
 /* Small Devices, Tablets */
 @media only screen and (max-width : 768px) {
-    .slider {
-        height: 320px;
-    }
-    html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 30%;
-	font: inherit;
-	vertical-align: baseline;
+           .mainMenuItem {
+    flex: 1 1 100%;
+    height: 500px;
 }
-    .margin-top-65px {
-        margin-top: 65px;
-    }
+           .menuSertif img {
+    margin: 10px;
+    width: 50%;
+    flex-grow: 0;
+}
 }
 
 /* Extra Small Devices, Phones */
 @media only screen and (max-width : 480px) {
+       .mainMenuItem {
+    flex: 1 1 100%;
+    height: 500px;
+}
+       .menuSertif img {
+    margin: 10px;
+    width: 50%;
+    flex-grow: 0;
+}
+
 }
 
 /* Custom, iPhone Retina */

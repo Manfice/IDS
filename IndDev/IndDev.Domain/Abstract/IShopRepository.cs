@@ -7,10 +7,11 @@ namespace IndDev.Domain.Abstract
 {
     public interface IShopRepository
     {
+        IEnumerable<ProductMenu> GetProductMenus { get; }
         IEnumerable<Menu> GetTopMenus();
         IEnumerable<Menu> GetSubMenu(int id);//Curent menu ID
-        IEnumerable<ProductMenu> GetProductMenus();
         ProductMenu GetProductMenu(int id);
+
         ProductView GetProductDetails(int id);
         ShopProductView GetProduct(int id);
     }

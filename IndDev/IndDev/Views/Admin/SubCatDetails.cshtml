@@ -1,17 +1,14 @@
-﻿@model IndDev.Domain.ViewModels.MenuVm
+﻿@model IndDev.Domain.Entity.Menu.ProductMenuItem
 @{
 Layout = "~/Views/Shared/_NewDesing.cshtml";
 }
-@section links
-{
-<link href="~/Content/Main.css" rel="stylesheet" />
-}
+
 <div class="productCategory">
-    <h3>Категория продуктов @Model.Parent.Title</h3>
+    <h3>Категория продуктов @Model.Title</h3>
     <div class="picture pull-left">
-        @if (Model.Parent.Image != null)
+        @if (Model.Image != null)
         {
-            <img src="@Url.Content(Model.Parent.Image.Path)" alt="@Url.Content(Model.Parent.Image.AltText)" width="200"/>
+            <img src="@Url.Content(Model.Image.Path)" alt="@Url.Content(Model.Image.AltText)" width="200"/>
         }
         else
         {
@@ -19,85 +16,16 @@ Layout = "~/Views/Shared/_NewDesing.cshtml";
         }
     </div>
     <div class="detCatForm">
-        @using (Html.BeginForm("EditSubCategory", "Admin", FormMethod.Post, new {enctype = "multipart/form-data"}))
-        {
-            @Html.AntiForgeryToken()
-            @Html.HiddenFor(menu => menu.Parent.Id)
-            @Html.Hidden("retUrl", Request.Url.PathAndQuery)
-            <label>Наименование: </label>
-            @Html.TextBoxFor(vm => vm.Parent.Title, Model.Parent.Title)
-            <br/>
-            @Html.Label("Приоритет:")
-            @Html.EditorFor(item => item.Parent.Priority)<br/>
-            @Html.CheckBoxFor(vm => vm.Parent.IsRus, @Model.Parent.IsRus)
-            @Html.LabelFor(item => item.Parent.IsRus, "Произведено в России?")
-            <input type="file" name="photo"/>
-            <label>Описание: </label>
-            @Html.TextAreaFor(item => item.Parent.Descr, new {@class = "editorTiny"})
-            <input type="submit" class="btn btn-primary btn-lg" value="Сохранить"/>
-        }
+        
     </div>
 </div>
-
-@*<div class="CatCont">
-    <table>
-        <thead>
-        <tr>
-            <td>Код:</td>
-            <td>Наименование:</td>
-            <td>Описание:</td>
-            <td>Приоритет:</td>
-            <td>Россия:</td>
-            <td>Картинка:</td>
-            <td>Действия:</td>
-        </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.Childs)
-            {
-                <tr>
-                    <td>@item.Id</td>
-                    <td>@item.Title</td>
-                    <td>@item.ShotDescription</td>
-                    <td>@item.Priority</td>
-                    <td>@item.IsRus</td>
-                    <td>
-                        
-                    </td>
-
-                    <td>
-                        @Html.ActionLink("Подробнее", "SubCatDetails", new { id = @item.Id, returnUrl = Request.Url.PathAndQuery }, new { @class = "btn btn-success btn-sm" })
-
-                    </td>
-                </tr>
-            }
-        </tbody>
-        <tfoot>
-            @using (Html.BeginForm("AddSubCut", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
-            {
-                @Html.AntiForgeryToken()
-                @Html.HiddenFor(model=> model.Parent.ProductMenu.Id)
-                <tr>
-                    <td>@Html.Hidden("menuId", Model.Parent.Id)</td>
-                    <td><input type="text" name="title" placeholder="Наименование" /></td>
-                    <td><textarea name="descr" placeholder="Описание подкатегории" rows="3"></textarea></td>
-                    <td>@Html.EditorFor(menu => menu.Parent.Priority)</td>
-                    <td>@Html.CheckBox("IsRus", false)</td>
-                    <td><input type="file" name="photo" /></td>
-                    <td><input type="submit" class="btn btn-success btn-sm" value="Сохранить" /></td>
-                </tr>
-            }
-
-        </tfoot>
-    </table>
-</div>*@
 
 <div class="subCat">
     <h2>Продукты в категории:</h2>
     @using (Html.BeginForm("UpdateProducts", "Admin", FormMethod.Post, new {enctype = "multipart/form-data"}))
     {
         @Html.AntiForgeryToken()
-        @Html.Hidden("catId", Model.Parent.Id)
+        @Html.Hidden("catId", Model.Id)
         <input name="prodList" id="prodList" type="file"/>
         <input type="submit" value="Обновить"/>
     }
@@ -117,7 +45,7 @@ Layout = "~/Views/Shared/_NewDesing.cshtml";
             </tr>
         </thead>
         <tbody id="subCat">
-            @Html.Action("ShowProducts", new { subCatId = @Model.Parent.Id })
+            @Html.Action("ShowProducts", new { subCatId = @Model.Id })
         </tbody>
         <tfoot>
             <tr>
@@ -131,11 +59,11 @@ Layout = "~/Views/Shared/_NewDesing.cshtml";
                 <td>Услуга:</td>
                 <td>Действия:</td>
             </tr>
-        @Html.Action("AddProductToSubCat", new {subCatID = @Model.Parent.Id, returnUrl = Request.Url.PathAndQuery})
+        @Html.Action("AddProductToSubCat", new {subCatID = @Model.Id, returnUrl = Request.Url.PathAndQuery})
         </tfoot>
     </table>
 </div>
 
 <div class="well-sm">
-    <a href="@Url.Action("CatDetails","Admin", new {id=Model.Parent.ProductMenu.Id})" class="btn btn-success btn-sm">Назад</a>
+    <a href="@ViewBag.ReturnUrl" class="btn btn-success btn-sm">Назад</a>
 </div>

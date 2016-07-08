@@ -336,6 +336,7 @@ namespace IndDev.Domain.Context
             dbMenu.Title = menu.Title;
             dbMenu.Priority = menu.Priority;
             dbMenu.ShotDescription = menu.ShotDescription;
+            dbMenu.ShowInCatalog = menu.ShowInCatalog;
             if (image!=null)
             {
                 if (dbMenu.Image!=null)DeleteCatImage(dbMenu.Image);
@@ -357,6 +358,8 @@ namespace IndDev.Domain.Context
             dbMenu.Title = menu.Title;
             dbMenu.IsRus = menu.IsRus;
             dbMenu.Priority = menu.Priority;
+            dbMenu.ParentMenuItem = _context.ProductMenuItems.Find(menu.ParentMenuItem.Id);
+            dbMenu.ShowInCatalog = menu.ShowInCatalog;
             if (image != null)
             {
                 if (dbMenu.Image != null) DeleteCatImage(dbMenu.Image);
@@ -627,6 +630,7 @@ namespace IndDev.Domain.Context
             var vendor = _context.Vendors.Find(model.SelVr);
             var mu = _context.MesureUnits.Find(model.SelMu);
             var stock = _context.Stocks.Find(model.SelStock);
+            var catItem = _context.ProductMenuItems.Find(model.Product.Categoy.Id);
             dbProduct.Warranty = model.Product.Warranty;
             dbProduct.Articul = model.Product.Articul;
             dbProduct.Title = model.Product.Title;
@@ -640,6 +644,7 @@ namespace IndDev.Domain.Context
             dbProduct.Warning = model.Product.Warning;
             dbProduct.UpdateTime = DateTime.Now;
             dbProduct.Show = model.Product.Show;
+            dbProduct.Categoy = catItem;
             foreach (var price in model.Prices)
             {
                 var dbPrice = _context.Prices.Find(price.Id);
@@ -884,9 +889,18 @@ namespace IndDev.Domain.Context
             var wow = new MenuVm
             {
                 Parent = _context.ProductMenuItems.Find(parent),
-                Childs = _context.ProductMenuItems.Where(item => item.ParentMenuItem.Id==parent)
+                Childs = _context.ProductMenuItems.Where(item => item.ParentMenuItem.Id==parent).ToList()
             };
             return wow;
+        }
+        public RootMenuVm GetRootMenuVm(int id)
+        {
+            var model = new RootMenuVm
+            {
+                ProductMenu = _context.ProductMenus.Find(id),
+                ProductMenuItems = _context.ProductMenuItems.Where(item => item.ProductMenu.Id==id && item.ParentMenuItem==null).ToList()
+            };
+            return model;
         }
     }
 }

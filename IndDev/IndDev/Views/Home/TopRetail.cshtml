@@ -2,24 +2,29 @@
 @model IEnumerable<IndDev.Domain.ViewModels.ProductView>
 
 <div class="specPredlog">
-    <h1>ГОРЯЧЕЕ ПРЕДЛОЖЕНИЕ</h1>
-    <a>@Model.Count() товаров по спец-цене</a>
+    <div class="headTop">
+        <img src="@Url.Content("~/Content/images/remake.jpg")" alt=""/>
+        <div class="hottopdescr">
+            <h1>ГОРЯЧЕЕ ПРЕДЛОЖЕНИЕ</h1>
+            <a>@Model.Count() товаров по спец-цене</a>            
+        </div>
+    </div>
     <div id="hotCarousel" class="owl-carousel">
         @foreach (var item in Model)
         {
             <div class="item">
                 <div class="hotItem">
-                    <img src="@item.Avatar.Path" alt="" />
+                    <img src="@item.Avatar.Path" alt=""/>
                     <div class="hotDescr">
                         <p>@item.Product.Title</p>
                     </div>
                     <div class="hotFooter">
-                        <a href="@Url.Action("ProductDetails","Shop", new {id=item.Product.Id})">ПОДРОБНЕЕ</a>
-                        <p>@item.Prices.FirstOrDefault(model => model.PriceType==PriceType.Sale).ConvValue.ToString("C")./ @item.Product.MesureUnit.ShortName</p>
+                        <a href="@Url.Action("ProductDetails", "Shop", new {id = item.Product.Id})">ПОДРОБНЕЕ</a>
+                        <p>@item.Prices.FirstOrDefault(model => model.PriceType == PriceType.Sale).ConvValue.ToString("C")./ @item.Product.MesureUnit.ShortName</p>
                     </div>
                 </div>
             </div>
         }
     </div>
-    <p><<< прокручивай мышкой >>></p>
+    <p><<< прокручивайте мышкой >>></p>
 </div>

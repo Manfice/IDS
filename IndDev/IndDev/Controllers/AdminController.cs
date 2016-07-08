@@ -128,9 +128,16 @@ namespace IndDev.Controllers
 
         public PartialViewResult Categories()
         {
-            return PartialView();
+            var model = _repository.ProductMenus();
+            return PartialView(model);
         }
 
+        public ActionResult SubCatList(int id, string returnUrl)
+        {
+            var model = _repository.GetProductMenuItems(id);
+            ViewBag.rU = returnUrl;
+            return PartialView(model);
+        }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult ChangeUser(UserViewModel model)
@@ -190,7 +197,7 @@ namespace IndDev.Controllers
             return View(_repository.GetProductMenu(id));
         }
 
-        public ActionResult EditCategory(ProductMenu menu, HttpPostedFileBase photo)
+        public ActionResult EditCategory(ProductMenu menu, HttpPostedFileBase photo, string returnUrl)
         {
             ValidEvent result;
             if (photo != null)
@@ -211,8 +218,14 @@ namespace IndDev.Controllers
             {
                 result = _repository.UpdateCategory(menu, null);
             }
-
-            return RedirectToAction("CatDetails", new {id = result.Code});
+            if (string.IsNullOrWhiteSpace(returnUrl))
+            {
+                return RedirectToAction("CatDetails", new {id = result.Code});
+            }
+            else
+            {
+                return Redirect(returnUrl);
+            }
         }
 
         public PartialViewResult SubCutList(int id)
@@ -223,15 +236,18 @@ namespace IndDev.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddSubCut(ProductMenuItem item, HttpPostedFileBase photo, int menuId)
+        public ActionResult AddSubCut(ProductMenuItem item, HttpPostedFileBase photo, int menuId, string returnUrl)
         {
+            var parentCat = _repository.GetSubCat(item.ParentMenuItem.Id);
             var pMenu = new ProductMenuItem
             {
                 Title = item.Title,
-                Descr = item.Descr,
+                ShotDescription = item.ShotDescription,
                 IsRus = item.IsRus,
                 ProductMenu = _repository.GetProductMenu(menuId),
-                Priority = item.Priority
+                Priority = item.Priority,
+                ParentMenuItem = parentCat,
+                ShowInCatalog = item.ShowInCatalog
             };
 
             if (photo != null)
@@ -248,9 +264,21 @@ namespace IndDev.Controllers
                 };
             }
             _repository.AddSubCategory(pMenu);
-            return RedirectToAction("CatDetails", new {id = menuId});
+            if (string.IsNullOrWhiteSpace(returnUrl))
+            {
+                return RedirectToAction("CatDetails", new {id = menuId});
+            }
+            else
+            {
+                return Redirect(returnUrl);
+            }
         }
 
+        public ActionResult AddSubItem(int id)
+        {
+            var model = _repository.SubMenuItems(id);
+            return View(model);
+        }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult UpdateProducts(int catId,HttpPostedFileBase prodList)
@@ -368,13 +396,13 @@ namespace IndDev.Controllers
         public ActionResult SubCatDetails(int id, string returnUrl)
         {
 
-            var sc = _repository.SubMenuItems(id);
+            var sc = _repository.GetSubCat(id);
             @ViewBag.ReturnUrl = returnUrl;
-            @ViewBag.Title = $"Подкатегория {sc.Parent.Title}";
+            @ViewBag.Title = $"Подкатегория {sc.Title}";
             return View(sc);
         }
 
-        public ActionResult EditSubCategory(ProductMenuItem menu, HttpPostedFileBase photo, string retUrl)
+        public ActionResult EditSubCategory(ProductMenuItem menu, HttpPostedFileBase photo, string returnUrl)
         {
             ValidEvent result;
             if (photo != null)
@@ -396,7 +424,7 @@ namespace IndDev.Controllers
                 result = _repository.UpdateSubCategory(menu, null);
             }
 
-            return RedirectToAction("SubCatDetails", new {id = result.Code, returnUrl = retUrl});
+            return RedirectToAction("AddSubItem", new {id = result.Code, returnUrl});
         }
 
         public ActionResult RemoveSubCat(int id, int root)
@@ -415,6 +443,10 @@ namespace IndDev.Controllers
             return View(b);
         }
 
+        public ActionResult RootDetails(int id)
+        {
+            return View(_repository.GetRootMenuVm(id));
+        }
         public PartialViewResult AddSubMenu(int parent)
         {
             return PartialView(_repository.GetMenu(parent));
@@ -657,12 +689,6 @@ namespace IndDev.Controllers
             var parentCategory = _repository.GetSubCat(parent);
             ViewBag.ru = returnUrl;
             return PartialView(parentCategory);
-        }
-
-        public ActionResult SubSubCatList(int subcut)
-        {
-            var model = _repository.SubMenuItems(subcut);
-            return PartialView(model);
         }
     }
 }

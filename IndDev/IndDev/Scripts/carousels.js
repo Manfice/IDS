@@ -1,6 +1,7 @@
 ﻿$(document).ready(function () {
     var owlTop = $('#topSlide');
     var owlHot = $('#hotCarousel');
+    var owlPart = $('#pLogos');
     var owlAforizm = $('#aforizmi');
     owlTop.owlCarousel({
         items: 1,
@@ -35,6 +36,36 @@
             },
             1400: {
                 items: 5,
+                nav: false,
+                loop: true,
+                autoplay: true,
+                autoplayTimeout: 5000,
+                autoplayHoverPause: true
+            }
+        }
+    });
+    owlPart.owlCarousel({
+        loop: true,
+        margin: 30,
+        nav: false,
+        dots: false,
+        responsiveClass: true,
+        autoHeight: false,
+        responsive: {
+            0: {
+                items: 1,
+                nav: false
+            },
+            600: {
+                items: 3,
+                nav: false
+            },
+            900: {
+                items: 5,
+                nav: false
+            },
+            1200: {
+                items: 8,
                 nav: false,
                 loop: true,
                 autoplay: true,

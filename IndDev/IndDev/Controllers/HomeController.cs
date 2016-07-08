@@ -89,5 +89,10 @@ namespace IndDev.Controllers
             var model = _home.GetTopProducts;
             return PartialView(model);
         }
+
+        public ActionResult Partners()
+        {
+            return PartialView();
+        }
     }
 }

@@ -13,6 +13,8 @@ namespace IndDev.Domain.Context
     {
          private readonly DataContext _context = new DataContext();
 
+        public IEnumerable<ProductMenu> GetProductMenus => _context.ProductMenus.Where(menu => menu.ShowInCatalog).OrderBy(menu => menu.Priority).ToList();
+
         public ProductMenu GetProductMenu(int id)
         {
             return _context.ProductMenus.Find(id);
@@ -26,11 +28,6 @@ namespace IndDev.Domain.Context
         private bool CheckPrice(List<PriceViewModel> list)
         {
             return list != null && list.Any(item => item.ConvValue>0);
-        }
-
-        public IEnumerable<ProductMenu> GetProductMenus()
-        {
-            return _context.ProductMenus.ToList().OrderBy(menu => menu.Priority);
         }
 
         public IEnumerable<Menu> GetSubMenu(int id)

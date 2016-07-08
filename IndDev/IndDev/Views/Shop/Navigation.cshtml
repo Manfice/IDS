@@ -17,7 +17,7 @@
                 <li class="activeItem">
                     <a href="@Url.Action("CatDetails","Shop",new {catId=item.Id})">@item.Title</a>
                     <ul>
-                        @foreach (var menus in item.MenuItems)
+                        @foreach (var menus in item.MenuItems.OrderBy(menuItem => menuItem.Priority))
                         {
                             if (menus.Id.ToString() == ViewBag.Product)
                             {

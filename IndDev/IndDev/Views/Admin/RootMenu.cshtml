@@ -1,26 +1,28 @@
 ﻿@model IEnumerable<IndDev.Domain.Entity.Menu.ProductMenu>
 
 <div class="myMenuAdm">
-    <table class="table table-responsive table-striped">
+    <table class="table table-responsive">
         <thead>
         <tr>
             <td>Id</td>
             <td>Title</td>
             <td>ShortDescr</td>
             <td>Priority</td>
+            <td title="Показывать в каталоге">Cat</td>
             <td>Edit</td>
         </tr>
         </thead>
         <tbody>
         @foreach (var item in Model.OrderBy(menu => menu.Priority))
         {
-            <tr>
+            <tr class="@(item.ShowInCatalog? "inCat":"notCat")">
                 <td>@item.Id</td>
                 <td>@item.Title</td>
                 <td>@item.ShotDescription</td>
                 <td>@item.Priority</td>
+                <td>@(item.ShowInCatalog?"ДА":"НЕТ")</td>
                 <td>
-                    <a href="@Url.Action("SubMenu", "Admin", new {id = item.Id})">Edit</a>
+                    <a href="@Url.Action("RootDetails", "Admin", new {id = item.Id})">Edit</a>
                     <a href="@Url.Action("DeleteCat", "Admin", new {id = item.Id})">Delete</a>
                 </td>
             </tr>
@@ -39,32 +41,6 @@
                     <td><input type="submit" value="Добавить" /></td>
                 </tr>
             }
-
         </tfoot>
     </table>
-
-    @*<ul id="menu">
-        @foreach (var item in Model)
-        {
-            <li>
-                @{
-                    if (@item.HasChild)
-                    {
-                        @Html.ActionLink("-", "RemoveSubMenu", new { id = item.Id }, new { @class = "btn btn-warning btn-sm" })
-                        <a class="titleA" href="@Url.Action("ProductList",new {menuId=item.Id})">@item.Title<i class="fa fa-arrow-right"></i></a>
-                        @Ajax.ActionLink("+", "AddSubMenu", new { parent = item.Id }, new AjaxOptions {HttpMethod = "post", UpdateTargetId = "addSubMenu", InsertionMode = InsertionMode.Replace}, new { @class = "btn btn-success btn-sm" })
-                    }
-                    else
-                    {
-                        @Html.ActionLink("-", "RemoveSubMenu", new { id = item.Id }, new { @class = "btn btn-warning btn-sm" })
-                        @Html.ActionLink(@item.Title, "ProductList", new { menuId = item.Id }, new { @class = "titleA" })
-                        @Ajax.ActionLink("+", "AddSubMenu", new { parent = item.Id }, new AjaxOptions { HttpMethod = "post", UpdateTargetId = "addSubMenu", InsertionMode = InsertionMode.Replace }, new { @class = "btn btn-success btn-sm" })
-                    }
-                }
-
-                @Html.Action("SubMenu", new { id = item.Id })
-
-            </li>
-                    }
-    </ul>*@
 </div>

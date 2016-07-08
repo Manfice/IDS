@@ -24,13 +24,13 @@ namespace IndDev.Controllers
         // GET: Shop
         public ActionResult Index()
         {
-            var catList = _repository.GetProductMenus();
+            var catList = _repository.GetProductMenus;
             return View(catList);
         }
 
         public PartialViewResult Navigation(string selected="0",string product="0")
         {
-            var catList = _repository.GetProductMenus();
+            var catList = _repository.GetProductMenus;
             ViewBag.Selected = selected;
             ViewBag.Product = product;
             return PartialView(catList);

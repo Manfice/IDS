@@ -147,4 +147,10 @@ namespace IndDev.Domain.ViewModels
         public ProductMenuItem Parent { get; set; }
         public IEnumerable<ProductMenuItem> Childs { get; set; } 
     }
+
+    public class RootMenuVm
+    {
+        public ProductMenu ProductMenu { get; set; }
+        public IEnumerable<ProductMenuItem> ProductMenuItems { get; set; } 
+    }
 }

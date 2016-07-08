@@ -1,0 +1,118 @@
+﻿@model IndDev.Domain.ViewModels.MenuVm
+@{
+    ViewBag.Title = "AddSubItem";
+    Layout = "~/Views/Shared/_NewDesing.cshtml";
+}
+<div class="row">
+    <div class="col-md-3 left-navigation">
+        @Html.Action("AdminNavigation")
+    </div>
+    <div class="col-md-9">
+        @if (TempData["message"] != null)
+        {
+            <h3 style="color: red">@TempData["message"]</h3>
+        }
+        <div class="productCategory">
+            <h3>Категория продуктов: @Model.Parent.Title <span><a href="@Url.Action("SubCatDetails","Admin",new {id=Model.Parent.Id, returnUrl=Request.Url.PathAndQuery})">ТОВАРЫ</a></span></h3>
+            <div class="picture pull-left">
+                @if (Model.Parent.Image != null)
+                {
+                    <img src="@Url.Content(Model.Parent.Image.Path)" alt="@Url.Content(Model.Parent.Image.AltText)" width="200" />
+                }
+                else
+                {
+                    <h2>NO IMAGE</h2>
+                }
+            </div>
+            <div class="detCatForm">
+                @using (Html.BeginForm("EditSubCategory", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.Hidden("Id", @Model.Parent.Id)
+                    @Html.Hidden("returnUrl", @Request.Url.PathAndQuery)
+                    <label>Наименование: </label>
+                    <input type="text" name="title" value="@Model.Parent.Title" />
+                    <br />
+                    @Html.CheckBox("ShowInCatalog", @Model.Parent.ShowInCatalog)
+                    @Html.Label("Отображать в каталоге?")
+                    <br />
+                    @Html.Label("Переместить в категорию:")
+                    @Html.TextBox("ParentMenuItem.Id", Model.Parent.ParentMenuItem?.Id ?? 0)
+                    <br />
+                    <label>Описание для поисковиков: </label>
+                    <br />
+                    <textarea name="ShotDescription" rows="5">@Model.Parent.ShotDescription</textarea>
+                    <br />
+                    <label>Приоритет: </label>
+                    <input name="priority" value="@Model.Parent.Priority" type="number" max="999" min="1" /><br />
+                    <input type="file" name="photo" /><br />
+                    <label>Описание: </label>
+                    @Html.TextArea("Descr", @Model.Parent.Descr, new { @class = "editorTiny" })
+                    <br />
+                    <input type="submit" class="btn btn-primary btn-lg" value="Сохранить" />
+                }
+            </div>
+        </div>
+        <h3>Состав категории:</h3>
+        <table class="subRootList">
+            <thead>
+                <tr>
+                    <td>Id</td>
+                    <td>Title</td>
+                    <td>ShortDescr</td>
+                    <td>Priority</td>
+                    <td title="Показывать в каталоге">Cat</td>
+                    <td title="Произведено в России">Russia</td>
+                    <td>Фото</td>
+                    <td>Edit</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Childs.OrderBy(item => item.Priority))
+            {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.Title</td>
+                        <td>@item.ShotDescription</td>
+                        <td>@item.Priority</td>
+                        <td>@(item.ShowInCatalog ? "ДА" : "НЕТ")</td>
+                        <td>@(item.IsRus ? "ДА" : "НЕТ")</td>
+                        <td>
+                            @if (item.Image != null)
+                            {
+                                <img width="100" src="@item.Image.Path" alt=""/>
+                            }
+                            else
+                            {
+                                <p>No image</p>
+                            }
+                        </td>
+                        <td>
+                            <a href="@Url.Action("AddSubItem", "Admin", new {id = item.Id})">edit</a>
+                            <a href="@Url.Action("SubCatDetails","Admin",new {id=item.Id, returnUrl = Request.Url.PathAndQuery})">Товары</a>
+                            <a href="@Url.Action("RemoveSubCat","Admin",new {id=item.Id})">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                @using (Html.BeginForm("AddSubCut", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.Hidden("returnUrl", @Request.Url.PathAndQuery)
+                    @Html.Hidden("menuId",Model.Parent.ProductMenu.Id)
+                    <tr>
+                        <td>@Html.Hidden("ParentMenuItem.Id", Model.Parent.Id)</td>
+                        <td><input type="text" name="title" placeholder="Наименование" /></td>
+                        <td><textarea name="ShotDescription" placeholder="Описание подкатегории" rows="3"></textarea></td>
+                        <td><input type="number" min="1" max="999" name="Priority" value="999" /></td>
+                        <td>@Html.CheckBox("IsRus", false)</td>
+                        <td>@Html.CheckBox("ShowInCatalog", false)</td>
+                        <td><input type="file" name="photo" /></td>
+                        <td><input type="submit" class="btn btn-success btn-sm" value="Сохранить" /></td>
+                    </tr>
+                }
+            </tfoot>
+        </table>
+    </div>
+</div>

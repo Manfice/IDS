@@ -1,5 +1,27 @@
-﻿<div class="subCat">
-    <table class="table table-hover table-striped table-responsive">
+﻿@model IEnumerable<IndDev.Domain.Entity.Menu.ProductMenu>
+<div class="subCat">
+    <ul>
+        @foreach (var item in Model.OrderBy(menu => menu.Priority))
+        {
+            <li>
+                @item.Title
+            @if (item.MenuItems.Any())
+            {
+            <ul>
+                @foreach (var sItem in item.MenuItems.Where(menuItem => menuItem.ParentMenuItem==null).OrderBy(menuItem => menuItem.Priority))
+                {
+                    <li>
+                        <a href="@Url.Action("SubCatDetails", "Admin", new {id = sItem.Id, returnUrl = Request.Url.PathAndQuery})" title="добавить товары">@sItem.Title</a>
+                        @Html.Action("SubCatList","Admin",new {id=sItem.Id, returnUrl=Url.Action("Products")})
+                    </li>
+                }
+            </ul>
+            }
+        </li>
+        }
+    </ul>
+
+    @*<table class="table table-hover table-striped table-responsive">
         <thead>
         <tr>
             <td>Код</td>
@@ -28,6 +50,6 @@
     }
         
         </tfoot>
-    </table>
+    </table>*@
 </div>
 

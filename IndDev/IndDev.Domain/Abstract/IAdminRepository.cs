@@ -68,6 +68,6 @@ namespace IndDev.Domain.Abstract
         IEnumerable<Order> GetOrders();
         Order GetOrderById(int id);
         MenuVm SubMenuItems(int parent);
-
+        RootMenuVm GetRootMenuVm(int id);
     }
 }

@@ -252,6 +252,7 @@
     <Content Include="Content\images\datacenter.jpg" />
     <Content Include="Content\images\dc960_640.jpg" />
     <Content Include="Content\images\fiber_optic.jpg" />
+    <Content Include="Content\images\fon45.png" />
     <Content Include="Content\images\idlgfpngblue.png" />
     <Content Include="Content\images\id_logo.svg" />
     <Content Include="Content\images\info.png" />
@@ -295,8 +296,21 @@
     <Content Include="Content\images\mairala\skills.jpg" />
     <Content Include="Content\images\mairala\slide-pagenat.png" />
     <Content Include="Content\images\man_dc.png" />
+    <Content Include="Content\images\menuItems\1DCsmall.jpg" />
+    <Content Include="Content\images\menuItems\focross.jpg" />
+    <Content Include="Content\images\menuItems\h16small.jpg" />
+    <Content Include="Content\images\menuItems\racks.jpg" />
+    <Content Include="Content\images\menuItems\sks.jpg" />
     <Content Include="Content\images\netlan42.png" />
     <Content Include="Content\images\noimage.png" />
+    <Content Include="Content\images\partners\atsserv.jpg" />
+    <Content Include="Content\images\partners\formula.jpg" />
+    <Content Include="Content\images\partners\greenpoint.jpg" />
+    <Content Include="Content\images\partners\mts.jpg" />
+    <Content Include="Content\images\partners\neolex.jpg" />
+    <Content Include="Content\images\partners\rostel.jpg" />
+    <Content Include="Content\images\partners\techpoint.jpg" />
+    <Content Include="Content\images\partners\tz.jpg" />
     <Content Include="Content\images\patchcord.png" />
     <Content Include="Content\images\prFon.jpg" />
     <Content Include="Content\images\products\944_big.jpg" />
@@ -311,7 +325,9 @@
     <Content Include="Content\images\products\switch.jpg" />
     <Content Include="Content\images\products\tv_andr.jpg" />
     <Content Include="Content\images\products\twist-pair.jpg" />
+    <Content Include="Content\images\remake.jpg" />
     <Content Include="Content\images\RusFlag.png" />
+    <Content Include="Content\images\Sertificates\sert.jpeg" />
     <Content Include="Content\images\servers.jpg" />
     <Content Include="Content\images\SIP.jpg" />
     <Content Include="Content\images\skills_new.jpg" />
@@ -614,6 +630,10 @@
     <Content Include="Views\Admin\AddReqSubCat.cshtml" />
     <Content Include="Views\Admin\SubSubCatList.cshtml" />
     <Content Include="Views\Home\TopRetail.cshtml" />
+    <Content Include="Views\Admin\RootDetails.cshtml" />
+    <Content Include="Views\Admin\AddSubItem.cshtml" />
+    <Content Include="Views\Admin\SubCatList.cshtml" />
+    <Content Include="Views\Home\Partners.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
