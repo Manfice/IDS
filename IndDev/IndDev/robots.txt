@@ -6,4 +6,4 @@ Disallow: /admin/
 Disallow: /Security/
 Disallow: /Cart/
 Disallow: /Home/Test/
-Host: id-racks.ru
+Host: www.id-racks.ru
