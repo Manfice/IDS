@@ -50,6 +50,8 @@ namespace IndDev.Domain.Context
         public DbSet<DeliveryType> DeliveryTypes { get; set; }
         public DbSet<OrderStatus> OrderStatuses { get; set; }
         public DbSet<DeliveryData> DeliveryDatas { get; set; }
+        //Search
+        public DbSet<SearchRequests> SearchRequestses { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

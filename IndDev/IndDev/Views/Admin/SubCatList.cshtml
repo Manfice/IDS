@@ -2,6 +2,7 @@
 <ul>
     @foreach (var item in Model)
     {
-        <li><a href="@Url.Action("SubCatDetails","Admin", new {id=item.Id, returnUrl=ViewBag.rU})">@item.Title</a></li>
+        <li><a href="@Url.Action("SubCatDetails", "Admin", new {id = item.Id, returnUrl = ViewBag.rU})">@item.Title</a></li>
+        @Html.Action("SubCatList", "Admin", new { id = item.Id, returnUrl = Url.Action("Products") })
     }
 </ul>

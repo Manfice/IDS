@@ -135,7 +135,7 @@
     <Compile Include="Entity\Products\MesureUnit.cs" />
     <Compile Include="Entity\Products\Price.cs" />
     <Compile Include="Entity\Products\Product.cs" />
-    <Compile Include="Entity\Products\Products.cs" />
+    <Compile Include="Entity\Products\SearchRequests.cs" />
     <Compile Include="Entity\Products\Vendor.cs" />
     <Compile Include="Entity\Stock\Stock.cs" />
     <Compile Include="Logic\ExternalLogic.cs" />

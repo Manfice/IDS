@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using IndDev.Domain.Abstract;
+using IndDev.Domain.Entity;
 using IndDev.Domain.Entity.Cart;
 using IndDev.Domain.Entity.Menu;
 using IndDev.Domain.Entity.Products;
@@ -54,7 +55,7 @@ namespace IndDev.Controllers
         public ActionResult CatDetails(int catId)
         {
             var model = _repository.GetProductMenu(catId);
-            ViewBag.Title = model.Title+@" Торговый дом ""АЙДИ-С"" в г. Ставрополе.";
+            ViewBag.Title = model.Title+@" Торговый дом ""АЙДИ-С""";
             ViewBag.Products = model.Id;
             return View(model);
         }
@@ -88,7 +89,23 @@ namespace IndDev.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Search(string search)
         {
-            var sProd = new List<ProductView>();
+
+            var sProd = (from item in _repository.GetProducts
+                         let pr = (item.Articul + item.Title).ToLowerInvariant()
+                         where pr.Contains(search)
+                         select new ProductView
+                         {
+                             Product = item,
+                             Avatar = item.ProductPhotos.FirstOrDefault(photo => photo.PhotoType == PhotoType.Avatar)
+                         }).ToList();
+
+            var model = new SearchRequests
+            {
+                SearchReq = search,
+                SearchResult = sProd.Capacity.ToString()
+            };
+            _repository.SaveSearch(model);
+
             return RedirectToAction("Search",new {products=sProd, searchString=search });
         }
     }

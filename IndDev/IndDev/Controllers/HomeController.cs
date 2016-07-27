@@ -25,11 +25,10 @@ namespace IndDev.Controllers
             return View();
         }
 
-        //public ActionResult Test()
-        //{
-        //    ViewBag.Title = "Industrial Development";
-        //    return View();
-        //}
+        public ActionResult Test()
+        {
+            return View();
+        }
         public ActionResult About()
         {
             return View();

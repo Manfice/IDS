@@ -1,5 +1,4 @@
-﻿@using IndDev.Domain.Entity
-@using IndDev.Domain.Entity.Products
+﻿@using IndDev.Domain.Entity.Products
 @model IndDev.Domain.ViewModels.ShopProductView
 @{
     Layout = "~/Views/Shared/_NewDesing.cshtml";
@@ -20,11 +19,36 @@
                     <a href="@Url.Action("Index")">Главная</a>
                     <i class="fa fa-chevron-right" aria-hidden="true"></i>
                     <a href="@Url.Action("CatDetails", "Shop", new {catId = Model.ProductMenuItem.ProductMenu.Id})">@Model.ProductMenuItem.ProductMenu.Title</a>
-                    <i class="fa fa-chevron-right" aria-hidden="true"></i>
-                    <a>@Model.ProductMenuItem.Title</a>
-                    <i class="fa fa-chevron-right" aria-hidden="true"></i>
-                    <a><strong>@Model.Products.Count()</strong> позиций</a>
+
+                    @if (Model.ProductMenuItem.ParentMenuItem != null)
+                    {
+                        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                        <a href="@Url.Action("ShowProducts", "Shop", new {catId = Model.ProductMenuItem.ParentMenuItem.Id})">@Model.ProductMenuItem.Title</a>
+                        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                        <a><strong>@Model.Products.Count()</strong> позиций</a>
+                    }
+
                 </div>
+                @foreach (var item in Model.MenuItems.Where(item => item.ShowInCatalog).OrderBy(item => item.Priority))
+                {
+                    <div class="col-md-4">
+                        <div class="product">
+                            <a href="@Url.Action("ShowProducts", "Shop", new {catId = item.Id})">
+                                @if (item.Image != null)
+                                {
+                                    <img src="@item.Image.Path" alt="@item.Image.AltText" />
+                                }
+                                else
+                                {
+                                    <img src="@Url.Content("~/Content/images/noimage.png")" alt="no image" />
+                                }
+                                <div class="categoryName">
+                                    <p>@item.Title</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                }
                 @foreach (var item in Model.Products.OrderBy(view => view.Prices.FirstOrDefault(model => model.PriceType==PriceType.Retail)?.ConvValue))
                 {
                     <div class="col-md-6 productView">

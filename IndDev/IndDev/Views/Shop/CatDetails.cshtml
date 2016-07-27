@@ -1,4 +1,6 @@
-﻿@model IndDev.Domain.Entity.Menu.ProductMenu
+﻿@using IndDev.Domain.Entity.Products
+@using IndDev.Domain.ViewModels
+@model IndDev.Domain.Entity.Menu.ProductMenu
 @{
     Layout = "~/Views/Shared/_NewDesing.cshtml";
     ViewBag.description = Model.ShotDescription;
@@ -10,7 +12,7 @@
 @Html.Action("TopNavigation", "Home")
 
 <div class="catalogBody">
-@Html.Action("ShopBlock", "Shop")
+    @Html.Action("ShopBlock", "Shop")
     <div class="container">
         <div class="row">
             <div class="col-md-9">
@@ -21,7 +23,7 @@
                     <a>@Model.Title</a>
                     <i class="fa fa-chevron-right" aria-hidden="true"></i>
                 </div>
-                @foreach (var item in Model.MenuItems.Where(item => item.ShowInCatalog).OrderBy(item => item.Priority))
+                @foreach (var item in Model.MenuItems.Where(item => item.ShowInCatalog && item.ParentMenuItem==null).OrderBy(item => item.Priority))
                 {
                     <div class="col-md-4">
                         <div class="product">
@@ -32,7 +34,7 @@
                                 }
                                 else
                                 {
-                                    <img src="@Url.Content("~/Content/images/noimage.png")" alt="no image" />
+                                    <img src="@Url.Content("~/Content/images/noimage.png")" alt="no image"/>
                                 }
                                 <div class="categoryName">
                                     <p>@item.Title</p>
@@ -41,6 +43,44 @@
                         </div>
                     </div>
                 }
+                <div class="col-md-12">
+                    <table class="table table-responsive">
+                        <thead>
+                        <tr>
+                            <td>Артикул</td>
+                            <td>Наименование</td>
+                            <td>Розница <br/> с НДС</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach (var item in Model.MenuItems)
+                        {
+                            <tr>
+                                <td></td>
+                                <td colspan="4">@item.Title</td>
+                            </tr>
+                            foreach (var p in item.Products)
+                            {
+                                using (Html.BeginForm("AddToCart","Cart",FormMethod.Post, new {id=p.Id}))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    @Html.Hidden("productId", p.Id)
+                                    @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+                                     <tr>
+                                         <td>@p.Articul</td>
+                                         <td>@p.Title</td>
+                                         <td>@p.Prices.FirstOrDefault(price => price.PriceType==PriceType.Retail).Value@p.Prices.FirstOrDefault(price => price.PriceType == PriceType.Retail).Currency.Code</td>
+                                         <td><input type="number" name="quantity" min="1" value="1"/></td>
+                                         <td><input type="submit" value="в корзину"/></td>
+                                     </tr>
+                                 }
+                             }
+                        }
+                        </tbody>
+                    </table>
+                </div>
                 <div class="col-md-12">
                     <article>
                         <h1>@Model.Title</h1>
@@ -75,45 +115,3 @@
 {
     <script src="~/Scripts/shopScripts.js"></script>
 }
-@*<div class="shopSubCat row">
-    <div class="productsSection col-md-9 col-lg-10">
-        @Html.Action("ShowProducts", new {catId = @Model.Id, subCat = ViewBag.Products})
-    </div>
-    <ul class="subCatNav col-md-3 col-lg-2">
-        <li class="goBack"><a href="@Url.Action("Index", "Shop")"><i class="fa fa-arrow-circle-o-left"></i>КАТАЛОГ</a></li>
-        <li class="showAll"><a href="@Url.Action("CatDetails", "Shop", new {catId = @Model.Id, selCat = 0})">ПОКАЗАТЬ ВСЕ ТОВАРЫ</a></li>
-        <li class="selCat">
-            <div>
-                <img src="@Model.Image.Path" alt="@Model.Image.AltText" width="150"/>
-                <h1>@Model.Title</h1>
-                <p>@Model.Descr</p>
-            </div>
-        </li>
-        @foreach (var item in Model.MenuItems)
-        {
-            if (item.Id == ViewBag.Products)
-            {
-                <li class="subCutItems activeItem">
-                    <a href="@Url.Action("CatDetails", "Admin", new {catId = @Model.Id, selCat = item.Id})">
-                        <div>
-                            <img src="@item.Image.Path" alt="@item.Image.AltText"/>
-                            <h1>@item.Title</h1>
-                            <p>@item.Descr</p>
-                        </div>
-                    </a>
-                </li>
-
-            }
-            else
-            {
-                <li class="subCutItems"><a href="@Url.Action("CatDetails", "Shop", new {catId = @Model.Id, selCat = item.Id})">
-                    <div>
-                        <img src="@item.Image.Path" alt="@item.Image.AltText"/>
-                        <h1>@item.Title</h1>
-                        <p>@item.Descr</p>
-                    </div>
-                </a></li>
-            }
-        }
-    </ul>
-</div>*@

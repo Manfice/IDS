@@ -14,7 +14,14 @@
         {
             <div class="item">
                 <div class="hotItem">
-                    <img src="@item.Avatar.Path" alt=""/>
+                    @if (item.Avatar != null)
+                    {
+                        <img src="@item.Avatar.Path" alt=""/>
+                    }
+                    else
+                    {
+                        <img src="@Url.Content("/Content/images/noimage.png")" alt="" />
+                    }
                     <div class="hotDescr">
                         <p>@item.Product.Title</p>
                     </div>

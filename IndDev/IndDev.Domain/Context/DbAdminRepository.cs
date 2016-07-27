@@ -348,6 +348,7 @@ namespace IndDev.Domain.Context
 
         public ProductMenuItem GetSubCat(int id)
         {
+            
             return _context.ProductMenuItems.Find(id);
         }
 
@@ -480,9 +481,9 @@ namespace IndDev.Domain.Context
             var mu = _context.MesureUnits.Find(model.SelMU);
             var cat = _context.ProductMenuItems.Find(model.SubCatId);
             var stock = _context.Stocks.Find(model.StockId);
+            var art = model.Product.Articul;
             var product = new Product
             {
-                Articul = model.Product.Articul,
                 Brand = brand,
                 MesureUnit = mu,
                 Categoy = cat,
@@ -521,6 +522,10 @@ namespace IndDev.Domain.Context
                 }
                 _context.Prices.Add(price);
             }
+            _context.SaveChanges();
+            product.Articul = string.IsNullOrWhiteSpace(art)
+                ? new ExternalLogic().GetArt(product.Id)
+                : art;
             _context.SaveChanges();
             return new ValidEvent {Code = product.Id};
         }

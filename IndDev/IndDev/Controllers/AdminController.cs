@@ -238,7 +238,11 @@ namespace IndDev.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AddSubCut(ProductMenuItem item, HttpPostedFileBase photo, int menuId, string returnUrl)
         {
-            var parentCat = _repository.GetSubCat(item.ParentMenuItem.Id);
+            ProductMenuItem parentCat = null;
+            if (item.ParentMenuItem!=null)
+            {
+                parentCat = _repository.GetSubCat(item.ParentMenuItem.Id);
+            }
             var pMenu = new ProductMenuItem
             {
                 Title = item.Title,
@@ -252,7 +256,7 @@ namespace IndDev.Controllers
 
             if (photo != null)
             {
-                var fileName = photo.FileName;
+                var fileName = Guid.NewGuid()+"_"+photo.FileName;
                 var filePath = Server.MapPath("/Content/images/Uploads/Categories");
                 var fullPath = Path.Combine(filePath, fileName);
                 photo.SaveAs(fullPath);

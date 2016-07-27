@@ -867,35 +867,31 @@ footer {
     margin: 10px;
     position: relative;
 }
+.product:hover {
+    border: solid 1px #999;
+}
 
-    .product:hover {
-        border: solid 1px #999;
-    }
+.product img {
+    width: 100%;
+    margin: 0 0 40px 0;
+}
 
-    .product img {
-        width: 100%;
-        margin: 0 0 40px 0;
-    }
-
-    .product .categoryName {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 50px;
-        padding: 15px 0;
-        background: #4a85ce;
-        background: -moz-linear-gradient(bottom, #4a85ce, #62a8d5);
-        background: -webkit-linear-gradient(bottom, #4a85ce, #62a8d5);
-        background: -o-linear-gradient(bottom, #4a85ce, #62a8d5);
-        background: -ms-linear-gradient(bottom, #4a85ce, #62a8d5);
-        background: linear-gradient(to top, #4a85ce, #62a8d5);
-        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
-        text-shadow: 0 2px 2px #345c8c;
-    }
+.product .categoryName {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background: #4a85ce;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 5px;
+}
 
 .categoryName p {
     color: white;
+    align-self: center;
     margin: 0;
     letter-spacing: 1px;
     font-family: "RobotoCondensedRegular";
@@ -921,7 +917,6 @@ footer {
     flex-flow: column nowrap;
     margin: 49px 0 0 0;
 }
-
 .navPagination {
     font-family: "RobotoLight";
     font-size: 13px;
@@ -1010,12 +1005,12 @@ footer {
     margin: 0 0 0 20px;
 }
 
-    #cssmenu ul {
-        border: 1px solid #cccccc;
-        border-radius: 5px;
-        background: #ffffff;
-        background: -moz-linear-gradient(bottom, #f0f0f0, #ffffff);
-        background: -webkit-linear-gradient(bottom, #f0f0f0, #ffffff);
+#cssmenu ul {
+   border: 1px solid #cccccc;
+   border-radius: 5px;
+   background: #ffffff;
+   background: -moz-linear-gradient(bottom, #f0f0f0, #ffffff);
+   background: -webkit-linear-gradient(bottom, #f0f0f0, #ffffff);
         background: -o-linear-gradient(bottom, #f0f0f0, #ffffff);
         background: -ms-linear-gradient(bottom, #f0f0f0, #ffffff);
         background: linear-gradient(to top, #f0f0f0, #ffffff);
@@ -1269,10 +1264,9 @@ footer {
     margin: 10px;
     overflow: hidden;
 }
-
-    .photos img {
-        height: 200px;
-    }
+.photos img {
+    height: 200px;
+}
 
 /* end product view*/
 /*Shop description*/
@@ -1282,14 +1276,11 @@ footer {
     padding: 10px;
     color: rgb(83, 145, 208);
 }
-
-    .aboutId article {
-        color: #444444;
-    }
+.aboutId article {
+    color: #444444;
+}
 /*end Shop description*/
 /*Customer Order*/
-.bodyContent {
-}
 
 .order {
     flex: 1 0 auto;

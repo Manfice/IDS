@@ -14,6 +14,7 @@ namespace IndDev.Domain.Context
          private readonly DataContext _context = new DataContext();
 
         public IEnumerable<ProductMenu> GetProductMenus => _context.ProductMenus.Where(menu => menu.ShowInCatalog).OrderBy(menu => menu.Priority).ToList();
+        public IEnumerable<Product> GetProducts => _context.Products.ToList();
 
         public ProductMenu GetProductMenu(int id)
         {
@@ -47,8 +48,8 @@ namespace IndDev.Domain.Context
             {
                 Product = product, Avatar = product.ProductPhotos.FirstOrDefault(p => p.PhotoType == PhotoType.Avatar), Prices = product.Prices.Where(price => price.Value > 0).Select(price => new PriceViewModel {Id = price.Id, Currency = price.Currency, OriginalPrice = price.Value, Title = price.Title, PriceFrom = price.QuanttityFrom, PriceType = price.PriceType}).ToList()
             }).ToList();
-
-            return new ShopProductView {ProductMenuItem = menuItem, Products = products};
+            var sCat = _context.ProductMenuItems.Where(item => item.ParentMenuItem.Id == id);
+            return new ShopProductView {ProductMenuItem = menuItem, Products = products, MenuItems = sCat};
         }
 
         public ProductView GetProductDetails(int id)
@@ -61,6 +62,12 @@ namespace IndDev.Domain.Context
                 Prices = prod.Prices.Where(price => price.Value > 0).Select(price => new PriceViewModel { Id = price.Id, Currency = price.Currency, OriginalPrice = price.Value, Title = price.Title, PriceFrom = price.QuanttityFrom, PriceType = price.PriceType}).ToList()
             };
             return pvm;
+        }
+
+        public void SaveSearch(SearchRequests model)
+        {
+            _context.SearchRequestses.Add(model);
+            _context.SaveChanges();
         }
     }
 }

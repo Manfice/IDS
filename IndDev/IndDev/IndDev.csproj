@@ -373,16 +373,19 @@
     <Content Include="Content\images\Uploads\Categories\d2f397a8-fc7d-4bc4-bb55-e138729878da_ptlc.png" />
     <Content Include="Content\images\Uploads\Categories\d5a67f04-54a1-4b9b-993d-ff46bf931c60_fcfc.png" />
     <Content Include="Content\images\Uploads\Categories\da452044-c39d-4d36-a7d2-5d31aae22a5e_lclc.png" />
+    <Content Include="Content\images\Uploads\Categories\dbl2.jpg" />
     <Content Include="Content\images\Uploads\Categories\e7363603-d8c2-44f6-8818-6c3d0d2550e8_lclc.png" />
     <Content Include="Content\images\Uploads\Categories\ecb06cb3-a2e3-422c-9d80-52e78ba0b918_fcfc.png" />
     <Content Include="Content\images\Uploads\Categories\ee5ad7187398ed700c9783993e3c6ac4.png" />
     <Content Include="Content\images\Uploads\Categories\fc-fc.jpg" />
     <Content Include="Content\images\Uploads\Categories\fcscpc.png" />
     <Content Include="Content\images\Uploads\Categories\i.jpg" />
+    <Content Include="Content\images\Uploads\Categories\kbs.jpg" />
     <Content Include="Content\images\Uploads\Categories\lclc.png" />
     <Content Include="Content\images\Uploads\Categories\lp8989.jpg" />
     <Content Include="Content\images\Uploads\Categories\opticb-500x500.jpeg" />
     <Content Include="Content\images\Uploads\Categories\pc.png" />
+    <Content Include="Content\images\Uploads\Categories\pr540x420.jpg" />
     <Content Include="Content\images\Uploads\Categories\pt.png" />
     <Content Include="Content\images\Uploads\Categories\ptfcsclc.jpg" />
     <Content Include="Content\images\Uploads\Categories\racks.jpg" />
@@ -390,6 +393,7 @@
     <Content Include="Content\images\Uploads\Categories\scpc.jpg" />
     <Content Include="Content\images\Uploads\Categories\scsc.png" />
     <Content Include="Content\images\Uploads\Categories\sip.png" />
+    <Content Include="Content\images\Uploads\Categories\svr24U.jpg" />
     <Content Include="Content\images\Uploads\Categories\twistedPair.png" />
     <Content Include="Content\images\Uploads\Categories\ykn.png" />
     <Content Include="Content\images\Uploads\Categories\Планка сменная 8FC %28пластик%29.jpg" />
@@ -404,6 +408,7 @@
     <Content Include="Content\mairala\fwslider.css" />
     <Content Include="Content\mairala\slider.css" />
     <Content Include="Content\media.css" />
+    <Content Include="Content\images\logos\noname.png" />
     <Content Include="Content\owl.carousel.css" />
     <Content Include="Content\reset.css" />
     <Content Include="Content\Shop.css" />
@@ -412,6 +417,8 @@
     <Content Include="Content\mairala\style.css" />
     <Content Include="Content\images\vols.jpg" />
     <Content Include="Content\Test.css" />
+    <Content Include="Content\testUI\media.css" />
+    <Content Include="Content\testUI\resp.css" />
     <Content Include="Download\2.jpg" />
     <Content Include="Download\4.jpg" />
     <Content Include="Download\5.jpg" />
@@ -634,6 +641,7 @@
     <Content Include="Views\Admin\AddSubItem.cshtml" />
     <Content Include="Views\Admin\SubCatList.cshtml" />
     <Content Include="Views\Home\Partners.cshtml" />
+    <Content Include="Views\Home\Test.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

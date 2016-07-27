@@ -118,6 +118,7 @@ namespace IndDev.Domain.ViewModels
         public ProductMenuItem ProductMenuItem { get; set; }
         public Cart Cart { get; set; }
         public IEnumerable<ProductView> Products { get; set; }
+        public IEnumerable<ProductMenuItem> MenuItems { get; set; }
         //public Product Product { get; set; }
         //public ProductPhoto Avatar { get; set; }    
         //public IEnumerable<PriceViewModel> Prices { get; set; }

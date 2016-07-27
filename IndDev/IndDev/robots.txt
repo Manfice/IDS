@@ -1,7 +1,9 @@
 ﻿User-agent: *
-Host:id-racks.azurewebsites.net
 Allow:/shop/
 Allow:/home/
 Allow:/contacts/
 Disallow: /admin/
 Disallow: /Security/
+Disallow: /Cart/
+Disallow: /Home/Test/
+Host: id-racks.ru
