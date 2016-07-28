@@ -1,7 +1,10 @@
 ﻿body {
-    border: solid 1px red;
     position: relative;
-    padding: 50px 0 0 0;
+    padding: 25px 0 0 0;
+    font-family: "RobotoRegular";
+}
+a {
+
 }
 header {
     position: fixed;
@@ -11,4 +14,272 @@ header {
     top: 0;
     left: 0;
     width: 100%;
+    padding: 0 10px;
+}
+.headerWrapper {
+    display: flex;
+    flex-flow: column nowrap;
+    width: 100%;
+    align-items: center;
+}
+.topStripe {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    width: 100%;
+}
+.leftTitle {
+    color: white;
+    margin: 0;
+    padding: 0;
+    font-weight: bolder;
+    font-size: 15px;
+    letter-spacing: 1px;
+    line-height: 27px;
+    flex: 0 0 auto;
+}
+.leftTitle:hover {
+    color: rgb(255, 208, 143);
+    text-decoration: none;
+}
+.menuBtn {
+    border: none;
+    background-color: transparent;
+    margin: 2px 0 0 0;
+    flex: 0 0 auto;
+}
+.menuBtn i {
+    color: white;
+}
+.mobileCurses {
+    flex: 0 0 auto;
+}
+.mobileCurses p {
+    display: inline-block;
+    margin: 0 0 0 5px;
+    padding: 0;
+    color: white;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+.authButton {
+    flex: 0 0 auto;
+    border: none;
+    background-color: transparent;
+
+    margin: 2px 0 0 0;
+}
+.authButton i {
+    color: white;
+
+}
+.mobileAuth {
+    position: absolute;
+    top: 25px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+    background-color: whitesmoke;
+    border-bottom: solid 3px gray;
+    display: none;
+}
+.mobileAuth a {
+    display: block;
+    text-align: center;
+    border: solid 2px #3072d5;
+    border-radius: 5px;
+    margin: 3% 30%;
+    padding: 10px 0;
+    font-family: "RobotoLight";
+    text-transform: uppercase;
+    color: #3072d5;
+}
+.menuMobile {
+    position: absolute;
+    top: 25px;
+    left: 0;
+    display: flex;
+    flex-flow: column nowrap;
+    width: 100%;
+    background: linear-gradient(106deg,#a5e4ff,#dbf7f8);
+    padding: 0 0 10px 0;
+    display: none;
+}
+.menuMobile p {
+    text-align: center;
+    margin: 5px 0;
+    font-family: "RobotoBold";
+}
+.menuMobile a {
+    text-align: center;
+    margin: 1% 30%;
+    display: block;
+    border: solid 2px #3072d5;
+    padding: 5px;
+    border-radius: 10px;
+    text-transform: uppercase;
+    font-size: 10px;
+    font-family: "RobotoBold";
+}
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    z-index: 999;
+}
+.footerWraper {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+.footerWraper button {
+    flex: 1 0 auto;
+    height: 50px;
+}
+.footerWraper button i {
+    font-size: 20px;
+}
+.cartButton {
+    flex: 2 0 auto !important;
+}
+.telButton {
+    position: absolute;
+    bottom: 50px;
+    left: 0;
+    display: flex;
+    flex-flow: column nowrap;
+    width: 100%;
+    background-color: whitesmoke;
+    display: none;
+    padding: 0 10px;
+}
+.telButton h3 {
+    text-align: center;
+}
+.telButton p {
+    margin: 15px 0;
+}
+/*
+    Top Slider
+*/
+.topSliderBlock {
+    position: relative;
+}
+.sl_1 {
+    background: url("/Content/images/fiber_optic.jpg") no-repeat center center;
+    background-size: auto 100%;
+    min-height: 200px;
+}
+.sl_2 {
+    background: url("/Content/images/SIP.jpg") no-repeat center center;
+    background-size: auto 100%;
+    min-height: 200px;
+}
+.sl_3 {
+    background: url("/Content/images/vols.jpg") no-repeat center center;
+    background-size: auto 100%;
+    min-height: 200px;
+}
+.sl_4 {
+    background: url("/Content/images/twisted_pair.jpg") no-repeat center center;
+    background-size: auto 100%;
+    min-height: 200px;
+}
+.fonFade {
+    padding: 5% 0;
+    background-color: rgba(0, 0, 0, 0.49);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.fonFade h3 {
+    color: white;
+    margin: 1% 0;
+    font-size: 100%;
+}
+
+.fonFade p {
+    color: white;
+    font-weight: 100;
+    font-size: 100%;
+}
+
+.fonFade p span {
+    color: yellow;
+}
+.fonFade a {
+    display: inline-block;
+    text-decoration: none;
+    background-color: orangered;
+    padding: 5px 15px;
+    color: white;
+    font-weight: bold;
+    letter-spacing: 3px;
+    border: solid 2px white;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: "RobotoCondensedRegular";
+    font-size: 10px;
+}
+/*
+    End Top Slider
+*/
+.headTop {
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+}
+.headTop img {
+    width: 40%;
+    margin: 0 10px 0 0;
+}
+.hottopdescr h1 {
+    font-size: 1.1em;
+}
+.hotItem {
+    position: relative;
+    padding: 15px;
+    height: 210px;
+    overflow: hidden;
+}
+.hotItem img {
+    max-width: 40%;
+    float: left;
+}
+.hotFooter {
+    background: url("/Content/images/bgHOT.jpg") repeat-y 0 0 #ebebeb;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 35px;
+}
+.hotFooter a {
+    font-family: "RobotoCondensedRegular";
+    float: left;
+    margin: 8px 0 0 25px;
+    display: block;
+    cursor: pointer;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+.hotFooter p {
+    float: right;
+    padding: 3px 25px 3px 25px;
+    font-family: "RobotoCondensedRegular";
+    color: red;
+    font-size: 20px;
+    background-color: white;
+    line-height: 30px;
 }

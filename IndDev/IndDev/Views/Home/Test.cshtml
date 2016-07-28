@@ -4,5 +4,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Test</h2>
+@Html.Partial("_TopSlider")
 
+@section scripts
+{
+<script src="~/Scripts/owl.carousel.js"></script>
+<script src="~/Scripts/carousels.js"></script>
+}

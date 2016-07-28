@@ -10,7 +10,8 @@
         autoplayTimeout: 10000,
         autoplayHoverPause: true,
         nav: false,
-        dots: false
+        dots: false,
+        autoHeight: false
     });
     $('.prevItem').click(function () {
         owlTop.trigger('prev.owl.carousel', [3000]);
@@ -18,6 +19,7 @@
     $('.nextItem').click(function () {
         owlTop.trigger('next.owl.carousel', [3000]);
     });
+
     owlHot.owlCarousel({
         loop: true,
         margin: 0,

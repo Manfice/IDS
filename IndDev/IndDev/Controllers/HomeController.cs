@@ -3,6 +3,7 @@ using System.Security.Cryptography;
 using System.Web.Mvc;
 using IndDev.Domain.Abstract;
 using IndDev.Domain.Context;
+using IndDev.Domain.Entity.Cart;
 using IndDev.Models;
 
 namespace IndDev.Controllers
@@ -65,6 +66,16 @@ namespace IndDev.Controllers
             return PartialView(cur);
         }
 
+        public ActionResult MobileCurs()
+        {
+            var cur = _home.GetCurses(DateTime.Today);
+            return PartialView(cur);
+        }
+
+        public ActionResult CartMobile(Cart cart)
+        {
+            return PartialView(cart);
+        }
         public ActionResult FeedBack()
         {
             return PartialView(new MailMessageModel());

@@ -4,7 +4,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="~/favicon.png">
-    <link href="http://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700,800,900" rel="stylesheet" type="text/css">
     <title>@ViewBag.Title - Industrial Development</title>
     <link href="~/Content/testUI/media.css" rel="stylesheet" />
     <link href="~/Content/testUI/resp.css" rel="stylesheet" />
@@ -17,17 +16,47 @@
 </head>
 <body>
 <header>
-    <div class="container">
-        <div class="row">
-            <a href="@Url.Action("Test","Home")" class="leftTitle">Industrial Development</a>
+    <div class="headerWrapper">
+        <div class="topStripe">
+            <a href="@Url.Action("Test", "Home")" class="hidden-xs leftTitle" title="На главную">Industrial Development</a>
+            <button class="hidden-lg hidden-md hidden-sm menuBtn"><i class="fa fa-bars" aria-hidden="true"></i></button>
+            <div class="menuMobile">
+                <p>Торговый дом "АЙДИ-С"</p>
+                <a href="@Url.Action("Test", "Home")">Главная</a>
+                <a href="@Url.Action("Test", "Home")">Каталог</a>
+                <a href="@Url.Action("Test", "Home")">О Компании</a>
+                <a href="@Url.Action("Test", "Home")">Контакты</a>
+            </div>
+            @Html.Action("MobileCurs", "Home")
+            <button class="hidden-lg hidden-md hidden-sm authButton"><i class="fa fa-sign-in" aria-hidden="true"></i></button>
+            <div class="mobileAuth">
+                @Html.ActionLink("Вход", "Login", "Security")
+                @Html.ActionLink("Регистрация", "Register", "Security")
+            </div>
         </div>
     </div>
 </header>
-    <div class="container body-content">
+
+    <div class="">
         @RenderBody()
     </div>
 
-        <footer class="footcolor">
+<footer>
+    <div class="footerWraper">
+        <button class="callButton"><i class="fa fa-phone" aria-hidden="true"></i></button>
+        <div class="telButton">
+            <h3>Быстрые контакты</h3>
+            <p>Офис: +7(8652)990582</p>
+            <p>Офис: +7(8652)990583</p>
+            <p>Оптика: +7(8652)990582</p>
+            <p>Сейфы: +7(8652)991913</p>
+        </div>
+        <button class="cartButton"><i class="fa fa-shopping-basket" aria-hidden="true"></i></button>
+        @Html.Action("CartMobile","Home")
+        <button class="messageButton"><i class="fa fa-envelope" aria-hidden="true"></i></button>
+    </div>
+</footer>
+@*<footer class="footcolor">
             <div class="container">
                 <div class="row">
                     <div class="col-md-4 contacts">
@@ -73,12 +102,12 @@
                 <p>&copy; @DateTime.Now.Year - <a href="http://einstain.azurewebsites.net" target="_blank">"Einstein Studio Solutions"</a>
                 </p>
             </div>
-        </footer>
-
+        </footer>*@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/slide")
     @RenderSection("scripts", required: false)
+    <script src="~/Scripts/common.js"></script>
   
 </body>
 </html>

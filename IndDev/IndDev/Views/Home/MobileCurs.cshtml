@@ -1,0 +1,8 @@
+﻿@model IndDev.Domain.ViewModels.CursViewModel
+
+<div class="mobileCurses">
+    @foreach (var item in Model.Curses)
+    {
+        <p>@item.Stitle:<span>@item.CurValue</span></p>
+    }
+</div>
