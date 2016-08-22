@@ -2,13 +2,13 @@
 
 <div class="cartSectionBlock">
     <div class="shopTop">
-        <div class="search">
+        @*<div class="search">
             @using (Html.BeginForm("Search", "Shop", FormMethod.Post))
             {
                 @Html.AntiForgeryToken()
                 <input type="text" name="search" tabindex="1" placeholder="Поиск по каталогу..." /><input type="submit" value="Поиск" />
             }
-        </div>
+        </div>*@
         <div class="midleBlock">
             <div id="vasia" class="carousel" data-interval="15000" data-ride="carousel">
                 <div class="carousel-inner myText">
@@ -36,6 +36,8 @@
                     </div>
                 </div>
             </div>
+            @*<button class="calcItem"><i class="fa fa-calculator" aria-hidden="true"></i></button>
+            @Html.Action("Calculator")*@
             @*<a href="@Url.Action("Index", "Cart")">
                 <img src="@Url.Content("~/Content/images/cart_logo.png")" alt="" />
                 <h4>КОРЗИНА</h4>

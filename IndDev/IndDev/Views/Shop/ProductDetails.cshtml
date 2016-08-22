@@ -6,6 +6,7 @@
     ViewBag.Title = Model.Product.Title;
     Layout = "~/Views/Shared/_NewDesing.cshtml";
     ViewBag.description = Model.Product.Title;
+    var inCart = Model.Cart.CartItems.FirstOrDefault(item => item.Product.Id == Model.Product.Id);
 }
 
 @section links
@@ -24,6 +25,14 @@
         <div class="productContainer">
             <div class="prDetNav">
                 <h2>АРТИКУЛ: @Model.Product.Articul.ToUpper()</h2>
+                @if (inCart !=null)
+                {
+                    <h2>В корзине <span>@inCart.Quantity / @inCart.Product.MesureUnit.ShortName</span> на сумму: @inCart.SubTotal.ToString("C")</h2>
+                }
+                else
+                {
+                    <h2>Товар в корзине отсутствует</h2>
+                }
                 <a href="@Url.Action("ShowProducts", "Shop", new {catId = Model.Product.Categoy.Id})"> &lArr; Обратно в категорию</a>
             </div>
             <h1>@Model.Product.Title</h1>
@@ -44,7 +53,7 @@
                         <h3>@Model.Product.Stock.Title</h3>
                     </div>
                     <div class="priceBlock">
-                        <p>Цены:</p>
+                        <p title="Все цены на сайте указаны с учетом НДС 18%">Цены с НДС*:</p>
                         @if (Model.Prices.Any(model => model.PriceType == PriceType.Sale && model.ConvValue > 0))
                     {
                     <h4>@Model.Prices.FirstOrDefault(model => model.PriceType == PriceType.Sale).Title</h4>
@@ -64,7 +73,7 @@
                         </tbody>
                     </table>
                     }
-                        <a href="#pricerules" class="fansy">Правила получения скидки</a>
+                        <a href="#pricerules" class="fansy">Правила получения скидки<i class="fa fa-question-circle" aria-hidden="true"></i></a>
                         <div id="pricerules" style="width: 700px; display: none;">
                             <h1>Общие правила получения скидок</h1>
                             <p class="des">Дорогие друзья, наша компания работает на рынке телекоммуникаций более @(DateTime.Now.Year - 2010) лет. За это время у нас сформировались некоторые правила предоставления цен.</p>

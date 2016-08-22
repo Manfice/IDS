@@ -64,13 +64,14 @@ namespace IndDev.Controllers
         {
             var model = _repository.GetProduct(catId);
             model.Cart = cart;
-            ViewBag.Title = model.ProductMenuItem.Title+ @" Торговый дом ""АЙДИ-С"" в г. Ставрополе.";
+            ViewBag.Title = model.ProductMenuItem.Title+ @"Торговый дом ""АЙДИ-С"" в г. Ставрополе.";
             return View(model);
         }
 
-        public ActionResult ProductDetails(int id)
+        public ActionResult ProductDetails(Cart cart, int id)
         {
             var model = _repository.GetProductDetails(id);
+            model.Cart = cart;
             return View(model);
         }
         public PartialViewResult ProductView(int id, int subCat=0)
@@ -107,6 +108,11 @@ namespace IndDev.Controllers
             _repository.SaveSearch(model);
 
             return RedirectToAction("Search",new {products=sProd, searchString=search });
+        }
+
+        public ActionResult Calculator()
+        {
+            return PartialView();
         }
     }
 }

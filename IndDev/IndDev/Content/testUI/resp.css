@@ -147,7 +147,7 @@ footer {
     font-size: 20px;
 }
 .cartButton {
-    flex: 2 0 auto !important;
+    flex: 1 0 auto;
 }
 .telButton {
     position: absolute;
@@ -282,4 +282,17 @@ footer {
     font-size: 20px;
     background-color: white;
     line-height: 30px;
+}
+.indexPartners {
+    padding: 20px;
+}
+.indexPartners h1 {
+    font-family: "RobotoBold";
+    text-transform: uppercase;
+    font-size: 1.5em;
+    text-align: center;
+    color: #3072d5;
+}
+#pLogos img {
+    width: 100%;
 }

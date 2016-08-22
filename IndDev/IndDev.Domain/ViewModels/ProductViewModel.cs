@@ -110,6 +110,7 @@ namespace IndDev.Domain.ViewModels
     {
         public Product Product { get; set; }
         public ProductPhoto Avatar { get; set; }
+        public Cart Cart { get; set; }
         public IEnumerable<PriceViewModel> Prices { get; set; }
 
     }

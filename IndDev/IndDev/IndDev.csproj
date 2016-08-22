@@ -481,6 +481,7 @@
     <Content Include="Scripts\bootstrap-fileupload.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\CalcSS3.js" />
     <Content Include="Scripts\carousels.js" />
     <Content Include="Scripts\common.js" />
     <Content Include="Scripts\funcybox\jquery.fancybox-buttons.js" />
@@ -522,6 +523,7 @@
     <Content Include="Views\Mails\LetterFromTitle.html" />
     <Content Include="Views\Mails\ResetPassword.html" />
     <Content Include="Views\Mails\ThankYou.html" />
+    <Content Include="Content\CalcSS3.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -647,6 +649,7 @@
     <Content Include="Views\Home\Test.cshtml" />
     <Content Include="Views\Home\MobileCurs.cshtml" />
     <Content Include="Views\Home\CartMobile.cshtml" />
+    <Content Include="Views\Shop\Calculator.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

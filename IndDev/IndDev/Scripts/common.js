@@ -11,4 +11,7 @@
     $(".cartButton").click(function () {
         $(this).next().slideToggle();
     });
+    $(".calcItem").click(function () {
+        $(this).next().slideToggle();
+    });
 });
