@@ -1,14 +1,20 @@
 ﻿@model IndDev.Domain.Entity.Cart.Cart
+@section links
+{
+}
 
+@section scripts
+{
+}
 <div class="cartSectionBlock">
     <div class="shopTop">
-        @*<div class="search">
+        <div class="search">
             @using (Html.BeginForm("Search", "Shop", FormMethod.Post))
             {
                 @Html.AntiForgeryToken()
-                <input type="text" name="search" tabindex="1" placeholder="Поиск по каталогу..." /><input type="submit" value="Поиск" />
+                <input type="text" name="search" id="srch"  tabindex="1" placeholder="Поиск по каталогу..." data-autocomplete-source="@Url.Action("QuickSearch", "Shop")"/><input type="submit" value="Поиск" />
             }
-        </div>*@
+        </div>
         <div class="midleBlock">
             <div id="vasia" class="carousel" data-interval="15000" data-ride="carousel">
                 <div class="carousel-inner myText">

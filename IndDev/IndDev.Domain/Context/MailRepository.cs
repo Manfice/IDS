@@ -98,9 +98,9 @@ namespace IndDev.Domain.Context
 
         }
 
-        public async Task<string> OrderNotify(Order order,string body)
+        public Task<string> OrderNotify(Order order,string body)
         {
-            throw new NotImplementedException();
+            return null;
         }
     }
 }

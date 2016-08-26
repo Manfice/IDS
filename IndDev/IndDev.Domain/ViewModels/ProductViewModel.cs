@@ -155,4 +155,10 @@ namespace IndDev.Domain.ViewModels
         public ProductMenu ProductMenu { get; set; }
         public IEnumerable<ProductMenuItem> ProductMenuItems { get; set; } 
     }
+
+    public class SearchModel
+    {
+        public string SearchRequest { get; set; }
+        public List<ProductView> Views { get; set; }
+    }
 }

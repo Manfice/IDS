@@ -14,7 +14,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-9">
-                <h1>Поиск по запросу:"@ViewBag.Search"</h1>
+                <h1>Поиск по запросу: "@ViewBag.Search"</h1>
                 <div class="navPagination">
                     <a href="@Url.Action("Index")">Главная</a>
                     <i class="fa fa-chevron-right" aria-hidden="true"></i>
@@ -42,7 +42,7 @@
                                 </div>
                             </a>
                             <div class="actionSection">
-                                @if (item.Prices.Any())
+                                @if (item.Prices!=null && item.Prices.Any())
                                 {
                                     <p>от @item.Prices.Max(price => price.ConvValue).ToString("C")/@item.Product.MesureUnit.ShortName</p>
                                 }

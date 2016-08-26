@@ -80,18 +80,17 @@ namespace IndDev.Controllers
             return PartialView(_repository.GetProduct(id));
         }
 
-        public ActionResult Search(IEnumerable<ProductView> products, string searchString)
+        public ActionResult Search(SearchModel model)
         {
-            ViewBag.Search = searchString;
-            return View(products);
+            ViewBag.Search = model.SearchRequest;
+            return View(model.Views);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Search(string search)
         {
-
-            var sProd = (from item in _repository.GetProducts
+            var viewsList = (from item in _repository.GetProducts
                          let pr = (item.Articul + item.Title).ToLowerInvariant()
                          where pr.Contains(search)
                          select new ProductView
@@ -100,19 +99,38 @@ namespace IndDev.Controllers
                              Avatar = item.ProductPhotos.FirstOrDefault(photo => photo.PhotoType == PhotoType.Avatar)
                          }).ToList();
 
-            var model = new SearchRequests
-            {
-                SearchReq = search,
-                SearchResult = sProd.Capacity.ToString()
-            };
-            _repository.SaveSearch(model);
+            //var model = new SearchRequests
+            //{
+            //    SearchReq = search,
+            //    SearchResult = sProd.Capacity.ToString()
+            //};
+            //_repository.SaveSearch(model);
 
-            return RedirectToAction("Search",new {products=sProd, searchString=search });
+            var sProd = new SearchModel()
+            {
+                SearchRequest = search,
+                Views = viewsList
+            };
+
+            ViewBag.Search = sProd.SearchRequest;
+
+            return View(sProd.Views);
         }
 
         public ActionResult Calculator()
         {
             return PartialView();
         }
+
+        public ActionResult QuickSearch(string term)
+        {
+            var products = GetProduct(term).Select(product => new {value = product.Title});
+            return Json(products, JsonRequestBehavior.AllowGet);
+        }
+
+        private IEnumerable<Product> GetProduct(string searchString)
+        {
+            return _repository.GetProducts.Where(product => product.Title.Contains(searchString)).ToList();
+        } 
     }
 }

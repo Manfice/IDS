@@ -1136,11 +1136,13 @@ footer {
     margin: 15px 15px 0 0;
     position: relative;
     height: 200px;
+    overflow: hidden;
 }
 
     .goods img {
         width: 50%;
         float: left;
+
     }
 
     .goods a {
