@@ -15,10 +15,17 @@ namespace IndDev.Domain.Entity.Customers
         public int Id { get; set; }
         public string Title { get; set; }
         public string Adress { get; set; }
+        public string FirstName { get; set; }
+        public string MiddleName { get; set; }
+        public string PhoneCell { get; set; }
+        public string PhoneWork { get; set; }
+        public string Email { get; set; }
+        public int Ranck { get; set; }
         public DateTime Register { get; set; }
-        public virtual CustomerLogo Photo { get; set; }
+        public virtual CustomerLogo Logo { get; set; }
         public virtual Details Details { get; set; }
         public virtual CustomerStatus CustomerStatus { get; set; }
+        public virtual ICollection<UserPhoto> Photos { get; set; }
     }
 
     public class Details
@@ -30,6 +37,9 @@ namespace IndDev.Domain.Entity.Customers
         public string Ogrn { get; set; }    
         public string UrAdress { get; set; }
         public string RealAdress { get; set; }
+        public string Director { get; set; }
+        public string Buh { get; set; }
+        public string Offer { get; set; }//Договор с контрагентом
         public virtual ICollection<Telephone> Telephones { get; set; }
         public virtual ICollection<Bank> Banks { get; set; }
     }
@@ -38,7 +48,7 @@ namespace IndDev.Domain.Entity.Customers
     {
         public int Id { get; set; }
         public string Title { get; set; }
-        public string Numder { get; set; }
+        public string PhoneNumber { get; set; }
         public virtual Details DetailsOf { get; set; }
     }
 
@@ -49,6 +59,7 @@ namespace IndDev.Domain.Entity.Customers
         public string Account { get; set; }
         public string Korr { get; set; }
         public string Bik { get; set; }
+        public bool Main { get; set; }
         public virtual Details DetailsOf { get; set; }
     }
 

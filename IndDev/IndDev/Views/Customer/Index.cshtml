@@ -5,9 +5,49 @@
 }
 @section links
 {
-    <link href="~/Content/Main.css" rel="stylesheet" />
+<link href="~/Content/Customer/customer.css" rel="stylesheet" />
+@*<link href="~/Content/Main.css" rel="stylesheet" />*@
 }
-<div class="container">
+
+@section scripts
+{
+<script src="~/Scripts/customer/CustomerClient.js"></script>
+<script src="~/Scripts/customer/CustomerModule.js"></script>
+}
+<div class="customerBlock">
+    <div class="customerNavigation">
+        <div class="navMemu" data-bind="with:CustomerModule">
+            <a data-bind="click:setView.bind($data,'MAIN'), css:{activeMenu:isActivePage('MAIN')}">главная</a>
+            <a data-bind="click:setView.bind($data,'COMPANY'), css:{activeMenu:isActivePage('COMPANY')}">компания</a>
+            <a data-bind="click:setView.bind($data,'ORDERS'), css:{activeMenu:isActivePage('ORDERS')}">заказы</a>
+            <a data-bind="click:setView.bind($data,'REPORTS'), css:{activeMenu:isActivePage('REPORTS')}">отчеты</a>
+            <a data-bind="click:setView.bind($data,'HELP'), css:{activeMenu:isActivePage('HELP')}">помощь</a>
+        </div>
+    </div>
+    <div class="customerScreen">
+        <div class="dataArea" data-bind="visible:CustomerModule.isActivePage('MAIN')">
+            @Html.Partial("PlaceHolders/_Main")
+        </div>
+        <div class="dataArea" data-bind="visible:CustomerModule.isActivePage('COMPANY')">
+            <h1>Раздел находится в разработке.</h1>
+        </div>
+        <div class="dataArea" data-bind="visible:CustomerModule.isActivePage('ORDERS')">
+            <h1>Раздел находится в разработке.</h1>
+
+        </div>
+        <div class="dataArea" data-bind="visible:CustomerModule.isActivePage('REPORTS')">
+            <h1>Раздел находится в разработке.</h1>
+
+        </div>
+        <div class="dataArea" data-bind="visible:CustomerModule.isActivePage('HELP')">
+            <h1>Раздел находится в разработке.</h1>
+
+        </div>
+    </div>
+</div>
+
+
+@*<div class="container">
     <div class="row">
         @Html.Action("LkNavigation", "Customer")
     </div>
@@ -16,4 +56,4 @@
             @Html.Action("About")
         </div>
     </div>
-</div>
+</div>*@

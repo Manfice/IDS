@@ -1,15 +1,15 @@
 ﻿@model IndDev.Domain.Entity.Auth.User
 <div class="logotip">
-    @if (Model.Customer.Photo == null)
+    @if (Model.Customer.Logo == null)
     {
         <img src="~/Content/images/noimage.png" alt="Логотип не задан"/>
     }
     else
     {
-        <img src="@Model.Customer.Photo.Path" alt="@Model.Customer.Photo.AltText"/>
+        <img src="@Model.Customer.Logo.Path" alt="@Model.Customer.Logo.AltText"/>
     }
     <ul>
-        @if (Model.Customer.Photo == null)
+        @if (Model.Customer.Logo == null)
         {
             <li>Добавить</li>
         }

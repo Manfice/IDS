@@ -1018,6 +1018,7 @@ a,a:focus, a:active {
 }
 .logotip img {
     padding: 20px;
+    width: 250px;
 }
 .custDescr {
     float: right;

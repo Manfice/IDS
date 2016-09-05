@@ -159,6 +159,17 @@ namespace IndDev.Domain.ViewModels
     public class SearchModel
     {
         public string SearchRequest { get; set; }
-        public List<ProductView> Views { get; set; }
+        public int Total { get; set; }
+        public List<SearchItem> SearchItems { get; set; }
+    }
+
+    public class SearchItem
+    {
+        public int Id { get; set; }
+        public string Articul { get; set; }
+        public string Title { get; set; }
+        public string Avatar { get; set; }
+        public string Brand { get; set; }
+        public int Rank { get; set; }
     }
 }

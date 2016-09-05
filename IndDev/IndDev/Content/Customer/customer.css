@@ -1,0 +1,195 @@
+﻿.customerBlock {
+    flex: 1 0 auto;
+    display: flex;
+    flex-flow: column;
+    background: url("/Content/images/fon45.png") center center repeat;
+    justify-content: flex-start;
+}
+.customerNavigation {
+    flex: 0 0 auto;
+    background-color: rgb(0, 122, 202);
+    height: 50px;
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+.customerNavigation .navMemu {
+    flex: 0 0 auto;
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.navMemu a {
+    flex: 0 0 auto;
+    line-height: 50px;
+    padding: 0 20px;
+    text-decoration: none;
+    font-family: "RobotoBold";
+    letter-spacing: 1px;
+    color: whitesmoke;
+    text-transform: uppercase;
+    font-size: 1.3em;
+}
+.navMemu a:hover {
+    background: url("/Content/images/fon45.png") center center repeat;
+    color: rgb(0, 122, 202);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.navMemu .activeMenu {
+    background: url("/Content/images/fon45.png") center center repeat;
+    color: rgb(0, 122, 202);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;    
+}
+.customerScreen {
+    flex: 1 0 auto;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+.dataArea {
+    flex: 1 0 auto;
+    max-width: 1200px;
+    width: 100%;
+    background-color: whitesmoke;
+}
+.personalInfo {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: flex-start
+}
+.personalPhoto {
+    flex: 0 0 25%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+.personalPhoto input[type=file] {
+    display: none;
+}
+
+.personalPhoto img {
+    width: 250px;
+    height: auto;
+    margin: 15px 0 0 0;
+}
+.personalPhoto ul {
+    list-style: none;
+    display: flex;
+    margin: 10px 0;
+    padding: 0;
+    width: 100%;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+}
+.personalPhoto ul li {
+    border: solid 1px;
+    padding: 5px 20px;
+}
+.personalPhoto ul li label {
+    text-transform: uppercase;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+}
+#saveImage {
+    display: none;
+}
+#loading {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    align-items: center;
+    background-color: white;
+    padding: 5px;
+    position: absolute;
+    top: 45%;
+    left: 23%;
+    visibility: hidden;
+}
+#loading img {
+    flex: 1 0 auto;
+    width: 30px;
+    height: 100%;
+    display: inline-block;
+    margin: 0;padding: 0;
+}
+#loading p {
+    flex: 1 0 auto;
+    align-self: center;
+    padding: 0;
+    margin: 0 15px 0 15px; 
+    text-transform: uppercase;
+
+}
+.photoPlaceholder {
+    border: solid 1px;
+    margin: 10px 10px 0;
+    height: 300px;
+    width: 250px;
+    padding: 10px;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.photoPlaceholder h3 {
+    text-transform: uppercase;
+    font-size: 20px;
+    font-family: "RobotoBold"
+}
+.photoPlaceholder p {
+    font-size: 12px;
+    font-weight: bold;
+}
+.photoPlaceholder p span {
+    font-family: "RobotoBold";
+    font-weight: bolder;
+}
+.personalDescr {
+    flex: 1 0 75%;
+
+}
+.headPers {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+.headPers p {
+    display: inline;
+    flex: 1 0 auto;
+    padding: 0;
+}
+.headPers button {
+    flex: 0 0 auto;
+    display: inline;
+
+}
+.companyDescr {
+    display: flex;
+    flex-flow: row nowrap;
+}
+.companyDescr p span {
+    font-weight: bold;
+}
+.companyDescr p {
+    margin: 0;
+    padding: 0;
+}
+.companyDescr .panel {
+    flex: 1 0 30%;
+}
+.editPersonal {
+    flex: 1 0 auto;
+    border: solid 1px red;
+}

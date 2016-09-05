@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -119,6 +121,27 @@ namespace IndDev.Domain.Context
         public IEnumerable<Order> GetOrders(int custId)
         {
             return _context.Orders.Where(order => order.Customer.Id==custId).ToList();
+        }
+
+        public async Task<CustomerLogo> SaveLogo(int custId, CustomerLogo logo)
+        {
+            var dbCustomer = await _context.Customers.FindAsync(custId);
+            if (dbCustomer == null) return null;
+            var custLogo = dbCustomer.Logo;
+            if (custLogo!=null)
+            {
+                _context.Logos.Remove(custLogo);
+                File.Delete(custLogo.FullPath);
+            }
+            _context.Logos.Add(logo);
+            dbCustomer.Logo = logo;
+            await _context.SaveChangesAsync();
+            return dbCustomer.Logo;
+        }
+
+        public async Task<IEnumerable<Order>> GetOrdersAsync(int custId)
+        {
+            return await _context.Orders.Where(c => c.Customer.Id == custId).ToListAsync();
         }
     }
 }

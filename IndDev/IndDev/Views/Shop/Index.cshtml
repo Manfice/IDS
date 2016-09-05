@@ -13,7 +13,7 @@
 @Html.Action("TopNavigation","Home")
 
 <div class="catalogBody">
-@Html.Action("ShopBlock", "Shop")
+    @Html.Action("ShopBlock", "Shop")
     <div class="mainGroupes">
         @foreach (var item in Model)
         {
@@ -37,7 +37,7 @@
             </p>
             <p>Так же наша компания осуществляет поддержку начинающим производителям - инвестируя средства в производство и реализуя товары под своей торговой маркой: <span>IDs - Industrial Development</span>
             </p>
-            <a href="@Url.Action("About","Home")" target="blank">подробнее</a>
+            <a href="@Url.Action("About", "Home")" target="blank">подробнее</a>
         </div>
     </div>
 </div>
@@ -93,6 +93,8 @@
    
 @section scripts
 {
+<script src="~/Scripts/search/searchClient.js"></script>
+<script src="~/Scripts/search/searchModel.js"></script>
 <script src="~/Scripts/shopScripts.js"></script>
 }
   

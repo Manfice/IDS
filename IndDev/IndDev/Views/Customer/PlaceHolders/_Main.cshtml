@@ -1,0 +1,141 @@
+﻿<div class="personalInfo" data-bind="visible:CustomerModule.isInEditModePersonal()==='VIEW', with:CustomerModule.modelCustomer">
+    <div class="personalPhoto">
+
+        <img alt="" data-bind="attr:{src: Photo}, visible:Photo"/>
+
+        <div id="loading">
+            <img src="~/Content/images/loading-03.gif" alt=""/>
+            <p id="lData">обновляем</p>
+        </div>
+
+        <div class="photoPlaceholder" data-bind="visible:Photo()===null">
+            <h3>нет изображения</h3>
+            <p>Для загрузки принимаются изображения в формате <span>*.jped / *.png</span>, размером не более 512кб
+            </p>
+        </div>
+
+        <ul>
+            <li>
+                <label>
+                    Выберите файл
+                    <input id="imgInput" type="file" accept="image/jpeg,image/png"/>
+                </label>
+            </li>
+            <li id="saveImage">
+                <label data-bind="click:CustomerModule.saveAvatar">сохранить</label>
+            </li>
+        </ul>
+
+    </div>
+    <div class="personalDescr">
+        <div class="panel panel-default">
+            <div class="panel-heading headPers">
+                <p data-bind="text:'Работаем с '+CustomerModule.modelCustomer.Register()"></p>
+                <button type="button" data-bind="click:CustomerModule.editPersonalInfo('EDIT')"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+            </div>
+            <div class="panel-body">
+                <table class="table table-striped table-responsive" data-bind="with:CustomerModule.modelCustomer">
+                    <tr>
+                        <th>Имя:</th>
+                        <td data-bind="text: Name()+' '+LastName()"></td>
+                    </tr>
+                    <tr>
+                        <th>Сотовый:</th>
+                        <td data-bind="text: PhoneCell"></td>
+                    </tr>
+                    <tr>
+                        <th>Рабочий:</th>
+                        <td data-bind="text: PhoneWork"></td>
+                    </tr>
+                    <tr>
+                        <th>E-mail:</th>
+                        <td data-bind="text: Email"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="companyDescr" data-bind="visible:CustomerModule.isInEditModePersonal()==='VIEW'">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="headPers">
+                <p>
+                    Компания: <span data-bind="text:CustomerModule.modelCustomer.Details.CompanyName"></span>
+                </p>
+                <button type="button" data-bind="click:CustomerModule.editPersonalInfo('EDIT')"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+            </div>
+        </div>
+        <div class="panel-body">
+            <table class="table table-striped" data-bind="with:CustomerModule.modelCustomer.Details">
+                <tr>
+                    <th>Инн/Кпп:</th>
+                    <td data-bind="text: Inn()+' / '+Kpp()"></td>
+                </tr>
+                <tr>
+                    <th>ОГРН:</th>
+                    <td data-bind="text: Ogrn"></td>
+                </tr>
+                <tr>
+                    <th>Юр. адрес:</th>
+                    <td data-bind="text: UrAdress"></td>
+                </tr>
+                <tr>
+                    <th>Доставка:</th>
+                    <td data-bind="text: RealAdress"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">Телефоны компании:</div>
+        <div class="panel-body">
+            <table class="table table-striped table-responsive" data-bind="foreach:CustomerModule.modelCustomer.Details.Telephones">
+                <tr>
+                    <th data-bind="text:Title"></th>
+                    <td data-bind="text:PhoneNumber"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div data-bind="foreach:CustomerModule.modelCustomer.Details.Banks">
+        <div data-bind="visible: Main">
+            <div class="panel panel-default">
+                <div class="panel-heading">Банковские реквизиты: </div>
+                <div class="panel-body">
+                    <table class="table table-striped table-responsive">
+                        <tr>
+                            <th>Счет:</th>
+                            <td data-bind="text:Account"></td>
+                        </tr>
+                        <tr>
+                            <th>Корр. счет:</th>
+                            <td data-bind="text:Korr"></td>
+                        </tr>
+                        <tr>
+                            <th>БИК:</th>
+                            <td data-bind="text:Bik"></td>
+                        </tr>
+                        <tr>
+                            <th>Банк:</th>
+                            <td data-bind="text:Name"></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="myOrders" data-bind="visible:CustomerModule.isInEditModePersonal()==='VIEW'">
+    <div class="panel panel-default">
+        <div class="panel-heading">Мои заказы</div>
+        <div class="panel-body">
+            <table class="table table-striped table-responsive">
+ 
+            </table>
+        </div>
+    </div>
+</div>
+<div class="editPersonal" data-bind="visible:CustomerModule.isInEditModePersonal()==='EDIT'">
+    <button type="button" data-bind="click:CustomerModule.editPersonalInfo('VIEW')"><i class="fa fa-floppy-o" aria-hidden="true"></i>Сохранить</button>
+</div>

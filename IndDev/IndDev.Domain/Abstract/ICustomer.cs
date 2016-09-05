@@ -17,6 +17,8 @@ namespace IndDev.Domain.Abstract
         Order MakeOrder(int userId, Cart cart, PreOrder preOrder);
         List<DeliveryType> GetDeliveryTypes();
         IEnumerable<Order> GetOrders(int custId);
+        Task<IEnumerable<Order>> GetOrdersAsync(int custId);
         Order GetOrderById(int id, int custId);
+        Task<CustomerLogo> SaveLogo(int custId, CustomerLogo logo);
     }
 }

@@ -6,6 +6,7 @@ using System.Net.Mail;
 using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
 using System.Security.Policy;
+using System.Text;
 using System.Threading.Tasks;
 using IndDev.Auth.Model;
 using IndDev.Domain.Abstract;
@@ -98,9 +99,28 @@ namespace IndDev.Domain.Context
 
         }
 
-        public Task<string> OrderNotify(Order order,string body)
+        public async Task<string> OrderNotify(Order order,string body)
         {
-            return null;
+            var bodyBld = new StringBuilder();
+            bodyBld.AppendLine("<h2>"+order.Customer.Title+"</h2>");
+            bodyBld.AppendLine("<p>"+order.Customer.Email+"</p>");
+            foreach (var oLine in order.OrderLines.Select(line => line.Product.Title + " " + line.Quantity + " "+line.Product.MesureUnit.ShortName+" " + line.Price + " " + "<span style='font-weight: bolder;'>" + (line.Price*line.Quantity)+"</span>"+"p."))
+            {
+                bodyBld.AppendLine("<p>"+oLine+"</p>");
+            }
+            bodyBld.AppendLine("<p style='font-weight: bolder;'>Сумма: " + order.CalcTotalSumm()+"</p>");
+            bodyBld.AppendLine("<h3>Телефон: "+order.Customer.PhoneCell+"</h3>");
+
+            var mails = new List<MailAddress>
+            {
+                new MailAddress("ka.id@yandex.ru"),
+                new MailAddress("c592@yandex.ru")
+            };
+            foreach (var address in mails)
+            {
+                await SendMyMailAsync(bodyBld.ToString(), address.Address, $"Заказ №{order.Number} от {order.OrderDate.ToShortDateString()}");
+            }
+            return $"Заказ отправлен на проверку. Спасибо.";
         }
     }
 }

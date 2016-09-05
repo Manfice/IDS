@@ -67,7 +67,7 @@ namespace IndDev.Domain.Context
                 ConfirmEmail = false,
                 UsrRoles = GetRoleForUser("C"),
                 Block = false,
-                Customer = new Customer {Title = reg.UserName, Details = new Details(),Register = DateTime.Today,CustomerStatus = cStat}
+                Customer = new Customer {Title = reg.UserName, Email = reg.Email, Details = new Details(),Register = DateTime.Today,CustomerStatus = cStat, Logo = new CustomerLogo() }
             };
             _context.Users.Add(usr);
             _context.SaveChanges();

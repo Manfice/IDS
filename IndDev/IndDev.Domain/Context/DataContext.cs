@@ -24,6 +24,7 @@ namespace IndDev.Domain.Context
         public DbSet<UserPhoto> Photos { get; set; }
         public DbSet<GoodsImage> GoodsImages { get; set; }
         public DbSet<Customer> Customers { get; set; }
+        public DbSet<CustomerLogo> Logos { get; set; } 
         public DbSet<Details> Detailses { get; set; }
         public DbSet<Telephone> Telephones { get; set; }
         public DbSet<Bank> Banks { get; set; }

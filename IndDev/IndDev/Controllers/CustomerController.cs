@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity.Migrations.Sql;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
@@ -112,7 +113,7 @@ namespace IndDev.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult MakeOrder(Cart cart, PreOrder preorder)
+        public async Task<ActionResult> MakeOrder(Cart cart, PreOrder preorder)
         {
             if (!cart.CartItems.Any())
                 return RedirectToAction("MessageScreen", "Home",
@@ -123,7 +124,7 @@ namespace IndDev.Controllers
                     new { message = "Заказ не сохранен. Попробуйте еще раз.", paragraf= "Ошибка записи заказа!" });
 
             cart.ClearList();
-            _mail.OrderNotify(order, "");
+            await _mail.OrderNotify(order, "");
             return RedirectToAction("MyOrder",new {id=order.Id});
         }
 

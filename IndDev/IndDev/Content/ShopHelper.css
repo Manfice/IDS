@@ -2,7 +2,7 @@
     width: 100%;
     display: flex;
     flex-flow: column nowrap;
-    z-index: 1;
+    z-index: 11;
     background-color: whitesmoke
 }
 .shopTop {
@@ -14,16 +14,22 @@
     flex-flow: row nowrap;
     justify-content: space-around;
     align-items: center;
+    position: relative;
 }
 .search {
-    flex: 0 0 auto;
+    flex: 1 0 30%;
     order: 0;
+    display: flex;
+    justify-content: center;
+    flex-flow: row nowrap;
+    position: relative;
 }
 .search input {
     margin: 0;
 }
 .search input[type="text"] {
-    width: 200px;
+    flex: 1 0 70%;
+    width: 300px;
     margin: 0;
     padding: 5px;
     border-right: none;
@@ -35,6 +41,7 @@
     outline: none;
 }
 .search input[type="submit"] {
+    flex: 1 0 30%;
     margin: 0;
     border-left: none;
     border-bottom: solid 1px orangered;
@@ -52,14 +59,13 @@
     transition: all 1s;
 }
 .cartBloc {
-    flex: 1 0 auto;
+    flex: 1 0 30%;
     order: 1;
-    text-align: right;
-    width: 200px;
-    padding: 5px 5px 5px 100px;
+    text-align: center;
+    padding: 0;
     position: relative;
-    align-self: flex-start;
-    margin: 5px 0;
+    display: flex;
+    justify-content: center;
 }
 .cartBloc a {
     cursor: pointer;
@@ -91,7 +97,7 @@
     font-size: 2.5em;
 }
 .midleBlock {
-    flex: 1 0 auto;
+    flex: 1 0 30%;
     order: 2;
     text-align: center;
     margin: 5px;
@@ -167,8 +173,8 @@
   height: 40px;
   padding: 0;
   margin: 0;
-    top: 0;
-  position: absolute;
+  top: 0;
+  position: relative;
   -moz-border-radius: 9999em;
   -webkit-border-radius: 9999em;
   border-radius: 9999em;
@@ -351,3 +357,63 @@
   background-repeat: no-repeat;
   background-position: center;
 }
+/*SearchResult*/
+.searchResultForm {
+    position: absolute;
+    height: 606px;
+    background-color: white;
+    bottom: -606px;
+    left: 0;
+    border: solid 3px green;
+    display: flex;
+    flex-flow: column nowrap;
+    width: 100%;
+    padding: 5px;
+}
+.searchFormHeader {
+    flex: 0 0 auto;
+    height: 50px;
+    background-color: whitesmoke;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+}
+.searchFormBody {
+    flex: 1 0 auto;
+    overflow: auto;
+    height: 300px;
+}
+.searchFormBody p {
+    font-weight: lighter;
+    font-family: "RobotoRegular";
+    text-transform: lowercase;
+}
+.searchFormBody table {
+    width: 100%;
+}
+.searchFormBody table tbody tr td:last-child p {
+    white-space: nowrap;
+    text-transform: none;
+}
+.searchFormBody p:first-letter {
+    text-transform: uppercase;
+}
+.searchFormBody p span {
+    color: red;
+    font-weight: bold;
+}
+.searchFormFooter {
+    flex: 0 0 auto;
+    height: 50px;
+    background-color: rgb(208, 207, 208);
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    align-items: center;
+}
+.searchFormFooter button {
+    height: 35px;
+    width: 150px;
+}
+/*SearchResult end*/

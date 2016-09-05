@@ -1153,18 +1153,24 @@ footer {
     padding: 0 0;
 }
 
-    .goodsDescr h3 {
-        font-size: 15px;
-        font-weight: bold;
-        text-align: right;
-        margin: 0 0;
-    }
-
-    .goodsDescr p {
-        text-align: right;
-        font-size: 13px;
-    }
-
+.goodsDescr h3 {
+    font-size: 15px;
+    font-weight: bold;
+    text-align: right;
+    margin: 0 0;
+}
+.goodsDescr h3 span {
+    color: red;
+    font-weight: bold;
+}
+.goodsDescr p {
+    text-align: right;
+    font-size: 13px;
+}
+.goodsDescr p span {
+    color: red;
+    font-weight: bold;    
+}
 .actionSection {
     position: absolute;
     bottom: 0;
@@ -1947,15 +1953,4 @@ footer {
     top: 50px;
 	left:0;
     width: 500px;
-}
-.shopTop button {
-    flex: 1 0 auto;
-    align-self: center;
-    border-radius: 50%;
-    border: none;
-    width: 40px;
-    height: 40px;
-    position: absolute;
-    top: 0;
-    left: 50px;
 }

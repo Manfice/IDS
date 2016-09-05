@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using IndDev.Domain.Entity.Menu;
 using IndDev.Domain.Entity.Products;
 using IndDev.Domain.ViewModels;
@@ -15,5 +16,6 @@ namespace IndDev.Domain.Abstract
         void SaveSearch(SearchRequests model);
         ProductView GetProductDetails(int id);
         ShopProductView GetProduct(int id);
+        Task<ShopProductView> SearchProductsAsynk(string request);
     }
 }
