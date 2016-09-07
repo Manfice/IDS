@@ -9,7 +9,7 @@
                 <input type="text" name="search" id="srch" tabindex="1" placeholder="Поиск по каталогу..." data-bind="value:SearchModule.resultModel.SearchRequest"/><input type="submit" value="Поиск"/>
             }
         </div>
-        <div data-bind="visible: SearchModule.isSearchResult()">
+        <div style="display: none" data-bind="visible: SearchModule.isSearchResult()">
             <div class="searchResultForm">
                 <div class="searchFormHeader">
                     <p>По запросу: "<span data-bind="text:SearchModule.resultModel.SearchRequest"></span>" найдено товаров: <span data-bind="text:SearchModule.resultModel.total"></span></p>

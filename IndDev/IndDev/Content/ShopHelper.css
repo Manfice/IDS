@@ -16,6 +16,7 @@
     align-items: center;
     position: relative;
 }
+
 .search {
     flex: 1 0 30%;
     order: 0;

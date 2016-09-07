@@ -336,10 +336,10 @@ footer {
     overflow: hidden;
 }
 
-    .hotItem img {
-        max-width: 50%;
-        float: left;
-    }
+.hotItem img {
+    max-width: 50%;
+    float: left;
+}
 
 .hotFooter {
     background: url("/Content/images/bgHOT.jpg") repeat-y 0 0 #ebebeb;
@@ -349,25 +349,25 @@ footer {
     height: 35px;
 }
 
-    .hotFooter a {
-        font-family: "RobotoCondensedRegular";
-        float: left;
-        margin: 8px 0 0 25px;
-        display: block;
-        cursor: pointer;
-        font-weight: bold;
-        letter-spacing: 2px;
-    }
+.hotFooter a {
+    font-family: "RobotoCondensedRegular";
+    float: left;
+    margin: 8px 0 0 25px;
+    display: block;
+    cursor: pointer;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
 
-    .hotFooter p {
-        float: right;
-        padding: 3px 25px 3px 25px;
-        font-family: "RobotoCondensedRegular";
-        color: red;
-        font-size: 20px;
-        background-color: white;
-        line-height: 30px;
-    }
+.hotFooter p {
+    float: right;
+    padding: 3px 25px 3px 25px;
+    font-family: "RobotoCondensedRegular";
+    color: red;
+    font-size: 20px;
+    background-color: white;
+    line-height: 30px;
+}
 /*navString*/
 .navString {
     width: 100%;
@@ -381,28 +381,50 @@ footer {
     padding: 16px 0;
     text-align: center;
     font-family: "RobotoCondensedRegular";
+    position: relative;
 }
 
-    .tel h4 {
-        color: white;
-        margin: 0;
-        padding: 0;
-    }
+.tel h4 {
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+.tel ul {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    list-style: none;
+    padding: 10px 20px 10px 0;
+    margin: 0;
+    text-align: right;
+    background-color: black;
+    color: whitesmoke;
+    font-family: "RobotoCondensedRegular";
+    border-top: solid 2px;
+    width: 250px;
+    display: none;
+}
+.tel:hover ul {
+    display: block;
+}
+.tel ul li {
+    font-size: 1.2em;
+    margin: 5px 0;
+}
+.tel a {
+    color: white;
+    letter-spacing: 1px;
+    font-size: 12px;
+    border-bottom: dotted 1px wheat;
+    margin: 0;
+    cursor: pointer;
+}
 
-    .tel a {
-        color: white;
-        letter-spacing: 1px;
-        font-size: 12px;
-        border-bottom: dotted 1px wheat;
-        margin: 0;
-        cursor: pointer;
-    }
-
-        .tel a:hover {
-            color: white;
-            font-weight: bold;
-            text-decoration: none;
-        }
+.tel a:hover {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+}
 
 .callMe {
     position: absolute;

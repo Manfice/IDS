@@ -356,6 +356,7 @@ namespace IndDev.Domain.Context
         {
             var dbMenu = _context.ProductMenuItems.Find(menu.Id);
             dbMenu.Descr = menu.Descr;
+            dbMenu.ShotDescription = menu.ShotDescription;
             dbMenu.Title = menu.Title;
             dbMenu.IsRus = menu.IsRus;
             dbMenu.Priority = menu.Priority;
