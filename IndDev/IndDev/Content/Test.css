@@ -218,16 +218,16 @@ footer {
     background-color: rgba(0, 0, 0, 0.49);
 }
 
-.fonFade h3 {
-    color: white;
-    margin: 20px 0;
-}
+    .fonFade h3 {
+        color: white;
+        margin: 20px 0;
+    }
 
-.fonFade p {
-    color: white;
-    font-weight: 100;
-    font-size: 300%;
-}
+    .fonFade p {
+        color: white;
+        font-weight: 100;
+        font-size: 300%;
+    }
 
         .fonFade p span {
             color: yellow;
@@ -282,7 +282,7 @@ footer {
         width: 60px;
         height: 60px;
         float: right;
-        background-position: -39px 0px;
+        background-position: -39px 0;
         background-repeat: no-repeat;
         cursor: pointer;
     }
@@ -297,37 +297,39 @@ footer {
     padding: 10px 0 10px 0;
     border-bottom: solid 40px rgb(0, 122, 203);
 }
+
 .headTop {
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
 }
-.headTop img {
-    margin: 0 30px;
-}
+
+    .headTop img {
+        margin: 0 30px;
+    }
+
 .hottopdescr {
     align-self: center;
 }
-.hottopdescr h1 {
-    font-family: "RobotoBold"
-;}
-.hottopdescr a {
-    
-}
-    .specPredlog h1 {
-        color: rgb(0, 122, 203);
-        font-family: "RobotoCondensedRegular";
-        margin: 0;
-        padding: 10px 0 0 0;
+
+    .hottopdescr h1 {
+        font-family: "RobotoBold";
     }
 
-    .specPredlog > a {
-        font-family: "RobotoCondensedRegular";
-        color: red;
-        margin: 10px 0 20px;
-        font-size: 25px;
-        cursor: pointer;
-    }
+.specPredlog h1 {
+    color: rgb(0, 122, 203);
+    font-family: "RobotoCondensedRegular";
+    margin: 0;
+    padding: 10px 0 0 0;
+}
+
+.specPredlog > a {
+    font-family: "RobotoCondensedRegular";
+    color: red;
+    margin: 10px 0 20px;
+    font-size: 25px;
+    cursor: pointer;
+}
 
 .hotItem {
     position: relative;
@@ -336,10 +338,10 @@ footer {
     overflow: hidden;
 }
 
-.hotItem img {
-    max-width: 50%;
-    float: left;
-}
+    .hotItem img {
+        max-width: 50%;
+        float: left;
+    }
 
 .hotFooter {
     background: url("/Content/images/bgHOT.jpg") repeat-y 0 0 #ebebeb;
@@ -349,25 +351,25 @@ footer {
     height: 35px;
 }
 
-.hotFooter a {
-    font-family: "RobotoCondensedRegular";
-    float: left;
-    margin: 8px 0 0 25px;
-    display: block;
-    cursor: pointer;
-    font-weight: bold;
-    letter-spacing: 2px;
-}
+    .hotFooter a {
+        font-family: "RobotoCondensedRegular";
+        float: left;
+        margin: 8px 0 0 25px;
+        display: block;
+        cursor: pointer;
+        font-weight: bold;
+        letter-spacing: 2px;
+    }
 
-.hotFooter p {
-    float: right;
-    padding: 3px 25px 3px 25px;
-    font-family: "RobotoCondensedRegular";
-    color: red;
-    font-size: 20px;
-    background-color: white;
-    line-height: 30px;
-}
+    .hotFooter p {
+        float: right;
+        padding: 3px 25px 3px 25px;
+        font-family: "RobotoCondensedRegular";
+        color: red;
+        font-size: 20px;
+        background-color: white;
+        line-height: 30px;
+    }
 /*navString*/
 .navString {
     width: 100%;
@@ -384,62 +386,51 @@ footer {
     position: relative;
 }
 
-.tel h4 {
-    color: white;
-    margin: 0;
-    padding: 0;
-}
-.tel ul {
-    position: absolute;
-    top: 50px;
-    right: 0;
-    list-style: none;
-    padding: 10px 20px 10px 0;
-    margin: 0;
-    text-align: right;
-    background-color: black;
-    color: whitesmoke;
-    font-family: "RobotoCondensedRegular";
-    border-top: solid 2px;
-    width: 250px;
-    display: none;
-}
-.tel:hover ul {
-    display: block;
-}
-.tel ul li {
-    font-size: 1.2em;
-    margin: 5px 0;
-}
-.tel a {
-    color: white;
-    letter-spacing: 1px;
-    font-size: 12px;
-    border-bottom: dotted 1px wheat;
-    margin: 0;
-    cursor: pointer;
-}
-
-.tel a:hover {
-    color: white;
-    font-weight: bold;
-    text-decoration: none;
-}
-
-.callMe {
-    position: absolute;
-    right: 0;
-    bottom: -95px;
-    background-color: rgb(0, 122, 202);
-    height: 105px;
-    visibility: collapse;
-}
-
-    .callMe input {
-        margin: 5px;
-        height: 25px;
-        font-weight: bold;
+    .tel h4 {
+        color: white;
+        margin: 0;
+        padding: 0;
     }
+
+    .tel ul {
+        position: absolute;
+        top: 50px;
+        right: 0;
+        list-style: none;
+        padding: 10px 20px 10px 0;
+        margin: 0;
+        text-align: right;
+        background-color: black;
+        color: whitesmoke;
+        font-family: "RobotoCondensedRegular";
+        border-top: solid 2px;
+        width: 250px;
+        display: none;
+    }
+
+    .tel:hover ul {
+        display: block;
+    }
+
+    .tel ul li {
+        font-size: 1.2em;
+        margin: 5px 0;
+    }
+
+    .tel a {
+        color: white;
+        letter-spacing: 1px;
+        font-size: 12px;
+        border-bottom: dotted 1px wheat;
+        margin: 0;
+        cursor: pointer;
+    }
+
+        .tel a:hover {
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+        }
 
 .subMenuList {
     list-style: none;
@@ -467,7 +458,7 @@ footer {
         .topNav > ul > li {
             position: relative;
             float: left;
-            display: inline-block;
+            display: block;
             padding: 10px 35px 0 0;
         }
 
@@ -496,9 +487,6 @@ footer {
 }
 /*end navString*/
 /*catalog*/
-.catalog {
-}
-
 .catDescr {
     margin: 0;
     background: url("/Content/images/skills_new.jpg") no-repeat center center;
@@ -629,16 +617,19 @@ footer {
         border-top: solid 1px white;
         padding: 0 150px;
     }
-.v1_descr a {
-    color: whitesmoke;
-    font-family: "RobotoBold";
-    font-size: 1.3em;
-    border: solid 3px whitesmoke;
-    padding: 2% 4%;
-}
-.v1_descr a:hover {
-    color: whitesmoke;
-}
+
+    .v1_descr a {
+        color: whitesmoke;
+        font-family: "RobotoBold";
+        font-size: 1.3em;
+        border: solid 3px whitesmoke;
+        padding: 2% 4%;
+    }
+
+        .v1_descr a:hover {
+            color: whitesmoke;
+        }
+
 .v2_descr a {
     color: whitesmoke;
     font-family: "RobotoBold";
@@ -646,9 +637,11 @@ footer {
     border: solid 3px whitesmoke;
     padding: 2% 4%;
 }
-.v2_descr a:hover {
-    color: whitesmoke;
-}
+
+    .v2_descr a:hover {
+        color: whitesmoke;
+    }
+
 .v1:hover .v1_descr {
     padding: 3%;
     height: 100%;
@@ -728,6 +721,10 @@ footer {
     padding: 3%;
     height: 100%;
     bottom: 0;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    -ms-transition: all .5s;
+    -o-transition: all .5s;
     transition: all .5s;
 }
 
@@ -754,44 +751,62 @@ footer {
 .aboutShotStory {
     background-color: black;
     padding: 0 0 0 200px;
+    display: flex;
+    flex-flow: row nowrap;
 }
 
     .aboutShotStory img {
-        float: right;
-        max-width: 100%;
+        flex: 1 0 50%;
+        width: 50%;
+        height: 100%;
     }
 
-    .aboutShotStory h3 {
+.aboutDescr {
+    flex: 1 0 50%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+}
+
+    .aboutDescr h3 {
         font-weight: 700;
         color: #0697fe;
         margin: 0;
-        padding: 50px 20px;
     }
 
-    .aboutShotStory h6 {
+    .aboutDescr h6 {
         color: whitesmoke;
         font-size: 15px;
         letter-spacing: 2px;
+        margin: 0;
     }
 
-    .aboutShotStory p {
-        line-height: 25px;
-        padding: 20px 0;
+    .aboutDescr p {
+        padding: 10px 0;
         color: darkgrey;
         text-align: justify;
+        font-size: 0.9em;
+        line-height: 15px;
     }
 
-        .aboutShotStory p:first-letter {
+        .aboutDescr p:first-letter {
             margin: 0 0 0 30px;
         }
 
-    .aboutShotStory a {
-        padding: 25px 30px;
+    .aboutDescr a {
+        padding: 10px 0;
         color: white;
         border: solid 2px white;
         display: inline-block;
-        margin: 50px 0;
+        width: 150px;
+        text-align: center;
     }
+
+        .aboutDescr a:hover {
+            text-decoration: none;
+            font-family: "RobotoBold";
+            color: whitesmoke;
+        }
 /*END ABOUT*/
 /*advantages*/
 .advantages {
@@ -889,27 +904,28 @@ footer {
     margin: 10px;
     position: relative;
 }
-.product:hover {
-    border: solid 1px #999;
-}
 
-.product img {
-    width: 100%;
-    margin: 0 0 40px 0;
-}
+    .product:hover {
+        border: solid 1px #999;
+    }
 
-.product .categoryName {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 50px;
-    background: #4a85ce;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 0 5px;
-}
+    .product img {
+        width: 100%;
+        margin: 0 0 40px 0;
+    }
+
+    .product .categoryName {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 50px;
+        background: #4a85ce;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 0 5px;
+    }
 
 .categoryName p {
     color: white;
@@ -940,6 +956,7 @@ footer {
     flex-flow: column nowrap;
     margin: 49px 0 0 0;
 }
+
 .navPagination {
     font-family: "RobotoLight";
     font-size: 13px;
@@ -1028,12 +1045,12 @@ footer {
     margin: 0 0 0 20px;
 }
 
-#cssmenu ul {
-   border: 1px solid #cccccc;
-   border-radius: 5px;
-   background: #ffffff;
-   background: -moz-linear-gradient(bottom, #f0f0f0, #ffffff);
-   background: -webkit-linear-gradient(bottom, #f0f0f0, #ffffff);
+    #cssmenu ul {
+        border: 1px solid #cccccc;
+        border-radius: 5px;
+        background: #ffffff;
+        background: -moz-linear-gradient(bottom, #f0f0f0, #ffffff);
+        background: -webkit-linear-gradient(bottom, #f0f0f0, #ffffff);
         background: -o-linear-gradient(bottom, #f0f0f0, #ffffff);
         background: -ms-linear-gradient(bottom, #f0f0f0, #ffffff);
         background: linear-gradient(to top, #f0f0f0, #ffffff);
@@ -1164,7 +1181,6 @@ footer {
     .goods img {
         width: 50%;
         float: left;
-
     }
 
     .goods a {
@@ -1175,24 +1191,28 @@ footer {
     padding: 0 0;
 }
 
-.goodsDescr h3 {
-    font-size: 15px;
-    font-weight: bold;
-    text-align: right;
-    margin: 0 0;
-}
-.goodsDescr h3 span {
-    color: red;
-    font-weight: bold;
-}
-.goodsDescr p {
-    text-align: right;
-    font-size: 13px;
-}
-.goodsDescr p span {
-    color: red;
-    font-weight: bold;    
-}
+    .goodsDescr h3 {
+        font-size: 15px;
+        font-weight: bold;
+        text-align: right;
+        margin: 0 0;
+    }
+
+        .goodsDescr h3 span {
+            color: red;
+            font-weight: bold;
+        }
+
+    .goodsDescr p {
+        text-align: right;
+        font-size: 13px;
+    }
+
+        .goodsDescr p span {
+            color: red;
+            font-weight: bold;
+        }
+
 .actionSection {
     position: absolute;
     bottom: 0;
@@ -1295,9 +1315,10 @@ footer {
     margin: 10px;
     overflow: hidden;
 }
-.photos img {
-    height: 200px;
-}
+
+    .photos img {
+        height: 200px;
+    }
 
 /* end product view*/
 /*Shop description*/
@@ -1307,9 +1328,10 @@ footer {
     padding: 10px;
     color: rgb(83, 145, 208);
 }
-.aboutId article {
-    color: #444444;
-}
+
+    .aboutId article {
+        color: #444444;
+    }
 /*end Shop description*/
 /*Customer Order*/
 
@@ -1706,9 +1728,6 @@ footer {
     flex-flow: column;
 }
 
-    .whoWhere label {
-    }
-
     .whoWhere input {
         flex: 1 0 auto;
         border: none;
@@ -1858,17 +1877,19 @@ footer {
     flex-flow: row wrap;
 }
 
-.mainMenuItem {/*обязательно скопировать в медиа*/
+.mainMenuItem { /*обязательно скопировать в медиа*/
     flex: 1 1 50%;
     /*border: solid 1px red;*/
     height: 500px;
     position: relative;
     overflow: hidden;
 }
-.mainMenuItem:hover>.menuItemDescr {
-    bottom: 0px;
-    transition: 1s;
-}
+
+    .mainMenuItem:hover > .menuItemDescr {
+        bottom: 0px;
+        transition: 1s;
+    }
+
 .menuItemDescr {
     position: absolute;
     height: 40%;
@@ -1882,81 +1903,93 @@ footer {
     cursor: pointer;
 }
 
-.menuItemDescr h1 {
-    margin: 0 0 10px;
-    color: rgb(251, 181, 35);
-    font-family: "RobotoBold";
-}
-.menuItemDescr p {
-    font-family: "RobotoLight";
-    color: whitesmoke;
-    font-weight: 300;
-}
-.menuItemDescr p:first-letter {
-    margin-left: 30px;
-}
-.menuItemDescr a {
-    float: right;
-    padding: 10px 20px;
-    border: solid 2px whitesmoke;
-    color: #3b3f4c;
-    font-family: "RobotoBold";
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    background-color: rgb(251, 181, 35);
-} 
+    .menuItemDescr h1 {
+        margin: 0 0 10px;
+        color: rgb(251, 181, 35);
+        font-family: "RobotoBold";
+    }
+
+    .menuItemDescr p {
+        font-family: "RobotoLight";
+        color: whitesmoke;
+        font-weight: 300;
+    }
+
+        .menuItemDescr p:first-letter {
+            margin-left: 30px;
+        }
+
+    .menuItemDescr a {
+        float: right;
+        padding: 10px 20px;
+        border: solid 2px whitesmoke;
+        color: #3b3f4c;
+        font-family: "RobotoBold";
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        background-color: rgb(251, 181, 35);
+    }
+
 .menuSertif {
     display: flex;
     flex-flow: row-reverse wrap;
-    background-color: #000000;
+    background-color: #1e1e1e;
     justify-content: center;
     align-items: center;
 }
-.menuSertif img {
-    margin: 50px;
-    width: 30%;
-}
+
+    .menuSertif img {
+        margin: 50px;
+        width: 30%;
+    }
+
 .sertDescr {
     flex: 0 1 50%;
     margin: 50px 0 50px 50px;
     max-width: 600px;
 }
-.sertDescr h1 {
-    color: rgb(251, 181, 35);
-    text-transform: uppercase;
-    font-family: "RobotoBold";
-    text-align: center;
-}
-.sertDescr h3 {
-    color: whitesmoke;
-    font-size: 1em;
-}
-.sertDescr p {
-    color: lightgray;    
-}
-.sertDescr p:first-letter {
-    margin-left: 35px;
-}
-.sertDescr p span {
-    font-weight: bold;
-    font-size: 1.2em;
-    color: #fbb523;
-    display: block;
-    text-align: center;
-    margin: 10px;
-    border-bottom: solid 3px #fbb523;
-    font-family: "RobotoRegular";
-}
-.sertDescr a {
-    float: right;
-    padding: 10px 20px;
-    border: solid 2px whitesmoke;
-    color: #3b3f4c;
-    font-family: "RobotoBold";
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    background-color: rgb(251, 181, 35);
-}
+
+    .sertDescr h1 {
+        color: rgb(251, 181, 35);
+        text-transform: uppercase;
+        font-family: "RobotoBold";
+        text-align: center;
+    }
+
+    .sertDescr h3 {
+        color: whitesmoke;
+        font-size: 1em;
+    }
+
+    .sertDescr p {
+        color: lightgray;
+    }
+
+        .sertDescr p:first-letter {
+            margin-left: 35px;
+        }
+
+        .sertDescr p span {
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #fbb523;
+            display: block;
+            text-align: center;
+            margin: 10px;
+            border-bottom: solid 3px #fbb523;
+            font-family: "RobotoRegular";
+        }
+
+    .sertDescr a {
+        float: right;
+        padding: 10px 20px;
+        border: solid 2px whitesmoke;
+        color: #3b3f4c;
+        font-family: "RobotoBold";
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        background-color: rgb(251, 181, 35);
+    }
 /**/
 /*Partners*/
 .indexPartners {
@@ -1964,15 +1997,242 @@ footer {
     background: url("/Content/images/fon45.png");
     padding-bottom: 30px;
 }
-.indexPartners h1 {
-    text-align: center;
-    color: dodgerblue;
-    text-transform: uppercase;
-}
+
+    .indexPartners h1 {
+        text-align: center;
+        color: dodgerblue;
+        text-transform: uppercase;
+    }
 /**/
 .calc-main { /* center / center */
-	position: absolute;
+    position: absolute;
     top: 50px;
-	left:0;
+    left: 0;
     width: 500px;
 }
+/*PersonalHelp*/
+.persHelper {
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    right: 0;
+    width: 20%;
+    background-color: black;
+    color: rgb(104, 104, 104);
+    height: 100%;
+}
+
+.persWrap {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+}
+
+.persControls {
+    flex: 1 0 auto;
+    display: flex;
+    flex-flow: row nowrap;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+}
+
+    .persControls button {
+        background-color: transparent;
+        border: solid 2px green;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        font-size: 2em;
+        color: green;
+        transition: all 0.5s;
+    }
+
+        .persControls button:last-child {
+            color: red;
+            border: solid 2px red;
+        }
+
+        .persControls button:hover {
+            transform: scale(1.2, 1.2);
+            transition: all 0.5s;
+        }
+
+.persWrap h1 {
+    font-family: "RobotoRegular";
+    font-size: 1em;
+    text-transform: uppercase;
+}
+
+.persWrap img {
+    border: solid 3px rgb(104, 104, 104);
+    -ms-border-radius: 50%;
+    border-radius: 50%;
+    padding: 5px;
+    width: 150px;
+    height: 150px;
+    margin: 15px;
+}
+
+.persWrap p {
+    margin: 0;
+    font-size: 0.9em;
+}
+
+    .persWrap p span {
+        font-family: "RobotoBold";
+    }
+
+.persWrap ul {
+    list-style: none;
+    margin: 10px 0;
+    padding: 10px 20px;
+    border-top: dotted 2px;
+    border-bottom: dotted 2px;
+}
+
+.menegerShort {
+    position: fixed;
+    z-index: 1000;
+    bottom: 0;
+    right: 0;
+    background-color: #1e1e1e;
+    display: flex;
+    flex-flow: row nowrap;
+    padding: 5px;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    color: whitesmoke;
+    cursor: pointer;
+}
+
+    .menegerShort:hover {
+        background-color: rgb(63, 117, 0);
+    }
+
+    .menegerShort img {
+        width: 50px;
+        height: 50px;
+        flex: 0 0 auto;
+        margin: 0 10px 0 0;
+    }
+
+.anyQuestions {
+    flex: 1 0 auto;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+    .anyQuestions h1 {
+        margin: 0;
+        padding: 0;
+        flex: 1 0 auto;
+        font-size: 1em;
+    }
+
+    .anyQuestions p {
+        margin: 0;
+        padding: 0;
+        font-size: 0.9em;
+    }
+
+        .anyQuestions p i {
+            margin: 0 5px;
+            font-size: 1.1em;
+        }
+
+.callMe {
+    flex: 1 0 auto;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+    .callMe p {
+        font-size: 1.5em;
+        color: green;
+        text-transform: uppercase;
+    }
+
+    .callMe > button {
+        background-color: transparent;
+        border: solid 2px red;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        font-size: 2em;
+        color: red;
+        transition: all 0.5s;
+    }
+
+        .callMe > button:hover {
+            transform: scale(1.5, 1.5);
+            transition: all 0.5s;
+        }
+
+.phoneBlock input {
+    background-color: transparent;
+    border: solid 1px green;
+    padding: 3px;
+}
+
+.phoneBlock button {
+    background-color: transparent;
+    border: solid 1px green;
+    padding: 3px 10px;
+    border-left: none;
+    color: green;
+}
+
+    .phoneBlock button:hover {
+        background-color: green;
+        border: solid 1px green;
+        padding: 3px 10px;
+        border-left: none;
+        color: black;
+    }
+
+    .phoneBlock button:disabled {
+        display: none;
+    }
+
+button:focus {
+    outline: none;
+    border: solid 2px green;
+}
+.mailMe {
+    flex: 1 0 auto;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+.mailMessage {
+    flex: 1 0 auto;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: flex-start;
+    width: 90%;
+}
+.mailMessage input {
+    border: solid 1px green;
+    background-color: transparent;
+    width: 100%;
+    padding: 3px 10px;
+}
+.mailMessage textarea {
+    border: solid 1px green;
+    border-top: none;
+    background-color: transparent;
+    width: 100%;
+    padding: 3px 0 0 3px;
+    height: 100px;
+    resize: none;
+}/*End Personal help*/

@@ -548,6 +548,7 @@
     <Content Include="Scripts\slider.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="sitemap.xml" />
+    <Content Include="Upload\CustomerAvatars\10_me.png" />
     <Content Include="Views\Mails\LetterFromTitle.html" />
     <Content Include="Views\Mails\ResetPassword.html" />
     <Content Include="Views\Mails\ThankYou.html" />
@@ -682,11 +683,11 @@
     <Content Include="Scripts\jquery-3.1.0.min.map" />
     <Content Include="Scripts\knockout.validation.min.js.map" />
     <Content Include="Views\Customer\PlaceHolders\_Main.cshtml" />
+    <Content Include="Views\Shared\_PersonalHelp.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Entitys\" />
-    <Folder Include="Upload\CustomerAvatars\" />
     <Folder Include="Views\Mail\" />
   </ItemGroup>
   <ItemGroup>

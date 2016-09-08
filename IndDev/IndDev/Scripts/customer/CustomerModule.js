@@ -140,7 +140,7 @@
 
     var init = function () {
         retrieveCustomer();
-        ko.applyBindings();
+        //ko.applyBindings();
     };
 
     $(init);
