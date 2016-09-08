@@ -39,14 +39,20 @@
         console.log(manager.view);
     };
 
-    var displayOption = {
-        call: "CALL",
-        message: "MAIL",
-        none: "NONE"
-    };
-
     var isDetails = function(param) {
         return manager.view() === param;
+    };
+
+    var callMeReq = function () {
+        $.ajax({
+            type: "POST",
+            url: "/api/custapi/CallMe",
+            data: "{'phone':'565656'}",
+            success: function (data) {
+                console.log(data);
+
+            }
+        });
     };
 
     var init = function() {
@@ -61,6 +67,7 @@
         showDetails: showDetails,
         optionsMeneger: optionsMeneger,
         setOption: setOption, phone: phone,
-        mailMessage:mailMessage
+        mailMessage:mailMessage,
+        callMeReq: callMeReq
     };
 }();

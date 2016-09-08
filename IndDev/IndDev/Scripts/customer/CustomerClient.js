@@ -10,24 +10,24 @@
         });
     };
 
-    var saveAvatar = function(ava, callback,erroecallback) {
+    var saveAvatar = function(ava, callback, erroecallback) {
         $.ajax({
-            url:"/api/custapi/saveavatar/",
-            type:"POST",
+            url: "/api/custapi/saveavatar/",
+            type: "POST",
             data: ava,
-            contentType:false,
+            contentType: false,
             processData: false,
-            beforeSend: function () {
-                $("#loading").css("visibility","visible");
+            beforeSend: function() {
+                $("#loading").css("visibility", "visible");
             },
             success: function(data) {
                 callback(data);
             },
-            error: function (jqXHR) {
+            error: function(jqXHR) {
                 erroecallback(jqXHR.responseText);
             }
         });
-    }
+    };
 
     return {
         getCustomer: getCustomer,

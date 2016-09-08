@@ -2,28 +2,28 @@
 
     var client = SearchClient();
 
-    var displayMode= {
+    var displayMode = {
         view: "VIEW",
-        close:"CLOSE"
-    }
+        close: "CLOSE"
+    };
 
     var resultModel = {
         SearchRequest: ko.observable(),
         total: ko.observable(),
         view: ko.observable(displayMode.close),
-        products:ko.observableArray()
-    }
+        products: ko.observableArray()
+    };
 
     var searchReq;
 
-    var searchCallback = function (data) {
+    var searchCallback = function(data) {
         resultModel.total(data.Total);
         resultModel.products.removeAll();
-        data.SearchItems.forEach(function (item) {
+        data.SearchItems.forEach(function(item) {
             resultModel.products.push(item);
         });
         resultModel.view(displayMode.view);
-    }
+    };
 
     var closeSearchResult = function () {
         resultModel.view(displayMode.close);
@@ -53,5 +53,5 @@
         closeSearchResult: closeSearchResult,
         isSearchResult: isSearchResult,
         resultModel: resultModel
-    }
+    };
 }();

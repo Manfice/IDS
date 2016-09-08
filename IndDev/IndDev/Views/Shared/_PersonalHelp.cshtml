@@ -23,7 +23,7 @@
         <div class="callMe" data-bind="visible:Common.optionsMeneger()==='CALL'">
             <p>Позвоните мне</p>
             <div class="phoneBlock">
-                <input type="tel" name="tPh" data-bind="value:Common.phone, valueUpdate:'keyup'" placeholder="Телефон"/><button type="button" data-bind="enable:Common.phone"><i class="fa fa-phone" aria-hidden="true"></i></button>
+                <input type="tel" name="tPh" data-bind="value:Common.phone, valueUpdate:'keyup'" placeholder="Телефон"/><button type="button" data-bind="enable:Common.phone, click:Common.callMeReq()"><i class="fa fa-phone" aria-hidden="true"></i></button>
             </div>
             <button data-bind="visible:Common.optionsMeneger()==='CALL', click:Common.setOption.bind($data,'NONE')"><i class="fa fa-times" aria-hidden="true"></i></button>
         </div>

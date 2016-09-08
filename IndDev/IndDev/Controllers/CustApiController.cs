@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
@@ -61,7 +62,18 @@ namespace IndDev.Controllers
         public async Task<IEnumerable<Order>> GetOrders()
         {
             return await _customer.GetOrdersAsync(_userId);
-        } 
+        }
 
+        [HttpPost]
+        public async Task<IHttpActionResult> CallMe(string phone)
+        {
+            var number = Regex.Match(phone, @"^((\(\d{3}\) ?)|(\d{3}-))?\d{3}-\d{4}$");
+            var ts = await _customer.GetOrdersAsync(5);
+            if (number.Success) return Ok();
+            else
+            {
+                return BadRequest();
+            }
+        }
     }
 }
