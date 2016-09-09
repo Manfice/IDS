@@ -1,5 +1,5 @@
 ﻿<div class="menegerShort" data-bind="visible:Common.isDetails(false), click:Common.showDetails(true)">
-    <img alt="" src="/Upload/CustomerAvatars/10_me.png"/>
+    <img alt="" src="/Content/images/meneger.png"/>
     <div class="anyQuestions">
         <h1>Есть вопросы?</h1>
         <p><i class="fa fa-phone" aria-hidden="true"></i>8(8652) 99-19-13
@@ -10,7 +10,7 @@
 <div class="persHelper hidden-xs hidden-sm" data-bind="visible:Common.isDetails(true)" style="display: none">
     <div class="persWrap">
         <h1>Ваш менеджер</h1>
-        <img src="/Upload/CustomerAvatars/10_me.png" alt="" />
+        <img src="/Content/images/meneger.png" alt="" />
         <p>Здраствуйте, меня зовут <span>Петр</span>.</p>
         <p>Я менеджер компании</p>
         <p><span>"Торговый дом "АЙДИ-С"</span></p>
@@ -21,17 +21,22 @@
             <li>Skype: manfice</li>
         </ul>
         <div class="callMe" data-bind="visible:Common.optionsMeneger()==='CALL'">
-            <p>Позвоните мне</p>
+            <p>заказать обратный звонок</p>
             <div class="phoneBlock">
-                <input type="tel" name="tPh" data-bind="value:Common.phone, valueUpdate:'keyup'" placeholder="Телефон"/><button type="button" data-bind="enable:Common.phone, click:Common.callMeReq()"><i class="fa fa-phone" aria-hidden="true"></i></button>
+                <input type="text" name="title" data-bind="value:Common.feedback.title, valueUpdate:'keyup'" placeholder="Ваше имя" />
+                <input type="tel" name="tPh" id="fbTl" data-bind="value:Common.feedback.phone, valueUpdate:'keyup'" placeholder="Телефон"/>
             </div>
-            <button data-bind="visible:Common.optionsMeneger()==='CALL', click:Common.setOption.bind($data,'NONE')"><i class="fa fa-times" aria-hidden="true"></i></button>
+            <div class="persControls">
+                <button type="button" data-bind="enable:Common.feedback.phone"><i class="fa fa-phone" aria-hidden="true"></i></button>
+                <button data-bind="visible:Common.optionsMeneger()==='CALL', click:Common.setOption.bind($data,'NONE')"><i class="fa fa-times" aria-hidden="true"></i></button>
+            </div>
         </div>
         <div class="mailMe" data-bind="visible:Common.optionsMeneger()==='MAIL'">
             <p>Отправить сообщение:</p>
             <div class="mailMessage">
-                <input type="email" name="email" data-bind="value:Common.mailMessage.email" placeholder="Ваш E-mail" />
-                <textarea data-bind="textInput:Common.mailMessage.message" placeholder="Сообщение..."></textarea>
+                <input type="text" name="title" data-bind="value:Common.feedback.title, valueUpdate:'keyup'" placeholder="Ваше имя"/>
+                <input type="email" name="email" data-bind="value:Common.feedback.email" placeholder="Ваш E-mail" />
+                <textarea data-bind="textInput:Common.feedback.MailMessage" placeholder="Сообщение..."></textarea>
             </div>
             <div class="persControls">
                 <button type="button"><i class="fa fa-check" aria-hidden="true"></i></button>
@@ -45,4 +50,36 @@
         </div>
     </div>
 </div>
-
+<div id="confBot">
+    <div class="botDialog">
+        <h1>Бот фильтр</h1>
+        <div class="botCont">
+            <img src="/Content/images/ler.png" alt=""/>
+            <div class="botcontdescr">
+                <h3>Александр Сергеевич</h3>
+                <h4>1799 - 1837</h4>
+                <p>Русский поэт, драматург и прозаик, заложивший основы русского реалистического направления, критик и теоретик литературы, историк, публицист.
+                    Один из самых авторитетных литературных деятелей первой трети XIX века.</p>
+            </div>
+        </div>
+        <h2>Кто это?</h2>
+        <div class="quest">
+            <label>
+                <input type="radio" name="btck" value="0" data-bind="checked:Common.sendRq"/><mark>В.В. Жириновский</mark>
+            </label>
+            <label>
+                <input type="radio" name="btck" value="1" data-bind="checked:Common.sendRq" /><mark>рэпер "ГУФ"</mark>
+            </label>
+            <label>
+                <input type="radio" name="btck" value="2" data-bind="checked:Common.sendRq" /><mark>А.С. Пушкин</mark>
+            </label>
+            <label>
+                <input type="radio" name="btck" value="3" data-bind="checked:Common.sendRq" /><mark>Барак Обама</mark>
+            </label>
+        </div>
+    </div>
+    <div class="persControls">
+        <button data-bind="click:Common.sendData, visible:Common.sendRq"><i class="fa fa-check" aria-hidden="true"></i></button>
+        <button style="display: none"></button>
+    </div>
+</div>

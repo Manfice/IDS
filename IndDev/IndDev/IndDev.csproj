@@ -226,6 +226,7 @@
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\CustApiController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Controllers\FeedbackController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MailController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
@@ -273,6 +274,7 @@
     <Content Include="Content\images\id_logo.svg" />
     <Content Include="Content\images\info.png" />
     <Content Include="Content\images\invoice.jpg" />
+    <Content Include="Content\images\ler.png" />
     <Content Include="Content\images\Letters\bm.jpg" />
     <Content Include="Content\images\loading-03.gif" />
     <Content Include="Content\images\logoId300.png" />
@@ -315,6 +317,7 @@
     <Content Include="Content\images\mairala\skills.jpg" />
     <Content Include="Content\images\mairala\slide-pagenat.png" />
     <Content Include="Content\images\man_dc.png" />
+    <Content Include="Content\images\meneger.png" />
     <Content Include="Content\images\menuItems\1DCsmall.jpg" />
     <Content Include="Content\images\menuItems\focross.jpg" />
     <Content Include="Content\images\menuItems\h16small.jpg" />
@@ -515,6 +518,8 @@
     <Content Include="Scripts\jquery-3.1.0.slim.js" />
     <Content Include="Scripts\jquery-3.1.0.slim.min.js" />
     <Content Include="Scripts\jquery-ui.js" />
+    <Content Include="Scripts\jquery.maskedinput.js" />
+    <Content Include="Scripts\jquery.maskedinput.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />

@@ -27,16 +27,27 @@
         callMe: ko.observable(false)
     };
 
-    var phone = ko.observable();
+    var sendRq = ko.observable();
 
-    var mailMessage = {
+    var sendData = function () {
+        console.log(ko.toJS(sendRq));
+        if (sendRq()!=="2") {
+            console.log("Лошара... ");
+            return;
+        } else {
+            callMeReq();
+        }
+    };
+
+    var feedback = {
+        phone: ko.observable(),
         email: ko.observable(),
-        message: ko.observable()
+        title: ko.observable(),
+        MailMessage: ko.observable()
     };
 
     var showDetails = function(det) {
         manager.view(det);
-        console.log(manager.view);
     };
 
     var isDetails = function(param) {
@@ -46,16 +57,23 @@
     var callMeReq = function () {
         $.ajax({
             type: "POST",
-            url: "/api/custapi/CallMe",
-            data: "{'phone':'565656'}",
+            url: "/api/feedback/CallMe",
+            data: feedback,
             success: function (data) {
-                console.log(data);
+                console.log(ko.toJSON(data));
 
             }
         });
     };
 
-    var init = function() {
+    var initMask = function() {
+        $.mask.definitions["9"] = "_";
+        $.mask.definitions["f"] = "[0-9]";
+        $("#fbTl").mask("+7(fff)fff-ffff",{placeholder:"+7(***)***-****"});
+    }
+
+    var init = function () {
+        initMask();
         ko.applyBindings();
     };
 
@@ -66,8 +84,8 @@
         isDetails:isDetails,
         showDetails: showDetails,
         optionsMeneger: optionsMeneger,
-        setOption: setOption, phone: phone,
-        mailMessage:mailMessage,
-        callMeReq: callMeReq
+        setOption: setOption, feedback: feedback,
+        sendData: sendData,
+        sendRq: sendRq
     };
 }();

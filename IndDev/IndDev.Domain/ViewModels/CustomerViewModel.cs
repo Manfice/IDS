@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 using IndDev.Domain.Entity.Auth;
 using IndDev.Domain.Entity.Customers;
@@ -29,5 +30,19 @@ namespace IndDev.Domain.ViewModels
         public int Status { get; set; }
         public IEnumerable<SelectListItem> CustStatus { get; set; }
 
+    }
+
+    public class Feedback
+    {
+        [DataType(DataType.PhoneNumber)]
+        public string Phone { get; set; }
+
+        [DataType(DataType.EmailAddress)]
+        public string Email { get; set; }
+
+        public string Title { get; set; }
+
+        [DataType(DataType.MultilineText)]
+        public string MailMessage { get; set; }
     }
 }

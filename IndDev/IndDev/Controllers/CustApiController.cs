@@ -11,6 +11,7 @@ using System.Web.Http.Controllers;
 using IndDev.Domain.Abstract;
 using IndDev.Domain.Entity.Customers;
 using IndDev.Domain.Entity.Orders;
+using IndDev.Domain.ViewModels;
 
 namespace IndDev.Controllers
 {
@@ -28,16 +29,18 @@ namespace IndDev.Controllers
         protected override void Initialize(HttpControllerContext controllerContext)
         {
             base.Initialize(controllerContext);
-            _userId = int.Parse(HttpContext.Current.User.Identity.Name);
+            if (User.Identity.IsAuthenticated)
+            {
+                _userId = int.Parse(HttpContext.Current.User.Identity.Name);
+            }
         }
 
         public IHttpActionResult GetCustomer()
         {
             var cust = new Customer();
-            var custId = int.Parse(HttpContext.Current.User.Identity.Name);
-            if (custId!=0)
+            if (_userId!=0)
             {
-                cust = _customer.GetCustomerByUserId(custId);
+                cust = _customer.GetCustomerByUserId(_userId);
             }
             return cust != null ? Ok(cust) : (IHttpActionResult) BadRequest("Customer was not finded");
         }
@@ -62,18 +65,6 @@ namespace IndDev.Controllers
         public async Task<IEnumerable<Order>> GetOrders()
         {
             return await _customer.GetOrdersAsync(_userId);
-        }
-
-        [HttpPost]
-        public async Task<IHttpActionResult> CallMe(string phone)
-        {
-            var number = Regex.Match(phone, @"^((\(\d{3}\) ?)|(\d{3}-))?\d{3}-\d{4}$");
-            var ts = await _customer.GetOrdersAsync(5);
-            if (number.Success) return Ok();
-            else
-            {
-                return BadRequest();
-            }
         }
     }
 }
