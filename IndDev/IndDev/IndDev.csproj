@@ -241,6 +241,7 @@
     <Compile Include="Infrastructure\Binders\CartModelBinder.cs" />
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
     <Compile Include="Models\CatViewModel.cs" />
+    <Compile Include="Models\FeedbackModel.cs" />
     <Compile Include="Models\MenuViewModel.cs" />
     <Compile Include="Models\NewsViewModel.cs" />
     <Compile Include="Models\PageInfo.cs" />
@@ -505,6 +506,7 @@
     <Content Include="Scripts\CalcSS3.js" />
     <Content Include="Scripts\carousels.js" />
     <Content Include="Scripts\common.js" />
+    <Content Include="Scripts\CommonLink.js" />
     <Content Include="Scripts\customer\CustomerClient.js" />
     <Content Include="Scripts\customer\CustomerModule.js" />
     <Content Include="Scripts\funcybox\jquery.fancybox-buttons.js" />

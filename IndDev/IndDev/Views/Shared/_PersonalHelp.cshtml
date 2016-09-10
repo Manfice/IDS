@@ -20,38 +20,38 @@
             <li>Почта: <a href="mailto:sale@id-racks.ru">sale@id-racks.ru</a></li>
             <li>Skype: manfice</li>
         </ul>
-        <div class="callMe" data-bind="visible:Common.optionsMeneger()==='CALL'">
+        <div class="callMe" data-bind="visible:Common.feedback.actionData()==='CALL'">
             <p>заказать обратный звонок</p>
             <div class="phoneBlock">
                 <input type="text" name="title" data-bind="value:Common.feedback.title, valueUpdate:'keyup'" placeholder="Ваше имя" />
                 <input type="tel" name="tPh" id="fbTl" data-bind="value:Common.feedback.phone, valueUpdate:'keyup'" placeholder="Телефон"/>
             </div>
             <div class="persControls">
-                <button type="button" data-bind="enable:Common.feedback.phone"><i class="fa fa-phone" aria-hidden="true"></i></button>
-                <button data-bind="visible:Common.optionsMeneger()==='CALL', click:Common.setOption.bind($data,'NONE')"><i class="fa fa-times" aria-hidden="true"></i></button>
+                <button type="button" data-bind="enable:Common.feedback.phone, click:Common.botCheck.bind($data,'VIEW')"><i class="fa fa-phone" aria-hidden="true"></i></button>
+                <button data-bind="visible:Common.feedback.actionData()==='CALL', click:Common.setOption.bind($data,'NONE')"><i class="fa fa-times" aria-hidden="true"></i></button>
             </div>
         </div>
-        <div class="mailMe" data-bind="visible:Common.optionsMeneger()==='MAIL'">
+        <div class="mailMe" data-bind="visible:Common.feedback.actionData()==='MAIL'">
             <p>Отправить сообщение:</p>
             <div class="mailMessage">
                 <input type="text" name="title" data-bind="value:Common.feedback.title, valueUpdate:'keyup'" placeholder="Ваше имя"/>
                 <input type="email" name="email" data-bind="value:Common.feedback.email" placeholder="Ваш E-mail" />
-                <textarea data-bind="textInput:Common.feedback.MailMessage" placeholder="Сообщение..."></textarea>
+                <textarea data-bind="textInput:Common.feedback.MailMessage, valueUpdate:'keyup'" placeholder="Сообщение..."></textarea>
             </div>
             <div class="persControls">
-                <button type="button"><i class="fa fa-check" aria-hidden="true"></i></button>
-                <button data-bind="visible:Common.optionsMeneger()==='MAIL', click:Common.setOption.bind($data,'NONE')"><i class="fa fa-times" aria-hidden="true"></i></button>
+                <button type="button" data-bind="enable:Common.isMailOk(), click:Common.botCheck.bind($data,'VIEW')"><i class="fa fa-check" aria-hidden="true"></i></button>
+                <button data-bind="visible:Common.feedback.actionData()==='MAIL', click:Common.setOption.bind($data,'NONE')"><i class="fa fa-times" aria-hidden="true"></i></button>
             </div>
         </div>
         <div class="persControls">
-            <button data-bind="visible:Common.optionsMeneger()==='NONE', click:Common.setOption.bind($data,'CALL')"><i class="fa fa-phone" aria-hidden="true"></i></button>
-            <button data-bind="visible:Common.optionsMeneger()==='NONE', click:Common.setOption.bind($data,'MAIL')"><i class="fa fa-envelope-o" aria-hidden="true"></i></button>
-            <button type="button" data-bind="click:Common.showDetails(false),visible:Common.optionsMeneger()==='NONE'"><i class="fa fa-times" aria-hidden="true"></i></button>
+            <button data-bind="visible:Common.feedback.actionData()==='NONE', click:Common.feedback.actionData.bind($data,'CALL')"><i class="fa fa-phone" aria-hidden="true"></i></button>
+            <button data-bind="visible:Common.feedback.actionData()==='NONE', click:Common.feedback.actionData.bind($data,'MAIL')"><i class="fa fa-envelope-o" aria-hidden="true"></i></button>
+            <button type="button" data-bind="click:Common.showDetails(false),visible:Common.feedback.actionData()==='NONE'"><i class="fa fa-times" aria-hidden="true"></i></button>
         </div>
     </div>
 </div>
-<div id="confBot">
-    <div class="botDialog">
+<div id="confBot" style="display: none" data-bind="visible:Common.manager.botShow()==='VIEW'">
+    <div class="botDialog" data-bind="visible:Common.manager.botView()==='0'">
         <h1>Бот фильтр</h1>
         <div class="botCont">
             <img src="/Content/images/ler.png" alt=""/>
@@ -65,21 +65,24 @@
         <h2>Кто это?</h2>
         <div class="quest">
             <label>
-                <input type="radio" name="btck" value="0" data-bind="checked:Common.sendRq"/><mark>В.В. Жириновский</mark>
+                <input type="radio" name="btck" value="0" data-bind="checked:Common.manager.botAnsw"/><mark>В.В. Жириновский</mark>
             </label>
             <label>
-                <input type="radio" name="btck" value="1" data-bind="checked:Common.sendRq" /><mark>рэпер "ГУФ"</mark>
+                <input type="radio" name="btck" value="1" data-bind="checked:Common.manager.botAnsw"/><mark>рэпер "ГУФ"</mark>
             </label>
             <label>
-                <input type="radio" name="btck" value="2" data-bind="checked:Common.sendRq" /><mark>А.С. Пушкин</mark>
+                <input type="radio" name="btck" value="2" data-bind="checked:Common.manager.botAnsw"/><mark>А.С. Пушкин</mark>
             </label>
             <label>
-                <input type="radio" name="btck" value="3" data-bind="checked:Common.sendRq" /><mark>Барак Обама</mark>
+                <input type="radio" name="btck" value="3" data-bind="checked:Common.manager.botAnsw"/><mark>Барак Обама</mark>
             </label>
         </div>
     </div>
+    <div data-bind="visible:Common.manager.botView()!=='0'" class="answMen">
+        <p data-bind="text:Common.manager.botText"></p>
+    </div>
     <div class="persControls">
-        <button data-bind="click:Common.sendData, visible:Common.sendRq"><i class="fa fa-check" aria-hidden="true"></i></button>
-        <button style="display: none"></button>
+        <button data-bind="click:Common.sendData, visible:Common.manager.botAnsw"><i class="fa fa-check" aria-hidden="true"></i></button>
+        <button data-bind="visible:Common.manager.botView()!=='0', click:Common.closeBot"><i class="fa fa-times" aria-hidden="true"></i></button>
     </div>
 </div>

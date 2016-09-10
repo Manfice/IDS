@@ -12,6 +12,7 @@ using IndDev.Auth.Model;
 using IndDev.Domain.Abstract;
 using IndDev.Domain.Entity.Auth;
 using IndDev.Domain.Entity.Orders;
+using IndDev.Domain.ViewModels;
 using IndDev.Models;
 
 namespace IndDev.Domain.Context
@@ -121,6 +122,25 @@ namespace IndDev.Domain.Context
                 await SendMyMailAsync(bodyBld.ToString(), address.Address, $"Заказ №{order.Number} от {order.OrderDate.ToShortDateString()}");
             }
             return $"Заказ отправлен на проверку. Спасибо.";
+        }
+
+        public async Task<string> FeedbackAsync(Feedback model)
+        {
+            var body = new StringBuilder();
+            body.AppendLine("<h1>Запрос по обр. связи:"+DateTime.Now+"</h1>");
+            if (model.ActionData.ToLower()=="call")
+            {
+                body.AppendLine("<p>"+model.Title+"</p>");
+                body.AppendLine("<p>"+model.Phone+"</p>");
+            }
+            else
+            {
+                body.AppendLine("<p>"+model.Title+"</p>");
+                body.AppendLine("<p>" + model.Email + "</p>");
+                body.AppendLine("<p>" + model.MailMessage + "</p>");
+            }
+            return await SendMyMailAsync(body.ToString(), "c592@yandex.ru", "feedback");
+
         }
     }
 }

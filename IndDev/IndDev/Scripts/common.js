@@ -16,34 +16,78 @@
             $(this).next().slideToggle();
         });
 
-        var optionsMeneger = ko.observable("NONE");
-
-    var setOption = function(option) {
-        optionsMeneger(option);
-    };
+        var client = LinkData();
 
     var manager = {
         view: ko.observable(false),
-        callMe: ko.observable(false)
+        botAnsw: ko.observable(),
+        botShow: ko.observable("HIDE"),
+        succ: ko.observable("HIDE"),
+        fale: ko.observable("HIDE"),
+        botView: ko.observable("0"),
+        botText: ko.observable()
     };
 
-    var sendRq = ko.observable();
+    var botCheck = function(par) {
+        manager.botShow(par);
+        manager.view(false);
+    };
+    var feedback = {
+        phone: ko.observable("9283731613"),
+        email: ko.observable(),
+        title: ko.observable("Petr"),
+        MailMessage: ko.observable(),
+        actionData:ko.observable("NONE")
+    };
+
+    var isMailOk = function() {
+        return feedback.title() && feedback.email() && feedback.MailMessage();
+    };
+
+    var clMod = function() {
+        feedback.MailMessage(null);
+        feedback.email(null);
+        feedback.phone(null);
+        feedback.title(null);
+        feedback.actionData("NONE");
+    };
+    var sCallback = function(data) {
+        manager.botView("1");
+        if (feedback.actionData() === "CALL") {
+            manager.botText("Спасибо, "+data.Title.split(" ")[0]+" за, то что обратились к нам. Буквально через 15 минут я Вас наберу на номер: "+data.Phone);
+        } else {
+            manager.botText("Сообщение отправленно.");
+        }
+        manager.botAnsw(null);
+        clMod();
+    };
+    var badCallback = function(data) {
+        manager.botView("2");
+        if (feedback.actionData() === "CALL") {
+            manager.botText(data);
+        } else {
+            manager.botText("MAIL");
+        }
+        manager.botAnsw(null);
+        clMod();
+    };
+    var closeBot = function(par) {
+        manager.botShow("HIDE");
+        manager.botView("0");
+    };
 
     var sendData = function () {
-        console.log(ko.toJS(sendRq));
-        if (sendRq()!=="2") {
-            console.log("Лошара... ");
+        console.log(ko.toJSON(feedback));
+        if (manager.botAnsw() !== "2") {
+            badCallback();
             return;
         } else {
-            callMeReq();
+            client.callMeReq(feedback,sCallback, badCallback);
         }
     };
 
-    var feedback = {
-        phone: ko.observable(),
-        email: ko.observable(),
-        title: ko.observable(),
-        MailMessage: ko.observable()
+    var setOption = function (option) {
+        feedback.actionData(option);
     };
 
     var showDetails = function(det) {
@@ -54,23 +98,11 @@
         return manager.view() === param;
     };
 
-    var callMeReq = function () {
-        $.ajax({
-            type: "POST",
-            url: "/api/feedback/CallMe",
-            data: feedback,
-            success: function (data) {
-                console.log(ko.toJSON(data));
-
-            }
-        });
-    };
-
     var initMask = function() {
         $.mask.definitions["9"] = "_";
         $.mask.definitions["f"] = "[0-9]";
-        $("#fbTl").mask("+7(fff)fff-ffff",{placeholder:"+7(***)***-****"});
-    }
+        $("#fbTl").mask("+7(fff)fff-ffff", { placeholder: "+7(***)***-****" });
+    };
 
     var init = function () {
         initMask();
@@ -83,9 +115,11 @@
         manager: manager,
         isDetails:isDetails,
         showDetails: showDetails,
-        optionsMeneger: optionsMeneger,
-        setOption: setOption, feedback: feedback,
+        setOption: setOption,
+        feedback: feedback,
         sendData: sendData,
-        sendRq: sendRq
+        botCheck:botCheck,
+        closeBot: closeBot,
+        isMailOk: isMailOk
     };
 }();

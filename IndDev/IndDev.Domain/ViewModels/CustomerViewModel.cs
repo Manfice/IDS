@@ -44,5 +44,7 @@ namespace IndDev.Domain.ViewModels
 
         [DataType(DataType.MultilineText)]
         public string MailMessage { get; set; }
+
+        public string ActionData { get; set; }
     }
 }

@@ -2382,4 +2382,9 @@ button:focus {
      margin: 0 10px;
     padding: 3px 0 0 0;
 }
+.answMen {
+    padding: 10px;
+    text-align: center;
+    color: whitesmoke;
+}
  /*END*/
