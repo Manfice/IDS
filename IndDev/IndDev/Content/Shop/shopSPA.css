@@ -1,0 +1,42 @@
+﻿.shopWrapper {
+    flex: 1 0 auto;
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-start;
+
+}
+.topOffer {
+    flex: 0 0 auto;
+    height: 300px;
+    background: url("/Content/Shop/outomnfon.jpg") repeat;
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-end;
+    align-items: center; 
+}
+.ofLand {
+    flex: 0 0 auto;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    align-items: flex-end;
+    max-width: 1200px;
+    width: 100%;
+    height: 100%;
+    border: solid 1px red;
+}
+.offertitle {
+    flex: 1 0 auto;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+}
+.offertitle a h1 {
+    font-family: "RobotoBold";
+    color: lightyellow;
+    text-shadow: 1px 1px 1px red;
+    font-size: 2em;
+}
+.offerList {
+    flex: 1 0 auto;
+}

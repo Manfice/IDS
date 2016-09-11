@@ -92,9 +92,10 @@ namespace IndDev.Controllers
             return View(model);
         }
 
-        public ActionResult Calculator()
+        public ActionResult IndexConv()
         {
-            return PartialView();
+            ViewBag.Title = "Каталог товаров компании Торговый дом \"АЙДИ-С\"";
+            return View();
         }
     }
 }

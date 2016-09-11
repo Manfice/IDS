@@ -436,6 +436,9 @@
     <Content Include="Content\reset.css" />
     <Content Include="Content\Shop.css" />
     <Content Include="Content\ShopHelper.css" />
+    <Content Include="Content\Shop\lendman2.png" />
+    <Content Include="Content\Shop\outomnfon.jpg" />
+    <Content Include="Content\Shop\shopSPA.css" />
     <Content Include="Content\slider.css" />
     <Content Include="Content\mairala\style.css" />
     <Content Include="Content\images\vols.jpg" />
@@ -691,6 +694,7 @@
     <Content Include="Scripts\knockout.validation.min.js.map" />
     <Content Include="Views\Customer\PlaceHolders\_Main.cshtml" />
     <Content Include="Views\Shared\_PersonalHelp.cshtml" />
+    <Content Include="Views\Shop\IndexConv.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
