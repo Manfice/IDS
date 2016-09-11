@@ -66,7 +66,7 @@
         if (feedback.actionData() === "CALL") {
             manager.botText(data);
         } else {
-            manager.botText("MAIL");
+            manager.botText("Ошибка отправки сообщения. "+data);
         }
         manager.botAnsw(null);
         clMod();
@@ -77,9 +77,10 @@
     };
 
     var sendData = function () {
-        console.log(ko.toJSON(feedback));
         if (manager.botAnsw() !== "2") {
-            badCallback();
+            manager.botView("2");
+            manager.botText("Ответ не верный.");
+            clMod();
             return;
         } else {
             client.callMeReq(feedback,sCallback, badCallback);
