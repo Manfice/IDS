@@ -26,7 +26,8 @@
         this.data.Descr = ko.observable(data.Descr);
         this.data.Banks = ko.observableArray();
         this.data.Telephones = ko.observableArray();
-    }
+        this.data.PersonContacts = ko.observableArray();
+    };
     var setView = function(data) {
         viewmodel.currtab(data);
     };
@@ -49,16 +50,29 @@
         CompDirect: null,
         Descr: null,
         Banks: ko.observableArray(),
-        Telephones: ko.observableArray()
+        Telephones: ko.observableArray(),
+        PersonContacts: ko.observableArray()
     };
+
     var addCompany = function() {
-        viewmodel.currtab('EDIT');
+        viewmodel.currtab("EDIT");
         var cp = new company(newCompany);
         var tel = { Id: 0, PhoneNumber: ko.observable(), Title: ko.observable("Test") };
+        var pers = { Id: 0, PersonName: ko.observable(), Email: ko.observable("Test@test"), Phone: ko.observable("Test") };
         cp.data.Telephones.push(tel);
+        cp.data.PersonContacts.push(pers);
         currCompany(cp);
         console.log(ko.toJSON(currCompany));
-    }
+    };
+    var editCompany = function(comp) {
+        viewmodel.currtab("EDIT");
+        var cp = comp;
+        var tel = { Id: 0, PhoneNumber: ko.observable(), Title: ko.observable("Test") };
+        var pers = { Id: 0, PersonName: ko.observable(), Email: ko.observable("Test@test"), Phone: ko.observable("Test") };
+        cp.data.Telephones.push(tel);
+        cp.data.PersonContacts.push(pers);
+        currCompany(cp);
+    };
     var retrieveCompanysCallback = function(data) {
         data.forEach(function (item) {
             console.log(ko.toJSON(item));
@@ -68,6 +82,9 @@
             });
             item.Banks.forEach(function(bank) {
                 compData.data.Banks.push(bank);
+            });
+            item.PersonContacts.forEach(function(pers) {
+                compData.data.PersonContacts.push(pers);
             });
             companys.push(compData);
 
@@ -88,6 +105,7 @@
         currView: currView,
         companys: companys,
         addCompany:addCompany,
-        currCompany:currCompany
+        currCompany: currCompany,
+        editCompany: editCompany
     };
 }();

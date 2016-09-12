@@ -39,7 +39,7 @@
                 <td data-bind="text: data.CompanyName"></td>
                 <td data-bind="text: data.Region"></td>
                 <td data-bind="text: data.Offer"></td>
-                <td><a>Подробнее</a></td>
+                <td><a data-bind="click:Admin.editCompany">Подробнее</a></td>
             </tr>
             </tbody>
         </table>
@@ -121,22 +121,70 @@
                         <p>Телефоны</p>
                         <div data-bind="with:Admin.currCompany">
                             <div data-bind="foreach:data.Telephones">
-                                <div class="col-md-1">
-                                    <div class="form-group">
-                                        <label for="telId">#</label>
-                                        <input class="form-control" type="text" name="CompanyName" id="telId" data-bind="value: Id"/>
+                                <div class="row">
+                                    <div class="col-md-1">
+                                        <div class="form-group">
+                                            <label for="telId">#</label>
+                                            <input class="form-control" type="text" name="CompanyName" id="telId" data-bind="value: Id" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="TitleInput">Наименование:</label>
+                                            <input class="form-control" type="text" name="CompanyName" id="TitleInput" data-bind="value:Title" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="PhoneInput">Телефон:</label>
+                                            <input class="form-control" type="text" name="CompanyName" id="PhoneInput" data-bind="value:PhoneNumber"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Управление:</label><br/>
+                                            <button type="button" class="btn btn-success btn-sm">Сохранить</button>
+                                            <button type="button" class="btn btn-warning btn-sm">Удалить</button>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="TitleInput">Наименование:</label>
-                                        <input class="form-control" type="text" name="CompanyName" id="TitleInput" data-bind="value:Title"/>
+                            </div>
+                        </div>
+                        <hr/>
+                        <p>Контакты</p>
+                        <div data-bind="with:Admin.currCompany">
+                            <div data-bind="foreach:data.PersonContacts">
+                                <div class="row">
+                                    <div class="col-md-1">
+                                        <div class="form-group">
+                                            <label for="persId">#</label>
+                                            <input class="form-control" type="text" name="CompanyName" id="persId" data-bind="value: Id" />
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="PhoneInput">Телефон:</label>
-                                        <input class="form-control" type="text" name="CompanyName" id="PhoneInput" data-bind="value:PhoneNumber" />
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="PersNameInput">Наименование:</label>
+                                            <input class="form-control" type="text" name="CompanyName" id="PersNameInput" data-bind="value:PersonName" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="PersPhoneInput">Телефон:</label>
+                                            <input class="form-control" type="text" name="CompanyName" id="PersPhoneInput" data-bind="value:Phone" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="PersEmailInput">Телефон:</label>
+                                            <input class="form-control" type="text" name="CompanyName" id="PersEmailInput" data-bind="value:Email" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Управление:</label><br />
+                                            <button type="button" class="btn btn-success btn-sm">Сохранить</button>
+                                            <button type="button" class="btn btn-warning btn-sm">Удалить</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

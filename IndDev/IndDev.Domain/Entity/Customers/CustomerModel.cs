@@ -44,6 +44,7 @@ namespace IndDev.Domain.Entity.Customers
         public string CompDirect { get; set; }//Тип компании
         public string Descr { get; set; }
         public virtual ICollection<Telephone> Telephones { get; set; }
+        public virtual ICollection<PersonContact> PersonContacts { get; set; }
         public virtual ICollection<Bank> Banks { get; set; }
     }
 
@@ -81,5 +82,14 @@ namespace IndDev.Domain.Entity.Customers
         public string Title { get; set; }
         public decimal Discount { get; set; }
         public PriceType PriceType { get; set; }
+    }
+
+    public class PersonContact
+    {
+        public int Id { get; set; }
+        public string PersonName { get; set; }
+        public string Email { get; set; }
+        public string Phone { get; set; }
+        public virtual Details Details { get; set; }
     }
 }
