@@ -41,6 +41,7 @@ namespace IndDev.Domain.Entity.Customers
         public string Buh { get; set; }
         public string Offer { get; set; }//Договор с контрагентом
         public string Region { get; set; }
+        public string CompDirect { get; set; }//Тип компании
         public string Descr { get; set; }
         public virtual ICollection<Telephone> Telephones { get; set; }
         public virtual ICollection<Bank> Banks { get; set; }
