@@ -33,9 +33,9 @@
         manager.view(false);
     };
     var feedback = {
-        phone: ko.observable("9283731613"),
+        phone: ko.observable(),
         email: ko.observable(),
-        title: ko.observable("Petr"),
+        title: ko.observable(),
         MailMessage: ko.observable(),
         actionData:ko.observable("NONE")
     };
