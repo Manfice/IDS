@@ -21,7 +21,7 @@
 </div>
 <div class="pageWrapper">
     <div class="pageView" data-bind="visible:Admin.currView('COMPANY')" style="display:none">
-        <table>
+        <table class="table table-responsive table-striped">
             <thead>
             <tr>
                 <th>#</th>
@@ -32,9 +32,16 @@
                 <th></th>
             </tr>
             </thead>
+            <tbody data-bind="foreach: Admin.companys">
             <tr>
-                <td></td>
+                <td data-bind="text: data.id"></td>
+                <td data-bind="text: data.Inn"></td>
+                <td data-bind="text: data.CompanyName"></td>
+                <td data-bind="text: data.Region"></td>
+                <td data-bind="text: data.Offer"></td>
+                <td><a>Подробнее</a></td>
             </tr>
+            </tbody>
         </table>
     </div>
     <div class="pageView" data-bind="visible:Admin.currView('EVENT')" style="display:none">

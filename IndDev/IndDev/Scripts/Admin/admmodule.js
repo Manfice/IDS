@@ -18,6 +18,9 @@
         this.data.Offer = ko.observable(data.Offer);
         this.data.Director = ko.observable(data.Director);
         this.data.Buh = ko.observable(data.Buh);
+        this.data.Region = ko.observable(data.Region);
+        this.data.CompDirect = ko.observable(data.CompDirect);
+        this.data.Descr = ko.observable(data.Descr);
         this.data.Banks = ko.observableArray();
         this.data.Telephones = ko.observableArray();
     }
@@ -47,6 +50,7 @@
     $(init);
     return{
         setView: setView,
-        currView: currView
+        currView: currView,
+        companys: companys
     };
 }();
