@@ -29,7 +29,7 @@
                 <th>Наименование</th>
                 <th>Регион</th>
                 <th>Договор</th>
-                <th></th>
+                <th><button type="button" data-bind="click:Admin.addCompany"><i class="fa fa-plus-square" aria-hidden="true"></i></button></th>
             </tr>
             </thead>
             <tbody data-bind="foreach: Admin.companys">
@@ -46,6 +46,105 @@
     </div>
     <div class="pageView" data-bind="visible:Admin.currView('EVENT')" style="display:none">
         Events
+    </div>
+    <div class="pageView" data-bind="visible:Admin.currView('EDIT')" style="display:none">
+        <div class="panel panel-default">
+            <div class="panel-heading" data-bind="with:Admin.currCompany"><p data-bind="text:'Компания: '+data.CompanyName()"></p></div>
+            <div class="panel-body">
+                <form action="/" method="post" data-bind="with:Admin.currCompany">
+                    <fieldset>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="CompanyNameInput">Наименование компании:</label>
+                                    <input class="form-control" type="text" name="CompanyName" id="CompanyNameInput" data-bind="value:data.CompanyName" />
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="InnInput">Инн:</label>
+                                    <input class="form-control" type="text" name="CompanyName" id="InnInput" data-bind="value:data.Inn" />
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="KppInput">Кпп:</label>
+                                    <input class="form-control" type="text" name="CompanyName" id="KppInput" data-bind="value:data.Kpp" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="AddressUrInput">Юр адрес:</label>
+                                    <input class="form-control" type="text" name="CompanyName" id="AddressUrInput" data-bind="value:data.UrAdress"/>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="AddressRealInput">Почтовый адрес:</label>
+                                    <input class="form-control" type="text" name="CompanyName" id="AddressRealInput" data-bind="value:data.RealAdress"/>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="RegionInput">Регион:</label>
+                                    <input class="form-control" type="text" name="CompanyName" id="RegionInput" data-bind="value:data.Region"/>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="OgrnInput">ОГРН:</label>
+                                    <input class="form-control" type="text" name="CompanyName" id="OgrnInput" data-bind="value:data.Ogrn"/>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="DirectInput">Тип компании:</label>
+                                    <input class="form-control" type="text" name="CompanyName" id="DirectInput" data-bind="value:data.CompDirect"/>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="DirInput">Директор компании:</label>
+                                    <input class="form-control" type="text" name="CompanyName" id="DirInput" data-bind="value:data.Director"/>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="BuhInput">Глав. бух. компании:</label>
+                                    <input class="form-control" type="text" name="CompanyName" id="BuhInput" data-bind="value:data.Buh"/>
+                                </div>
+                            </div>
+                        </div>
+                        <hr/>
+                        <p>Телефоны</p>
+                        <div data-bind="with:Admin.currCompany">
+                            <div data-bind="foreach:data.Telephones">
+                                <div class="col-md-1">
+                                    <div class="form-group">
+                                        <label for="telId">#</label>
+                                        <input class="form-control" type="text" name="CompanyName" id="telId" data-bind="value: Id"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="TitleInput">Наименование:</label>
+                                        <input class="form-control" type="text" name="CompanyName" id="TitleInput" data-bind="value:Title"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="PhoneInput">Телефон:</label>
+                                        <input class="form-control" type="text" name="CompanyName" id="PhoneInput" data-bind="value:PhoneNumber" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
     </div>
 
 </div>

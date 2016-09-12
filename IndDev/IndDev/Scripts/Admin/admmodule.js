@@ -6,6 +6,9 @@
     };
 
     var companys = ko.observableArray();
+
+    var currCompany = ko.observable();
+
     var company = function(data) {
         this.data = {};
         this.data.id = ko.observable(data.Id);
@@ -32,11 +35,43 @@
         return viewmodel.currtab() === data;
     };
 
+    var newCompany = {
+        CompanyName: "Новый контрагент",
+        UrAdress: null,
+        RealAdress: null,
+        Inn: null,
+        Kpp: null,
+        Ogrn: null,
+        Offer: null,
+        Director: null,
+        Buh: null,
+        Region: null,
+        CompDirect: null,
+        Descr: null,
+        Banks: ko.observableArray(),
+        Telephones: ko.observableArray()
+    };
+    var addCompany = function() {
+        viewmodel.currtab('EDIT');
+        var cp = new company(newCompany);
+        var tel = { Id: 0, PhoneNumber: ko.observable(), Title: ko.observable("Test") };
+        cp.data.Telephones.push(tel);
+        currCompany(cp);
+        console.log(ko.toJSON(currCompany));
+    }
     var retrieveCompanysCallback = function(data) {
-        data.forEach(function(item) {
-            companys.push(new company(item));
+        data.forEach(function (item) {
+            console.log(ko.toJSON(item));
+            var compData = new company(item);
+            item.Telephones.forEach(function(phone) {
+                compData.data.Telephones.push(phone);
+            });
+            item.Banks.forEach(function(bank) {
+                compData.data.Banks.push(bank);
+            });
+            companys.push(compData);
+
         });
-        console.log(ko.toJSON(companys));
     };
 
     var retrieveCompanys = function() {
@@ -51,6 +86,8 @@
     return{
         setView: setView,
         currView: currView,
-        companys: companys
+        companys: companys,
+        addCompany:addCompany,
+        currCompany:currCompany
     };
 }();
