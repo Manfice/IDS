@@ -694,5 +694,10 @@ namespace IndDev.Controllers
             ViewBag.ru = returnUrl;
             return PartialView(parentCategory);
         }
+
+        public ActionResult Companys()
+        {
+            return View();
+        }
     }
 }

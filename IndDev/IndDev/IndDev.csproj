@@ -224,6 +224,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\CrmController.cs" />
     <Compile Include="Controllers\CustApiController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\FeedbackController.cs" />
@@ -503,6 +504,8 @@
     <None Include="Properties\PublishProfiles\id-racks - Web Deploy %283%29.pubxml" />
     <None Include="Properties\PublishProfiles\id-racks - Web Deploy.pubxml" />
     <Content Include="robots.txt" />
+    <Content Include="Scripts\Admin\adminController.js" />
+    <Content Include="Scripts\Admin\admmodule.js" />
     <Content Include="Scripts\bootstrap-fileupload.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -695,6 +698,7 @@
     <Content Include="Views\Customer\PlaceHolders\_Main.cshtml" />
     <Content Include="Views\Shared\_PersonalHelp.cshtml" />
     <Content Include="Views\Shop\IndexConv.cshtml" />
+    <Content Include="Views\Admin\Companys.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

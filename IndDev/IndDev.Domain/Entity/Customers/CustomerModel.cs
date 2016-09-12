@@ -40,6 +40,8 @@ namespace IndDev.Domain.Entity.Customers
         public string Director { get; set; }
         public string Buh { get; set; }
         public string Offer { get; set; }//Договор с контрагентом
+        public string Region { get; set; }
+        public string Descr { get; set; }
         public virtual ICollection<Telephone> Telephones { get; set; }
         public virtual ICollection<Bank> Banks { get; set; }
     }

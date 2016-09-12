@@ -35,14 +35,6 @@
         }
     };
 
-    var displayItem = {
-        main: "MAIN",
-        company: "COMPANY",
-        orders: "ORDERS",
-        reports: "REPORTS",
-        help: "HELP"
-    };
-
     var setView = function(view) {
         activePage(view);
     };

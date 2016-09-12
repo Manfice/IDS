@@ -126,3 +126,40 @@
 .orderContains table tr:hover {
     background-color: darkseagreen;
 }
+.topActions {
+    flex: 0 0 auto;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+}
+.topActions ul {
+    list-style: none;
+    margin: 0;padding: 0;
+    display: flex;
+    flex-flow: row;
+}
+.topActions ul li {
+    margin: 0 20px;
+    cursor: pointer;
+    border-left: solid 2px darkgreen;
+    padding: 5px;
+}
+.activeTop {
+    font-weight: bolder;
+    color: whitesmoke;
+    background-color: darkgray;
+    padding: 5px;
+}
+.pageWrapper {
+    flex: 1 0 auto;
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+.pageView {
+    flex: 1 0 auto;
+    max-width: 1200px;
+    width: 100%;
+    border: solid 1px red;
+}

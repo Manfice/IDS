@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "Компании/Клиенты";
+    Layout = "~/Views/Shared/_NewDesing.cshtml";
+}
+
+@section scripts
+{
+<script src="~/Scripts/Admin/adminController.js"></script>
+<script src="~/Scripts/Admin/admmodule.js"></script>
+}
+@section links
+{
+    <link href="~/Content/admin.css" rel="stylesheet" />
+}
+<div class="topActions">
+    <ul>
+        <li data-bind="click:Admin.setView.bind($data, 'COMPANY'), css:{activeTop:Admin.currView('COMPANY')}" class="activeTop">Компании</li>
+        <li data-bind="click:Admin.setView.bind($data, 'EVENT'), css:{activeTop:Admin.currView('EVENT')}" class="activeTop">События</li>
+    </ul>
+</div>
+<div class="pageWrapper">
+    <div class="pageView" data-bind="visible:Admin.currView('COMPANY')" style="display:none">
+        <table>
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Инн</th>
+                <th>Наименование</th>
+                <th>Регион</th>
+                <th>Договор</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tr>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+    <div class="pageView" data-bind="visible:Admin.currView('EVENT')" style="display:none">
+        Events
+    </div>
+
+</div>

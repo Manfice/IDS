@@ -102,6 +102,7 @@
   <ItemGroup>
     <Compile Include="Abstract\IAdminRepository.cs" />
     <Compile Include="Abstract\ICartRepository.cs" />
+    <Compile Include="Abstract\ICrm.cs" />
     <Compile Include="Abstract\ICustomer.cs" />
     <Compile Include="Abstract\IHomeRepository.cs" />
     <Compile Include="Abstract\IMailRepository.cs" />
@@ -111,6 +112,7 @@
     <Compile Include="Abstract\Logic.cs" />
     <Compile Include="Abstract\Roles.cs" />
     <Compile Include="Abstract\ISecureRepository.cs" />
+    <Compile Include="Context\CrmRepository.cs" />
     <Compile Include="Context\Curency.cs" />
     <Compile Include="Context\DataContext.cs" />
     <Compile Include="Context\DbAdminRepository.cs" />

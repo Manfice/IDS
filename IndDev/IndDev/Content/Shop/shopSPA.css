@@ -25,24 +25,15 @@
     height: 100%;
     border: solid 1px red;
 }
-.offertitle {
-    flex: 1 0 auto;
-    display: flex;
-    flex-flow: column;
-    justify-content: space-between;
-}
 .offertitle a h1 {
     font-family: "RobotoBold";
     color: lightyellow;
     text-shadow: 1px 1px 1px red;
     font-size: 2em;
 }
-.offerList {
-}
 .offerItem {
     display: flex;
     flex-flow: row nowrap;
-    flex: 1 0 auto;
     justify-content: space-between;
     background: linear-gradient(90deg, #fff,transparent)
 }
@@ -52,11 +43,11 @@
     align-self: flex-end;
 }
 .offerItemDescr {
-    flex: 1 0 auto;
     display: flex;
     flex-flow: column nowrap;
     justify-content: flex-start;
     align-items: flex-end;
+    padding: 10px;
 }
 .offerItemDescr h2 {
     font-size: 1.3em;
@@ -74,12 +65,13 @@
 }
 .offerItemDescr p {
     flex: 0 0 auto;
-    width: 600px;
-    height: 80px;
     font-size: 0.8em;
     font-weight: bold;
     text-align: justify;
     overflow: hidden;
     border: solid 1px red;
     font-family: "RobotoRegular"
+}
+.offerItemDescr p:first-letter {
+    margin: 0 0 0 20px;
 }
