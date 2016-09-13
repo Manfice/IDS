@@ -19,6 +19,33 @@ namespace IndDev.Domain.Context
         public IEnumerable<ProductMenu> GetProductMenus => _context.ProductMenus.Where(menu => menu.ShowInCatalog).OrderBy(menu => menu.Priority).ToList();
         public IEnumerable<Product> GetProducts => _context.Products.ToList();
 
+        public IEnumerable<ProductView> GetTopRetails
+        {
+            get
+            {
+                var products =
+    _context.Products.Where(
+        p => p.Prices.FirstOrDefault(price => price.PriceType == PriceType.Sale).Value > 0).ToList();
+                var model = products.Select(product => new ProductView
+                {
+                    Product = product,
+                    Avatar = product.ProductPhotos.FirstOrDefault(photo => photo.PhotoType == PhotoType.Avatar),
+                    Prices = product.Prices.Where(price => price.PriceType == PriceType.Sale).Select(price => new PriceViewModel
+                    {
+                        Product = product,
+                        Title = price.Title,
+                        PriceType = price.PriceType,
+                        Id = price.Id,
+                        Currency = price.Currency,
+                        OriginalPrice = price.Value,
+                        PriceFrom = price.QuanttityFrom
+                    }).ToList()
+                }).ToList();
+
+                return model;
+            }
+        }
+
         public ProductMenu GetProductMenu(int id)
         {
             return _context.ProductMenus.Find(id);

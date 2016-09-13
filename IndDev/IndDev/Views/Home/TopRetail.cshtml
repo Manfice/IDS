@@ -5,8 +5,9 @@
     <div class="headTop">
         <img src="@Url.Content("~/Content/images/remake.jpg")" alt=""/>
         <div class="hottopdescr">
-            <h1>ГОРЯЧЕЕ ПРЕДЛОЖЕНИЕ</h1>
-            <a>@Model.Count() товаров по спец-цене</a>            
+            <a href="@Url.Action("ShowOffers","Shop")">
+                <h1>ГОРЯЧЕЕ ПРЕДЛОЖЕНИЕ</h1>
+            </a>
         </div>
     </div>
     <div id="hotCarousel" class="owl-carousel">

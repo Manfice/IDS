@@ -1,0 +1,64 @@
+﻿@using IndDev.Domain.Entity.Products
+@model IEnumerable<IndDev.Domain.ViewModels.ProductView>
+@{
+    Layout = "~/Views/Shared/_NewDesing.cshtml";
+    ViewBag.description = @"В нашем каталоге вы найдете широкий ассортимент товаров для строительства линий связи, телекоммуникационного оборудования, инстркмент, расходные материалы для локальных сетей. Мы предлагаем товары как Российского, так и импортного производства. Вся продукция сертифицированна и проверена на качество нашими постоянными клиентами.";
+    var cart = ViewBag.Cart;
+}
+@section links
+{
+    <link href="~/Content/ShopHelper.css" rel="stylesheet" />
+}
+@Html.Action("TopNavigation", "Home")
+<div class="catalogBody">
+    @Html.Action("ShopBlock", "Shop")
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                @foreach (var item in Model.OrderBy(view => view.Prices.FirstOrDefault(model => model.PriceType==PriceType.Sale).ConvValue))
+                {
+                    <div class="col-md-6 productView">
+                        <div class="goods">
+                            <a href="@Url.Action("ProductDetails","Shop", new {id=item.Product.Id})">
+                                @if (item.Avatar != null)
+                                {
+                                    <img src="@item.Avatar.Path" alt="@item.Product.Title" />
+                                }
+                                else
+                                {
+                                    <img src="~/Content/images/noimage.png" alt="" />
+                                }
+                                <div class="goodsDescr">
+                                    <h3>АРТ : @item.Product.Articul</h3>
+                                    <p>@item.Product.Title</p>
+                                </div>
+                            </a>
+                            <div class="actionSection">
+                                @if (item.Prices.Any())
+                                {
+                                    <p>Всего за - @item.Prices.Max(price => price.ConvValue).ToString("C")/@item.Product.MesureUnit.ShortName</p>
+                                }
+                                else
+                                {
+                                    <p>Уточняйте цену...</p>
+                                }
+
+                                @Html.ActionLink("КУПИТЬ", "QuickAddToCart", "Cart", new { prodId = item.Product.Id, returnUrl = Request.Url.PathAndQuery }, null)
+                            </div>
+                        </div>
+
+                    </div>
+                }
+            </div>
+            <div class="col-md-3">
+                <div class="sideNavigation">
+                    <ul>
+                        <li class="navReclama"><i class="fa fa-money" aria-hidden="true"></i><a>Акции</a></li>
+                        <li class="navReSale"><i class="fa fa-refresh" aria-hidden="true"></i><a>Барахолочка</a></li>
+                        <li class="navFavourites"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i><a>Избранное</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

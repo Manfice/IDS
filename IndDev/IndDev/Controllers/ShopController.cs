@@ -68,7 +68,13 @@ namespace IndDev.Controllers
             ViewBag.Title = model.ProductMenuItem.Title+ @"Торговый дом ""АЙДИ-С"" в г. Ставрополе.";
             return View(model);
         }
-
+        public ActionResult ShowOffers(Cart cart)
+        {
+            var model = _repository.GetTopRetails;
+            ViewBag.Cart = cart;
+            ViewBag.Title = @"Самые сильные предложения от " + @"Торговый дом ""АЙДИ-С"" в г. Ставрополе.";
+            return View(model);
+        }
         public ActionResult ProductDetails(Cart cart, int id)
         {
             var model = _repository.GetProductDetails(id);

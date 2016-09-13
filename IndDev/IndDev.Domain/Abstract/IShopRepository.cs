@@ -17,5 +17,6 @@ namespace IndDev.Domain.Abstract
         ProductView GetProductDetails(int id);
         ShopProductView GetProduct(int id);
         Task<ShopProductView> SearchProductsAsynk(string request);
+        IEnumerable<ProductView> GetTopRetails { get; }
     }
 }
