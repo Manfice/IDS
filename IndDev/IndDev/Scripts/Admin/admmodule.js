@@ -86,22 +86,31 @@
     var addCompany = function() {
         viewmodel.currtab("EDIT");
         var cp = new company(newCompany);
-        var tel = { Id: 0, PhoneNumber: null, Title: "Новый" };
-        var tell = new telData(tel, displayMode.edit);
-        var pers = { Id: 0, PersonName: ko.observable(), Email: ko.observable("Test@test"), Phone: ko.observable("Test") };
-        cp.Telephones.push(tell);
-        cp.PersonContacts.push(pers);
+        //var pers = { Id: 0, PersonName: ko.observable(), Email: ko.observable("Test@test"), Phone: ko.observable("Test") };
+        //cp.Telephones.push(tell);
+        //cp.PersonContacts.push(pers);
         currCompany(cp);
         console.log(ko.toJSON(currCompany));
+    };
+    var addTell = function (company) {
+        var tel = { Id: 0, PhoneNumber: null, Title: null };
+        var tell = new telData(tel, displayMode.edit);
+        company.Telephones.push(tell);
+        currCompany(company);
+    }
+    var removeTel = function (phone) {
+        var cm = currCompany;
+        cm.Telephones.remove(phone);
+        console.log(ko.toJSON(cm));
     };
     var editCompany = function(comp) {
         viewmodel.currtab("EDIT");
         var cp = comp;
-        var tel = { Id: 0, PhoneNumber: null, Title: "Новый" };
-        var tell = new telData(tel, displayMode.edit);
-        var pers = { Id: 0, PersonName: ko.observable(), Email: ko.observable("Test@test"), Phone: ko.observable("Test") };
-        cp.Telephones.push(tell);
-        cp.PersonContacts.push(pers);
+        //var tel = { Id: 0, PhoneNumber: null, Title: "Новый" };
+        //var tell = new telData(tel, displayMode.edit);
+        //var pers = { Id: 0, PersonName: ko.observable(), Email: ko.observable("Test@test"), Phone: ko.observable("Test") };
+        //cp.Telephones.push(tell);
+        //cp.PersonContacts.push(pers);
         currCompany(cp);
     };
     var retrieveCompanysCallback = function(data) {
@@ -153,6 +162,8 @@
         displayMode:displayMode,
         postCompany:postCompany,
         putCompany:putCompany,
-        isNewCompany:isNewCompany
+        isNewCompany:isNewCompany,
+        addTell:addTell,
+        removeTel:removeTel
     };
 }();

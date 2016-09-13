@@ -77,6 +77,36 @@ namespace IndDev.Domain.Context
                 dbComp.Descr = currCompany.Descr;
                 dbComp.CompDirect = currCompany.CompDirect;
                 dbComp.Offer = currCompany.Offer;
+                foreach (var item in currCompany.Telephones)
+                {
+                    var tel = await _context.Telephones.FindAsync(item.Id);
+                    if (tel != null && !string.IsNullOrEmpty(item.PhoneNumber))
+                    {
+                        tel.PhoneNumber = item.PhoneNumber;
+                        tel.Title = item.Title;
+                    }
+                    else
+                    {
+                        item.DetailsOf = dbComp;
+                        _context.Telephones.Add(item);
+                    }
+                }
+                foreach (var item in currCompany.PersonContacts)
+                {
+                    var pers = await _context.PersonContacts.FindAsync(item.Id);
+                    if (pers != null)
+                    {
+                        pers.Email = item.Email;
+                        pers.PersonName = item.PersonName;
+                        pers.Phone = item.Phone;
+                    }
+                    else
+                    {
+                        item.Details = dbComp;
+                        _context.PersonContacts.Add(item);
+                    }
+                }
+
             }
             await _context.SaveChangesAsync();
             return dbComp.Id;

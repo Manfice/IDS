@@ -1,6 +1,6 @@
 ﻿@model IndDev.Domain.Entity.Customers.Customer
 <ul class="loginPartial">
-    @if (User.IsInRole("A"))
+    @if (User.IsInRole("A,M"))
     {
         <li><a href="@Url.Action("AdminPage", "Admin", new {userId = User.Identity.Name})">@Model.Title</a><span>/</span></li>
     }

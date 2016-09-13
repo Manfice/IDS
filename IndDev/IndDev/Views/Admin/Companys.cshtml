@@ -131,7 +131,8 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <button class="btn btn-success btn-sm" data-bind="click:Admin.postCompany, visible:Admin.isNewCompany()"/>Сохранить
+                                <button class="btn btn-success btn-sm" data-bind="click:Admin.postCompany, visible:Admin.isNewCompany()">Сохранить</button>
+                                <button class="btn btn-success btn-sm" data-bind="click:Admin.postCompany, visible:!Admin.isNewCompany()">Записать</button>
                             </div>
                         </div>
                         <hr/>
@@ -143,7 +144,9 @@
                                     <th>#</th>
                                     <th>Наименование</th>
                                     <th>Телефон</th>
-                                    <th>Действия</th>
+                                    <th>
+                                        <button data-bind="click:Admin.addTell"><i class="fa fa-plus-square" aria-hidden="true"></i></button>
+                                    </th>
                                 </tr>
                                 </thead>
                                 <tbody data-bind="foreach:Telephones">
@@ -166,6 +169,7 @@
                                     </td>
                                     <td>
                                         <a>Сохранить</a>
+                                        <a data-bind="click:Admin.removeTel">Отмена</a>
                                     </td>
                                 </tr>
                                 </tbody>
