@@ -39,7 +39,7 @@ namespace IndDev.Domain.Entity.Customers
         public string RealAdress { get; set; }
         public string Director { get; set; }
         public string Buh { get; set; }
-        public string Offer { get; set; }//Договор с контрагентом
+        public string Offer { get; set; }//почта для офера с контрагентом
         public string Region { get; set; }
         public string CompDirect { get; set; }//Тип компании
         public string Descr { get; set; }
