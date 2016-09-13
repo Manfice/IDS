@@ -10,7 +10,21 @@
         });
     };
 
+    var updateCompany = function (currCompany, callback) {
+        console.log(ko.toJSON(currCompany));
+        $.ajax({
+            url: "/api/crm/UpdateCompany/",
+            type: "POST",
+            data: ko.toJSON(currCompany),
+            contentType:"application/json",
+            success: function (result) {
+                callback(currCompany, result);
+            }
+        });
+    }
+
     return{
-        getCompanys: getCompanys
+        getCompanys: getCompanys,
+        updateCompany: updateCompany
     };
 };

@@ -28,6 +28,7 @@ namespace IndDev.Domain.Context
         public DbSet<Details> Detailses { get; set; }
         public DbSet<Telephone> Telephones { get; set; }
         public DbSet<Bank> Banks { get; set; }
+        public DbSet<PersonContact> PersonContacts { get; set; }
         public DbSet<CustomerStatus> CustomerStatuses { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Stock> Stocks { get; set; }
