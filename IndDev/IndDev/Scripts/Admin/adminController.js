@@ -18,13 +18,32 @@
             data: ko.toJSON(currCompany),
             contentType:"application/json",
             success: function (result) {
-                callback(currCompany, result);
+                callback(result);
             }
         });
     }
 
+    var deletePhone = function(phone,callback) {
+        $.ajax({
+            url: "/api/crm/DeletePhone/"+phone.Id(),
+            type:"DELETE",
+            success: function(result) {
+                callback(result);
+            }
+        });
+    }
+    var deletePerson = function (person, callback) {
+        $.ajax({
+            url: "/api/crm/DeletePerson/" + person.Id(),
+            type: "DELETE",
+            success: function (result) {
+                callback(result);
+            }
+        });
+    }
     return{
         getCompanys: getCompanys,
-        updateCompany: updateCompany
+        updateCompany: updateCompany,
+        deletePhone: deletePhone,deletePerson
     };
 };

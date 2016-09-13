@@ -49,7 +49,7 @@ namespace IndDev.Controllers
         public async Task<IHttpActionResult> UpdateCompany(Details currCompany)
         {
             var result = await _repo.UpdateCompany(currCompany);
-            return result != 0 ? Ok(result) : (IHttpActionResult)BadRequest("Something going wrong...");
+            return result != null ? Ok(result) : (IHttpActionResult)BadRequest("Something going wrong...");
 
         }
     }

@@ -13,10 +13,11 @@
 {
     <link href="~/Content/admin.css" rel="stylesheet" />
 }
-<div class="topActions">
+<div class="topActions" data-bind="visible:!Admin.currView('EDIT')">
     <ul>
         <li data-bind="click:Admin.setView.bind($data, 'COMPANY'), css:{activeTop:Admin.currView('COMPANY')}" class="activeTop">Компании</li>
         <li data-bind="click:Admin.setView.bind($data, 'EVENT'), css:{activeTop:Admin.currView('EVENT')}" class="activeTop">События</li>
+        <li data-bind="click:Admin.setView.bind($data, 'EDIT')" class="activeTop">Edit</li>
     </ul>
 </div>
 <div class="pageWrapper">
@@ -49,7 +50,10 @@
     </div>
     <div class="pageView" data-bind="visible:Admin.currView('EDIT')" style="display:none">
         <div class="panel panel-default">
-            <div class="panel-heading" data-bind="with:Admin.currCompany"><p data-bind="text:'Компания: '+CompanyName()"></p></div>
+            <div class="panel-heading" data-bind="with:Admin.currCompany">
+                <p style="display: inline" data-bind="text:'Компания: '+CompanyName()"></p>
+                <button class="pull-right" data-bind="click:Admin.setView.bind($data, 'COMPANY')">Закрыть</button>
+            </div>
             <div class="panel-body">
                 <form action="/" method="post" data-bind="with:Admin.currCompany">
                     <fieldset>
@@ -132,7 +136,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <button class="btn btn-success btn-sm" data-bind="click:Admin.postCompany, visible:Admin.isNewCompany()">Сохранить</button>
-                                <button class="btn btn-success btn-sm" data-bind="click:Admin.postCompany, visible:!Admin.isNewCompany()">Записать</button>
+                                <button class="btn btn-success btn-sm" data-bind="click:Admin.putCompany, visible:!Admin.isNewCompany()">Записать</button>
                             </div>
                         </div>
                         <hr/>
@@ -155,8 +159,8 @@
                                     <td data-bind="text: Title"></td>
                                     <td data-bind="text: PhoneNumber"></td>
                                     <td>
-                                        <a>Редактировать</a>
-                                        <a>Удалить</a>
+                                        <a data-bind="click:Admin.updatePhone">Редактировать</a>
+                                        <a data-bind="click:Admin.deletePhone">Удалить</a>
                                     </td>
                                 </tr>
                                 <tr data-bind="if: mode()=== Admin.displayMode.edit">
@@ -168,8 +172,7 @@
                                         <input type="tel" class="form-control" data-bind="value: PhoneNumber"/>
                                     </td>
                                     <td>
-                                        <a>Сохранить</a>
-                                        <a data-bind="click:Admin.removeTel">Отмена</a>
+                                        <a data-bind="click:Admin.savePhone">Сохранить</a>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -178,41 +181,46 @@
                         <hr/>
                         <p>Контакты</p>
                         <div data-bind="with:Admin.currCompany">
-                            <div data-bind="foreach:PersonContacts">
-                                <div class="row">
-                                    <div class="col-md-1">
-                                        <div class="form-group">
-                                            <label for="persId">#</label>
-                                            <input class="form-control" type="text" name="CompanyName" id="persId" data-bind="value: Id" />
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label for="PersNameInput">Наименование:</label>
-                                            <input class="form-control" type="text" name="CompanyName" id="PersNameInput" data-bind="value:PersonName" />
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="form-group">
-                                            <label for="PersPhoneInput">Телефон:</label>
-                                            <input class="form-control" type="text" name="CompanyName" id="PersPhoneInput" data-bind="value:Phone" />
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="form-group">
-                                            <label for="PersEmailInput">Телефон:</label>
-                                            <input class="form-control" type="text" name="CompanyName" id="PersEmailInput" data-bind="value:Email" />
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label>Управление:</label><br />
-                                            <button type="button" class="btn btn-success btn-sm">Сохранить</button>
-                                            <button type="button" class="btn btn-warning btn-sm">Удалить</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <table class="table table-responsive">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Имя контакта</th>
+                                        <th>Телефон</th>
+                                        <th>Email</th>
+                                        <th>
+                                            <button data-bind="click:Admin.addPerson"><i class="fa fa-plus-square" aria-hidden="true"></i></button>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody data-bind="foreach:PersonContacts">
+                                    <tr data-bind="if: mode()=== Admin.displayMode.view">
+                                        <td data-bind="text: Id"></td>
+                                        <td data-bind="text: PersonName"></td>
+                                        <td data-bind="text: Phone"></td>
+                                        <td data-bind="text: Email"></td>
+                                        <td>
+                                            <a data-bind="click:Admin.updatePerson">Редактировать</a>
+                                            <a data-bind="click:Admin.deletePerson">Удалить</a>
+                                        </td>
+                                    </tr>
+                                    <tr data-bind="if: mode()=== Admin.displayMode.edit">
+                                        <td>New</td>
+                                        <td>
+                                            <input type="text" class="form-control" data-bind="value: PersonName" />
+                                        </td>
+                                        <td>
+                                            <input type="tel" class="form-control" data-bind="value: Phone" />
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control" data-bind="value: Email" />
+                                        </td>
+                                        <td>
+                                            <a data-bind="click:Admin.savePerson">Сохранить</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </fieldset>
                 </form>

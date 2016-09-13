@@ -30,41 +30,44 @@ namespace IndDev.Domain.Context
             return dbDet;
         }
 
-        public async Task<PersonContact> DeleteContactAsync(int id)
+        public async Task<Details> DeleteContactAsync(int id)
         {
             var dbPers = await _context.PersonContacts.FindAsync(id);
             if (dbPers == null)
             {
                 return null;
             }
+            var result = dbPers.Details;
             _context.PersonContacts.Remove(dbPers);
             await _context.SaveChangesAsync();
-            return dbPers;
+            return result;
         }
 
-        public async Task<Telephone> DeletePhoneAsync(int id)
+        public async Task<Details> DeletePhoneAsync(int id)
         {
             var dbPhone = await _context.Telephones.FindAsync(id);
             if (dbPhone == null)
             {
                 return null;
             }
+            var result = dbPhone.DetailsOf;
             _context.Telephones.Remove(dbPhone);
             await _context.SaveChangesAsync();
-            return dbPhone;
+            return result;
         }
 
-        public async Task<int> UpdateCompany(Details currCompany)
+        public async Task<Details> UpdateCompany(Details currCompany)
         {
             var dbComp = new Details();
             if (currCompany.Id == 0)
             {
+                dbComp = currCompany;
                 _context.Detailses.Add(currCompany);
             }
             else
             {
                 dbComp = await _context.Detailses.FindAsync(currCompany.Id);
-                if (dbComp == null) return 0;
+                if (dbComp == null) return null;
                 dbComp.CompanyName = currCompany.CompanyName;
                 dbComp.Inn = currCompany.Inn;
                 dbComp.Kpp = currCompany.Kpp;
@@ -102,6 +105,7 @@ namespace IndDev.Domain.Context
                     }
                     else
                     {
+                        if (string.IsNullOrEmpty(item.Email) || string.IsNullOrEmpty(item.PersonName)) continue;
                         item.Details = dbComp;
                         _context.PersonContacts.Add(item);
                     }
@@ -109,7 +113,7 @@ namespace IndDev.Domain.Context
 
             }
             await _context.SaveChangesAsync();
-            return dbComp.Id;
+            return dbComp;
         }
     }
 }

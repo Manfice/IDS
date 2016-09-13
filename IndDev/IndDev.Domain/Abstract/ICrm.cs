@@ -8,9 +8,9 @@ namespace IndDev.Domain.Abstract
     {
         IEnumerable<Details> Company { get; }
         Task<Details> DeleteCompanyAsync(int id);
-        Task<Telephone> DeletePhoneAsync(int id);
-        Task<PersonContact> DeleteContactAsync(int id);
-        Task<int> UpdateCompany(Details currCompany);
+        Task<Details> DeletePhoneAsync(int id);
+        Task<Details> DeleteContactAsync(int id);
+        Task<Details> UpdateCompany(Details currCompany);
 
     }
 }
