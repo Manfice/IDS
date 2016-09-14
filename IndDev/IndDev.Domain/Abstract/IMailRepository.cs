@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using IndDev.Auth.Model;
+using IndDev.Domain.Entity.Customers;
 using IndDev.Domain.Entity.Orders;
 using IndDev.Domain.ViewModels;
 using IndDev.Models;
@@ -13,5 +14,6 @@ namespace IndDev.Domain.Abstract
         Task<string> MessageFromTitle(string body, MailMessageModel model);
         Task<string> OrderNotify(Order order,string body);
         Task<string> FeedbackAsync(Feedback model);
+        Task<PersonContact> SendKpAsynk(PersonContact contact, string body);
     }
 }

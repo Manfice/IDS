@@ -35,12 +35,18 @@
         this.mode = ko.observable(mode);
     };
 
+    var canKp = function(pr) {
+        console.log(pr);
+        return pr !== 0;
+    }
+
     var persData = function(pers, mode) {
         this.Id = ko.observable(pers.Id);
         this.PersonName = ko.observable(pers.PersonName);
         this.Email = ko.observable(pers.Email);
         this.Phone = ko.observable(pers.Phone);
         this.mode = ko.observable(mode);
+        this.kp = canKp(pers.Id);
     };
 
     var setView = function(data) {
@@ -53,7 +59,10 @@
     var isNewCompany = function() {
         return currCompany.Id === 0;
     };
-
+    var canSendKp = function (pers) {
+        alert(pers.Id);
+        return pers.Id !== "0";
+    }
     var newCompany = {
         CompanyName: null,
         UrAdress: null,
@@ -163,6 +172,12 @@
     var deletePerson = function(person) {
         client.deletePerson(person,delPhoneCallback);
     }
+    var sndPrCallback = function(data) {
+        console.log(ko.toJSON(data));
+    }
+    var sndKp = function(par) {
+        client.sendKp(par, sndPrCallback);
+    }
     var init = function() {
         retrieveCompanys();
     };
@@ -180,6 +195,7 @@
         isNewCompany:isNewCompany,
         addTell: addTell, addPerson: addPerson, deletePerson: deletePerson,
         deletePhone: deletePhone, updatePhone: updatePhone,savePhone:savePhone,
-        updatePerson: updatePerson,savePerson:savePerson
+        updatePerson: updatePerson,savePerson:savePerson,
+        canSendKp:canSendKp,sndKp:sndKp
     };
 }();

@@ -41,9 +41,22 @@
             }
         });
     }
+
+    var sendKp = function(pers, callback) {
+        $.ajax({
+            url: "/api/crm/sendKp/",
+            type:"POST",
+            contentType: "application/json",
+            data:pers,
+            success: function(data) {
+                callback(data);
+            }
+        });
+    }
     return{
         getCompanys: getCompanys,
         updateCompany: updateCompany,
-        deletePhone: deletePhone,deletePerson
+        deletePhone: deletePhone,deletePerson,
+        sendKp: sendKp
     };
 };

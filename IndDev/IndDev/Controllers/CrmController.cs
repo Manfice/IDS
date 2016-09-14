@@ -14,10 +14,12 @@ namespace IndDev.Controllers
     public class CrmController : ApiController
     {
         private readonly ICrm _repo;
+        private readonly IMailRepository _mail;
 
-        public CrmController(ICrm repo)
+        public CrmController(ICrm repo, IMailRepository mail)
         {
             _repo = repo;
+            _mail = mail;
         }
 
         [HttpGet]
@@ -51,6 +53,14 @@ namespace IndDev.Controllers
             var result = await _repo.UpdateCompany(currCompany);
             return result != null ? Ok(result) : (IHttpActionResult)BadRequest("Something going wrong...");
 
+        }
+
+        [HttpPost]
+        public async Task<IHttpActionResult> SendKp(PersonContact contact)
+        {
+            var messageBody = System.IO.File.ReadAllText(System.Web.Hosting.HostingEnvironment.MapPath("~/Views/Mails/letterkp.html"));
+            var result = await _mail.SendKpAsynk(contact, messageBody);
+            return result != null ? Ok(result) : (IHttpActionResult)BadRequest("Something going wrong...");
         }
     }
 }

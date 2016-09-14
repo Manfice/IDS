@@ -7,10 +7,12 @@ using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
 using System.Security.Policy;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using IndDev.Auth.Model;
 using IndDev.Domain.Abstract;
 using IndDev.Domain.Entity.Auth;
+using IndDev.Domain.Entity.Customers;
 using IndDev.Domain.Entity.Orders;
 using IndDev.Domain.ViewModels;
 using IndDev.Models;
@@ -88,14 +90,11 @@ namespace IndDev.Domain.Context
             using (var context = new DataContext())
             {
                 var usr = context.Users.FirstOrDefault(user => user.EMail==to);
-                if (usr!=null)
-                {
-                    var bd = body.Replace("{0}", usr.Name);
-                    bd = bd.Replace("{1}", to);
-                    bd = bd.Replace("{2}", resetLink);
-                    return await SendMyMailAsync(bd, to, "Сброс пароля.");
-                }
-                return $"Пользователь с логином {to} не найден в бд.";
+                if (usr == null) return $"Пользователь с логином {to} не найден в бд.";
+                var bd = body.Replace("{0}", usr.Name);
+                bd = bd.Replace("{1}", to);
+                bd = bd.Replace("{2}", resetLink);
+                return await SendMyMailAsync(bd, to, "Сброс пароля.");
             } 
 
         }
@@ -141,6 +140,18 @@ namespace IndDev.Domain.Context
             }
             return await SendMyMailAsync(body.ToString(), "c592@yandex.ru", "feedback");
 
+        }
+
+        public async Task<PersonContact> SendKpAsynk(PersonContact contact, string body)
+        {
+            var isMail = Regex.IsMatch(contact.Email, @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", RegexOptions.IgnoreCase);
+            if (!isMail)
+            {
+                return null;
+            }
+            var subject = $"КП по сетевому оборудованию от ТД \"АЙДИ-С\" для {contact.PersonName}";
+            await SendMyMailAsync(body, contact.Email, subject);
+            return contact;
         }
     }
 }

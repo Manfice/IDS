@@ -201,7 +201,8 @@
                                         <td data-bind="text: Email"></td>
                                         <td>
                                             <a data-bind="click:Admin.updatePerson">Редактировать</a>
-                                            <a data-bind="click:Admin.deletePerson">Удалить</a>
+                                            <a data-bind="click:Admin.deletePerson, visible:kp">Удалить</a>
+                                            <button data-bind="visible:kp, click:Admin.sndKp">КП</button>
                                         </td>
                                     </tr>
                                     <tr data-bind="if: mode()=== Admin.displayMode.edit">
