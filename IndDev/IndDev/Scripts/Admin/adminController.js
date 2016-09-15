@@ -46,7 +46,7 @@
         $.ajax({
             url: "/api/crm/sendKp/",
             type:"POST",
-            contentType: "application/json",
+            //contentType: "application/json",
             data:pers,
             success: function(data) {
                 callback(data);
