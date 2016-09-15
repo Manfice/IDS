@@ -52,7 +52,7 @@
         <div class="panel panel-default">
             <div class="panel-heading" data-bind="with:Admin.currCompany">
                 <p style="display: inline" data-bind="text:'Компания: '+CompanyName()"></p>
-                <button class="pull-right" data-bind="click:Admin.setView.bind($data, 'COMPANY')">Закрыть</button>
+                <button class="pull-right" data-bind="click:Admin.saveAndClose">Закрыть</button>
             </div>
             <div class="panel-body">
                 <form action="/" method="post" data-bind="with:Admin.currCompany">
@@ -228,5 +228,4 @@
             </div>
         </div>
     </div>
-
 </div>

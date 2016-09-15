@@ -48,7 +48,8 @@
             type:"POST",
             //contentType: "application/json",
             data:pers,
-            success: function(data) {
+            success: function (data) {
+                console.log(ko.toJSON(data));
                 callback(data);
             }
         });

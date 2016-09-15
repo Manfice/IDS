@@ -58,7 +58,11 @@ namespace IndDev.Controllers
         [HttpPost]
         public async Task<IHttpActionResult> SendKp(PersonContact contact)
         {
-            var messageBody = System.IO.File.ReadAllText(System.Web.Hosting.HostingEnvironment.MapPath("~/Views/Mails/letterkp.html"));
+            var path = System.Web.Hosting.HostingEnvironment.MapPath("~/Views/Mails/letterkp.html");
+            if (string.IsNullOrWhiteSpace(path)) return BadRequest("Не тела письма");
+            var messageBody = System.IO.File.ReadAllText(path);
+            var pers = await _repo.SendKpMarkAsync(contact);
+            contact.Details = pers;
             var result = await _mail.SendKpAsynk(contact, messageBody);
             return result != null ? Ok(result) : (IHttpActionResult)BadRequest("Something going wrong...");
         }

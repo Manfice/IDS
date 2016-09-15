@@ -142,16 +142,16 @@ namespace IndDev.Domain.Context
 
         }
 
-        public async Task<PersonContact> SendKpAsynk(PersonContact contact, string body)
+        public async Task<Details> SendKpAsynk(PersonContact contact, string body)
         {
             var isMail = Regex.IsMatch(contact.Email, @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", RegexOptions.IgnoreCase);
             if (!isMail)
             {
                 return null;
             }
-            var subject = $"КП по сетевому оборудованию от ТД \"АЙДИ-С\" для {contact.PersonName}";
+            var subject = $"Для {contact.PersonName} КП по сетевому оборудованию от ТД \"АЙДИ-С\"";
             await SendMyMailAsync(body, contact.Email, subject);
-            return contact;
+            return contact.Details;
         }
     }
 }

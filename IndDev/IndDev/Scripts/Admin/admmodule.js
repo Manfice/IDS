@@ -36,7 +36,6 @@
     };
 
     var canKp = function(pr) {
-        console.log(pr);
         return pr !== 0;
     }
 
@@ -123,6 +122,20 @@
     };
     var retrievCompany = function(item) {
         var compData = new company(item);
+        item.Telephones.forEach(function(phone) {
+            compData.Telephones.push(new telData(phone, displayMode.view));
+        });
+        item.Banks.forEach(function(bank) {
+            compData.Banks.push(bank);
+        });
+        item.PersonContacts.forEach(function(pers) {
+            compData.PersonContacts.push(new persData(pers, displayMode.view));
+        });
+        currCompany(compData);
+    };
+    var saveCompanyCallback = function(result, id) {
+        retrievCompany(result);
+        var compData = new company(item);
         item.Telephones.forEach(function (phone) {
             compData.Telephones.push(new telData(phone, displayMode.view));
         });
@@ -132,11 +145,7 @@
         item.PersonContacts.forEach(function (pers) {
             compData.PersonContacts.push(new persData(pers, displayMode.view));
         });
-        currCompany(compData);
-    }
-    var saveCompanyCallback = function(result, id) {
-        retrievCompany(result);
-        companys.push(result);
+        companys.push(compData);
     };
     var updCompCallback = function(result) {
         alert("Изменения сохранены");
@@ -174,10 +183,15 @@
     }
     var sndPrCallback = function(data) {
         console.log(ko.toJSON(data));
+        alert("КП отправленно на адрес: "+data.Email);
     }
     var sndKp = function(par) {
         client.sendKp(par, sndPrCallback);
     }
+    var saveAndClose = function() {
+        client.updateCompany(currCompany, updCompCallback);
+        setView("COMPANY");
+    };
     var init = function() {
         retrieveCompanys();
     };
@@ -196,6 +210,6 @@
         addTell: addTell, addPerson: addPerson, deletePerson: deletePerson,
         deletePhone: deletePhone, updatePhone: updatePhone,savePhone:savePhone,
         updatePerson: updatePerson,savePerson:savePerson,
-        canSendKp:canSendKp,sndKp:sndKp
+        canSendKp: canSendKp, sndKp: sndKp, saveAndClose: saveAndClose
     };
 }();

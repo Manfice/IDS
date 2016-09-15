@@ -14,6 +14,6 @@ namespace IndDev.Domain.Abstract
         Task<string> MessageFromTitle(string body, MailMessageModel model);
         Task<string> OrderNotify(Order order,string body);
         Task<string> FeedbackAsync(Feedback model);
-        Task<PersonContact> SendKpAsynk(PersonContact contact, string body);
+        Task<Details> SendKpAsynk(PersonContact contact, string body);
     }
 }

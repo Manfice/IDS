@@ -56,6 +56,16 @@ namespace IndDev.Domain.Context
             return result;
         }
 
+        public async Task<Details> SendKpMarkAsync(PersonContact contact)
+        {
+            var dbCont = await _context.PersonContacts.FindAsync(contact.Id);
+            if (dbCont == null) return null;
+            var dbDet = await _context.Detailses.FindAsync(dbCont.Details.Id);
+            dbDet.Descr += $"Отправлено КП {DateTime.Now.ToLongDateString()}";
+            await _context.SaveChangesAsync();
+            return dbDet;
+        }
+
         public async Task<Details> UpdateCompany(Details currCompany)
         {
             var dbComp = new Details();
