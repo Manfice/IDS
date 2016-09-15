@@ -123,7 +123,7 @@ body {
     background-color: rgba(220, 237, 255, 0.8);
 }
 
-.logForm h1 {
+    .logForm h1 {
         margin: 0 0;
         font-weight: 500;
         font-size: 2em;
@@ -225,7 +225,7 @@ footer {
     background-color: rgba(0, 0, 0, 0.49);
 }
 
-.fonFade h3 {
+    .fonFade h3 {
         color: white;
         margin: 20px 0;
     }
@@ -255,7 +255,7 @@ footer {
         font-family: "RobotoCondensedRegular";
     }
 
-.fonFade a:hover {
+        .fonFade a:hover {
             background-color: rgb(0, 122, 203);
             color: white;
             text-decoration: none;
@@ -545,9 +545,9 @@ footer {
     }
 
 .v1 {
-    background: url("/Content/images/menuItems/1DCsmall.jpg") no-repeat bottom center;
-    -ms-background-size: 100% 100%;
-    background-size: 100% 100%;
+    background: url("/Content/images/products/wire_woman_kasey_mcmahon.jpg") no-repeat bottom center;
+    -ms-background-size: auto 100%;
+    background-size: auto 100%;
     width: 100%;
     height: 100%;
 }
@@ -572,8 +572,8 @@ footer {
     background: url("/Content/images/FOC.png") no-repeat bottom center;
     width: 100%;
     height: 100%;
-    -ms-background-size: 100% 100%;
-    background-size: 100% 100%;
+    -ms-background-size: 60% auto;
+    background-size: 60% auto;
 }
 
 .v5 {
@@ -585,7 +585,7 @@ footer {
 }
 
 .v6 {
-    background: url("/Content/images/menuItems/h16small.jpg") no-repeat top center;
+    background: url("/Content/images/products/maxresdefault.jpg") no-repeat top center;
     width: 100%;
     height: 100%;
     -ms-background-size: 100% 100%;
@@ -593,19 +593,19 @@ footer {
 }
 
 .v7 {
-    background: url("/Content/images/menuItems/racks.jpg") no-repeat top center;
+    background: url("/Content/images/products/svr24U.jpg") no-repeat bottom center;
     width: 100%;
     height: 100%;
-    -ms-background-size: 100% 100%;
-    background-size: 100% 100%;
+    -ms-background-size: auto 80%;
+    background-size: auto 80%;
 }
 
 .v8 {
-    background: url("/Content/images/products/fsm-80.jpg") no-repeat top center;
+    background: url("/Content/images/products/111.jpg") no-repeat bottom center;
     width: 100%;
     height: 100%;
-    -ms-background-size: 100% 100%;
-    background-size: 100% 100%;
+    -ms-background-size: auto 90%;
+    background-size: auto 90%;
 }
 
 .v1_descr {
@@ -624,7 +624,7 @@ footer {
     transition: all .5s;
 }
 
-.v1_descr p {
+    .v1_descr p {
         color: white;
         margin-bottom: 30px;
     }
@@ -722,7 +722,7 @@ footer {
     transition: all .5s;
 }
 
-.v2_descr p {
+    .v2_descr p {
         color: white;
         margin-bottom: 30px;
     }
@@ -1109,7 +1109,7 @@ footer {
         background: linear-gradient(to top, #f0f0f0, #ffffff);
     }
 
-#cssmenu ul li {
+        #cssmenu ul li {
             display: block;
             border-bottom: 1px solid #cccccc;
         }
@@ -2082,7 +2082,6 @@ footer {
     color: rgb(104, 104, 104);
     height: 100%;
     overflow-y: auto;
-    
 }
 
 .persWrap {
@@ -2119,7 +2118,7 @@ footer {
         transition: all 0.5s;
     }
 
-.persControls button:last-child {
+        .persControls button:last-child {
             color: red;
             border: solid 2px red;
         }
@@ -2136,12 +2135,15 @@ footer {
             -o-transition: all 0.5s;
             transition: all 0.5s;
         }
+
         .persControls button:disabled {
             display: none;
         }
+
         .persControls button:focus {
-            border: solid 3px rgb(0, 121, 202)
+            border: solid 3px rgb(0, 121, 202);
         }
+
 .persWrap h1 {
     font-family: "RobotoRegular";
     font-size: 1em;
@@ -2193,7 +2195,7 @@ footer {
     cursor: pointer;
 }
 
-.menegerShort:hover {
+    .menegerShort:hover {
         background-color: rgb(63, 117, 0);
     }
 
@@ -2261,6 +2263,7 @@ button:focus {
     outline: none;
     border: solid 2px green;
 }
+
 .mailMe {
     flex: 1 0 auto;
     display: flex;
@@ -2269,6 +2272,7 @@ button:focus {
     align-items: center;
     width: 100%;
 }
+
 .mailMessage {
     flex: 0 0 auto;
     display: flex;
@@ -2278,25 +2282,28 @@ button:focus {
     width: 90%;
     margin: 0 0 10px 0;
 }
-.mailMessage input {
-    border: solid 1px green;
-    background-color: transparent;
-    width: 100%;
-    padding: 3px 10px;
-}
-.mailMessage textarea {
-    border: solid 1px green;
-    border-top: none;
-    background-color: transparent;
-    width: 100%;
-    padding: 3px 0 0 3px;
-    height: 150px;
-    -moz-resize: none;
-    -ms-resize: none;
-    -o-resize: none;
-    resize: none;
-}/*End Personal help*/
- /*BOT DIALOG*/
+
+    .mailMessage input {
+        border: solid 1px green;
+        background-color: transparent;
+        width: 100%;
+        padding: 3px 10px;
+    }
+
+    .mailMessage textarea {
+        border: solid 1px green;
+        border-top: none;
+        background-color: transparent;
+        width: 100%;
+        padding: 3px 0 0 3px;
+        height: 150px;
+        -moz-resize: none;
+        -ms-resize: none;
+        -o-resize: none;
+        resize: none;
+    }
+/*End Personal help*/
+/*BOT DIALOG*/
 #confBot {
     position: fixed;
     z-index: 100;
@@ -2306,84 +2313,98 @@ button:focus {
     width: 550px;
     border: solid 1px whitesmoke;
 }
- .botDialog {
-     display: flex;
-     flex-flow: column;
- }
- .botDialog h1 {
-     text-transform: uppercase;
-     text-align: center;
-     font-family: "RobotoBold";
-     color: whitesmoke;
-     font-size: 1.3em;
-     margin: 5px 0;
-     letter-spacing: 2px;
- }
- .botDialog h2 {
-     margin: 10px 15px;
-     color: whitesmoke;
-     font-size: 1.2em;
-     letter-spacing: 1px; 
- }
- .botCont {
-     flex: 1 0 auto;
-     display: flex;
-     flex-flow: row nowrap;
-     justify-content: center;
-     align-items: center;
-     border-top: dotted 2px;
-     border-bottom: dotted 2px;
- }
- .botCont img {
-     height: 150px;
-     margin: 10px;
-     border: solid 2px whitesmoke;
-     -ms-border-radius: 50%;
-     border-radius: 50%;
-     padding: 5px;
- }
- .botcontdescr {
-     padding: 0 10px 0 0;
-     color: rgb(199, 199, 199);
- }
- .botcontdescr h3 {
-     text-align: right;
-     margin: 0;
- }
- .botcontdescr h4 {
-     text-align: right;
- }
- .botcontdescr p {
-     text-align: justify;
- }
- .quest {
-     flex: 1 0 auto;
-     display: flex;
-     flex-flow: row;
-     justify-content: space-around;
-     align-items: center;
- }
- .quest label {
-     margin: 0;
-     padding: 0;
-     color: whitesmoke;
- }
-.quest label mark {
-    margin: 0;
-    padding: 0;
-    line-height: 10px;
-    font-size: 1em;
-    background-color: transparent;
+
+.botDialog {
+    display: flex;
+    flex-flow: column;
+}
+
+    .botDialog h1 {
+        text-transform: uppercase;
+        text-align: center;
+        font-family: "RobotoBold";
+        color: whitesmoke;
+        font-size: 1.3em;
+        margin: 5px 0;
+        letter-spacing: 2px;
+    }
+
+    .botDialog h2 {
+        margin: 10px 15px;
+        color: whitesmoke;
+        font-size: 1.2em;
+        letter-spacing: 1px;
+    }
+
+.botCont {
+    flex: 1 0 auto;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    border-top: dotted 2px;
+    border-bottom: dotted 2px;
+}
+
+    .botCont img {
+        height: 150px;
+        margin: 10px;
+        border: solid 2px whitesmoke;
+        -ms-border-radius: 50%;
+        border-radius: 50%;
+        padding: 5px;
+    }
+
+.botcontdescr {
+    padding: 0 10px 0 0;
     color: rgb(199, 199, 199);
-    font-weight: 100;
 }
-.quest label input {
-     margin: 0 10px;
-    padding: 3px 0 0 0;
+
+    .botcontdescr h3 {
+        text-align: right;
+        margin: 0;
+    }
+
+    .botcontdescr h4 {
+        text-align: right;
+    }
+
+    .botcontdescr p {
+        text-align: justify;
+    }
+
+.quest {
+    flex: 1 0 auto;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-around;
+    align-items: center;
 }
+
+    .quest label {
+        margin: 0;
+        padding: 0;
+        color: whitesmoke;
+    }
+
+        .quest label mark {
+            margin: 0;
+            padding: 0;
+            line-height: 10px;
+            font-size: 1em;
+            background-color: transparent;
+            color: rgb(199, 199, 199);
+            font-weight: 100;
+        }
+
+        .quest label input {
+            margin: 0 10px;
+            padding: 3px 0 0 0;
+        }
+
 .answMen {
     padding: 10px;
     text-align: center;
     color: whitesmoke;
 }
- /*END*/
+/*END*/
