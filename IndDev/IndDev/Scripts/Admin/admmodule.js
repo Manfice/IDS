@@ -100,9 +100,9 @@
         com.PersonContacts.push(prs);
         currCompany(com);
     }
-    var editCompany = function(comp) {
+    var editCompany = function (comp) {
+        client.retrieveCompanyFromServer(comp, updCompCallback);
         viewmodel.currtab("EDIT");
-        currCompany(comp);
     };
     var retrieveCompanysCallback = function(data) {
         data.forEach(function (item) {
@@ -148,7 +148,6 @@
         companys.push(compData);
     };
     var updCompCallback = function(result) {
-        alert("Изменения сохранены");
         retrievCompany(result);
     }
     var postCompany = function() {
@@ -181,9 +180,9 @@
     var deletePerson = function(person) {
         client.deletePerson(person,delPhoneCallback);
     }
-    var sndPrCallback = function(data) {
-        console.log(ko.toJSON(data));
-        alert("КП отправленно на адрес: "+data.Email);
+    var sndPrCallback = function(data,cont) {
+        alert("КП отправленно на адрес: " + cont.Email);
+        retrievCompany(data);
     }
     var sndKp = function(par) {
         client.sendKp(par, sndPrCallback);

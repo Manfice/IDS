@@ -9,7 +9,15 @@
             }
         });
     };
-
+    var retrieveCompanyFromServer = function (comp, callback) {
+        $.ajax({
+            url: "/api/crm/GetCompany/"+comp.id(),
+            type: "GET",
+            success: function (data) {
+                callback(data);
+            }
+        });
+    };
     var updateCompany = function (currCompany, callback) {
         console.log(ko.toJSON(currCompany));
         $.ajax({
@@ -50,14 +58,16 @@
             data:pers,
             success: function (data) {
                 console.log(ko.toJSON(data));
-                callback(data);
+                callback(data, pers);
             }
         });
     }
+
     return{
         getCompanys: getCompanys,
         updateCompany: updateCompany,
         deletePhone: deletePhone,deletePerson,
-        sendKp: sendKp
+        sendKp: sendKp,
+        retrieveCompanyFromServer: retrieveCompanyFromServer
     };
 };

@@ -27,6 +27,11 @@ namespace IndDev.Controllers
         {
             return Ok(_repo.Company);
         }
+        [HttpGet]
+        public IHttpActionResult GetCompany(int id)
+        {
+            return Ok(_repo.GetCompanyDetails(id));
+        }
 
         [HttpDelete]
         public async Task<IHttpActionResult> DeleteCompany(int id)

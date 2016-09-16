@@ -13,6 +13,11 @@ namespace IndDev.Domain.Context
 
         public IEnumerable<Details> Company => _context.Detailses.Where(c=>!string.IsNullOrEmpty(c.CompanyName)).ToList();
 
+        public Details GetCompanyDetails(int id)
+        {
+            return _context.Detailses.Find(id);
+        }
+
         public async Task<Details> DeleteCompanyAsync(int id)
         {
             var cust = _context.Customers.FirstOrDefault(c => c.Details.Id == id);
