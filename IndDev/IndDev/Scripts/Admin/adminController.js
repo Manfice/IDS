@@ -19,7 +19,6 @@
         });
     };
     var updateCompany = function (currCompany, callback) {
-        console.log(ko.toJSON(currCompany));
         $.ajax({
             url: "/api/crm/UpdateCompany/",
             type: "POST",

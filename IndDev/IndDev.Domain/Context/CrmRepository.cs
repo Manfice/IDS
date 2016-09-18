@@ -98,7 +98,7 @@ namespace IndDev.Domain.Context
                 foreach (var item in currCompany.Telephones)
                 {
                     var tel = await _context.Telephones.FindAsync(item.Id);
-                    if (tel != null && !string.IsNullOrEmpty(item.PhoneNumber))
+                    if (tel != null)
                     {
                         tel.PhoneNumber = item.PhoneNumber;
                         tel.Title = item.Title;

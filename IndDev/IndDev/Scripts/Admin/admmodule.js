@@ -1,11 +1,14 @@
-﻿var Admin = function() {
+﻿var Admin = function () {
+    var self = this;
     var client = adminClient();
 
     var viewmodel = {
         currtab: ko.observable("COMPANY")
     };
 
-    var companys = ko.observableArray();
+    var companysViewModel = {
+        companys: ko.observableArray()
+    }
 
     var currCompany = ko.observable();
 
@@ -101,10 +104,12 @@
         currCompany(com);
     }
     var editCompany = function (comp) {
+        currCompany(null);
         client.retrieveCompanyFromServer(comp, updCompCallback);
         viewmodel.currtab("EDIT");
     };
-    var retrieveCompanysCallback = function(data) {
+    var retrieveCompanysCallback = function (data) {
+        var listData = [];
         data.forEach(function (item) {
             var compData = new company(item);
             item.Telephones.forEach(function(phone) {
@@ -116,9 +121,9 @@
             item.PersonContacts.forEach(function(pers) {
                 compData.PersonContacts.push(new persData(pers,displayMode.view));
             });
-            companys.push(compData);
-
+            listData.push(compData);
         });
+        companysViewModel.companys(listData);
     };
     var retrievCompany = function(item) {
         var compData = new company(item);
@@ -133,19 +138,20 @@
         });
         currCompany(compData);
     };
-    var saveCompanyCallback = function(result, id) {
+    var saveCompanyCallback = function(result) {
         retrievCompany(result);
-        var compData = new company(item);
-        item.Telephones.forEach(function (phone) {
+        var compData = new company(result);
+        result.Telephones.forEach(function (phone) {
             compData.Telephones.push(new telData(phone, displayMode.view));
         });
-        item.Banks.forEach(function (bank) {
+        result.Banks.forEach(function (bank) {
             compData.Banks.push(bank);
         });
-        item.PersonContacts.forEach(function (pers) {
+        result.PersonContacts.forEach(function (pers) {
             compData.PersonContacts.push(new persData(pers, displayMode.view));
         });
-        companys.push(compData);
+        console.log("WOWOWOOW ------------"+ko.toJSON(compData));
+        companysViewModel.companys.push(compData);
     };
     var updCompCallback = function(result) {
         retrievCompany(result);
@@ -191,14 +197,14 @@
         client.updateCompany(currCompany, updCompCallback);
         setView("COMPANY");
     };
-    var init = function() {
+    var init = function () {
         retrieveCompanys();
     };
     $(init);
     return{
         setView: setView,
         currView: currView,
-        companys: companys,
+        companysViewModel: companysViewModel,
         addCompany:addCompany,
         currCompany: currCompany,
         editCompany: editCompany,
