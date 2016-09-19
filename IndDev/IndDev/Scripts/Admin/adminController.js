@@ -11,7 +11,7 @@
     };
     var retrieveCompanyFromServer = function (comp, callback) {
         $.ajax({
-            url: "/api/crm/GetCompany/"+comp.id(),
+            url: "/api/crm/GetCompany/"+comp.Id(),
             type: "GET",
             success: function (data) {
                 callback(data);

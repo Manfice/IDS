@@ -1,5 +1,4 @@
 ﻿var Admin = function () {
-    var self = this;
     var client = adminClient();
 
     var viewmodel = {
@@ -13,7 +12,7 @@
     var currCompany = ko.observable();
 
     var company = function (data) {
-        this.id = ko.observable(data.Id);
+        this.Id = ko.observable(data.Id);
         this.CompanyName = ko.observable(data.CompanyName);
         this.UrAdress = ko.observable(data.UrAdress);
         this.RealAdress = ko.observable(data.RealAdress);
@@ -58,14 +57,12 @@
     var currView = function(data) {
         return viewmodel.currtab() === data;
     };
-    var isNewCompany = function() {
-        return currCompany.Id === 0;
-    };
+
     var canSendKp = function (pers) {
-        alert(pers.Id);
         return pers.Id !== "0";
     }
     var newCompany = {
+        Id: 0,
         CompanyName: null,
         UrAdress: null,
         RealAdress: null,
@@ -91,11 +88,11 @@
         var cp = new company(newCompany);
         currCompany(cp);
     };
-    var addTell = function (company) {
+    var addTell = function (comp) {
         var tel = { Id: 0, PhoneNumber: null, Title: null };
         var tell = new telData(tel, displayMode.edit);
-        company.Telephones.push(tell);
-        currCompany(company);
+        comp.Telephones.push(tell);
+        currCompany(comp);
     }
     var addPerson = function(com) {
         var pers = { Id: 0, PersonName: null, Email:null, Phone:null };
@@ -211,7 +208,6 @@
         displayMode:displayMode,
         postCompany:postCompany,
         putCompany:putCompany,
-        isNewCompany:isNewCompany,
         addTell: addTell, addPerson: addPerson, deletePerson: deletePerson,
         deletePhone: deletePhone, updatePhone: updatePhone,savePhone:savePhone,
         updatePerson: updatePerson,savePerson:savePerson,

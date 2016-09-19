@@ -73,9 +73,13 @@ namespace IndDev.Domain.Context
 
         public async Task<Details> UpdateCompany(Details currCompany)
         {
-            var dbComp = new Details();
+            Details dbComp;
             if (currCompany.Id == 0)
             {
+                if (string.IsNullOrEmpty(currCompany.CompanyName) && string.IsNullOrEmpty(currCompany.Region))
+                {
+                    return null;
+                }
                 dbComp = currCompany;
                 _context.Detailses.Add(currCompany);
             }
@@ -95,6 +99,9 @@ namespace IndDev.Domain.Context
                 dbComp.Descr = currCompany.Descr;
                 dbComp.CompDirect = currCompany.CompDirect;
                 dbComp.Offer = currCompany.Offer;
+
+                var tells = new List<Telephone>();
+                var persons = new List<PersonContact>();
                 foreach (var item in currCompany.Telephones)
                 {
                     var tel = await _context.Telephones.FindAsync(item.Id);
@@ -105,10 +112,16 @@ namespace IndDev.Domain.Context
                     }
                     else
                     {
+                        if (string.IsNullOrEmpty(item.PhoneNumber))
+                        {
+                            continue;
+                        }
                         item.DetailsOf = dbComp;
-                        _context.Telephones.Add(item);
+                        tells.Add(item);
                     }
                 }
+                _context.Telephones.AddRange(tells);
+
                 foreach (var item in currCompany.PersonContacts)
                 {
                     var pers = await _context.PersonContacts.FindAsync(item.Id);
@@ -122,10 +135,10 @@ namespace IndDev.Domain.Context
                     {
                         if (string.IsNullOrEmpty(item.Email) || string.IsNullOrEmpty(item.PersonName)) continue;
                         item.Details = dbComp;
-                        _context.PersonContacts.Add(item);
+                        persons.Add(item);
                     }
                 }
-
+                _context.PersonContacts.AddRange(persons);
             }
             await _context.SaveChangesAsync();
             return dbComp;
