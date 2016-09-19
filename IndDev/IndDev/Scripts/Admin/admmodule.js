@@ -13,9 +13,32 @@
     var companysViewModel = {
         companys: ko.observableArray(),
         regions: ko.observableArray([]),
-        curentRegion: ko.observable(),
+        curentRegion: ko.observable(null),
         filteredCompanys:ko.observableArray()
     }
+
+    var filterCompanysByRegion = function() {
+        var region = companysViewModel.curentRegion();
+        companysViewModel.filteredCompanys.removeAll();
+        companysViewModel.filteredCompanys.push.apply(companysViewModel.filteredCompanys,
+        companysViewModel.companys().filter(function(p) {
+            return region == null || p.Region === region;
+        }));
+    };
+
+    companysViewModel.companys.subscribe(function(newCompanys) {
+        filterCompanysByRegion();
+
+        companysViewModel.regions.removeAll();
+
+        companysViewModel.regions.push.apply(companysViewModel.regions,
+            companysViewModel.companys().map(function(p) {
+                return p.Inn;
+            }).filter(function(value, index, self) {
+                return self.indexOf(value) === index;
+            }).sort());
+        console.log(ko.toJSON(companysViewModel.regions));
+    });
 
     var currCompany = ko.observable();
 
@@ -204,6 +227,7 @@
     };
     var init = function () {
         retrieveCompanys();
+        ko.applyBindings(new testFunc(),document.getElementById("companysBlock"));
     };
     $(init);
     return{

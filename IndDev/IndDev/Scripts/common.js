@@ -107,7 +107,7 @@
 
     var init = function () {
         initMask();
-        ko.applyBindings();
+        ko.applyBindings(feedback, document.getElementById("persHelp"));
     };
 
     $(init);
