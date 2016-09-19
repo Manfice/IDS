@@ -5,8 +5,16 @@
         currtab: ko.observable("COMPANY")
     };
 
+    var testFunc = function() {
+        var self = this;
+        self.testMessage = ko.observable("My message...");
+    };
+
     var companysViewModel = {
-        companys: ko.observableArray()
+        companys: ko.observableArray(),
+        regions: ko.observableArray([]),
+        curentRegion: ko.observable(),
+        filteredCompanys:ko.observableArray()
     }
 
     var currCompany = ko.observable();
