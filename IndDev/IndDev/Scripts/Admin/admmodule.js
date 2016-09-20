@@ -4,21 +4,15 @@
     var viewmodel = {
         currtab: ko.observable("COMPANY")
     };
-
-    var testFunc = function() {
-        var self = this;
-        self.testMessage = ko.observable("My message...");
-    };
-
     var companysViewModel = {
         companys: ko.observableArray(),
         regions: ko.observableArray([]),
         curentRegion: ko.observable(null),
         filteredCompanys: ko.observableArray()
     };
-    var regionData = function(data) {
+    var regionData = function(data, quantity) {
         this.title = data;
-        this.quantity = 0;
+        this.quantity = quantity;
     }
     var filterCompanysByRegion = function() {
         var region = companysViewModel.curentRegion();
@@ -32,25 +26,25 @@
     companysViewModel.companys.subscribe(function(newCompanys) {
         filterCompanysByRegion();
         companysViewModel.regions.removeAll();
-        companysViewModel.regions.push.apply(companysViewModel.regions,
+        var tempArr = [];
+        tempArr.push.apply(tempArr,
             companysViewModel.companys().map(function (p) {
                 return p.Region();
             }).filter(function (value, index, self) {
                 return self.indexOf(value) === index;
             }).sort());
-        console.log(companysViewModel.regions());
 
-        companysViewModel.regions().forEach(function (item) {
-            var regArr = companysViewModel.companys().filter(function(p) {
+        tempArr.forEach(function (item) {
+            var arr =  companysViewModel.companys().filter(function(p) {
                 return p.Region() === item;
             }).length;
+            companysViewModel.regions.push(new regionData(item, arr));
         });
-
     });
 
     var setFilterRegion = function (region) {
-        console.log(region);
-        companysViewModel.curentRegion(region);
+        var r = region == null ? null : region.title;
+        companysViewModel.curentRegion(r);
         filterCompanysByRegion();
     };
 
@@ -133,6 +127,10 @@
         var cp = new company(newCompany);
         currCompany(cp);
     };
+    var viewCompany = function (comp) {
+        viewmodel.currtab("SHOW_COMPANY");
+        currCompany(comp);
+    };
     var addTell = function(comp) {
         var tel = { Id: 0, PhoneNumber: null, Title: null };
         var tell = new telData(tel, displayMode.edit);
@@ -195,8 +193,7 @@
         result.PersonContacts.forEach(function (pers) {
             compData.PersonContacts.push(new persData(pers, displayMode.view));
         });
-        console.log("WOWOWOOW ------------"+ko.toJSON(compData));
-        companysViewModel.companys.push(compData);
+        companysViewModel.companys.unshift(compData);
     };
     var postCompany = function() {
         client.updateCompany(currCompany, saveCompanyCallback);
@@ -251,7 +248,7 @@
         addCompany: addCompany,
         setFilterRegion:setFilterRegion,
         currCompany: currCompany,
-        editCompany: editCompany,
+        editCompany: editCompany,viewCompany:viewCompany,
         displayMode:displayMode,
         postCompany:postCompany,
         putCompany:putCompany,

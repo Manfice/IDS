@@ -162,14 +162,11 @@
     max-width: 1200px;
     width: 100%;
 }
-.companyRegions {
+.regions a p {
     display: inline;
 }
-.companyRegions p {
+.regions div {
     display: inline;
-    margin: 0;
-}
-.companyRegions p a {
-    line-height: 15px;
-    margin: 5px
-}
+}.regions a {
+     margin: 5px 10px;
+ }

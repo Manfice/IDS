@@ -26,9 +26,14 @@
 
 <div class="pageView" data-bind="visible:Admin.currView('COMPANY')" style="display: none">
     <div class="regions">
-        <a href="#" data-bind="click:Admin.setFilterRegion.bind($data,null)" class="btn btn-default btn-sm">Все</a>
-        <div class="companyRegions" data-bind="foreach:Admin.companysViewModel.regions">
-            <p data-bind="if:$data!==null"><a href="#" class="btn btn-default btn-sm" data-bind="text: $data, click:Admin.setFilterRegion"></a></p>
+        <a href="#" data-bind="click:Admin.setFilterRegion.bind($data,null)" class="btn btn-default btn-sm">Все 
+            <span data-bind="text: companys().length"></span>
+        </a>
+        <div class="companyRegions" data-bind="foreach:regions">
+            <a href="#" class="btn btn-default btn-sm" data-bind="visible:title!==null, click:Admin.setFilterRegion">
+                <p data-bind="text: title"></p>
+                <span data-bind="text:quantity"></span>
+            </a>
         </div>
     </div>
     <table class="table table-responsive table-striped" data-bind="with:Admin">
@@ -49,7 +54,7 @@
             <td data-bind="text: CompanyName"></td>
             <td data-bind="if:Region()!==null"><p data-bind="text: Region"></p></td>
             <td data-bind="text: Offer"></td>
-            <td><a data-bind="click:Admin.editCompany">Подробнее</a></td>
+            <td><a data-bind="click:Admin.viewCompany">Подробнее</a></td>
         </tr>
         </tbody>
     </table>
@@ -59,6 +64,11 @@
 <div class="pageView" data-bind="visible:Admin.currView('EVENT')" style="display: none">
     Events
 </div>
+
+<div class="pageView" data-bind="visible:Admin.currView('SHOW_COMPANY')" style="display: none">
+    Company details
+</div>
+
 
 <div class="pageView" data-bind="visible:Admin.currView('EDIT')" style="display: none">
     <div class="panel panel-default">
@@ -219,7 +229,7 @@
                                 </td>
                             </tr>
                             <tr data-bind="if: mode()=== Admin.displayMode.edit">
-                                <td>New</td>
+                                <td>Письмо для:</td>
                                 <td>
                                     <input type="text" name="persName" class="form-control" data-bind="value: PersonName"/>
                                 </td>
