@@ -14,31 +14,45 @@
         companys: ko.observableArray(),
         regions: ko.observableArray([]),
         curentRegion: ko.observable(null),
-        filteredCompanys:ko.observableArray()
+        filteredCompanys: ko.observableArray()
+    };
+    var regionData = function(data) {
+        this.title = data;
+        this.quantity = 0;
     }
-
     var filterCompanysByRegion = function() {
         var region = companysViewModel.curentRegion();
         companysViewModel.filteredCompanys.removeAll();
         companysViewModel.filteredCompanys.push.apply(companysViewModel.filteredCompanys,
-        companysViewModel.companys().filter(function(p) {
-            return region == null || p.Region === region;
+        companysViewModel.companys().filter(function (p) {
+            return region === null || p.Region() === region;
         }));
     };
 
     companysViewModel.companys.subscribe(function(newCompanys) {
         filterCompanysByRegion();
-
         companysViewModel.regions.removeAll();
-
         companysViewModel.regions.push.apply(companysViewModel.regions,
-            companysViewModel.companys().map(function(p) {
-                return p.Inn;
-            }).filter(function(value, index, self) {
+            companysViewModel.companys().map(function (p) {
+                return p.Region();
+            }).filter(function (value, index, self) {
                 return self.indexOf(value) === index;
             }).sort());
-        console.log(ko.toJSON(companysViewModel.regions));
+        console.log(companysViewModel.regions());
+
+        companysViewModel.regions().forEach(function (item) {
+            var regArr = companysViewModel.companys().filter(function(p) {
+                return p.Region() === item;
+            }).length;
+        });
+
     });
+
+    var setFilterRegion = function (region) {
+        console.log(region);
+        companysViewModel.curentRegion(region);
+        filterCompanysByRegion();
+    };
 
     var currCompany = ko.observable();
 
@@ -70,7 +84,7 @@
 
     var canKp = function(pr) {
         return pr !== 0;
-    }
+    };
 
     var persData = function(pers, mode) {
         this.Id = ko.observable(pers.Id);
@@ -89,9 +103,9 @@
         return viewmodel.currtab() === data;
     };
 
-    var canSendKp = function (pers) {
+    var canSendKp = function(pers) {
         return pers.Id !== "0";
-    }
+    };
     var newCompany = {
         Id: 0,
         CompanyName: null,
@@ -119,18 +133,34 @@
         var cp = new company(newCompany);
         currCompany(cp);
     };
-    var addTell = function (comp) {
+    var addTell = function(comp) {
         var tel = { Id: 0, PhoneNumber: null, Title: null };
         var tell = new telData(tel, displayMode.edit);
         comp.Telephones.push(tell);
         currCompany(comp);
-    }
+    };
     var addPerson = function(com) {
-        var pers = { Id: 0, PersonName: null, Email:null, Phone:null };
+        var pers = { Id: 0, PersonName: null, Email: null, Phone: null };
         var prs = new persData(pers, displayMode.edit);
         com.PersonContacts.push(prs);
         currCompany(com);
-    }
+    };
+    var retrievCompany = function (item) {
+        var compData = new company(item);
+        item.Telephones.forEach(function (phone) {
+            compData.Telephones.push(new telData(phone, displayMode.view));
+        });
+        item.Banks.forEach(function (bank) {
+            compData.Banks.push(bank);
+        });
+        item.PersonContacts.forEach(function (pers) {
+            compData.PersonContacts.push(new persData(pers, displayMode.view));
+        });
+        currCompany(compData);
+    };
+    var updCompCallback = function (result) {
+        retrievCompany(result);
+    };
     var editCompany = function (comp) {
         currCompany(null);
         client.retrieveCompanyFromServer(comp, updCompCallback);
@@ -153,19 +183,6 @@
         });
         companysViewModel.companys(listData);
     };
-    var retrievCompany = function(item) {
-        var compData = new company(item);
-        item.Telephones.forEach(function(phone) {
-            compData.Telephones.push(new telData(phone, displayMode.view));
-        });
-        item.Banks.forEach(function(bank) {
-            compData.Banks.push(bank);
-        });
-        item.PersonContacts.forEach(function(pers) {
-            compData.PersonContacts.push(new persData(pers, displayMode.view));
-        });
-        currCompany(compData);
-    };
     var saveCompanyCallback = function(result) {
         retrievCompany(result);
         var compData = new company(result);
@@ -181,60 +198,58 @@
         console.log("WOWOWOOW ------------"+ko.toJSON(compData));
         companysViewModel.companys.push(compData);
     };
-    var updCompCallback = function(result) {
-        retrievCompany(result);
-    }
     var postCompany = function() {
         client.updateCompany(currCompany, saveCompanyCallback);
     };
     var putCompany = function() {
-        client.updateCompany(currCompany,updCompCallback);
-    }
+        client.updateCompany(currCompany, updCompCallback);
+    };
     var delPhoneCallback = function(comp) {
         retrievCompany(comp);
     };
     var deletePhone = function(phone) {
-        client.deletePhone(phone,delPhoneCallback);
-    }
+        client.deletePhone(phone, delPhoneCallback);
+    };
     var updatePhone = function (phone) {
         phone.mode(displayMode.edit);
     };
     var updatePerson = function (phone) {
         phone.mode(displayMode.edit);
     };
-    var savePhone = function (phone) {
+    var savePhone = function(phone) {
         phone.mode(displayMode.view);
-    }
-    var savePerson = function (phone) {
+    };
+    var savePerson = function(phone) {
         phone.mode(displayMode.view);
-    }
+    };
     var retrieveCompanys = function () {
         client.getCompanys(retrieveCompanysCallback);
     };
     var deletePerson = function(person) {
-        client.deletePerson(person,delPhoneCallback);
-    }
-    var sndPrCallback = function(data,cont) {
-        alert("КП отправленно на адрес: " + cont.Email);
+        client.deletePerson(person, delPhoneCallback);
+    };
+    var sndPrCallback = function(data, cont) {
+        alert("КП отправленно на адрес: " + cont.Email());
         retrievCompany(data);
-    }
+    };
     var sndKp = function(par) {
         client.sendKp(par, sndPrCallback);
-    }
+    };
     var saveAndClose = function() {
         client.updateCompany(currCompany, updCompCallback);
         setView("COMPANY");
     };
     var init = function () {
         retrieveCompanys();
-        ko.applyBindings(new testFunc(),document.getElementById("companysBlock"));
+        ko.applyBindings(companysViewModel,document.getElementById("companysBlock"));
     };
     $(init);
     return{
         setView: setView,
         currView: currView,
         companysViewModel: companysViewModel,
-        addCompany:addCompany,
+        addCompany: addCompany,
+        setFilterRegion:setFilterRegion,
         currCompany: currCompany,
         editCompany: editCompany,
         displayMode:displayMode,

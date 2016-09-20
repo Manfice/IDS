@@ -161,5 +161,15 @@
     flex: 1 0 auto;
     max-width: 1200px;
     width: 100%;
-    border: solid 1px red;
+}
+.companyRegions {
+    display: inline;
+}
+.companyRegions p {
+    display: inline;
+    margin: 0;
+}
+.companyRegions p a {
+    line-height: 15px;
+    margin: 5px
 }

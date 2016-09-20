@@ -18,49 +18,49 @@
             }
         });
     };
-    var updateCompany = function (currCompany, callback) {
+    var updateCompany = function(currCompany, callback) {
         $.ajax({
             url: "/api/crm/UpdateCompany/",
             type: "POST",
             data: ko.toJSON(currCompany),
-            contentType:"application/json",
-            success: function (result) {
-                callback(result);
-            }
-        });
-    }
-
-    var deletePhone = function(phone,callback) {
-        $.ajax({
-            url: "/api/crm/DeletePhone/"+phone.Id(),
-            type:"DELETE",
+            contentType: "application/json",
             success: function(result) {
                 callback(result);
             }
         });
-    }
-    var deletePerson = function (person, callback) {
+    };
+
+    var deletePhone = function(phone, callback) {
         $.ajax({
-            url: "/api/crm/DeletePerson/" + person.Id(),
+            url: "/api/crm/DeletePhone/" + phone.Id(),
             type: "DELETE",
-            success: function (result) {
+            success: function(result) {
                 callback(result);
             }
         });
-    }
+    };
+    var deletePerson = function(person, callback) {
+        $.ajax({
+            url: "/api/crm/DeletePerson/" + person.Id(),
+            type: "DELETE",
+            success: function(result) {
+                callback(result);
+            }
+        });
+    };
 
     var sendKp = function(pers, callback) {
         $.ajax({
             url: "/api/crm/sendKp/",
-            type:"POST",
+            type: "POST",
             //contentType: "application/json",
-            data:pers,
-            success: function (data) {
+            data: pers,
+            success: function(data) {
                 console.log(ko.toJSON(data));
                 callback(data, pers);
             }
         });
-    }
+    };
 
     return{
         getCompanys: getCompanys,
