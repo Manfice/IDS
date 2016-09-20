@@ -43,7 +43,7 @@
     });
 
     var setFilterRegion = function (region) {
-        var r = region == null ? null : region.title;
+        var r = region === null ? null : region.title;
         companysViewModel.curentRegion(r);
         filterCompanysByRegion();
     };
@@ -114,9 +114,9 @@
         Region: null,
         CompDirect: null,
         Descr: null,
-        Banks: ko.observableArray(),
-        Telephones: ko.observableArray(),
-        PersonContacts: ko.observableArray()
+        Banks: ko.observableArray([]),
+        Telephones: ko.observableArray([]),
+        PersonContacts: ko.observableArray([])
     };
     var displayMode = {
         view: "VIEW",
@@ -168,6 +168,7 @@
         var listData = [];
         data.forEach(function (item) {
             var compData = new company(item);
+            console.log(item);
             item.Telephones.forEach(function(phone) {
                 compData.Telephones.push(new telData(phone, displayMode.view));
             });

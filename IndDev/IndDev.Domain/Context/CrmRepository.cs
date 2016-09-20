@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using IndDev.Domain.Abstract;
+using IndDev.Domain.Entity.Auth;
 using IndDev.Domain.Entity.Customers;
+using IndDev.Domain.ViewModels;
 
 namespace IndDev.Domain.Context
 {
@@ -11,7 +13,14 @@ namespace IndDev.Domain.Context
     {
         private readonly DataContext _context = new DataContext();
 
-        public IEnumerable<Details> Company => _context.Detailses.Where(c=>!string.IsNullOrEmpty(c.CompanyName)).ToList();
+        public IEnumerable<DetailsTitle> Company => _context.Detailses.Where(c=>!string.IsNullOrEmpty(c.CompanyName)).Select(company=>new DetailsTitle
+        {
+            Id = company.Id,
+            CompanyName = company.CompanyName,
+            Inn = company.Inn,
+            Offer = company.Offer,
+            Region = company.Region
+        }).ToList();
 
         public Details GetCompanyDetails(int id)
         {
@@ -81,7 +90,8 @@ namespace IndDev.Domain.Context
                     return null;
                 }
                 dbComp = currCompany;
-                _context.Detailses.Add(currCompany);
+                dbComp.RegisterDate = DateTime.Now;
+                _context.Detailses.Add(dbComp);
             }
             else
             {
@@ -142,6 +152,27 @@ namespace IndDev.Domain.Context
             }
             await _context.SaveChangesAsync();
             return dbComp;
+        }
+
+        public async Task<User> GetUserById(int id)
+        {
+            var result = await _context.Users.FindAsync(id);
+            return result;
+        }
+
+        public IEnumerable<DetailsTitle> GetCompanysByUser(int id)
+        {
+            var companys =
+                _context.Detailses.Where(c => c.Meneger.Id == id).Select(company => new DetailsTitle
+                {
+                    Id = company.Id,
+                    CompanyName = company.CompanyName,
+                    Inn = company.Inn,
+                    Offer = company.Offer,
+                    Region = company.Region
+                }).ToList();
+
+            return companys;
         }
     }
 }

@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
+﻿using System.IO;
 using System.Threading.Tasks;
+using System.Web.Hosting;
 using System.Web.Http;
+using System.Web.Http.Controllers;
 using IndDev.Domain.Abstract;
 using IndDev.Domain.Entity.Customers;
 
@@ -15,6 +13,7 @@ namespace IndDev.Controllers
     {
         private readonly ICrm _repo;
         private readonly IMailRepository _mail;
+        private int _userId;
 
         public CrmController(ICrm repo, IMailRepository mail)
         {
@@ -22,10 +21,20 @@ namespace IndDev.Controllers
             _mail = mail;
         }
 
+        protected override void Initialize(HttpControllerContext controllerContext)
+        {
+            base.Initialize(controllerContext);
+            if (User.Identity.IsAuthenticated)
+            {
+                _userId = int.Parse(User.Identity.Name);
+            }
+        }
+
         [HttpGet]
         public IHttpActionResult GetCompanys()
         {
-            return Ok(_repo.Company);
+
+            return Ok(_repo.GetCompanysByUser(_userId));
         }
         [HttpGet]
         public IHttpActionResult GetCompany(int id)
@@ -55,6 +64,7 @@ namespace IndDev.Controllers
         [HttpPost]
         public async Task<IHttpActionResult> UpdateCompany(Details currCompany)
         {
+            currCompany.Meneger = await _repo.GetUserById(_userId);
             var result = await _repo.UpdateCompany(currCompany);
             return result != null ? Ok(result) : (IHttpActionResult)BadRequest("Something going wrong...");
 
@@ -63,9 +73,9 @@ namespace IndDev.Controllers
         [HttpPost]
         public async Task<IHttpActionResult> SendKp(PersonContact contact)
         {
-            var path = System.Web.Hosting.HostingEnvironment.MapPath("~/Views/Mails/letterkp.html");
+            var path = HostingEnvironment.MapPath("~/Views/Mails/letterkp.html");
             if (string.IsNullOrWhiteSpace(path)) return BadRequest("Не тела письма");
-            var messageBody = System.IO.File.ReadAllText(path);
+            var messageBody = File.ReadAllText(path);
             var pers = await _repo.SendKpMarkAsync(contact);
             contact.Details = pers;
             var result = await _mail.SendKpAsynk(contact, messageBody);

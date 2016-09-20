@@ -39,10 +39,12 @@ namespace IndDev.Domain.Entity.Customers
         public string RealAdress { get; set; }
         public string Director { get; set; }
         public string Buh { get; set; }
-        public string Offer { get; set; }//почта для офера с контрагентом
+        public string Offer { get; set; }//Сайт предприятия
         public string Region { get; set; }
         public string CompDirect { get; set; }//Тип компании
         public string Descr { get; set; }
+        public DateTime RegisterDate { get; set; }
+        public virtual User Meneger { get; set; }
         public virtual ICollection<Telephone> Telephones { get; set; }
         public virtual ICollection<PersonContact> PersonContacts { get; set; }
         public virtual ICollection<Bank> Banks { get; set; }
@@ -91,5 +93,15 @@ namespace IndDev.Domain.Entity.Customers
         public string Email { get; set; }
         public string Phone { get; set; }
         public virtual Details Details { get; set; }
+    }
+
+    public class DetailsEvent
+    {
+        public int Id { get; set; }
+        public DateTime EventDate { get; set; }
+        public bool EventInit { get; set; }//Тип события 0 - исходящее/1 - входящее
+        public int Priority { get; set; }
+        public bool RemindMe { get; set; }
+        public string Descr { get; set; }
     }
 }
