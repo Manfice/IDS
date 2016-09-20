@@ -88,17 +88,17 @@ namespace IndDev.Domain.Context
                 dbComp = await _context.Detailses.FindAsync(currCompany.Id);
                 if (dbComp == null) return null;
                 dbComp.CompanyName = currCompany.CompanyName;
-                dbComp.Inn = currCompany.Inn.Trim();
-                dbComp.Kpp = currCompany.Kpp.Trim();
-                dbComp.Ogrn = currCompany.Ogrn.Trim();
-                dbComp.UrAdress = currCompany.UrAdress.Trim();
-                dbComp.RealAdress = currCompany.RealAdress.Trim();
-                dbComp.Region = currCompany.Region.Trim();
-                dbComp.Director = currCompany.Director.Trim();
-                dbComp.Buh = currCompany.Buh.Trim();
+                dbComp.Inn = currCompany.Inn;
+                dbComp.Kpp = currCompany.Kpp;
+                dbComp.Ogrn = currCompany.Ogrn;
+                dbComp.UrAdress = currCompany.UrAdress;
+                dbComp.RealAdress = currCompany.RealAdress;
+                dbComp.Region = currCompany.Region;
+                dbComp.Director = currCompany.Director;
+                dbComp.Buh = currCompany.Buh;
                 dbComp.Descr = currCompany.Descr;
-                dbComp.CompDirect = currCompany.CompDirect.Trim();
-                dbComp.Offer = currCompany.Offer.Trim();
+                dbComp.CompDirect = currCompany.CompDirect;
+                dbComp.Offer = currCompany.Offer;
 
                 var tells = new List<Telephone>();
                 var persons = new List<PersonContact>();
@@ -107,8 +107,8 @@ namespace IndDev.Domain.Context
                     var tel = await _context.Telephones.FindAsync(item.Id);
                     if (tel != null)
                     {
-                        tel.PhoneNumber = item.PhoneNumber.Trim();
-                        tel.Title = item.Title.Trim();
+                        tel.PhoneNumber = item.PhoneNumber;
+                        tel.Title = item.Title;
                     }
                     else
                     {
@@ -127,9 +127,9 @@ namespace IndDev.Domain.Context
                     var pers = await _context.PersonContacts.FindAsync(item.Id);
                     if (pers != null)
                     {
-                        pers.Email = item.Email.Trim();
-                        pers.PersonName = item.PersonName.Trim();
-                        pers.Phone = item.Phone.Trim();
+                        pers.Email = item.Email;
+                        pers.PersonName = item.PersonName;
+                        pers.Phone = item.Phone;
                     }
                     else
                     {
