@@ -54,6 +54,8 @@ namespace IndDev.Domain.Context
         public DbSet<DeliveryData> DeliveryDatas { get; set; }
         //Search
         public DbSet<SearchRequests> SearchRequestses { get; set; }
+        //CRM
+        public DbSet<DetailsEvent> DetailsEvents { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

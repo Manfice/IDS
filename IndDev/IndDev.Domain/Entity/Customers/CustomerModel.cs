@@ -48,6 +48,7 @@ namespace IndDev.Domain.Entity.Customers
         public virtual ICollection<Telephone> Telephones { get; set; }
         public virtual ICollection<PersonContact> PersonContacts { get; set; }
         public virtual ICollection<Bank> Banks { get; set; }
+        public virtual ICollection<DetailsEvent> Events { get; set; }
     }
 
     public class Telephone
@@ -103,5 +104,6 @@ namespace IndDev.Domain.Entity.Customers
         public int Priority { get; set; }
         public bool RemindMe { get; set; }
         public string Descr { get; set; }
+        public virtual User Meneger { get; set; }   
     }
 }
