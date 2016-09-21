@@ -29,7 +29,7 @@
                     </tr>
                     <tr>
                         <th>Сайт:</th>
-                        <td><a data-bind="text:Offer, attr:{href:Offer}" target="_blank"></a></td>
+                        <td><a data-bind="text:Offer, attr:{href:Offer}" href="#" target="_blank"></a></td>
                     </tr>
                 </table>
             </div>
@@ -47,12 +47,31 @@
                 </table>
             </div>
         </div>
-
     </div>
-    <div class="col-md-6">
+</div>
+<div class="row">
+    <div class="col-md-12">
         <div class="panel panel-primary" data-bind="with:Admin.currCompany">
-            <div class="panel-heading"><span data-bind="text:'Компания: '+CompanyName()"></span></div>
+            <div class="panel-heading">Описание / заметки</div>
+            <div class="panel-body">
+                <textarea rows="6" class="descrArea" id="DescrInput" data-bind="textInput:Descr"></textarea>
+            </div>
         </div>
-
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-primary" data-bind="with:Admin.currCompany">
+            <div class="panel-heading">Контакты</div>
+            <div class="panel-body">
+                <table class="table table-responsive" data-bind="foreach:PersonContacts">
+                    <tr>
+                        <th data-bind="text:PersonName"></th>
+                        <td data-bind="text:Phone"></td>
+                        <td data-bind="text:Email"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
     </div>
 </div>

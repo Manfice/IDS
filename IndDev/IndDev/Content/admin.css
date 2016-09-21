@@ -170,3 +170,8 @@
 }.regions a {
      margin: 5px 10px;
  }
+ .descrArea {
+     width: 100%;
+     font-weight: bold;
+     font-family: "Arial"
+ }

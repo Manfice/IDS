@@ -154,6 +154,11 @@
             compData.PersonContacts.push(new persData(pers, displayMode.view));
         });
         currCompany(compData);
+        companysViewModel.companys.remove(function(item) {
+            return item.Id() === compData.Id();
+        });
+        companysViewModel.companys.push(compData);
+        filterCompanysByRegion();
     };
     var updCompCallback = function (result) {
         retrievCompany(result);
