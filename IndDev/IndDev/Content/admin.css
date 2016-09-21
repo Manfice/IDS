@@ -170,3 +170,15 @@
 }.regions a {
      margin: 5px 10px;
  }
+ .companyBlock p {
+     margin: 5px 0 0 0;
+     font-weight: bold;
+     border-bottom: solid 1px;
+ }
+ .companyBlock p span {
+     font-weight: normal;
+     margin: 0 0 0 10px;
+ }
+ .companyBlock p a {
+     margin: 0 0 0 10px;
+ }

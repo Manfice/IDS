@@ -5,8 +5,6 @@
             url: "/api/crm/getcompanys/",
             type: "GET",
             success: function (data) {
-                console.log(data);
-
                 callback(data);
             }
         });

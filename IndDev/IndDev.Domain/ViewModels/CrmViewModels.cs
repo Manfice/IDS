@@ -13,4 +13,12 @@
         public string Region { get; set; }
         
     }
+
+    public class Phone
+    {
+        public int Id { get; set; }
+        public string PhoneNumber { get; set; }
+        public string Title { get; set; }
+        public int Details { get; set; }
+    }
 }

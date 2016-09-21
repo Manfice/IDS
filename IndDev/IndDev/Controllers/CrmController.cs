@@ -5,6 +5,7 @@ using System.Web.Http;
 using System.Web.Http.Controllers;
 using IndDev.Domain.Abstract;
 using IndDev.Domain.Entity.Customers;
+using IndDev.Domain.ViewModels;
 
 namespace IndDev.Controllers
 {
@@ -33,8 +34,8 @@ namespace IndDev.Controllers
         [HttpGet]
         public IHttpActionResult GetCompanys()
         {
-
-            return Ok(_repo.GetCompanysByUser(_userId));
+            var result = _repo.GetCompanysByUser(_userId);
+            return Ok(result);
         }
         [HttpGet]
         public IHttpActionResult GetCompany(int id)
@@ -58,6 +59,13 @@ namespace IndDev.Controllers
         public async Task<IHttpActionResult> DeletePerson(int id)
         {
             var result = await _repo.DeleteContactAsync(id);
+            return result != null ? Ok(result) : (IHttpActionResult)BadRequest("Контакт не найдена");
+        }
+
+        [HttpPost]
+        public async Task<IHttpActionResult> UpdatePhone(Phone phone)
+        {
+            var result = await _repo.UpdatePhone(phone);
             return result != null ? Ok(result) : (IHttpActionResult)BadRequest("Контакт не найдена");
         }
 

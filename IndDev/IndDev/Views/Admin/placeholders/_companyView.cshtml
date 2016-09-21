@@ -1,0 +1,39 @@
+﻿<div class="row">
+    <div class="col-md-4">
+        <div class="panel panel-primary" data-bind="with:Admin.currCompany">
+            <div class="panel-heading">
+                <span data-bind="text:'Компания: '+CompanyName()"></span>
+                <span data-bind="text:'г.: '+Region()"></span>
+            </div>
+            <div class="panel-body companyBlock">
+                <p>Инн:<span data-bind="text:Inn"></span></p>
+                
+                <p>Кпп:<span data-bind="text:Kpp"></span></p>
+                
+                <p>ОГРН:<span data-bind="text:Ogrn"></span></p>
+                
+                <p>Юр. адрес:<span data-bind="text:UrAdress"></span></p>
+                
+                <p>Почтовый адр.:<span data-bind="text:RealAdress"></span></p>
+                
+                <p>Сайт компании:<a data-bind="text:Offer, attr:{href:Offer}" target="_blank"></a></p>
+                
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="panel panel-primary" data-bind="with:Admin.currCompany">
+            <div class="panel-heading"><span data-bind="text:'Компания: '+CompanyName()"></span></div>
+            <div class="panel-body">
+                
+            </div>
+        </div>
+
+    </div>
+    <div class="col-md-4">
+        <div class="panel panel-primary" data-bind="with:Admin.currCompany">
+            <div class="panel-heading"><span data-bind="text:'Компания: '+CompanyName()"></span></div>
+        </div>
+
+    </div>
+</div>

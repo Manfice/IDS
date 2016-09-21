@@ -174,5 +174,26 @@ namespace IndDev.Domain.Context
 
             return companys;
         }
+
+        public async Task<Telephone> UpdatePhone(Phone phone)
+        {
+            if (phone == null || phone.Details==0) return null;
+            var tel = new Telephone();
+            if (phone.Id==0)
+            {
+                tel.PhoneNumber = phone.PhoneNumber;
+                tel.Title = phone.Title;
+                tel.DetailsOf = _context.Detailses.Find(phone.Details);
+                _context.Telephones.Add(tel);
+            }
+            else
+            {
+                tel = _context.Telephones.Find(phone.Id);
+                tel.PhoneNumber = phone.PhoneNumber;
+                tel.Title = phone.Title;
+            }
+            await _context.SaveChangesAsync();
+            return tel;
+        }
     }
 }

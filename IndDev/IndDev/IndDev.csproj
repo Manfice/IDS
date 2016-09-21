@@ -570,6 +570,7 @@
     <Content Include="Scripts\_references.js" />
     <Content Include="sitemap.xml" />
     <Content Include="Upload\CustomerAvatars\10_me.png" />
+    <None Include="Views\Admin\placeholders\_companyData.cshtml" />
     <Content Include="Views\Mails\LetterFromTitle.html" />
     <Content Include="Views\Mails\ResetPassword.html" />
     <Content Include="Views\Mails\ThankYou.html" />
@@ -709,6 +710,7 @@
     <Content Include="Views\Admin\Companys.cshtml" />
     <Content Include="Views\Shop\ShowOffers.cshtml" />
     <Content Include="Views\Mails\letterkp.html" />
+    <Content Include="Views\Admin\placeholders\_companyView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
