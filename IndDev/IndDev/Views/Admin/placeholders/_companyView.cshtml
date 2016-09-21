@@ -1,36 +1,55 @@
 ﻿<div class="row">
-    <div class="col-md-4">
+    <div class="col-md-6">
         <div class="panel panel-primary" data-bind="with:Admin.currCompany">
             <div class="panel-heading">
                 <span data-bind="text:'Компания: '+CompanyName()"></span>
                 <span data-bind="text:'г.: '+Region()"></span>
             </div>
             <div class="panel-body companyBlock">
-                <p>Инн:<span data-bind="text:Inn"></span></p>
-                
-                <p>Кпп:<span data-bind="text:Kpp"></span></p>
-                
-                <p>ОГРН:<span data-bind="text:Ogrn"></span></p>
-                
-                <p>Юр. адрес:<span data-bind="text:UrAdress"></span></p>
-                
-                <p>Почтовый адр.:<span data-bind="text:RealAdress"></span></p>
-                
-                <p>Сайт компании:<a data-bind="text:Offer, attr:{href:Offer}" target="_blank"></a></p>
-                
+                <table class="table table-responsive">
+                    <tr>
+                        <th>ИНН</th>
+                        <td data-bind="text:Inn"></td>
+                    </tr>
+                    <tr>
+                        <th>КПП</th>
+                        <td data-bind="text:Kpp"></td>
+                    </tr>
+                    <tr>
+                        <th>ОГРН</th>
+                        <td data-bind="text:Ogrn"></td>
+                    </tr>
+                    <tr>
+                        <th>Юр. адр.:</th>
+                        <td data-bind="text:UrAdress"></td>
+                    </tr>
+                    <tr>
+                        <th>Пт. адр.:</th>
+                        <td data-bind="text:RealAdress"></td>
+                    </tr>
+                    <tr>
+                        <th>Сайт:</th>
+                        <td><a data-bind="text:Offer, attr:{href:Offer}" target="_blank"></a></td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-6">
         <div class="panel panel-primary" data-bind="with:Admin.currCompany">
-            <div class="panel-heading"><span data-bind="text:'Компания: '+CompanyName()"></span></div>
+            <div class="panel-heading">Телефоны компании:</div>
             <div class="panel-body">
-                
+                <table class="table table-responsive" data-bind="foreach:Telephones">
+                    <tr>
+                        <th data-bind="text:Title"></th>
+                        <td data-bind="text:PhoneNumber"></td>
+                    </tr>
+                </table>
             </div>
         </div>
 
     </div>
-    <div class="col-md-4">
+    <div class="col-md-6">
         <div class="panel panel-primary" data-bind="with:Admin.currCompany">
             <div class="panel-heading"><span data-bind="text:'Компания: '+CompanyName()"></span></div>
         </div>
