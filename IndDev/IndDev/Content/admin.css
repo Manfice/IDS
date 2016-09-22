@@ -175,3 +175,12 @@
      font-weight: bold;
      font-family: "Arial"
  }
+.tbl tr th {
+    padding: 0 10px;
+}
+.tbl tr td {
+    padding: 0 10px;
+}
+.controlsComp button{
+    color: rgb(51, 121, 182);
+}

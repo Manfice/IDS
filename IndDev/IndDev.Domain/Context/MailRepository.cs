@@ -21,7 +21,6 @@ namespace IndDev.Domain.Context
 {
     public class MailRepository : IMailRepository
     {
-        
         private async Task<string> SendMyMailAsync(string body, string to, string subject)
         {
             var fromAddress = new MailAddress("admin@id-racks.ru", "Industrial Development");

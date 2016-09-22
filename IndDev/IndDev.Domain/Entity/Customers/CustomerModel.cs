@@ -105,5 +105,6 @@ namespace IndDev.Domain.Entity.Customers
         public bool RemindMe { get; set; }
         public string Descr { get; set; }
         public virtual User Meneger { get; set; }   
+        public virtual Details Details { get; set; }
     }
 }

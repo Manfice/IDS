@@ -2,7 +2,8 @@
     var client = adminClient();
 
     var viewmodel = {
-        currtab: ko.observable("COMPANY")
+        currtab: ko.observable("COMPANY"),
+        showCompanyDetails:ko.observable("CLOSE")
     };
     var companysViewModel = {
         companys: ko.observableArray(),
@@ -67,6 +68,7 @@
         this.Banks = ko.observableArray();
         this.Telephones = ko.observableArray();
         this.PersonContacts = ko.observableArray();
+        this.Events = ko.observableArray();
     };
 
     var telData = function(phone,mode, detId) {
@@ -86,10 +88,20 @@
         this.PersonName = ko.observable(pers.PersonName);
         this.Email = ko.observable(pers.Email);
         this.Phone = ko.observable(pers.Phone);
+        this.Details = ko.observable(pers.Details.Id);
         this.mode = ko.observable(mode);
         this.kp = canKp(pers.Id);
     };
-
+    var eventData = function(event) {
+        this.Id = ko.observable(event.Id);
+        this.EventDate = ko.observable(event.EventDate);
+        this.EventInit = ko.observable(event.EventInit);
+        this.Priority = ko.observable(event.Priority);
+        this.RemindMe = ko.observable(event.RemindMe);
+        this.Descr = ko.observable(event.Descr);
+        this.Meneger = ko.observable(event.Meneger);
+        this.Details = ko.observable(event.Details.Id);
+    }
     var setView = function(data) {
         viewmodel.currtab(data);
     };
@@ -153,9 +165,12 @@
         item.PersonContacts.forEach(function (pers) {
             compData.PersonContacts.push(new persData(pers, displayMode.view));
         });
+        item.Events.forEach(function (e) {
+            compData.Events.push(new eventData(e));
+        });
         currCompany(compData);
-        companysViewModel.companys.remove(function(item) {
-            return item.Id() === compData.Id();
+        companysViewModel.companys.remove(function(i) {
+            return i.Id() === compData.Id();
         });
         companysViewModel.companys.push(compData);
         filterCompanysByRegion();
@@ -163,7 +178,7 @@
     var updCompCallback = function (result) {
         retrievCompany(result);
     };
-    var editCompany = function (comp) {
+    var editCompany = function () {
         viewmodel.currtab("EDIT");
     };
     var viewCompany = function (comp) {
@@ -246,13 +261,19 @@
         client.updateCompany(currCompany, updCompCallback);
         setView("COMPANY");
     };
+    var showCompDet = function(p) {
+        viewmodel.showCompanyDetails(p);
+    };
+    var showDet = function(p) {
+        return viewmodel.showCompanyDetails() === p;
+    }
     var init = function () {
         retrieveCompanys();
         ko.applyBindings(companysViewModel,document.getElementById("companysBlock"));
     };
     $(init);
     return{
-        setView: setView,
+        setView: setView,showCompDet: showCompDet,showDet:showDet,
         currView: currView,
         companysViewModel: companysViewModel,
         addCompany: addCompany,

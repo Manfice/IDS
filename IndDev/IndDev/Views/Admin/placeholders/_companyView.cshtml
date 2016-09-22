@@ -1,29 +1,33 @@
 ﻿<div class="row">
     <div class="col-md-6">
         <div class="panel panel-primary" data-bind="with:Admin.currCompany">
-            <div class="panel-heading">
+            <div class="panel-heading controlsComp">
                 <span data-bind="text:'Компания: '+CompanyName()"></span>
-                <span data-bind="text:'г.: '+Region()"></span>
+                <span data-bind="text:'г. '+Region()"></span>
+                <button type="button" data-bind="click:Admin.showCompDet.bind($data, 'SHOW'), visible:Admin.showDet('CLOSE')"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
+                <button type="button" data-bind="click:Admin.showCompDet.bind($data, 'CLOSE'), visible:Admin.showDet('SHOW')"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
+                <button type="button" data-bind="click:Admin.setView.bind($data, 'EVENT')"><i class="fa fa-envelope" aria-hidden="true"></i></button>
+                <button type="button"><i class="fa fa-phone" aria-hidden="true"></i></button>
             </div>
             <div class="panel-body companyBlock">
-                <table class="table table-responsive">
-                    <tr>
+                <table class="tbl table-responsive">
+                    <tr data-bind="visible:Admin.showDet('SHOW')">
                         <th>ИНН</th>
                         <td data-bind="text:Inn"></td>
                     </tr>
-                    <tr>
+                    <tr data-bind="visible:Admin.showDet('SHOW')">
                         <th>КПП</th>
                         <td data-bind="text:Kpp"></td>
                     </tr>
-                    <tr>
+                    <tr data-bind="visible:Admin.showDet('SHOW')">
                         <th>ОГРН</th>
                         <td data-bind="text:Ogrn"></td>
                     </tr>
-                    <tr>
+                    <tr data-bind="visible:Admin.showDet('SHOW')">
                         <th>Юр. адр.:</th>
                         <td data-bind="text:UrAdress"></td>
                     </tr>
-                    <tr>
+                    <tr data-bind="visible:Admin.showDet('SHOW')">
                         <th>Пт. адр.:</th>
                         <td data-bind="text:RealAdress"></td>
                     </tr>
@@ -39,7 +43,7 @@
         <div class="panel panel-primary" data-bind="with:Admin.currCompany">
             <div class="panel-heading">Телефоны компании:</div>
             <div class="panel-body">
-                <table class="table table-responsive" data-bind="foreach:Telephones">
+                <table class="tbl table-responsive" data-bind="foreach:Telephones">
                     <tr>
                         <th data-bind="text:Title"></th>
                         <td data-bind="text:PhoneNumber"></td>
@@ -64,7 +68,7 @@
         <div class="panel panel-primary" data-bind="with:Admin.currCompany">
             <div class="panel-heading">Контакты</div>
             <div class="panel-body">
-                <table class="table table-responsive" data-bind="foreach:PersonContacts">
+                <table class="tbl table-responsive" data-bind="foreach:PersonContacts">
                     <tr>
                         <th data-bind="text:PersonName"></th>
                         <td data-bind="text:Phone"></td>
