@@ -2408,3 +2408,19 @@ button:focus {
     color: whitesmoke;
 }
 /*END*/
+/*Sert*/
+.sertBlock {
+    flex: 0 1 auto;
+    padding: 0 50px 50px;
+    background-color: rgb(26, 26, 26);
+}
+.sertBlock h1 {
+    text-align: center;
+    text-transform: uppercase;
+    margin: 20px;
+    color: whitesmoke;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+/*Sert END*/

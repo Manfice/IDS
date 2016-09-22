@@ -1,8 +1,9 @@
 ﻿$(document).ready(function () {
-    var owlTop = $('#topSlide');
-    var owlHot = $('#hotCarousel');
-    var owlPart = $('#pLogos');
-    var owlAforizm = $('#aforizmi');
+    var owlTop = $("#topSlide");
+    var owlHot = $("#hotCarousel");
+    var owlPart = $("#pLogos");
+    var owlSert = $("#sert");
+    var owlAforizm = $("#aforizmi");
     owlTop.owlCarousel({
         items: 1,
         loop: true,
@@ -13,11 +14,11 @@
         dots: false,
         autoHeight: false
     });
-    $('.prevItem').click(function () {
-        owlTop.trigger('prev.owl.carousel', [3000]);
+    $(".prevItem").click(function () {
+        owlTop.trigger("prev.owl.carousel", [3000]);
     });
-    $('.nextItem').click(function () {
-        owlTop.trigger('next.owl.carousel', [3000]);
+    $(".nextItem").click(function () {
+        owlTop.trigger("next.owl.carousel", [3000]);
     });
 
     owlHot.owlCarousel({
@@ -47,7 +48,7 @@
         }
     });
     owlPart.owlCarousel({
-        loop: true,
+        loop: false,
         margin: 30,
         nav: false,
         dots: false,
@@ -70,12 +71,61 @@
                 items: 8,
                 nav: false,
                 loop: true,
-                autoplay: true,
-                autoplayTimeout: 5000,
+                autoplay: false,
+                autoplayTimeout: 15000,
                 autoplayHoverPause: true
             }
         }
     });
+    owlSert.owlCarousel({
+        loop: false,
+        margin: 30,
+        nav: true,
+        dots: false,
+        responsiveClass: true,
+        autoHeight: false,
+        responsive: {
+            0: {
+                items: 1,
+                nav: false
+            },
+            600: {
+                items: 3,
+                nav: false
+            },
+            900: {
+                items: 5,
+                nav: false
+            },
+            1200: {
+                items: 8,
+                nav: false,
+                loop: false,
+                autoplay: false,
+                autoplayTimeout: 1000,
+                autoplayHoverPause: true
+            }
+        }
+    });
+    $(".fancybox-thumbs").fancybox({
+        prevEffect: "none",
+        nextEffect: "none",
+
+        closeBtn: false,
+        arrows: false,
+        nextClick: true,
+
+        helpers: {
+            thumbs: {
+                width: 50,
+                height: 50
+            },
+            overlay: {
+                locked:false
+            }
+        }
+    });
+
     owlAforizm.owlCarousel({
         items: 1,
         autoplay: true,
@@ -84,18 +134,18 @@
         loop: true
 });
 });
-var stickyOffset = $('#mainNav').offset().top;
+var stickyOffset = $("#mainNav").offset().top;
 $(window).scroll(function() {
-    var sticky = $('#mainNav');
-    var subStick = $('.subMenuList');
+    var sticky = $("#mainNav");
+    var subStick = $(".subMenuList");
     var scrol = $(window).scrollTop();
     if (scrol >= stickyOffset+700) {
-        sticky.addClass('fixTop');
-        sticky.addClass('blueList');
-        subStick.addClass('blueList');
+        sticky.addClass("fixTop");
+        sticky.addClass("blueList");
+        subStick.addClass("blueList");
     } else {
-        sticky.removeClass('fixTop');
-        sticky.removeClass('blueList');
-        subStick.removeClass('blueList');
+        sticky.removeClass("fixTop");
+        sticky.removeClass("blueList");
+        subStick.removeClass("blueList");
     }
 });

@@ -104,5 +104,10 @@ namespace IndDev.Controllers
         {
             return PartialView();
         }
+        public ActionResult Sertificates()
+        {
+            return PartialView();
+        }
+
     }
 }

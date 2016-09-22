@@ -83,12 +83,12 @@
         return pr !== 0;
     };
 
-    var persData = function(pers, mode) {
+    var persData = function(pers, mode,detId) {
         this.Id = ko.observable(pers.Id);
         this.PersonName = ko.observable(pers.PersonName);
         this.Email = ko.observable(pers.Email);
         this.Phone = ko.observable(pers.Phone);
-        this.Details = ko.observable(pers.Details.Id);
+        this.Details = ko.observable(detId);
         this.mode = ko.observable(mode);
         this.kp = canKp(pers.Id);
     };
@@ -163,7 +163,7 @@
             compData.Banks.push(bank);
         });
         item.PersonContacts.forEach(function (pers) {
-            compData.PersonContacts.push(new persData(pers, displayMode.view));
+            compData.PersonContacts.push(new persData(pers, displayMode.view,detId));
         });
         item.Events.forEach(function (e) {
             compData.Events.push(new eventData(e));
