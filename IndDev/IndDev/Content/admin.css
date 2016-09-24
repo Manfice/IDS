@@ -182,5 +182,23 @@
     padding: 0 10px;
 }
 .controlsComp button{
+    float: right;
     color: rgb(51, 121, 182);
+    margin: 0 0 0 10px;
 }
+/*FilterBlock*/
+.filter {
+    width: 100%;
+    display: flex;
+    flex-flow: row;
+    justify-content: flex-start;
+    padding: 5px;
+}
+.fItem {
+    flex: 1 0 auto;
+    margin: 0 5px;
+}
+.searchByName input {
+    width: 100%;
+}
+/*FilterBlock END*/

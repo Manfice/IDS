@@ -9,7 +9,9 @@
         companys: ko.observableArray(),
         regions: ko.observableArray([]),
         curentRegion: ko.observable(null),
-        filteredCompanys: ko.observableArray()
+        filteredCompanys: ko.observableArray(),
+        innSearch:ko.observable(null),
+        nameSearch:ko.observable(null)
     };
     var regionData = function(data, quantity) {
         this.title = data;
@@ -24,7 +26,44 @@
         }));
     };
 
-    companysViewModel.companys.subscribe(function(newCompanys) {
+    var checkInn = function(p, x) {
+        var c = false;
+        if (!p.Inn) return false;
+        var s = p.Inn();
+        if (s.indexOf(x.toString()) !== -1) c = true;
+        return c;
+    }
+    var checkname = function (p, x) {
+        var c = false;
+        if (!p.CompanyName) return false;
+        var s = p.CompanyName().toLowerCase();
+        if (s.indexOf(x.toString().toLowerCase()) !== -1) c = true;
+        return c;
+    }
+
+    companysViewModel.innSearch.subscribe(function (newValue) {
+        if (!newValue) return filterCompanysByRegion();
+        filterCompanysByRegion();
+        companysViewModel.filteredCompanys.removeAll();
+        var fl = companysViewModel.companys().filter(function (p) {
+            return checkInn(p, newValue);
+        });
+        companysViewModel.filteredCompanys(fl);
+        console.log(fl);
+        return null;
+    });
+    companysViewModel.nameSearch.subscribe(function (newValue) {
+        if (!newValue) return filterCompanysByRegion();
+        filterCompanysByRegion();
+        companysViewModel.filteredCompanys.removeAll();
+        var fl = companysViewModel.companys().filter(function (p) {
+            return checkname(p, newValue);
+        });
+        companysViewModel.filteredCompanys(fl);
+        console.log(fl);
+        return null;
+    });
+    companysViewModel.companys.subscribe(function (newCompanys) {
         filterCompanysByRegion();
         companysViewModel.regions.removeAll();
         var tempArr = [];
@@ -44,7 +83,7 @@
     });
 
     var setFilterRegion = function (region) {
-        var r = region === null ? null : region.title;
+        var r = region == null ? null : region.title;
         companysViewModel.curentRegion(r);
         filterCompanysByRegion();
     };
@@ -92,7 +131,7 @@
         this.mode = ko.observable(mode);
         this.kp = canKp(pers.Id);
     };
-    var eventData = function(event) {
+    var eventData = function(event, mode, detId) {
         this.Id = ko.observable(event.Id);
         this.EventDate = ko.observable(event.EventDate);
         this.EventInit = ko.observable(event.EventInit);
@@ -100,7 +139,18 @@
         this.RemindMe = ko.observable(event.RemindMe);
         this.Descr = ko.observable(event.Descr);
         this.Meneger = ko.observable(event.Meneger);
-        this.Details = ko.observable(event.Details.Id);
+        this.Details = ko.observable(detId);
+        this.mode = ko.observable(mode);
+    };
+    var eventClass = {
+        Id:0,
+        EventDate:new Date(),
+        EventInit:true,
+        Priority:3,
+        RemindMe:true,
+        Descr:"",
+        Meneger:0,
+        Details:null
     }
     var setView = function(data) {
         viewmodel.currtab(data);
@@ -129,7 +179,8 @@
         Descr: null,
         Banks: ko.observableArray([]),
         Telephones: ko.observableArray([]),
-        PersonContacts: ko.observableArray([])
+        PersonContacts: ko.observableArray([]),
+        Events: ko.observableArray([])
     };
     var displayMode = {
         view: "VIEW",
@@ -141,17 +192,21 @@
         currCompany(cp);
     };
     var addTell = function(comp) {
-        var tel = { Id: 0, PhoneNumber: null, Title: null };
-        var tell = new telData(tel, displayMode.edit);
+        var tel = { Id: 0, PhoneNumber: null, Title: null, Details:comp.Id() };
+        var tell = new telData(tel, displayMode.edit, comp.Id());
         comp.Telephones.push(tell);
         currCompany(comp);
     };
     var addPerson = function(com) {
         var pers = { Id: 0, PersonName: null, Email: null, Phone: null };
-        var prs = new persData(pers, displayMode.edit);
+        var prs = new persData(pers, displayMode.edit, com.Id);
         com.PersonContacts.push(prs);
         currCompany(com);
     };
+    var addEvent = function(comp) {
+        comp.Events.push(new eventData(eventClass, displayMode.view,comp.Id));
+        console.log(comp.Events());
+    }
     var retrievCompany = function (item) {
         var compData = new company(item);
         var detId = item.Id;
@@ -166,13 +221,14 @@
             compData.PersonContacts.push(new persData(pers, displayMode.view,detId));
         });
         item.Events.forEach(function (e) {
-            compData.Events.push(new eventData(e));
+            compData.Events.push(new eventData(e, displayMode.view, detId));
         });
         currCompany(compData);
         companysViewModel.companys.remove(function(i) {
             return i.Id() === compData.Id();
         });
         companysViewModel.companys.push(compData);
+        console.log("Retrieve Compny: "+ko.toJSON(compData));
         filterCompanysByRegion();
     };
     var updCompCallback = function (result) {
@@ -189,16 +245,8 @@
     var retrieveCompanysCallback = function (data) {
         var listData = [];
         data.forEach(function (item) {
+            if (item.Inn == null) item.Inn = "";
             var compData = new company(item);
-            //item.Telephones.forEach(function(phone) {
-            //    compData.Telephones.push(new telData(phone, displayMode.view));
-            //});
-            //item.Banks.forEach(function(bank) {
-            //    compData.Banks.push(bank);
-            //});
-            //item.PersonContacts.forEach(function(pers) {
-            //    compData.PersonContacts.push(new persData(pers,displayMode.view));
-            //});
             listData.push(compData);
         });
         companysViewModel.companys(listData);
@@ -225,30 +273,50 @@
     var putCompany = function() {
         client.updateCompany(currCompany, updCompCallback);
     };
-    var delPhoneCallback = function(comp) {
-        retrievCompany(comp);
+    var delPhoneCallback = function (comp) {
+        var data = currCompany();
+        data.Telephones.remove(function(p) {
+            return p.Id() === comp.Id();
+        });
+        currCompany(data);
     };
     var deletePhone = function(phone) {
         client.deletePhone(phone, delPhoneCallback);
     };
-    var updatePhone = function (phone) {
-        phone.mode(displayMode.edit);
-    };
     var updatePerson = function (phone) {
         phone.mode(displayMode.edit);
     };
-    var savePhone = function (phone) {
-        console.log(phone);
+    var svPhoneCb = function(phone, id) {
+        phone.Id(id);
         phone.mode(displayMode.view);
+        alert("Телефон сохранен:" + phone.PhoneNumber());
     };
-    var savePerson = function(phone) {
-        phone.mode(displayMode.view);
+    var savePhone = function (phone) {
+        client.updatePhone(phone, svPhoneCb);
+    };
+    var updatePhone = function (phone) {
+        phone.mode(displayMode.edit);
+    };
+    var svPersCb = function(person, id) {
+        person.Id(id);
+        person.mode(displayMode.view);
+        alert("Контакт сохранен:" + person.PersonName());
+    };
+    var savePerson = function (person) {
+        client.updatePerson(person, svPersCb);
     };
     var retrieveCompanys = function () {
         client.getCompanys(retrieveCompanysCallback);
     };
+    var delPersCb = function(person) {
+        var data = currCompany();
+        data.PersonContacts.remove(function(p) {
+            return p.Id() === person.Id();
+        });
+        currCompany(data);
+    };
     var deletePerson = function(person) {
-        client.deletePerson(person, delPhoneCallback);
+        client.deletePerson(person, delPersCb);
     };
     var sndPrCallback = function(data, cont) {
         alert("КП отправленно на адрес: " + cont.Email());
@@ -266,7 +334,16 @@
     };
     var showDet = function(p) {
         return viewmodel.showCompanyDetails() === p;
-    }
+    };
+    var addNewComment = function() {
+        var line = currCompany();
+        var dt = new Date();
+        var txt = "\n\n^^^----- " + dt.toLocaleString() + " ----^^^\n";
+        txt += line.Descr();
+        line.Descr(txt);
+        console.log(ko.toJS(line));
+        currCompany(line);
+    };
     var init = function () {
         retrieveCompanys();
         ko.applyBindings(companysViewModel,document.getElementById("companysBlock"));
@@ -286,6 +363,7 @@
         addTell: addTell, addPerson: addPerson, deletePerson: deletePerson,
         deletePhone: deletePhone, updatePhone: updatePhone,savePhone:savePhone,
         updatePerson: updatePerson,savePerson:savePerson,
-        canSendKp: canSendKp, sndKp: sndKp, saveAndClose: saveAndClose
+        canSendKp: canSendKp, sndKp: sndKp, saveAndClose: saveAndClose,
+        addNewComment: addNewComment, addEvent: addEvent
     };
 }();

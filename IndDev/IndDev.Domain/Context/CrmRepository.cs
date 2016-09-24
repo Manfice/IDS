@@ -75,7 +75,7 @@ namespace IndDev.Domain.Context
             var dbCont = await _context.PersonContacts.FindAsync(contact.Id);
             if (dbCont == null) return null;
             var dbDet = await _context.Detailses.FindAsync(dbCont.Details.Id);
-            dbDet.Descr += $"Отправлено КП {DateTime.Now.ToLongDateString()}";
+            dbDet.Descr += $"\nОтправлено КП {DateTime.Now.ToLongDateString()}";
             await _context.SaveChangesAsync();
             return dbDet;
         }
@@ -194,6 +194,28 @@ namespace IndDev.Domain.Context
             }
             await _context.SaveChangesAsync();
             return tel;
+        }
+
+        public async Task<int> UpdatePerson(Person person)
+        {
+            if (person == null || person.Details == 0) return 0;
+            var pers = new PersonContact();
+            if (person.Id == 0)
+            {
+                pers.PersonName = person.PersonName;
+                pers.Email = person.Email;
+                pers.Details = _context.Detailses.Find(person.Details);
+                _context.PersonContacts.Add(pers);
+            }
+            else
+            {
+                pers = _context.PersonContacts.Find(person.Id);
+                pers.PersonName = person.PersonName;
+                pers.Email = person.Email;
+                pers.Phone = person.Phone;
+            }
+            await _context.SaveChangesAsync();
+            return pers.Id;
         }
     }
 }

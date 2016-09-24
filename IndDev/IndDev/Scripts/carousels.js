@@ -139,7 +139,7 @@ $(window).scroll(function() {
     var sticky = $("#mainNav");
     var subStick = $(".subMenuList");
     var scrol = $(window).scrollTop();
-    if (scrol >= stickyOffset+700) {
+    if (scrol >= stickyOffset) {
         sticky.addClass("fixTop");
         sticky.addClass("blueList");
         subStick.addClass("blueList");

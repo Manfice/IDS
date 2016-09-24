@@ -29,13 +29,35 @@
             }
         });
     };
+    var updatePhone = function (phone, callback) {
+        $.ajax({
+            url: "/api/crm/UpdatePhone/",
+            type: "POST",
+            data: ko.toJSON(phone),
+            contentType: "application/json",
+            success: function (result) {
+                callback(phone, result);
+            }
+        });
+    };
+    var updatePerson = function (person, callback) {
+        $.ajax({
+            url: "/api/crm/UpdatePerson/",
+            type: "POST",
+            data: ko.toJSON(person),
+            contentType: "application/json",
+            success: function (result) {
+                callback(person, result);
+            }
+        });
+    };
 
     var deletePhone = function(phone, callback) {
         $.ajax({
             url: "/api/crm/DeletePhone/" + phone.Id(),
             type: "DELETE",
             success: function(result) {
-                callback(result);
+                callback(phone);
             }
         });
     };
@@ -44,7 +66,7 @@
             url: "/api/crm/DeletePerson/" + person.Id(),
             type: "DELETE",
             success: function(result) {
-                callback(result);
+                callback(person);
             }
         });
     };
@@ -67,6 +89,7 @@
         updateCompany: updateCompany,
         deletePhone: deletePhone,deletePerson,
         sendKp: sendKp,
-        retrieveCompanyFromServer: retrieveCompanyFromServer
+        retrieveCompanyFromServer: retrieveCompanyFromServer,
+        updatePhone: updatePhone,updatePerson:updatePerson
     };
 };

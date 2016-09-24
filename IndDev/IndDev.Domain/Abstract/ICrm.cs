@@ -16,6 +16,7 @@ namespace IndDev.Domain.Abstract
         Task<Details> DeleteContactAsync(int id);
         Task<Details> UpdateCompany(Details currCompany);
         Task<Telephone> UpdatePhone(Phone phone);
+        Task<int> UpdatePerson(Person person);
         Task<Details> SendKpMarkAsync(PersonContact contact);
         Task<User> GetUserById(int id);
     }

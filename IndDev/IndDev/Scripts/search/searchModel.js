@@ -43,7 +43,7 @@
     };
 
     var init = function () {
-        //ko.applyBindings();
+        ko.applyBindings(resultModel, document.getElementById("searchForm"));
     };
 
     $(init);

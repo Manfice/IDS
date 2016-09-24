@@ -52,21 +52,31 @@ namespace IndDev.Controllers
         [HttpDelete]
         public async Task<IHttpActionResult> DeletePhone(int id)
         {
+            if (!User.IsInRole("A")) return BadRequest("Недостаточно прав.");
             var result = await _repo.DeletePhoneAsync(id);
-            return result != null ? Ok(result) : (IHttpActionResult)BadRequest("Телефон не найден");
+            return result != null ? Ok() : (IHttpActionResult) BadRequest("Телефон не найден");
         }
+
         [HttpDelete]
         public async Task<IHttpActionResult> DeletePerson(int id)
         {
+            if (!User.IsInRole("A")) return BadRequest("Недостаточно прав.");
+
             var result = await _repo.DeleteContactAsync(id);
-            return result != null ? Ok(result) : (IHttpActionResult)BadRequest("Контакт не найдена");
+            return result != null ? Ok() : (IHttpActionResult)BadRequest("Контакт не найдена");
         }
 
         [HttpPost]
         public async Task<IHttpActionResult> UpdatePhone(Phone phone)
         {
             var result = await _repo.UpdatePhone(phone);
-            return result != null ? Ok(result) : (IHttpActionResult)BadRequest("Контакт не найдена");
+            return result != null ? Ok(result.Id) : (IHttpActionResult)BadRequest("Контакт не найдена");
+        }
+        [HttpPost]
+        public async Task<IHttpActionResult> UpdatePerson(Person person)
+        {
+            var result = await _repo.UpdatePerson(person);
+            return result > 0 ? Ok(result) : (IHttpActionResult)BadRequest("Контакт не найдена");
         }
 
         [HttpPost]

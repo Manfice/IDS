@@ -7,7 +7,8 @@
             url: baseUrl + "/postsearch/",
             data: requestString,
             type: "POST",
-            success: function(data) {
+            success: function (data) {
+                console.log(ko.toJS(data));
                 callback(data);
             }
         });

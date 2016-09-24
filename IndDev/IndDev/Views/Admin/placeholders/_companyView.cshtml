@@ -41,12 +41,30 @@
     </div>
     <div class="col-md-6">
         <div class="panel panel-primary" data-bind="with:Admin.currCompany">
-            <div class="panel-heading">Телефоны компании:</div>
+            <div class="panel-heading controlsComp">
+                <span>Телефоны компании:</span>
+                <button type="button" data-bind="click:Admin.addTell"><i class="fa fa-plus" aria-hidden="true"></i></button>
+            </div>
             <div class="panel-body">
                 <table class="tbl table-responsive" data-bind="foreach:Telephones">
-                    <tr>
+                    <tr data-bind="if: mode()=== Admin.displayMode.view">
                         <th data-bind="text:Title"></th>
                         <td data-bind="text:PhoneNumber"></td>
+                        <td>
+                            <button type="button" data-bind="click:Admin.deletePhone"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                        </td>
+                    </tr>
+                    <tr data-bind="if: mode()=== Admin.displayMode.edit">
+                        <td>
+                            <input type="text" name="telephoneName" class="form-control" data-bind="value: Title" />
+                        </td>
+                        <td>
+                            <input type="tel" name="tel" class="form-control" data-bind="value: PhoneNumber" />
+                        </td>
+                        <td>
+                            <button data-bind="visible:kp, click:Admin.sndKp">К.П.</button>
+                            <button type="button" data-bind="click:Admin.savePhone"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+                        </td>
                     </tr>
                 </table>
             </div>
@@ -56,7 +74,11 @@
 <div class="row">
     <div class="col-md-12">
         <div class="panel panel-primary" data-bind="with:Admin.currCompany">
-            <div class="panel-heading">Описание / заметки</div>
+            <div class="panel-heading controlsComp">
+                <span>Описание / заметки</span>
+                <button type="button" data-bind="click:Admin.addNewComment"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                <button type="button" data-bind="click:Admin.putCompany"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+            </div>
             <div class="panel-body">
                 <textarea rows="6" class="descrArea" id="DescrInput" data-bind="textInput:Descr"></textarea>
             </div>
@@ -66,13 +88,74 @@
 <div class="row">
     <div class="col-md-12">
         <div class="panel panel-primary" data-bind="with:Admin.currCompany">
-            <div class="panel-heading">Контакты</div>
+            <div class="panel-heading controlsComp">
+                <span>Контакты:</span>
+                <button type="button" data-bind="click:Admin.addPerson"><i class="fa fa-plus" aria-hidden="true"></i></button>
+            </div>
             <div class="panel-body">
                 <table class="tbl table-responsive" data-bind="foreach:PersonContacts">
-                    <tr>
+                    <tr data-bind="if: mode()=== Admin.displayMode.view">
+                        <th></th>
                         <th data-bind="text:PersonName"></th>
                         <td data-bind="text:Phone"></td>
                         <td data-bind="text:Email"></td>
+                        <td>
+                            <button data-bind="visible:kp, click:Admin.sndKp">К.П.</button>
+                            <button type="button" data-bind="click:Admin.deletePerson"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                        </td>
+                    </tr>
+                    <tr data-bind="if: mode()=== Admin.displayMode.edit">
+                        <td>Письмо для:</td>
+                        <td>
+                            <input type="text" name="persName" class="form-control" data-bind="value: PersonName"/>
+                        </td>
+                        <td>
+                            <input type="tel" name="persTitle" class="form-control" data-bind="value: Phone"/>
+                        </td>
+                        <td>
+                            <input type="text" name="email" class="form-control" data-bind="value: Email"/>
+                        </td>
+                        <td>
+                            <button type="button" data-bind="click:Admin.savePerson"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-primary" data-bind="with:Admin.currCompany">
+            <div class="panel-heading controlsComp">
+                <span>События:</span>
+                <button type="button" data-bind="click:Admin.addEvent"><i class="fa fa-plus" aria-hidden="true"></i></button>
+            </div>
+            <div class="panel-body">
+                <table class="tbl table-responsive" data-bind="foreach:Events">
+                    <tr data-bind="if: mode()=== Admin.displayMode.view">
+                        <th></th>
+                        <th data-bind="text:PersonName"></th>
+                        <td data-bind="text:Phone"></td>
+                        <td data-bind="text:Email"></td>
+                        <td>
+                            <button type="button" data-bind="click:Admin.deletePerson"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                        </td>
+                    </tr>
+                    <tr data-bind="if: mode()=== Admin.displayMode.edit">
+                        <td>Письмо для:</td>
+                        <td>
+                            <input type="text" name="persName" class="form-control" data-bind="value: PersonName" />
+                        </td>
+                        <td>
+                            <input type="tel" name="persTitle" class="form-control" data-bind="value: Phone" />
+                        </td>
+                        <td>
+                            <input type="text" name="email" class="form-control" data-bind="value: Email" />
+                        </td>
+                        <td>
+                            <button type="button" data-bind="click:Admin.savePerson"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+                        </td>
                     </tr>
                 </table>
             </div>

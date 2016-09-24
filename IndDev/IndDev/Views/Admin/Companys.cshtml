@@ -24,7 +24,6 @@
 
 
     <div class="pageWrapper">
-
         <div class="pageView" data-bind="visible:Admin.currView('COMPANY')" style="display: none">
             <div class="regions">
                 <a href="#" data-bind="click:Admin.setFilterRegion.bind($data,null)" class="btn btn-default btn-sm">Все
@@ -35,6 +34,18 @@
                         <p data-bind="text: title"></p>
                         <span data-bind="text:quantity"></span>
                     </a>
+                </div>
+            </div>
+            <div class="filter">
+                <div class="fItem searchByInn">
+                    <label for="inputInn">Поиск по ИНН</label><br/>
+                    <input type="text" name="InnSearch" id="inputInn" data-bind="value:innSearch, valueUpdate:'afterkeydown'"/>
+                    <p data-bind="text:'Найдено: '+filteredCompanys().length+' компаний.', visible:innSearch"></p>
+                </div>
+                <div class="fItem searchByName">
+                    <label for="nameCompany">Поиск по наименованию</label><br />
+                    <input type="text" name="InnSearch" id="nameCompany" data-bind="value:nameSearch, valueUpdate:'afterkeydown'" />
+                    <p data-bind="text:'Найдено: '+filteredCompanys().length+' компаний.', visible:nameSearch"></p>
                 </div>
             </div>
             <table class="table table-responsive table-striped" data-bind="with:Admin">

@@ -1,13 +1,14 @@
 ﻿@model IndDev.Domain.Entity.Cart.Cart
 
 <div class="cartSectionBlock">
-    <div class="shopTop">
+    <div class="shopTop"  id="searchForm">
         <div class="search">
             @using (Html.BeginForm("Search", "Shop", FormMethod.Post, new {data_bind = "submit:SearchModule.submit"}))
             {
                 @Html.AntiForgeryToken()
                 <input type="text" name="search" id="srch" tabindex="1" placeholder="Поиск по каталогу..." data-bind="value:SearchModule.resultModel.SearchRequest"/><input type="submit" value="Поиск"/>
             }
+
         </div>
         <div style="display: none" data-bind="visible: SearchModule.isSearchResult()">
             <div class="searchResultForm">
@@ -17,24 +18,24 @@
                 <div class="searchFormBody">
                     <table class="table table-responsive table-striped">
                         <thead>
-                        <tr>
-                            <th>Фото</th>
-                            <th>Артикул</th>
-                            <th>Наименование</th>
-                            <th>Производитель</th>
-                        </tr>
+                            <tr>
+                                <th>Фото</th>
+                                <th>Артикул</th>
+                                <th>Наименование</th>
+                                <th>Производитель</th>
+                            </tr>
                         </thead>
                         <tbody data-bind="foreach:SearchModule.resultModel.products">
-                        <tr>
-                            <td data-bind="if: Avatar"><img data-bind="attr:{src: Avatar}" alt="" width="50"/></td>
-                            <td><p data-bind="html: Articul"></p></td>
-                            <td>
-                                <a data-bind="attr:{href:'/shop/ProductDetails?id='+Id}">
-                                    <p data-bind="html: Title"></p>
-                                </a>
-                            </td>
-                            <td><p data-bind="text: Brand"></p></td>
-                        </tr>
+                            <tr>
+                                <td data-bind="if: Avatar"><img data-bind="attr:{src: Avatar}" alt="" width="50" /></td>
+                                <td><p data-bind="html: Articul"></p></td>
+                                <td>
+                                    <a data-bind="attr:{href:'/shop/ProductDetails?id='+Id}">
+                                        <p data-bind="html: Title"></p>
+                                    </a>
+                                </td>
+                                <td><p data-bind="text: Brand"></p></td>
+                            </tr>
                         </tbody>
                     </table>
                     @*<ul data-bind="foreach:SearchModule.resultModel.products">
@@ -50,12 +51,14 @@
                     @using (Html.BeginForm("Search", "Shop", FormMethod.Post))
                     {
                         @Html.AntiForgeryToken()
-                        <input type="hidden" name="SearchRequest" data-bind="value:SearchModule.resultModel.SearchRequest"/>
-                        <button type="submit">Подробнее</button>
+                        <input type="hidden" name="SearchRequest" data-bind="value:SearchModule.resultModel.SearchRequest" />
+                            <button type="submit">Подробнее</button>
                     }
                 </div>
             </div>
         </div>
+
+
         <div class="midleBlock">
             <div id="vasia" class="carousel" data-interval="15000" data-ride="carousel">
                 <div class="carousel-inner myText">
