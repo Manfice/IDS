@@ -75,7 +75,7 @@ namespace IndDev.Domain.Context
             var dbCont = await _context.PersonContacts.FindAsync(contact.Id);
             if (dbCont == null) return null;
             var dbDet = await _context.Detailses.FindAsync(dbCont.Details.Id);
-            dbDet.Descr += $"\nОтправлено КП {DateTime.Now.ToLongDateString()}";
+            dbDet.Descr += $"\nОтправлено КП {DateTime.Now.ToLongDateString()} на адрес {contact.Email}";
             await _context.SaveChangesAsync();
             return dbDet;
         }
@@ -216,6 +216,47 @@ namespace IndDev.Domain.Context
             }
             await _context.SaveChangesAsync();
             return pers.Id;
+        }
+
+        public async Task<int> AddEvent(EventData eventData, int usrId)
+        {
+            if (eventData.Details == 0) return 0;
+            var detDb = await _context.Detailses.FindAsync(eventData.Details);
+            if (detDb == null) return 0;
+            var usr = _context.Users.Find(usrId);
+            var ev = new DetailsEvent
+            {
+                Descr = eventData.Descr,
+                EventDate = eventData.EventDate,
+                EventInit = eventData.EventInit,
+                Priority = eventData.Priority,
+                RemindMe = eventData.RemindMe,
+                EventType = eventData.EventType,
+                Details = detDb,
+                Meneger = usr
+            };
+            _context.DetailsEvents.Add(ev);
+            await _context.SaveChangesAsync();
+            return ev.Id;
+        }
+
+        public IEnumerable<EventData> GetEvents(int usr)
+        {
+            var ev = _context.DetailsEvents.Where(e => e.Meneger.Id == usr).Select(e => new EventData
+            {
+                Id = e.Id,
+                Details = e.Details.Id,
+                Priority = e.Priority,
+                Company = new DetailsTitle {CompanyName = e.Details.CompanyName},
+                Descr = e.Descr,
+                Meneger = e.Meneger.Name,
+                EventInit = e.EventInit,
+                EventDate = e.EventDate,
+                EventType = e.EventType,
+                RemindMe = e.RemindMe
+
+            }).ToList();
+            return ev;
         }
     }
 }

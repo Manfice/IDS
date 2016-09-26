@@ -38,6 +38,12 @@ namespace IndDev.Controllers
             return Ok(result);
         }
         [HttpGet]
+        public IHttpActionResult GetEvents()
+        {
+            var result = _repo.GetEvents(_userId);
+            return Ok(result);
+        }
+        [HttpGet]
         public IHttpActionResult GetCompany(int id)
         {
             return Ok(_repo.GetCompanyDetails(id));
@@ -88,6 +94,11 @@ namespace IndDev.Controllers
 
         }
 
+        [HttpPost]
+        public async Task<IHttpActionResult> PostEvent(EventData eventData)
+        {
+            return Ok(await _repo.AddEvent(eventData, _userId));
+        }
         [HttpPost]
         public async Task<IHttpActionResult> SendKp(PersonContact contact)
         {

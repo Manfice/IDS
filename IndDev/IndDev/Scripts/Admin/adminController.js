@@ -40,6 +40,17 @@
             }
         });
     };
+    var addEvent = function (ev, callback) {
+        $.ajax({
+            url: "/api/crm/PostEvent/",
+            type: "POST",
+            data: ko.toJSON(ev),
+            contentType: "application/json",
+            success: function (result) {
+                callback(ev, result);
+            }
+        });
+    };
     var updatePerson = function (person, callback) {
         $.ajax({
             url: "/api/crm/UpdatePerson/",
@@ -78,7 +89,6 @@
             //contentType: "application/json",
             data: pers,
             success: function(data) {
-                console.log(ko.toJSON(data));
                 callback(data, pers);
             }
         });
@@ -88,7 +98,7 @@
         getCompanys: getCompanys,
         updateCompany: updateCompany,
         deletePhone: deletePhone,deletePerson,
-        sendKp: sendKp,
+        sendKp: sendKp,addEvent:addEvent,
         retrieveCompanyFromServer: retrieveCompanyFromServer,
         updatePhone: updatePhone,updatePerson:updatePerson
     };

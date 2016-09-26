@@ -11,7 +11,8 @@
         curentRegion: ko.observable(null),
         filteredCompanys: ko.observableArray(),
         innSearch:ko.observable(null),
-        nameSearch:ko.observable(null)
+        nameSearch:ko.observable(null),
+        curEvent:ko.observable(null)
     };
     var regionData = function(data, quantity) {
         this.title = data;
@@ -26,7 +27,7 @@
         }));
     };
 
-    var checkInn = function(p, x) {
+    var checkInn = function (p, x) {
         var c = false;
         if (!p.Inn) return false;
         var s = p.Inn();
@@ -49,7 +50,6 @@
             return checkInn(p, newValue);
         });
         companysViewModel.filteredCompanys(fl);
-        console.log(fl);
         return null;
     });
     companysViewModel.nameSearch.subscribe(function (newValue) {
@@ -60,7 +60,6 @@
             return checkname(p, newValue);
         });
         companysViewModel.filteredCompanys(fl);
-        console.log(fl);
         return null;
     });
     companysViewModel.companys.subscribe(function (newCompanys) {
@@ -129,7 +128,7 @@
         this.Phone = ko.observable(pers.Phone);
         this.Details = ko.observable(detId);
         this.mode = ko.observable(mode);
-        this.kp = canKp(pers.Id);
+        this.kp = canKp(this.Id);
     };
     var eventData = function (event, mode, detId) {
         this.Id = ko.observable(event.Id);
@@ -156,11 +155,16 @@
     var setView = function(data) {
         viewmodel.currtab(data);
     };
+    var evCallback = function(ev, id) {
+        ev.Id = id;
+        var comp = currCompany();
+        comp.Events.push(ev);
+    }
     var addEvent = function(et) {
         var e = new eventData(eventClass);
         e.EventType = et;
         e.Details = currCompany().Id;
-        console.log(ko.toJSON(e));
+        companysViewModel.curEvent(e);
     };
     var currView = function(data) {
         return viewmodel.currtab() === data;
@@ -231,7 +235,6 @@
             return i.Id() === compData.Id();
         });
         companysViewModel.companys.push(compData);
-        console.log("Retrieve Compny: "+ko.toJSON(compData));
         filterCompanysByRegion();
     };
     var updCompCallback = function (result) {
@@ -303,6 +306,7 @@
     var svPersCb = function(person, id) {
         person.Id(id);
         person.mode(displayMode.view);
+        console.log(ko.toJSON(person));
         alert("Контакт сохранен:" + person.PersonName());
     };
     var savePerson = function (person) {
@@ -344,7 +348,6 @@
         var txt = "\n\n^^^----- " + dt.toLocaleString() + " ----^^^\n";
         txt += line.Descr();
         line.Descr(txt);
-        console.log(ko.toJS(line));
         currCompany(line);
     };
     var init = function () {

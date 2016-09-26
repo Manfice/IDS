@@ -62,7 +62,6 @@
                             <input type="tel" name="tel" class="form-control" data-bind="value: PhoneNumber" />
                         </td>
                         <td>
-                            <button data-bind="visible:kp, click:Admin.sndKp">К.П.</button>
                             <button type="button" data-bind="click:Admin.savePhone"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
                         </td>
                     </tr>
@@ -126,7 +125,7 @@
 </div>
 <div class="row">
     <div class="col-md-12">
-        <div class="panel panel-primary" data-bind="with:Admin.currCompany">
+        <div class="panel panel-info" data-bind="with:Admin.currCompany">
             <div class="panel-heading controlsComp">
                 <span>События:</span>
                 <button type="button" data-bind="click:Admin.addEvent"><i class="fa fa-plus" aria-hidden="true"></i></button>

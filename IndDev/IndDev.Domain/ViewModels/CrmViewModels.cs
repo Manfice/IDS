@@ -1,4 +1,7 @@
-﻿namespace IndDev.Domain.ViewModels
+﻿using System;
+using System.Diagnostics;
+
+namespace IndDev.Domain.ViewModels
 {
     public class CrmViewModels
     {
@@ -29,5 +32,19 @@
         public string Email { get; set; }
         public string Phone { get; set; }
         public int Details { get; set; }
+    }
+
+    public class EventData
+    {
+        public int Id { get; set; }
+        public DateTime EventDate { get; set; }
+        public bool EventInit { get; set; }
+        public string EventType { get; set; }
+        public int Priority { get; set; }
+        public bool RemindMe { get; set; }
+        public string Descr { get; set; }
+        public int Details { get; set; }
+        public DetailsTitle Company { get; set; }
+        public string Meneger { get; set; }
     }
 }

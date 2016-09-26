@@ -19,5 +19,7 @@ namespace IndDev.Domain.Abstract
         Task<int> UpdatePerson(Person person);
         Task<Details> SendKpMarkAsync(PersonContact contact);
         Task<User> GetUserById(int id);
+        Task<int> AddEvent(EventData eventData, int usrId);
+        IEnumerable<EventData> GetEvents(int usr);
     }
 }
