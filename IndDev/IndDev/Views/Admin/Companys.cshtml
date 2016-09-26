@@ -73,7 +73,7 @@
             </table>
         </div>
         <div class="pageView" data-bind="visible:Admin.currView('EVENT')" style="display: none">
-            Events
+            @Html.Partial("placeholders/_events")
         </div>
         <div class="pageView" data-bind="visible:Admin.currView('SHOW_COMPANY')" style="display: none">
             @Html.Partial("placeholders/_companyView")

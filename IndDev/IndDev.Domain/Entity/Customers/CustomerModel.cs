@@ -102,6 +102,7 @@ namespace IndDev.Domain.Entity.Customers
         public DateTime EventDate { get; set; }
         public bool EventInit { get; set; }//Тип события 0 - исходящее/1 - входящее
         public int Priority { get; set; }
+        public string EventType { get; set; }
         public bool RemindMe { get; set; }
         public string Descr { get; set; }
         public virtual User Meneger { get; set; }   

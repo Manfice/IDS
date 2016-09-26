@@ -38,6 +38,7 @@ namespace IndDev.Controllers
                     var svm = _repository.Login(model);
                     if (svm.Code>0)
                     {
+
                         FormsAuthentication.SetAuthCookie(svm.Code.ToString(),model.RememberMe);
                         cart.Customer = _repository.GetUserById(svm.Code).Customer;
                         TempData["secureMessage"] = string.Format(svm.Message);

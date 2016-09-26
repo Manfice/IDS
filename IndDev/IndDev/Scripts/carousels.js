@@ -78,9 +78,9 @@
         }
     });
     owlSert.owlCarousel({
-        loop: false,
+        loop: true,
         margin: 30,
-        nav: true,
+        nav: false,
         dots: false,
         responsiveClass: true,
         autoHeight: false,
@@ -100,9 +100,9 @@
             1200: {
                 items: 8,
                 nav: false,
-                loop: false,
-                autoplay: false,
-                autoplayTimeout: 1000,
+                loop: true,
+                autoplay: true,
+                autoplayTimeout: 11000,
                 autoplayHoverPause: true
             }
         }

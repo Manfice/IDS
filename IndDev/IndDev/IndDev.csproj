@@ -364,12 +364,15 @@
     <Content Include="Content\images\Sertificates\gl600.jpg" />
     <Content Include="Content\images\Sertificates\inst200.jpg" />
     <Content Include="Content\images\Sertificates\inst600.jpg" />
+    <Content Include="Content\images\Sertificates\ip.jpg" />
     <Content Include="Content\images\Sertificates\nl200.jpg" />
     <Content Include="Content\images\Sertificates\nl600.jpg" />
     <Content Include="Content\images\Sertificates\nmx200.jpg" />
+    <Content Include="Content\images\Sertificates\nmx20016.jpg" />
     <Content Include="Content\images\Sertificates\nmx600.jpg" />
     <Content Include="Content\images\Sertificates\sert.jpeg" />
     <Content Include="Content\images\Sertificates\tlk200.jpg" />
+    <Content Include="Content\images\Sertificates\tlk20016.jpg" />
     <Content Include="Content\images\Sertificates\tlk600.jpg" />
     <Content Include="Content\images\servers.jpg" />
     <Content Include="Content\images\SIP.jpg" />

@@ -131,10 +131,11 @@
         this.mode = ko.observable(mode);
         this.kp = canKp(pers.Id);
     };
-    var eventData = function(event, mode, detId) {
+    var eventData = function (event, mode, detId) {
         this.Id = ko.observable(event.Id);
-        this.EventDate = ko.observable(event.EventDate);
+        this.EventDate = ko.observable(new Date(event.EventDate).toLocaleDateString("ru-RU"));
         this.EventInit = ko.observable(event.EventInit);
+        this.EventType = ko.observable(event.EventType);
         this.Priority = ko.observable(event.Priority);
         this.RemindMe = ko.observable(event.RemindMe);
         this.Descr = ko.observable(event.Descr);
@@ -155,7 +156,12 @@
     var setView = function(data) {
         viewmodel.currtab(data);
     };
-
+    var addEvent = function(et) {
+        var e = new eventData(eventClass);
+        e.EventType = et;
+        e.Details = currCompany().Id;
+        console.log(ko.toJSON(e));
+    };
     var currView = function(data) {
         return viewmodel.currtab() === data;
     };
@@ -203,10 +209,7 @@
         com.PersonContacts.push(prs);
         currCompany(com);
     };
-    var addEvent = function(comp) {
-        comp.Events.push(new eventData(eventClass, displayMode.view,comp.Id));
-        console.log(comp.Events());
-    }
+
     var retrievCompany = function (item) {
         var compData = new company(item);
         var detId = item.Id;
