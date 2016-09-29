@@ -262,6 +262,7 @@
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\fonts.css" />
+    <Content Include="Content\images\ahtung.jpg" />
     <Content Include="Content\images\cart_logo.png" />
     <Content Include="Content\images\CP42.png" />
     <Content Include="Content\images\FOC.png" />
@@ -272,6 +273,7 @@
     <Content Include="Content\images\dc960_640.jpg" />
     <Content Include="Content\images\fiber_optic.jpg" />
     <Content Include="Content\images\fon45.png" />
+    <Content Include="Content\images\hs.png" />
     <Content Include="Content\images\idlgfpngblue.png" />
     <Content Include="Content\images\id_logo.svg" />
     <Content Include="Content\images\info.png" />
@@ -394,6 +396,7 @@
     <Content Include="Content\images\Sertificates\31_12_14_Tayle.jpg" />
     <Content Include="Content\images\Sertificates\ipcom.jpg" />
     <Content Include="Content\images\tele960_640.jpg" />
+    <Content Include="Content\images\thesun.png" />
     <Content Include="Content\images\twisted_pair.jpg" />
     <Content Include="Content\images\Uploads\Categories\022ab783-cd4f-43fc-a9ee-83614757393b_lclc.png" />
     <Content Include="Content\images\Uploads\Categories\111.png" />
@@ -580,6 +583,8 @@
     <Content Include="Scripts\search\searchClient.js" />
     <Content Include="Scripts\search\searchModel.js" />
     <Content Include="Scripts\shopScripts.js" />
+    <Content Include="Scripts\shop\shopClient.js" />
+    <Content Include="Scripts\shop\shopModel.js" />
     <Content Include="Scripts\slider.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="sitemap.xml" />
@@ -630,12 +635,12 @@
     <Content Include="Views\News\Index.cshtml" />
     <Content Include="Views\News\EditList.cshtml" />
     <Content Include="Views\News\_News.cshtml" />
-    <Content Include="Views\NewsNav\Navigation.cshtml" />
+    <Content Include="Models\NewsNav\Navigation.cshtml" />
     <Content Include="Views\Shared\_CrudLayout.cshtml" />
     <Content Include="Views\News\Details.cshtml" />
     <Content Include="Views\News\Edit.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\tinymce_jquery_full.cshtml" />
-    <Content Include="Views\NewsNav\LastNews.cshtml" />
+    <Content Include="Models\NewsNav\LastNews.cshtml" />
     <Content Include="Views\Security\Login.cshtml" />
     <Content Include="Views\Security\Register.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
@@ -649,7 +654,7 @@
     <Content Include="Views\Shop\Index.cshtml" />
     <Content Include="Views\Shop\Navigation.cshtml" />
     <Content Include="Views\Home\Landing.cshtml" />
-    <Content Include="Views\NewsNav\NewsBlock.cshtml" />
+    <Content Include="Models\NewsNav\NewsBlock.cshtml" />
     <Content Include="Views\Shared\_Shop.cshtml" />
     <Content Include="Views\Home\Currensy.cshtml" />
     <Content Include="Views\Shop\SubMenu.cshtml" />
@@ -727,6 +732,9 @@
     <Content Include="Views\Admin\placeholders\_companyView.cshtml" />
     <Content Include="Views\Admin\placeholders\_events.cshtml" />
     <Content Include="Views\Home\Sertificates.cshtml" />
+    <Content Include="Views\Shop\placeholders\_leftMenus.cshtml" />
+    <Content Include="Views\Shop\placeholders\_middleSide.cshtml" />
+    <Content Include="Views\Shop\placeholders\_rightSide.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

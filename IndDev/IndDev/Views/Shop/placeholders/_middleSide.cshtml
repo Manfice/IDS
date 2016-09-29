@@ -1,0 +1,23 @@
+﻿<div class="controlsTop">
+
+</div>
+<div class="controlsBottom">
+    wow
+</div>
+<div class="productsPresent" data-bind="foreach:Shop.products">
+    <div class="productItem">
+        <div class="imgWrapper">
+            <img alt="" data-bind="attr:{src:Avatar}"/>
+        </div>
+        <div class="pDescr">
+            <h2 data-bind="text:Art"></h2>
+            <p data-bind="text:Title"></p>
+            <h3 data-bind="text:Price()+' руб. с НДС'"></h3>
+            <button>в корзину</button>            
+        </div>
+        <div class="productControls">
+            <p><i class="fa fa-heart" aria-hidden="true"></i> в избранное</p>
+            <p><i class="fa fa-eye" aria-hidden="true"></i> 25</p>
+        </div>
+    </div>
+</div>

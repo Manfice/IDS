@@ -103,5 +103,31 @@ namespace IndDev.Controllers
             ViewBag.Title = "Каталог товаров компании Торговый дом \"АЙДИ-С\"";
             return View();
         }
+
+        public async Task<JsonResult> GetTopMenus()
+        {
+            if (!Request.IsAjaxRequest()) return null;
+            var model = await _repository.GetTopMenus();
+            var result = model.Select(c => new
+            {
+                c.Id, c.Title,
+                Picture = c.Image.Path, c.Priority
+            });
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        public async Task<JsonResult> GetTopRetails()
+        {
+            if (!Request.IsAjaxRequest()) return null;
+            var i = await _repository.GetRetails();
+            return Json(i, JsonRequestBehavior.AllowGet);
+        }
+
+        public async Task<JsonResult> GetBrandsPic()
+        {
+            var model = await _repository.GetBrandsPicAsync();
+            var dm = model.Select(m => m.BrandImage).Distinct();
+            return Json(dm, JsonRequestBehavior.AllowGet);
+        } 
     }
 }

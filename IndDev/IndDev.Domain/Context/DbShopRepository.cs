@@ -23,9 +23,7 @@ namespace IndDev.Domain.Context
         {
             get
             {
-                var products =
-    _context.Products.Where(
-        p => p.Prices.FirstOrDefault(price => price.PriceType == PriceType.Sale).Value > 0).ToList();
+                var products =_context.Products.Where(p => p.Prices.FirstOrDefault(price => price.PriceType == PriceType.Sale).Value > 0).ToList();
                 var model = products.Select(product => new ProductView
                 {
                     Product = product,
@@ -66,10 +64,10 @@ namespace IndDev.Domain.Context
             return _context.Menus.Where(menu => menu.ParentItem.Id==id).ToList();
         }
 
-        public IEnumerable<Menu> GetTopMenus()
-        {
-            return _context.Menus.Where(menu => menu.ParentItem==null).ToList();
-        }
+        //public IEnumerable<Menu> GetTopMenus()
+        //{
+        //    return _context.Menus.Where(menu => menu.ParentItem==null).ToList();
+        //}
 
         public ShopProductView GetProduct(int id) //menu item ID
         {
@@ -171,6 +169,52 @@ namespace IndDev.Domain.Context
             result.SearchItems = result.SearchItems.Where(r => r.Rank == rank).ToList();
             result.Total = result.SearchItems.Count;
             return result;
+        }
+
+        public async Task<IEnumerable<ProductMenu>> GetTopMenus()
+        {
+            return await _context.ProductMenus.OrderBy(p=>p.Priority).ToListAsync();
+        }
+
+        public async Task<IEnumerable<ProductAjax>> GetRetails()
+        {
+            var products = await 
+                _context.Products.Where(p => p.Prices.FirstOrDefault(pr => pr.PriceType == PriceType.Sale).Value > 0)
+                    .ToListAsync();
+            var pj = new List<ProductAjax>();
+            foreach (var product in products)
+            {
+                var price = product.Prices.FirstOrDefault(price1 => price1.PriceType == PriceType.Sale);
+                var productPhoto = product.ProductPhotos.FirstOrDefault(photo => photo.PhotoType == PhotoType.Avatar);
+                var ava = string.Empty;;
+                if (productPhoto != null)
+                {
+                    ava = productPhoto.Path;
+                }
+                if (price == null || price.Value <= 0) continue;
+                var pvm = new PriceViewModel
+                {
+                    Currency = price.Currency,
+                    OriginalPrice = price.Value
+                };
+                var prs = pvm.ConvValue;
+                var prod = new ProductAjax
+                {
+                    Title = product.Title,
+                    Id = product.Id,
+                    Price = prs,
+                    Avatar = ava,
+                    Art = product.Articul,
+                    Rate = product.Rate
+                };
+                pj.Add(prod);
+            }
+            return pj;
+        }
+
+        public async Task<IEnumerable<Brand>> GetBrandsPicAsync()
+        {
+            return await _context.Brands.ToListAsync();
         }
     }
 }

@@ -6,51 +6,58 @@
 {
     <link href="~/Content/Shop/shopSPA.css" rel="stylesheet"/>
 }
-<div class="shopWrapper">
-    <div class="topOffer">
+@section scripts{
+<script src="~/Scripts/shop/shopClient.js"></script>
+<script src="~/Scripts/shop/shopModel.js"></script>
+}
+<div class="shopWrapper" id="megashop">
+    <div class="topOffer" style="display: none;" data-bind="visible:Shop.showModel.topOffer">
         <div class="ofLand">
             <img src="/Content/Shop/lendman2.png" alt=""/>
             <div class="offertitle">
-                <div id="offerCarousel" class="carousel slide" data-interval="15000" data-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="item active">
-                            <div class="offerItem">
-                                <img src="/Content/images/Uploads/Categories/022ab783-cd4f-43fc-a9ee-83614757393b_lclc.png" alt="" />
-                                <div class="offerItemDescr">
-                                    <h2>Шнур оптический spc SC/UPC-SC/UPC 9/125 3.0мм 0.5м LSZH (патч-корд)</h2>
-                                    <h3>IDS-LCLC-UPC-1</h3>
-                                    <p>Оптический патч-корд состоит из симплексного или дуплексного кабеля,
-                                        простым языком – из кабеля с одним или двумя волокнами. Все оптические
-                                        волокна делятся на две основные группы: многомодовые MMF (multi mode fiber) и
-                                        одномодовые SMF (single mode fiber).
-                                    </p>
-                                    <div class="offerPrice">
-                                        <h3>от 56р./шт.</h3>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="offerItem">
-                                <img src="/Content/images/Uploads/Categories/022ab783-cd4f-43fc-a9ee-83614757393b_lclc.png" alt="" />
-                                <div class="offerItemDescr">
-                                    <h2>Шнур оптический соеденительный LC-LC SM UPC 1 метр</h2>
-                                    <h3>IDS-LCLC-UPC-1</h3>
-                                    <p>
-                                        Оптический патч-корд состоит из симплексного или дуплексного кабеля,
-                                        простым языком – из кабеля с одним или двумя волокнами. Все оптические
-                                        волокна делятся на две основные группы: многомодовые MMF (multi mode fiber) и
-                                        одномодовые SMF (single mode fiber). 
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div id="offerCarousel">
+
                 </div>
                 <a>
                     <h1>Осеннее смелое предложение, таких цен больше не будет!</h1>
                 </a>
             </div>
+        </div>
+    </div>
+
+    <div class="letsComeTogether">
+        <h1>присоеденяйтесь к нам</h1>
+        <img alt="" src="/Content/images/thesun.png"/>
+        <div class="inpEl">
+            <div class="inpFields">
+                <i class="fa fa-user" aria-hidden="true"></i>
+                <input type="text" name="sName" value="" placeholder="Как к Вам обращаться?"/>
+            </div>
+            <div class="inpFields">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+                <input type="email" name="sEmail" value="" placeholder="Ваш адрес e-mail"/>
+            </div>
+            <button><img alt="" src="/Content/images/hs.png"/></button>
+        </div>
+        <button type="button" data-bind="click:Shop.setSearch, style:{ backgroundColor:Shop.showModel.searchTab()?'orangered':'transparent'}"><i class="fa fa-search" aria-hidden="true"></i></button>
+        <button type="button" data-bind="click:Shop.setTool, style:{ backgroundColor:Shop.showModel.toolsTab()?'green':'transparent'}"><i class="fa fa-bars" aria-hidden="true"></i></button>
+    </div>
+    <div class="shopSearch" style="display: none" data-bind="visible:Shop.showModel.searchTab">
+        <h1>поиск по товарам:</h1>
+        <input type="text" name="serch" value=""/><button>поехали</button>
+    </div>
+    <div class="shopTools" style="display: none" data-bind="visible:Shop.showModel.toolsTab">
+
+    </div>
+    <div class="megaShop">
+        <div class="leftSide">
+            @Html.Partial("placeholders/_leftMenus")
+        </div>
+        <div class="middleSide">
+            @Html.Partial("placeholders/_middleSide")
+        </div>
+        <div class="rightSide">
+            @Html.Partial("placeholders/_rightSide")
         </div>
     </div>
 </div>

@@ -10,7 +10,7 @@ namespace IndDev.Domain.Abstract
     {
         IEnumerable<ProductMenu> GetProductMenus { get; }
         IEnumerable<Product> GetProducts { get; }
-        IEnumerable<Menu> GetTopMenus();
+        //IEnumerable<Menu> GetTopMenus();
         IEnumerable<Menu> GetSubMenu(int id);//Curent menu ID
         ProductMenu GetProductMenu(int id);
         void SaveSearch(SearchRequests model);
@@ -18,5 +18,8 @@ namespace IndDev.Domain.Abstract
         ShopProductView GetProduct(int id);
         Task<ShopProductView> SearchProductsAsynk(string request);
         IEnumerable<ProductView> GetTopRetails { get; }
+        Task<IEnumerable<ProductMenu>> GetTopMenus();
+        Task<IEnumerable<ProductAjax>> GetRetails();
+        Task<IEnumerable<Brand>> GetBrandsPicAsync();
     }
 }

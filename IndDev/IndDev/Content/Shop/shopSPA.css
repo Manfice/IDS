@@ -3,8 +3,9 @@
     display: flex;
     flex-flow: column;
     justify-content: flex-start;
-
+    font-family: "Arial";
 }
+
 .topOffer {
     flex: 0 0 auto;
     height: 300px;
@@ -12,8 +13,9 @@
     display: flex;
     flex-flow: column;
     justify-content: flex-end;
-    align-items: center; 
+    align-items: center;
 }
+
 .ofLand {
     flex: 0 0 auto;
     display: flex;
@@ -23,55 +25,314 @@
     max-width: 1200px;
     width: 100%;
     height: 100%;
-    border: solid 1px red;
 }
+
 .offertitle a h1 {
     font-family: "RobotoBold";
-    color: lightyellow;
-    text-shadow: 1px 1px 1px red;
+    color: red;
+    text-shadow: 5px 3px 5px azure;
     font-size: 2em;
 }
+
 .offerItem {
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
-    background: linear-gradient(90deg, #fff,transparent)
+    background: linear-gradient(90deg, #fff,transparent);
 }
-.offerItem img {
-    max-width: 200px;
-    height: auto;
-    align-self: flex-end;
-}
-.offerItemDescr {
+
+.letsComeTogether {
+    flex: 0 0 auto;
+    border-top: solid 1px gray;
+    height: 50px;
+    background-color: greenyellow;
     display: flex;
-    flex-flow: column nowrap;
+    flex-flow: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0 15%;
+}
+
+    .letsComeTogether h1 {
+        flex: 0 0 auto;
+        margin: 0;
+        text-transform: uppercase;
+        font-weight: bolder;
+        font-size: 2em;
+        text-align: right;
+    }
+
+    .letsComeTogether img {
+        height: 90%;
+        margin: 0 0 0 15px;
+    }
+
+.inpEl {
+    flex: 1 0 auto;
+    display: flex;
+    padding: 0 20px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.inpFields {
+    flex: 1 0 auto;
+    position: relative;
+    margin: 0 20px 0 0;
+}
+
+    .inpFields input {
+        flex: 1 0 auto;
+        width: 100%;
+        border: none;
+        padding: 5px 0 5px 30px;
+        border-radius: 5px;
+    }
+
+    .inpFields i {
+        position: absolute;
+        top: 9px;
+        left: 10px;
+    }
+
+.inpEl button {
+    flex: 0 0 auto;
+    background-color: white;
+    border: solid 1px white;
+    border-radius: 5px;
+    padding: 1px 20px;
+}
+
+.inpFields input:focus {
+    outline: none;
+}
+
+.inpEl button img {
+    height: 22px;
+    margin: 2px;
+}
+
+.letsComeTogether > button {
+    height: 100%;
+    width: 50px;
+    border: none;
+    background-color: transparent;
+    padding: 0;
+}
+
+.letsComeTogether button i {
+    font-size: 2em;
+    margin: 0 10px;
+}
+.shopSearch {
+    height: 50px;
+    background-color: orangered;
+    flex: 0 0 auto;
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    align-items: center;
+}
+.shopTools {
+    height: 50px;
+    background-color: green;
+    flex: 0 0 auto;
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    align-items: center;
+}
+.shopSearch h1 {
+    text-transform: uppercase;
+    margin: 0 20px 0 0;
+    font-size: 2em;
+    color: white;
+}
+.shopSearch input {
+    padding: 4px;
+    border: solid 1px;
+    border-right: none;
+    width: 50%
+}
+.shopSearch button {
+    padding: 4px 8px;
+    border: solid 1px;
+    text-transform: uppercase;
+    border-left: none;
+    background-color: white;
+    font-weight: bolder;
+}
+.megaShop {
+    flex: 1 0 auto;
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    align-items: flex-start;
+}
+.leftSide {
+    flex: 0 0 15%;
+    display: flex;
+    flex-flow: column;
     justify-content: flex-start;
     align-items: flex-end;
+}
+.middleSide {
+    flex: 0 0 70%;
     padding: 10px;
 }
-.offerItemDescr h2 {
-    font-size: 1.3em;
-    flex: 0 0 auto;
-    font-family: "RobotoBold";
-    color: black;
-    margin: 0;
+.rightSide {
+    flex: 0 0 15%;
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-start;
+    align-items: flex-start;
 }
-.offerItemDescr h3 {
+.letsMenu {
     flex: 0 0 auto;
-    font-size: 1.3em;
-    font-family: "RobotoBold";
-    color: black;
-    margin: 0;
+    margin: 10px;
+    max-width: 300px;
 }
-.offerItemDescr p {
+/*shopNav*/
+.listCategories {
+}
+.listCategories p {
+    margin: 0;
+    padding: 0;
+}
+.listCategories p a {
+    display: block;
+    border: solid 1px orange;
+    border-bottom: none;
+    background-color: orangered;
+    padding: 10px 20px;
+    color: white;
+    font-weight: normal;
+    letter-spacing: 1px;
+}
+.listCategories p a:hover {
+    text-decoration: none;
+    background-color: wheat;
+    color: orangered;
+    font-weight: bolder;
+}
+.listCategories p:first-child a {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    background-color: rgb(172, 254, 47);
+    font-weight: bolder;
+    text-align: center;
+    border: solid 1px rgb(172, 254, 47);
+    border-bottom: none;
+    color: rgb(30, 30, 30);
+    text-transform: uppercase;
+    font-size: 1.4em;
+    padding: 10px 40px;
+}
+.listCategories p:last-child a {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+/*shopNav END*/
+.controlsTop {
+    height: 30px;
+    background-color: rgb(172, 254, 47);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
     flex: 0 0 auto;
+
+}
+.controlsBottom {
+    height: 30px;
+    background-color: orangered;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    flex: 0 0 auto; 
+}
+/*Middle block*/
+.productsPresent {
+    flex: 1 0 auto;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+.productItem {
+    flex: 0 0 18%;
+    border: solid green;
+    margin: 10px 0;
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-start;
+    padding: 5px;
+    position: relative;
+}
+.productItem:hover {
+    border: solid orangered;
+    cursor: pointer;    
+}
+.pDescr {
+    flex: 1 0 auto;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between
+}
+.pDescr h2 {
+    margin: 5px 0;
+    font-size: 1em;
+    text-align: right;
+    font-weight: bolder;
+
+}
+.pDescr h3 {
+    text-align: center;
+    margin: 0;
+    font-family: "RobotoBold";
+    color: orangered;
+}
+.pDescr button {
+    margin: 10px;
+    flex: 0 0 auto;
+    align-self: center;
+    
+}
+.imgWrapper {
+    border: solid 1px;
+    flex: 0 0 auto;
+}
+.imgWrapper img {
+    width: 100%;
+}
+.productControls {
+    height: 20px;
+    background-color: #007aca;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+.productControls p {
+    margin: 0 0 0 10px; 
+    padding: 0;
     font-size: 0.8em;
-    font-weight: bold;
-    text-align: justify;
-    overflow: hidden;
-    border: solid 1px red;
-    font-family: "RobotoRegular"
+    text-transform: uppercase;
+    color: goldenrod;
+
 }
-.offerItemDescr p:first-letter {
-    margin: 0 0 0 20px;
+/*Middle block END*/
+/*right block*/
+.brandBlock {
+    flex: 0 0 auto;
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-start;
+    align-items: center;
 }
+.brandList {
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-start;
+    align-items: center;    
+}
+.brandList p img {
+    max-width: 200px;
+}
+/*right block END*/

@@ -114,6 +114,16 @@ namespace IndDev.Domain.ViewModels
         public IEnumerable<PriceViewModel> Prices { get; set; }
 
     }
+
+    public class ProductAjax
+    {
+        public int Id { get; set; }
+        public string Art { get; set; }
+        public string Title { get; set; }
+        public string Avatar { get; set; }
+        public decimal Price { get; set; }
+        public decimal Rate { get; set; }
+    }
     public class ShopProductView
     {
         public ProductMenuItem ProductMenuItem { get; set; }
