@@ -1,7 +1,7 @@
 ﻿<div class="letsMenu">
     <div class="listCategories">
         <p><a data-bind="click:Shop.showModel.topOffer.bind($data,false)">Показать все</a></p>
-        <p data-bind="foreach:Shop.topMenus">
+        <p data-bind="foreach:topMenus">
             <a data-bind="text:Title"></a>
         </p>
         <p><a data-bind="click:Shop.showModel.topOffer.bind($data,true)">На верх</a></p>

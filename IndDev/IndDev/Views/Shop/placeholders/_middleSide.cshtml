@@ -1,11 +1,33 @@
 ﻿<div class="controlsTop">
 
 </div>
-<div class="controlsBottom">
-    wow
+<div class="controlsBottom" data-bind="visible:products().length>0">
+    <div class="totalPositions">
+        <p>Всего позиций: <span data-bind="text:products().length"></span></p>
+    </div>
+
+    <div class="productNavigation">
+        <p>
+            <button class="notActivePage" data-bind="click:prevPage, enable:currentPage()>0"><</button>
+        </p>
+        <p data-bind="foreach: new Array(pageCount())">
+            <button class="notActivePage" data-bind="text:$index()+1, click:$root.gotoPage.bind($data,$index), css:{activePage:$index()===$root.currentPage()}"></button>
+        </p>
+        <p>
+            <button class="notActivePage" data-bind="click:nextPage, enable: (currentPage() < pageCount()-1)" >></button>
+        </p>
+    </div>
+    <div class="viewOptions">
+        <button type="button" data-bind="click:setPageSize.bind($data, 10)">10</button>
+        <button type="button" data-bind="click:setPageSize.bind($data, 20)">20</button>
+        <button type="button" data-bind="click:setPageSize.bind($data, 30)">30</button>
+        <button type="button" data-bind="click:Shop.setViewStyle.bind($data,true)"><i class="fa fa-th" aria-hidden="true"></i></button>
+        <button type="button" data-bind="click:Shop.setViewStyle.bind($data,false)"><i class="fa fa-list" aria-hidden="true"></i></button>
+    </div>
 </div>
-<div class="productsPresent" data-bind="foreach:Shop.products">
-    <div class="productItem">
+<!--ko if:Shop.showModel.viewGrid-->
+<div class="productsPresent" data-bind="foreach:pagedProducts">
+    <div class="productItemGrid">
         <div class="imgWrapper">
             <img alt="" data-bind="attr:{src:Avatar}"/>
         </div>
@@ -13,11 +35,31 @@
             <h2 data-bind="text:Art"></h2>
             <p data-bind="text:Title"></p>
             <h3 data-bind="text:Price()+' руб. с НДС'"></h3>
-            <button>в корзину</button>            
+            <button>в корзину</button>
         </div>
         <div class="productControls">
-            <p><i class="fa fa-heart" aria-hidden="true"></i> в избранное</p>
-            <p><i class="fa fa-eye" aria-hidden="true"></i> 25</p>
+            <p>
+                <i class="fa fa-heart" aria-hidden="true"></i> в избранное
+            </p>
+            <p>
+                <i class="fa fa-eye" aria-hidden="true"></i> 25
+            </p>
         </div>
     </div>
 </div>
+<!--/ko-->
+<!--ko if:Shop.showModel.viewGrid()===false-->
+<div class="productsList" data-bind="foreach:pagedProducts">
+    <div class="listItem">
+        <div class="imgListItem">
+            wow
+        </div>
+        <div class="descr">
+
+        </div>
+        <div class="order">
+            
+        </div> 
+    </div>
+</div>
+<!--/ko-->

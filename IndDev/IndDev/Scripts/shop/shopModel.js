@@ -4,13 +4,49 @@
     var showModel = {
         searchTab:ko.observable(false),
         toolsTab: ko.observable(false),
-        topOffer:ko.observable(true)
+        topOffer:ko.observable(true),
+        viewGrid: ko.observable(true)
     };
 
-    var topMenus = ko.observableArray([]);
-    var products = ko.observableArray([]);
-    var brands = ko.observableArray([]);
+    var productsModel = {
+        products: ko.observableArray([]),
+        topMenus:ko.observableArray([]),
+        brands: ko.observableArray([]),
+        filteredProducts: ko.observableArray([]),
+        pagedProducts: ko.observableArray([]),
+        currentPage:ko.observable(0),
+        pageSize: ko.observable(15),
+        pageCount: ko.observable(),
+        gotoPage: function(p) {
+            productsModel.currentPage(p());
+        },
+        prevPage: function() {
+            var data = productsModel.currentPage();
+            if (data >= 0) productsModel.currentPage(data-1);
+        },
+        nextPage: function () {
+            var data = productsModel.currentPage();
+            var max = productsModel.pageCount();
+            if (data < max) productsModel.currentPage(data + 1);
+        },
+        setPageSize: function(data) {
+            productsModel.pageSize(data);
+        }
+    }
 
+    productsModel.pageCount = ko.computed(function () {
+        return Math.ceil(this.products().length / this.pageSize());
+    },productsModel);
+
+    productsModel.pagedProducts = ko.computed(function() {
+        var size = productsModel.pageSize();
+        var start = productsModel.currentPage() * size;
+        return productsModel.products().slice(start,start+size);
+    }, productsModel);
+
+    var gotoPage = function(page) {
+        productsModel.currentPage(page);
+    };
     var topMenuData = function(data) {
         var self = this;
         self.Id = ko.observable(data.Id);
@@ -38,7 +74,7 @@
         data.forEach(function(item) {
             cats.push(new topMenuData(item));
         });
-        topMenus(cats);
+        productsModel.topMenus(cats);
         //console.log(ko.toJS(mShop.topMenu));
     }
     var retCallback = function (data) {
@@ -46,14 +82,14 @@
         data.forEach(function(item) {
             pr.push(new productData(item));
         });
-        products(pr);
+        productsModel.products(pr);
     };
     var brandsCallback = function(data) {
         var br = [];
         data.forEach(function(item) {
             br.push(new brandData(item));
         });
-        brands(br);
+        productsModel.brands(br);
     }
     /*functions*/
     var setSearch = function () {
@@ -82,16 +118,21 @@
     var retrieveBrands = function() {
         client.getBrands(brandsCallback);
     }
+    var setViewStyle = function(data) {
+        showModel.viewGrid(data);
+    }
     /*return & init*/
     var init = function () {
         retreiveCat();
         retrieveProducts();
         retrieveBrands();
-        ko.applyBindings(Shop, document.getElementById("megashop"));
+        ko.applyBindings(productsModel, document.getElementById("megashop"));
     };
     $(init);
     return {
-        showModel: showModel,topMenus:topMenus,
-        setSearch: setSearch, setTool: setTool, products: products,brands:brands
+        showModel: showModel,
+        setSearch: setSearch,
+        setTool: setTool,
+        productsModel: productsModel, setViewStyle: setViewStyle
     }
 }();

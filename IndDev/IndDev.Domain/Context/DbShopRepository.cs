@@ -179,23 +179,35 @@ namespace IndDev.Domain.Context
         public async Task<IEnumerable<ProductAjax>> GetRetails()
         {
             var products = await 
-                _context.Products.Where(p => p.Prices.FirstOrDefault(pr => pr.PriceType == PriceType.Sale).Value > 0)
-                    .ToListAsync();
+                _context.Products.Where(p => p.Prices.FirstOrDefault(pr => pr.PriceType == PriceType.Sale).Value > 0).Include(p=>p.Prices).Include(p=>p.ProductPhotos).Select(pr=> new
+                {
+                    pr.Title,
+                    pr.Id,
+                    Price = pr.Prices.FirstOrDefault(ps => ps.PriceType == PriceType.Sale),
+                    Avatar = pr.ProductPhotos.FirstOrDefault(ph => ph.PhotoType == PhotoType.Avatar),
+                    pr.Articul,
+                    pr.Rate
+                    
+                }).ToListAsync();
+
             var pj = new List<ProductAjax>();
+
+            // ReSharper disable once LoopCanBeConvertedToQuery
             foreach (var product in products)
             {
-                var price = product.Prices.FirstOrDefault(price1 => price1.PriceType == PriceType.Sale);
-                var productPhoto = product.ProductPhotos.FirstOrDefault(photo => photo.PhotoType == PhotoType.Avatar);
-                var ava = string.Empty;;
-                if (productPhoto != null)
-                {
-                    ava = productPhoto.Path;
-                }
-                if (price == null || price.Value <= 0) continue;
+                //var price = product.Prices.FirstOrDefault(price1 => price1.PriceType == PriceType.Sale);
+                //var productPhoto = product.ProductPhotos.FirstOrDefault(photo => photo.PhotoType == PhotoType.Avatar);
+                //var ava = string.Empty;
+
+                //if (productPhoto != null)
+                //{
+                //    ava = productPhoto.Path;
+                //}
+                //if (price == null || price.Value <= 0) continue;
                 var pvm = new PriceViewModel
                 {
-                    Currency = price.Currency,
-                    OriginalPrice = price.Value
+                    Currency = product.Price.Currency,
+                    OriginalPrice = product.Price.Value
                 };
                 var prs = pvm.ConvValue;
                 var prod = new ProductAjax
@@ -203,7 +215,7 @@ namespace IndDev.Domain.Context
                     Title = product.Title,
                     Id = product.Id,
                     Price = prs,
-                    Avatar = ava,
+                    Avatar = product.Avatar.Path,
                     Art = product.Articul,
                     Rate = product.Rate
                 };
