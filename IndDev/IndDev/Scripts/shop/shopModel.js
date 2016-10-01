@@ -31,11 +31,21 @@
         },
         setPageSize: function(data) {
             productsModel.pageSize(data);
-        }
+            var pCount = productsModel.pageCount();
+            if (productsModel.currentPage()>pCount) {
+                productsModel.currentPage(pCount-1);
+            }
+        },
+        currentCategory: {
+            Id: ko.observable(),
+            Title: ko.observable()
+        },
+        productGroupe:ko.observable(null),
+        categorys:ko.observableArray([])
     }
 
     productsModel.pageCount = ko.computed(function () {
-        return Math.ceil(this.products().length / this.pageSize());
+        if (this.products()) return Math.ceil(this.products().length / this.pageSize());
     },productsModel);
 
     productsModel.pagedProducts = ko.computed(function() {
@@ -43,10 +53,6 @@
         var start = productsModel.currentPage() * size;
         return productsModel.products().slice(start,start+size);
     }, productsModel);
-
-    var gotoPage = function(page) {
-        productsModel.currentPage(page);
-    };
     var topMenuData = function(data) {
         var self = this;
         self.Id = ko.observable(data.Id);
@@ -66,6 +72,13 @@
     var brandData = function(data) {
         var self = this;
         self.Id = ko.observable(data.Id);
+        self.Path = ko.observable(data.Path);
+    }
+    var catData = function(data) {
+        var self = this;
+        self.Id = ko.observable(data.Id);
+        self.Title = ko.observable(data.Title);
+        self.Count = ko.observable(data.Count);
         self.Path = ko.observable(data.Path);
     }
     /*callbacks*/
@@ -91,6 +104,14 @@
         });
         productsModel.brands(br);
     }
+    var retCatCallback = function(data) {
+        productsModel.products([]);
+        var c = [];
+        data.forEach(function(item) {
+            c.push(new catData(item));
+        });
+        productsModel.categorys(c);
+    };
     /*functions*/
     var setSearch = function () {
         var p = showModel.searchTab();
@@ -121,6 +142,12 @@
     var setViewStyle = function(data) {
         showModel.viewGrid(data);
     }
+    var setGroupe = function(data) {
+        productsModel.productGroupe(data.Title());
+        hideTopOffer();
+        client.getCategorys(data.Id(), retCatCallback);
+    }
+
     /*return & init*/
     var init = function () {
         retreiveCat();
@@ -132,7 +159,7 @@
     return {
         showModel: showModel,
         setSearch: setSearch,
-        setTool: setTool,
+        setTool: setTool,setGroupe:setGroupe,
         productsModel: productsModel, setViewStyle: setViewStyle
     }
 }();

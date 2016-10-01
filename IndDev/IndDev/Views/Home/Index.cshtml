@@ -97,6 +97,18 @@
     </div>
     <ul>
         <li>
+            <div class="v7">
+                <div class="v2_descr">
+                    <p>
+                        МЕТАЛЛИЧЕСКИЕ 19"<br /> ШКАФЫ и СТОЙКИ
+                    </p>
+                    <span></span>
+                    <p>Широкий выбор телекоммуникационных шкафов 19". Антивандальные шкафы, абонентские ящики.</p>
+                    <a href="@Url.Action("CatDetails","Shop",new {catId=9})">перейти</a>
+                </div>
+            </div>
+        </li>
+        <li>
             <div class="v5">
                 <div class="v2_descr">
                     <p>
@@ -104,7 +116,7 @@
                     </p>
                     <span></span>
                     <p>Арматура для воздушных волоконно - оптических линий связи.</p>
-                    <a href="@Url.Action("CatDetails","Shop",new {catId=22})">перейти</a>
+                    <a href="@Url.Action("CatDetails", "Shop", new {catId = 22})">перейти</a>
                 </div>
             </div>
         </li>
@@ -116,19 +128,7 @@
                     </p>
                     <span></span>
                     <p>Оборудование, бывшее в употреблении, остатки с объектов, уцененные товары.</p>
-                    <a href="@Url.Action("CatDetails","Shop",new {catId=19})">перейти</a>
-                </div>
-            </div>
-        </li>
-        <li>
-            <div class="v7">
-                <div class="v2_descr">
-                    <p>
-                        МЕТАЛЛИЧЕСКИЕ 19"<br/> ШКАФЫ и СТОЙКИ
-                    </p>
-                    <span></span>
-                    <p>Широкий выбор телекоммуникационных шкафов 19". Антивандальные шкафы, абонентские ящики.</p>
-                    <a href="@Url.Action("CatDetails","Shop",new {catId=9})">перейти</a>
+                    <a href="@Url.Action("CatDetails", "Shop", new {catId = 19})">перейти</a>
                 </div>
             </div>
         </li>
@@ -140,15 +140,12 @@
                     </p>
                     <span></span>
                     <p>Активное оборудование GIGALINK</p>
-                    <a href="@Url.Action("CatDetails","Shop",new {catId=23})">перейти</a>
+                    <a href="@Url.Action("CatDetails", "Shop", new {catId = 23})">перейти</a>
                 </div>
             </div>
         </li>
     </ul>
 </div>
-@Html.Action("Partners")
-@Html.Action("Sertificates")
-
 <div class="newsBlock hidden-xs" id="newsBl">
     <div class="newsContent">
         <h2>НОВОСТНОЙ БЛОК</h2>
@@ -189,7 +186,8 @@
         <img src="~/Content/images/man_dc.png" alt=""/>
     </div>
 </div>
-
+@Html.Action("Partners")
+@Html.Action("Sertificates")
 
 <div class="advantages">
     <h1>НАШИ ПРЕИМУЩЕСТВА</h1>

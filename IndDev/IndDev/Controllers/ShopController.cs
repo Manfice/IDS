@@ -128,6 +128,16 @@ namespace IndDev.Controllers
             var model = await _repository.GetBrandsPicAsync();
             var dm = model.Select(m => m.BrandImage).Distinct();
             return Json(dm, JsonRequestBehavior.AllowGet);
-        } 
+        }
+
+        public async Task<JsonResult> GetCategorys(int id)
+        {
+            var model = await _repository.GetMenuItems(id);
+            var result = model.Where(item => item.Image!=null).Select(item => new
+            {
+                item.Id, item.Title, item.Products.Count, item.Image.Path
+            });
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }  
     }
 }

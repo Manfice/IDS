@@ -26,7 +26,18 @@
             }
         });
     };
+    var getCategorys = function (id,callback) {
+        $.ajax({
+            type: "GET",
+            url: "/shop/GetCategorys/"+id,
+            success: function (data) {
+                callback(data);
+            }
+        });
+    };
+
     return {
-        getMenuItems: getMenuItems, getTopRetails: getTopRetails,getBrands
+        getMenuItems: getMenuItems, getTopRetails: getTopRetails,
+        getBrands, getCategorys: getCategorys
     }
 };

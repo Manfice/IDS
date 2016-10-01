@@ -21,5 +21,7 @@ namespace IndDev.Domain.Abstract
         Task<IEnumerable<ProductMenu>> GetTopMenus();
         Task<IEnumerable<ProductAjax>> GetRetails();
         Task<IEnumerable<Brand>> GetBrandsPicAsync();
+        Task<IEnumerable<ProductMenuItem>> GetMenuItems(int id);
+
     }
 }

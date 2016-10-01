@@ -1,5 +1,5 @@
 ﻿<div class="controlsTop">
-
+    <p data-bind="text:productGroupe"></p>
 </div>
 <div class="controlsBottom" data-bind="visible:products().length>0">
     <div class="totalPositions">
@@ -14,7 +14,7 @@
             <button class="notActivePage" data-bind="text:$index()+1, click:$root.gotoPage.bind($data,$index), css:{activePage:$index()===$root.currentPage()}"></button>
         </p>
         <p>
-            <button class="notActivePage" data-bind="click:nextPage, enable: (currentPage() < pageCount()-1)" >></button>
+            <button class="notActivePage" data-bind="click:nextPage, enable: (currentPage() < pageCount()-1)">></button>
         </p>
     </div>
     <div class="viewOptions">
@@ -25,6 +25,21 @@
         <button type="button" data-bind="click:Shop.setViewStyle.bind($data,false)"><i class="fa fa-list" aria-hidden="true"></i></button>
     </div>
 </div>
+
+<!--ko if:categorys().length>0-->
+<div class="categoryGroupe" data-bind="foreach:categorys">
+    <div class="categoryItem">
+        <div class="countProducts"></div>
+        <span data-bind="text:Count"></span>
+
+        <div class="catImgWrap">
+            <img alt="" data-bind="attr:{src:Path}"/>
+        </div>
+        <p data-bind="text:Title"></p>
+    </div>
+</div>
+<!--/ko-->
+
 <!--ko if:Shop.showModel.viewGrid-->
 <div class="productsPresent" data-bind="foreach:pagedProducts">
     <div class="productItemGrid">

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -173,7 +174,7 @@ namespace IndDev.Domain.Context
 
         public async Task<IEnumerable<ProductMenu>> GetTopMenus()
         {
-            return await _context.ProductMenus.OrderBy(p=>p.Priority).ToListAsync();
+            return await _context.ProductMenus.Where(c=>c.ShowInCatalog).OrderBy(p=>p.Priority).ToListAsync();
         }
 
         public async Task<IEnumerable<ProductAjax>> GetRetails()
@@ -227,6 +228,12 @@ namespace IndDev.Domain.Context
         public async Task<IEnumerable<Brand>> GetBrandsPicAsync()
         {
             return await _context.Brands.ToListAsync();
+        }
+
+        public async Task<IEnumerable<ProductMenuItem>> GetMenuItems(int id)
+        {
+            var result = await _context.ProductMenuItems.Where(item => item.ProductMenu.Id == id&& item.ShowInCatalog).Include(item => item.Products).ToListAsync();
+            return result;
         }
     }
 }
