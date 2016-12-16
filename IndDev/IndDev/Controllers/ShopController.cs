@@ -135,7 +135,22 @@ namespace IndDev.Controllers
             var model = await _repository.GetMenuItems(id);
             var result = model.Where(item => item.Image!=null).Select(item => new
             {
-                item.Id, item.Title, item.Products.Count, item.Image.Path
+                item.Id, item.Title, item.Products.Count, item.Image.Path, products = item.Products.Where(product => product.Reclama).Select(product =>
+                {
+                    var sale = product.Prices.FirstOrDefault(price => price.PriceType==PriceType.Sale);
+                    var ret = product.Prices.FirstOrDefault(price => price.PriceType == PriceType.Retail);
+                    return sale != null && sale.Value>0 ? new ProductAjax{
+                        Price = sale.GetPriceRubl(),Title = product.Title, Id = product.Id, Avatar = product.ProductPhotos.FirstOrDefault(a=>a.PhotoType==PhotoType.Avatar).Path, Rate = product.Rate, Art = product.Articul
+                    } : new ProductAjax
+                    {
+                        Price = ret.GetPriceRubl(),
+                        Title = product.Title,
+                        Id = product.Id,
+                        Avatar = product.ProductPhotos.FirstOrDefault(a => a.PhotoType == PhotoType.Avatar).Path,
+                        Rate = product.Rate,
+                        Art = product.Articul
+                    };
+                })
             });
             return Json(result, JsonRequestBehavior.AllowGet);
         }  

@@ -35,6 +35,10 @@ namespace IndDev.Domain.Context
             foreach (var product in products)
             {
                 var tempId = 0;
+                if (string.IsNullOrEmpty(product.Title) || string.IsNullOrEmpty(product.Articul))
+                {
+                    continue;
+                }
                 foreach (var tempItem in from word in words.Where(s => s!="").Distinct() where (product.Title.ToLower().Contains(word.ToLower())) || (product.Articul.ToLower().Contains(word.ToLower())) select result.SearchItems.FirstOrDefault(i => i.Id == product.Id))
                 {
                     if (tempItem==null)

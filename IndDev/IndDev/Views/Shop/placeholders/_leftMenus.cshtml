@@ -1,9 +1,24 @@
 ﻿<div class="letsMenu">
     <div class="listCategories">
-        <p><a data-bind="click:Shop.showModel.topOffer.bind($data,false)">Показать все</a></p>
-        <p data-bind="foreach:topMenus">
-            <a data-bind="text:Title, click:Shop.setGroupe"></a>
+        <p><a data-bind="click:Shop.showModel.topOffer.bind($data,false)">Показать все</a>
         </p>
-        <p><a data-bind="click:Shop.showModel.topOffer.bind($data,true)">На верх</a></p>
+        <p data-bind="foreach:topMenus">
+            <a data-bind="click:Shop.setGroupe, css:{activeGroupe:Title()===$parent.productGroupe()}"><i class="fa fa-refresh fa-spin fa-fw" data-bind="visible:updating"></i><span data-bind="text:Title"></span></a>
+        </p>
+        <p><a data-bind="click:Shop.showModel.topOffer.bind($data,true)">На верх</a>
+        </p>
     </div>
 </div>
+<!--ko if:categorys().length>0-->
+<div class="letsMenu">
+    <div class="listCategories">
+        <p><a data-bind="click:Shop.showModel.topOffer.bind($data,false), text:productGroupe">Показать все</a>
+        </p>
+        <p data-bind="foreach:categorys">
+            <a data-bind="click:Shop.setCategory"><i class="fa fa-refresh fa-spin fa-fw" data-bind="visible:updating"></i><span data-bind="text:Title"></span></a>
+        </p>
+        <p><a data-bind="click:Shop.showModel.topOffer.bind($data,true)">На верх</a>
+        </p>
+    </div>
+</div>
+<!--/ko-->

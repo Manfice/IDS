@@ -232,7 +232,7 @@ namespace IndDev.Domain.Context
 
         public async Task<IEnumerable<ProductMenuItem>> GetMenuItems(int id)
         {
-            var result = await _context.ProductMenuItems.Where(item => item.ProductMenu.Id == id&& item.ShowInCatalog).Include(item => item.Products).ToListAsync();
+            var result = await _context.ProductMenuItems.Where(item => item.ProductMenu.Id == id&& item.ShowInCatalog && item.ParentMenuItem==null).Include(item => item.Products).OrderBy(item => item.Priority).ToListAsync();
             return result;
         }
     }

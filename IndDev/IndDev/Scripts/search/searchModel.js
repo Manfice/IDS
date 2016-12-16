@@ -34,6 +34,7 @@
     };
 
     var submit = function () {
+
         if (searchReq === resultModel.SearchRequest()) {
             resultModel.view(displayMode.view);
         } else {

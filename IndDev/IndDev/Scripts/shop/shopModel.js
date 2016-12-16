@@ -15,7 +15,7 @@
         filteredProducts: ko.observableArray([]),
         pagedProducts: ko.observableArray([]),
         currentPage:ko.observable(0),
-        pageSize: ko.observable(15),
+        pageSize: ko.observable(10),
         pageCount: ko.observable(),
         gotoPage: function(p) {
             productsModel.currentPage(p());
@@ -36,16 +36,13 @@
                 productsModel.currentPage(pCount-1);
             }
         },
-        currentCategory: {
-            Id: ko.observable(),
-            Title: ko.observable()
-        },
-        productGroupe:ko.observable(null),
-        categorys:ko.observableArray([])
+        currentCategory: ko.observable(null),
+        productGroupe:ko.observable(""),
+        categorys: ko.observableArray([]),
+        navString:ko.observableArray([])
     }
-
     productsModel.pageCount = ko.computed(function () {
-        if (this.products()) return Math.ceil(this.products().length / this.pageSize());
+        return Math.ceil(this.products().length / this.pageSize());
     },productsModel);
 
     productsModel.pagedProducts = ko.computed(function() {
@@ -53,12 +50,14 @@
         var start = productsModel.currentPage() * size;
         return productsModel.products().slice(start,start+size);
     }, productsModel);
+
     var topMenuData = function(data) {
         var self = this;
         self.Id = ko.observable(data.Id);
         self.Title = ko.observable(data.Title);
         self.Picture = ko.observable(data.Picture);
         self.Priority = ko.observable(data.Priority);
+        self.updating = ko.observable(false);
     };
     var productData = function(data) {
         var self = this;
@@ -80,6 +79,7 @@
         self.Title = ko.observable(data.Title);
         self.Count = ko.observable(data.Count);
         self.Path = ko.observable(data.Path);
+        self.updating = ko.observable(false);
     }
     /*callbacks*/
     var catCallback = function (data) {
@@ -104,13 +104,19 @@
         });
         productsModel.brands(br);
     }
-    var retCatCallback = function(data) {
+    var retCatCallback = function(data, groupe) {
         productsModel.products([]);
         var c = [];
+        var p = [];
         data.forEach(function(item) {
             c.push(new catData(item));
+            item.products.forEach(function(product) {
+                p.push(new productData(product));
+            });
         });
         productsModel.categorys(c);
+        productsModel.products(p);
+        groupe.updating(false);
     };
     /*functions*/
     var setSearch = function () {
@@ -142,12 +148,17 @@
     var setViewStyle = function(data) {
         showModel.viewGrid(data);
     }
-    var setGroupe = function(data) {
+    var setGroupe = function (data) {
+        data.updating(true);
         productsModel.productGroupe(data.Title());
+        productsModel.categorys([]);
         hideTopOffer();
-        client.getCategorys(data.Id(), retCatCallback);
+        client.getCategorys(data, retCatCallback);
     }
-
+    var setCategory = function(data) {
+        productsModel.currentCategory(data);
+        productsModel.navString.push(data);
+    }
     /*return & init*/
     var init = function () {
         retreiveCat();
@@ -159,7 +170,7 @@
     return {
         showModel: showModel,
         setSearch: setSearch,
-        setTool: setTool,setGroupe:setGroupe,
+        setTool: setTool,setGroupe:setGroupe,setCategory:setCategory,
         productsModel: productsModel, setViewStyle: setViewStyle
     }
 }();

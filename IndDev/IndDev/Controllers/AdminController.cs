@@ -492,20 +492,20 @@ namespace IndDev.Controllers
         public PartialViewResult ShowProducts(int subCatId)
         {
             var p = _repository.GetCatProduct(subCatId);
-            var pvm = new List<ProductViewModel>();
-            foreach (var item in p)
-            {
-                var pvmItem = new ProductViewModel
-                {
-                    Id = item.Id,
-                    Title = item.Title,
-                    Currency = item.Prices.FirstOrDefault(price => price.PriceType==PriceType.LowOpt)?.Currency.Code,
-                    Articul = item.Articul,
-                    PriceIn = item.Prices.FirstOrDefault(price => price.PriceType==PriceType.LowOpt).Value,
-                    PriceOut = item.Prices.FirstOrDefault(price => price.PriceType == PriceType.Retail).Value
-                };
-                pvm.Add(pvmItem);
-            }
+            //var pvm = new List<ProductViewModel>();
+            //foreach (var item in p)
+            //{
+            //    var pvmItem = new ProductViewModel
+            //    {
+            //        Id = item.Id,
+            //        Title = item.Title,
+            //        Currency = item.Prices.FirstOrDefault(price => price.PriceType==PriceType.LowOpt)?.Currency.Code,
+            //        Articul = item.Articul,
+            //        PriceIn = item.Prices.FirstOrDefault(price => price.PriceType==PriceType.LowOpt).Value,
+            //        PriceOut = item.Prices.FirstOrDefault(price => price.PriceType == PriceType.Retail).Value
+            //    };
+            //    pvm.Add(pvmItem);
+            //}
             return PartialView(p);
         }
 
