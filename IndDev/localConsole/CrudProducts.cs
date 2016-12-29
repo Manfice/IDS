@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using IndDev.Domain.Context;
+using IndDev.Domain.Entity.Menu;
 using IndDev.Domain.Entity.Products;
 
 namespace localConsole
 {
     public class CrudProducts
     {
-        private DataContext _dbContext;
+        private readonly DataContext _dbContext;
 
         public CrudProducts()
         {
@@ -34,6 +35,13 @@ namespace localConsole
                 _dbContext.Products.Where(
                     product => string.IsNullOrEmpty(product.Articul) || string.IsNullOrEmpty(product.Title)).ToList();
             return result;
-        } 
+        }
+
+        public List<ProductMenu> GetProducCategorys()
+        {
+            return _dbContext.ProductMenus.ToList();
+        }
+
+
     }
 }

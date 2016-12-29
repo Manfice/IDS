@@ -12,21 +12,17 @@ namespace localConsole
     {
         static void Main(string[] args)
         {
-            while (Console.ReadLine()!="x")
+            var p = new CrudProducts();
+            var cat = p.GetProducCategorys();
+
+            foreach (var menu in cat)
             {
-                Console.Write("Введите число: ");
-                var x = double.Parse(Console.ReadLine());
-                if (x%1 == 0)
-                {
-                    Console.WriteLine("Целое");
-                }
-                else
-                {
-                    Console.WriteLine("Не Целое");
-                }
-
-
+                Console.WriteLine($"id: {menu.Id} title: {menu.Title}");
+                Console.WriteLine($"{menu.ShotDescription}");
+                Console.WriteLine("***********************************************************");
             }
+
+            Console.ReadLine();
         }
     }
 }
