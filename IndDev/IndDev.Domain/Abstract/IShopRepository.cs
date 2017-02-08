@@ -16,6 +16,7 @@ namespace IndDev.Domain.Abstract
         ProductMenu GetProductMenu(int id);
         void SaveSearch(SearchRequests model);
         ProductView GetProductDetails(int id);
+        ProductView GetProductDetails(string id);
         ShopProductView GetProduct(int id);
         ShopProductView GetProduct(string canonical);
         Task<ShopProductView> SearchProductsAsynk(string request);

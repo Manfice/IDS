@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Mime;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
@@ -14,7 +15,27 @@ namespace localConsole
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Start ---------->");
+            //using (var db = new DataContext())
+            //{
+            //    var p = db.Products.ToList();
+            //    var ind = 0;
+            //    foreach (var product in p)
+            //    {
+            //        ind++;
+            //        var pr = product.GetOptPrice();
+            //        Console.WriteLine($"{product.Id}  >> {product.CanonicTitle} pType={pr.PriceType} val={pr.GetPriceRubl()}");
+            //        if ((ind%100)==0)
+            //        {
+            //            Console.ReadLine();
+            //        }
+
+            //    }
+            //    Console.WriteLine(p.Count);
+            //}
+
             CheckSiteXml();
+            Console.WriteLine("END --------->");
             Console.ReadLine();
         }
 
@@ -22,7 +43,7 @@ namespace localConsole
         {
             XNamespace ns = "http://www.sitemaps.org/schemas/sitemap/0.9";
 
-            var xDoc = XDocument.Load("http://www.id-racks.ru/site.xml");
+            var xDoc = XDocument.Load("http://www.id-racks.ru/sitemap.xml");
 
             var urls = xDoc.Element(ns + "urlset").Elements(ns + "url");
             var ind = 0;
@@ -61,3 +82,18 @@ namespace localConsole
         }
     }
 }
+//var pt = product.Title.Split(new[] { ' ', '.', ',', '*', '"', '/', '\\', '\t', ':', '(', ')' });
+//var art = product.Articul.Replace(".", ",");
+//ind++;
+//Console.WriteLine($"-----{ind}-----");
+//Console.WriteLine($"{art}-{string.Join("_", pt.Where(s => s.Length > 1).Select(s => s.Replace("+", "_Plus")).Take(3))}");
+//Console.WriteLine();
+//var dbProd = db.Products.Find(product.Id);
+//if (dbProd != null)
+//{
+//    dbProd.CanonicTitle = $"{art}-{string.Join("_", pt.Where(s => s.Length > 1).Select(s => s.Replace("+", "_Plus")).Take(3))}";
+//}
+//if ((ind % 100) == 0)
+//{
+//db.SaveChanges();
+//}

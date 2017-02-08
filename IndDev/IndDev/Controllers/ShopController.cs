@@ -109,10 +109,20 @@ namespace IndDev.Controllers
 
             return View(model);
         }
+        [Visitors]
         public ActionResult ProductDetails(Cart cart, int id)
         {
             var model = _repository.GetProductDetails(id);
             model.Cart = cart;
+            return RedirectToAction("ProductDetails", new {canonical = model.Product.CanonicTitle});
+        }
+        [Visitors]
+        [Route("Product/{canonical}")]
+        public ActionResult ProductDetails(Cart cart, string canonical)
+        {
+            var model = _repository.GetProductDetails(canonical);
+            model.Cart = cart;
+            ViewBag.canonical = $"Product/{canonical}";
             return View(model);
         }
 

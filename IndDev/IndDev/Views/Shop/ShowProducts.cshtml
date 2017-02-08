@@ -54,7 +54,7 @@
                     <div class="col-md-6 productView">
 
                         <div class="goods">
-                            <a href="@Url.Action("ProductDetails","Shop", new {id=item.Product.Id})">
+                            <a href="@Url.Action("ProductDetails","Shop", new {canonical = item.Product.CanonicTitle})">
                                 @if (item.Avatar != null)
                                 {
                                     <img src="@($"http://www.id-racks.ru{item.Avatar.Path}")" alt="@item.Product.Title"/>

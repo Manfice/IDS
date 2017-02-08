@@ -256,5 +256,17 @@ namespace IndDev.Domain.Context
             return _context.ProductMenus.Find(id);
 
         }
+
+        public ProductView GetProductDetails(string id)
+        {
+            var prod = _context.Products.FirstOrDefault(product => product.CanonicTitle.Equals(id,StringComparison.CurrentCultureIgnoreCase));
+            var pvm = new ProductView
+            {
+                Product = prod,
+                Avatar = prod.ProductPhotos.FirstOrDefault(p => p.PhotoType == PhotoType.Avatar),
+                Prices = prod.Prices.Where(price => price.Value > 0).Select(price => new PriceViewModel { Id = price.Id, Currency = price.Currency, OriginalPrice = price.Value, Title = price.Title, PriceFrom = price.QuanttityFrom, PriceType = price.PriceType }).ToList()
+            };
+            return pvm;
+        }
     }
 }

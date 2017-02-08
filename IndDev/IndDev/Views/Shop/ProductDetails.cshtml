@@ -33,18 +33,18 @@
                 {
                     <h2>Товар в корзине отсутствует</h2>
                 }
-                <a href="@Url.Action("ShowProducts", "Shop", new {catId = Model.Product.Categoy.Id})"> &lArr; Обратно в категорию</a>
+                <a href="@Url.Action("ShowProducts", "Shop", new {canonical = Model.Product.Categoy.CanonicalTitle})"> &lArr; Обратно в категорию</a>
             </div>
             <h1>@Model.Product.Title</h1>
             <div class="productHead">
                 <div class="productPhoto">
                     @if (Model.Avatar != null)
                 {
-                <img src="@Model.Avatar.Path" alt="" />
+                    <img src="@($"http://www.id-racks.ru{Model.Avatar.Path}")" alt="" />
                 }
                 else
                 {
-                <img src="~/Content/images/noimage.png" alt="" />
+                    <img src="~/Content/images/noimage.png" alt="" />
                 }
                 </div>
                 <div class="priceSection">

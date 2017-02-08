@@ -18,7 +18,7 @@ namespace IndDev.Controllers
             _xml = xml;
         }
 
-        [Route("Site.xml")]
+        [Route("sitemap.xml")]
         public ActionResult Sitemap()
         {
             return this.Content(_xml.CreateSitemapDocument().ToString(), "text/xml", Encoding.UTF8);

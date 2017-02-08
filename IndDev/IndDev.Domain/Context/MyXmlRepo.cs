@@ -81,6 +81,22 @@ namespace IndDev.Domain.Context
                     new XElement(ns + "priority", "0.9"));
                 root.Add(node);
             }
+            root = FillByProducts(root, ns);
+            return root;
+        }
+
+        private XElement FillByProducts(XElement root, XNamespace ns)
+        {
+            var goods = _context.Products.Select(product => new {product.CanonicTitle});
+            foreach (var i in goods)
+            {
+                var node = new XElement(ns + "url",
+                    new XElement(ns + "loc", $"{Dmn}Product/{i.CanonicTitle}"),
+                    new XElement(ns + "changefreq", UpdateTime.Monthly),
+                    new XElement(ns + "priority", "1.0"));
+                root.Add(node);
+            }
+
             return root;
         }
 

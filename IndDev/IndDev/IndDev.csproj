@@ -592,7 +592,6 @@
     <Content Include="Scripts\shop\shopModel.js" />
     <Content Include="Scripts\slider.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="sitemap.xml" />
     <Content Include="Upload\CustomerAvatars\10_me.png" />
     <None Include="Views\Admin\placeholders\_companyData.cshtml" />
     <Content Include="Views\Mails\LetterFromTitle.html" />
