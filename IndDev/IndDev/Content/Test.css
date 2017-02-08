@@ -2104,6 +2104,7 @@ footer {
     justify-content: flex-start;
     align-items: center;
     height: 100%;
+    color: white;
 }
 
 .persControls {

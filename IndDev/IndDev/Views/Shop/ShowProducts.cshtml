@@ -23,7 +23,7 @@
                     @if (Model.ProductMenuItem.ParentMenuItem != null)
                     {
                         <i class="fa fa-chevron-right" aria-hidden="true"></i>
-                        <a href="@Url.Action("ShowProducts", "Shop", new {catId = Model.ProductMenuItem.ParentMenuItem.Id})">@Model.ProductMenuItem.Title</a>
+                        <a href="@Url.Action("ShowProducts", "Shop", new {canonical = Model.ProductMenuItem.ParentMenuItem.CanonicalTitle})">@Model.ProductMenuItem.Title</a>
                         <i class="fa fa-chevron-right" aria-hidden="true"></i>
                         <a><strong>@Model.Products.Count()</strong> позиций</a>
                     }
@@ -33,10 +33,10 @@
                 {
                     <div class="col-md-4">
                         <div class="product">
-                            <a href="@Url.Action("ShowProducts", "Shop", new {catId = item.Id})">
+                            <a href="@Url.Action("ShowProducts", "Shop", new {canonical = item.CanonicalTitle})">
                                 @if (item.Image != null)
                                 {
-                                    <img src="@item.Image.Path" alt="@item.Image.AltText" />
+                                    <img src="@($"http://www.id-racks.ru{item.Image.Path}")" alt="@item.Image.AltText" />
                                 }
                                 else
                                 {
@@ -57,7 +57,7 @@
                             <a href="@Url.Action("ProductDetails","Shop", new {id=item.Product.Id})">
                                 @if (item.Avatar != null)
                                 {
-                                    <img src="@item.Avatar.Path" alt="@item.Product.Title"/>
+                                    <img src="@($"http://www.id-racks.ru{item.Avatar.Path}")" alt="@item.Product.Title"/>
                                 }
                                 else
                                 {

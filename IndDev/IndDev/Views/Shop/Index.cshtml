@@ -1,8 +1,9 @@
 ﻿@model IEnumerable<IndDev.Domain.Entity.Menu.ProductMenu>
 @{
-    ViewBag.Title = @"Каталог ООО ""Торговый дом ""АЙДИ-С""";
+    ViewBag.Title = @"Каталог компании ""Торговый дом ""АЙДИ-С""";
     Layout = "~/Views/Shared/_NewDesing.cshtml";
     ViewBag.description = @"В нашем каталоге вы найдете широкий ассортимент товаров для строительства линий связи, телекоммуникационного оборудования, инстркмент, расходные материалы для локальных сетей. Мы предлагаем товары как Российского, так и импортного производства. Вся продукция сертифицированна и проверена на качество нашими постоянными клиентами. Доставляем во все регионы России.";
+    ViewBag.canonical = "catalog";
 }
 
 @section links
@@ -20,7 +21,7 @@
             <div class="mainMenuItem" style="background: url('@item.Image.Path') no-repeat center center">
 
                 <div class="menuItemDescr">
-                    <a href="@Url.Action("CatDetails", "Shop", new {catId = item.Id})">перейти</a>
+                    <a href="@Url.Action("CatDetails", "Shop", new {canonic = item.CanonicalTitle})">перейти</a>
                     <h1>@item.Title</h1>
                     <p>@item.ShotDescription</p>
                 </div>

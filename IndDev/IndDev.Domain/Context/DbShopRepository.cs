@@ -45,9 +45,9 @@ namespace IndDev.Domain.Context
             }
         }
 
-        public ProductMenu GetProductMenu(int id)
+        public ProductMenu GetProductMenu(string canonic)
         {
-            return _context.ProductMenus.Find(id);
+            return _context.ProductMenus.FirstOrDefault(menu => menu.CanonicalTitle.Equals(canonic, StringComparison.CurrentCultureIgnoreCase));
         }
 
         private bool IsSale(List<PriceViewModel> model)
@@ -80,7 +80,18 @@ namespace IndDev.Domain.Context
             var sCat = _context.ProductMenuItems.Where(item => item.ParentMenuItem.Id == id);
             return new ShopProductView {ProductMenuItem = menuItem, Products = products, MenuItems = sCat};
         }
-
+        public ShopProductView GetProduct(string canonical) //menu item ID
+        {
+            var menuItem = _context.ProductMenuItems.FirstOrDefault(item => item.CanonicalTitle.Equals(canonical, StringComparison.CurrentCultureIgnoreCase));
+            var products = menuItem.Products.Select(product => new ProductView
+            {
+                Product = product,
+                Avatar = product.ProductPhotos.FirstOrDefault(p => p.PhotoType == PhotoType.Avatar),
+                Prices = product.Prices.Where(price => price.Value > 0).Select(price => new PriceViewModel { Id = price.Id, Currency = price.Currency, OriginalPrice = price.Value, Title = price.Title, PriceFrom = price.QuanttityFrom, PriceType = price.PriceType }).ToList()
+            }).ToList();
+            var sCat = _context.ProductMenuItems.Where(item => item.ParentMenuItem.Id == menuItem.Id);
+            return new ShopProductView { ProductMenuItem = menuItem, Products = products, MenuItems = sCat };
+        }
         public async Task<ShopProductView> SearchProductsAsynk(string request)
         {
             var result = await SearchResultAsync(request);
@@ -238,6 +249,12 @@ namespace IndDev.Domain.Context
         {
             var result = await _context.ProductMenuItems.Where(item => item.ProductMenu.Id == id&& item.ShowInCatalog && item.ParentMenuItem==null).Include(item => item.Products).OrderBy(item => item.Priority).ToListAsync();
             return result;
+        }
+
+        public ProductMenu GetProductMenu(int id)
+        {
+            return _context.ProductMenus.Find(id);
+
         }
     }
 }

@@ -10,6 +10,7 @@ using IndDev.Domain.Entity.Cart;
 using IndDev.Domain.Entity.Menu;
 using IndDev.Domain.Entity.Products;
 using IndDev.Domain.ViewModels;
+using IndDev.Filters;
 using IndDev.Models;
 
 namespace IndDev.Controllers
@@ -24,6 +25,8 @@ namespace IndDev.Controllers
             _repository = repository;
         }
         // GET: Shop
+        [Visitors]
+        [Route("Catalog")] // canonical
         public ActionResult Index()
         {
             var catList = _repository.GetProductMenus;
@@ -53,26 +56,57 @@ namespace IndDev.Controllers
             return PartialView(sm);
         }
 
-        public ActionResult CatDetails(int catId)
+        [Visitors]
+        public ActionResult CatDetails(int catId)//int catId canonical
         {
+            ///<summary> Заглушка для старых ссылок по яндексу. Надеюсь скоро он будет не нужен.</summary>
             var model = _repository.GetProductMenu(catId);
-            ViewBag.Title = model.Title+@" Торговый дом ""АЙДИ-С""";
+            ViewBag.Title = model.Title + @" Торговый дом ""АЙДИ-С""";
             ViewBag.Products = model.Id;
-            return View(model);
+            ViewBag.canonical = $"catalog/{model.CanonicalTitle}";
+
+            return RedirectToAction("CatDetails", new { canonic=model.CanonicalTitle});
         }
 
+        [Visitors]
+        [Route("catalog/{canonic}")]
+        public ActionResult CatDetails(string canonic)//int catId canonical
+        {
+            var model = _repository.GetProductMenu(canonic);
+            ViewBag.Title = model.Title+@" Торговый дом ""АЙДИ-С""";
+            ViewBag.Products = model.Id;
+            ViewBag.canonical = $"catalog/{canonic}";
+
+            return View(model);
+        }
+        [Visitors]
         public ActionResult ShowProducts(int catId, Cart cart)
         {
             var model = _repository.GetProduct(catId);
             model.Cart = cart;
-            ViewBag.Title = model.ProductMenuItem.Title+ @"Торговый дом ""АЙДИ-С"" в г. Ставрополе.";
+            ViewBag.Title = model.ProductMenuItem.Title+ @" Торговый дом ""АЙДИ-С"" в г. Ставрополе.";
+            return RedirectToAction("ShowProducts", new { canonical=model.ProductMenuItem.CanonicalTitle});
+        }
+
+        [Visitors]
+        [Route("Category/{canonical}")]
+        public ActionResult ShowProducts(string canonical, Cart cart)
+        {
+            var model = _repository.GetProduct(canonical);
+            model.Cart = cart;
+            ViewBag.Title = model.ProductMenuItem.Title + @" Торговый дом ""АЙДИ-С"" в г. Ставрополе.";
+            ViewBag.canonical = $"Category/{canonical}";
             return View(model);
         }
-        public ActionResult ShowOffers(Cart cart)
+
+        [Route("Baraholochka")]
+        public ActionResult ShowOffers(Cart cart) //canonic
         {
             var model = _repository.GetTopRetails;
             ViewBag.Cart = cart;
-            ViewBag.Title = @"Самые сильные предложения от " + @"Торговый дом ""АЙДИ-С"" в г. Ставрополе.";
+            ViewBag.Title = @"Наша ""Барахолочка""";
+            ViewBag.canonical = "Baraholochka";
+
             return View(model);
         }
         public ActionResult ProductDetails(Cart cart, int id)

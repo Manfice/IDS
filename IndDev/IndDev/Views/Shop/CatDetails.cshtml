@@ -27,10 +27,10 @@
                 {
                     <div class="col-md-4">
                         <div class="product">
-                            <a href="@Url.Action("ShowProducts", "Shop", new {catId = item.Id})">
+                            <a href="@Url.Action("ShowProducts", "Shop", new {canonical = item.CanonicalTitle})">
                                 @if (item.Image != null)
                                 {
-                                    <img src="@item.Image.Path" alt="@item.Image.AltText"/>
+                                    <img src="@($"http://www.id-racks.ru{item.Image.Path}")" alt="@item.Image.AltText"/>
                                 }
                                 else
                                 {

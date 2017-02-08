@@ -8,6 +8,10 @@
     <meta name="google-site-verification" content="N8TWV46gSqHhsVC3kBEOqatKqj7nLg4OhQ4dFMQocW0" />
     <meta name="description" content="@ViewBag.description"/>
     <title>@ViewBag.Title</title>
+    @if (!string.IsNullOrEmpty(ViewBag.canonical))
+    {
+        <link rel="canonical" href=@($"http://www.id-racks.ru/{ViewBag.canonical}") />
+    }
     <link rel="icon" href="~/favicon.ico" type="image/x-icon">
     <link href="~/Content/Test.css" rel="stylesheet" media="only screen and (min-width:771px)"/>
     <link href="~/Content/media.css" rel="stylesheet" media="only screen and (min-width:771px)"/>

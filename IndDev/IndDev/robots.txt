@@ -1,9 +1,9 @@
 ﻿User-agent: *
-Allow:/shop/
-Allow:/home/
-Allow:/contacts/
-Disallow: /admin/
-Disallow: /Security/
-Disallow: /Cart/
-Disallow: /Home/Test/
+Allow:/shop
+Allow:/home
+Allow:/contacts
+Disallow: /admin
+Disallow: /Security
+Disallow: /Cart
+Disallow: /Home/Test
 Host: www.id-racks.ru

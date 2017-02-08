@@ -109,6 +109,7 @@
     <Compile Include="Abstract\INewsRepository.cs" />
     <Compile Include="Abstract\ISearchRepository.cs" />
     <Compile Include="Abstract\IShopRepository.cs" />
+    <Compile Include="Abstract\IXml.cs" />
     <Compile Include="Abstract\Logic.cs" />
     <Compile Include="Abstract\Roles.cs" />
     <Compile Include="Abstract\ISecureRepository.cs" />
@@ -124,6 +125,7 @@
     <Compile Include="Context\dbSecureRepository.cs" />
     <Compile Include="Context\DbShopRepository.cs" />
     <Compile Include="Context\MailRepository.cs" />
+    <Compile Include="Context\MyXmlRepo.cs" />
     <Compile Include="Context\Valutes.cs" />
     <Compile Include="Entity\Auth\User.cs" />
     <Compile Include="Entity\Auth\Usr_Roles.cs" />

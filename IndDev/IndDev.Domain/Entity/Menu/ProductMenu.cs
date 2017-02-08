@@ -13,6 +13,7 @@ namespace IndDev.Domain.Entity.Menu
         public int Priority { get; set; }
         public string ShotDescription { get; set; }
         public string TitleText { get; set; }
+        public string CanonicalTitle { get; set; }
         public bool ShowInCatalog { get; set; }
         public virtual ProdMenuImage Image { get; set; }    
         public virtual ICollection<ProductMenuItem> MenuItems { get; set; }
@@ -29,6 +30,7 @@ namespace IndDev.Domain.Entity.Menu
         public string ShotDescription { get; set; }
         public string TitleText { get; set; }
         public bool ShowInCatalog { get; set; }
+        public string CanonicalTitle { get; set; }
         public virtual ProdMenuImage Image { get; set; }
         public virtual ProductMenu ProductMenu { get; set; }
         public virtual ICollection<Product> Products { get; set; }

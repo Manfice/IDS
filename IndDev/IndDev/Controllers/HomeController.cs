@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Security.Cryptography;
 using System.Web.Mvc;
+using System.Web.UI;
 using IndDev.Domain.Abstract;
 using IndDev.Domain.Context;
 using IndDev.Domain.Entity.Cart;
@@ -19,7 +20,7 @@ namespace IndDev.Controllers
             _repository = repository;
             _home = home;
         }
-        
+        [OutputCache(Duration = int.MaxValue, Location = OutputCacheLocation.Any)]
         public ActionResult Index()
         {
             ViewBag.Title = "Industrial Development";
@@ -30,11 +31,16 @@ namespace IndDev.Controllers
         {
             return View();
         }
+
+        [OutputCache(Duration = int.MaxValue, Location = OutputCacheLocation.Any)]
+        [Route("Company")]
         public ActionResult About()
         {
             return View();
         }
         
+        [OutputCache(Duration = int.MaxValue, Location = OutputCacheLocation.Any)]
+        [Route("Contacts")]
         public ActionResult Contact()
         {
             return View();

@@ -1,5 +1,6 @@
 ﻿using System.Web;
 using System.Web.Mvc;
+using IndDev.Filters;
 
 namespace IndDev
 {
@@ -9,6 +10,7 @@ namespace IndDev
         {
             filters.Add(new HandleErrorAttribute());
             filters.Add(new AuthorizeAttribute());
+            //filters.Add(new VisitorsAttribute());
             
         }
     }

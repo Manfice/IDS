@@ -12,10 +12,12 @@ namespace IndDev.Domain.Abstract
         IEnumerable<Product> GetProducts { get; }
         //IEnumerable<Menu> GetTopMenus();
         IEnumerable<Menu> GetSubMenu(int id);//Curent menu ID
+        ProductMenu GetProductMenu(string canonic);
         ProductMenu GetProductMenu(int id);
         void SaveSearch(SearchRequests model);
         ProductView GetProductDetails(int id);
         ShopProductView GetProduct(int id);
+        ShopProductView GetProduct(string canonical);
         Task<ShopProductView> SearchProductsAsynk(string request);
         IEnumerable<ProductView> GetTopRetails { get; }
         Task<IEnumerable<ProductMenu>> GetTopMenus();

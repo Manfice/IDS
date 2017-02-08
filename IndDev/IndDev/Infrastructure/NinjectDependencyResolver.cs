@@ -53,6 +53,7 @@ namespace IndDev.Infrastructure
             _kernel.Bind<IMailRepository>().To<MailRepository>().InSingletonScope();
             _kernel.Bind<ISearchRepository>().To<DbSearch>().InSingletonScope();
             _kernel.Bind<ICrm>().To<CrmRepository>().InRequestScope();
+            _kernel.Bind<IXml>().To<MyXmlRepo>().InRequestScope();
         }
     }
 }
