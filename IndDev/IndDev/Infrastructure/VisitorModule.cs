@@ -9,50 +9,24 @@ namespace IndDev.Infrastructure
 {
     public class VisitorModule : IHttpModule
     {
-        private static int sharedCounter = 0;
-        private int reqCounter;
-
-        private static object lockObj = new object();
-        private Exception reqException = null;
-
-
         public void Dispose()
         {
         }
 
         public void Init(HttpApplication context)
         {
-            //context.BeginRequest += (sender, args) => { reqCounter = ++sharedCounter; };
-            //context.Error += (sender, args) => { reqException = HttpContext.Current.Error; };
-            //context.LogRequest += (sender, args) => { WriteMessage(HttpContext.Current);};
-        }
-
-        private void WriteMessage(HttpContext ctx)
-        {
-            var sb = new StringWriter();
-            sb.WriteLine("-------------------------------------");
-            sb.WriteLine($"Request: {reqCounter} for: {ctx.Request.Url}");
-            if (ctx.Handler!=null)
+            context.BeginRequest += (sender, args) =>
             {
-                sb.WriteLine($"Handler: {ctx.Handler.GetType()}");
-            }
-            sb.WriteLine($"Status code: {ctx.Response.StatusCode} Message: {ctx.Response.StatusDescription}");
-            sb.WriteLine($"Elepsed time: {DateTime.Now.Subtract(ctx.Timestamp).Milliseconds} ms");
-            if (reqException!=null)
-            {
-                sb.WriteLine($"Error: {reqException.GetType()}");
-            }
-            IncomingRequests.RegisterNewEntry(sb.ToString());
-
-        }
-
-        private void GetVisitor(object src, EventArgs e)
-        {
-            var ctx = HttpContext.Current;
-            if (ctx.CurrentNotification == RequestNotification.BeginRequest)
-            {
-                IncomingRequests.RegisterNewEntry(ctx.Request.RawUrl);
-            }
+                if (HttpContext.Current.Request.Url.Host.StartsWith("www") || HttpContext.Current.Request.Url.IsLoopback)
+                    return;
+                var builder = new UriBuilder(HttpContext.Current.Request.Url)
+                {
+                    Host = $"www.{HttpContext.Current.Request.Url.Host}"
+                };
+                HttpContext.Current.Response.StatusCode = 301;
+                HttpContext.Current.Response.AddHeader("Location", builder.ToString());
+                HttpContext.Current.Response.End();
+            };
         }
     }
 }

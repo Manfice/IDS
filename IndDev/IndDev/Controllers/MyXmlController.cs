@@ -23,5 +23,10 @@ namespace IndDev.Controllers
         {
             return this.Content(_xml.CreateSitemapDocument().ToString(), "text/xml", Encoding.UTF8);
         }
+        [Route("shop/shopyml.xml")]
+        public ActionResult ShopYaml()
+        {
+            return this.Content(_xml.CreateShopYml().ToString(), "text/xml", Encoding.UTF8);
+        }
     }
 }

@@ -16,25 +16,24 @@ namespace localConsole
         static void Main(string[] args)
         {
             Console.WriteLine("Start ---------->");
-            //using (var db = new DataContext())
-            //{
-            //    var p = db.Products.ToList();
-            //    var ind = 0;
-            //    foreach (var product in p)
-            //    {
-            //        ind++;
-            //        var pr = product.GetOptPrice();
-            //        Console.WriteLine($"{product.Id}  >> {product.CanonicTitle} pType={pr.PriceType} val={pr.GetPriceRubl()}");
-            //        if ((ind%100)==0)
-            //        {
-            //            Console.ReadLine();
-            //        }
-
-            //    }
-            //    Console.WriteLine(p.Count);
-            //}
-
-            CheckSiteXml();
+            var ind = 0;
+            using (var db = new DataContext())
+            {
+                var p = db.Products.ToList();
+                foreach (var prod in p.Where(product => product.CanonicTitle.Contains("0,-22")))
+                {
+                    ind++;
+                    var dbP = db.Products.Find(prod.Id);
+                    dbP.CanonicTitle = prod.CanonicTitle.Replace("0,-22", "0,22");
+                    Console.WriteLine($"{ind}:{prod.CanonicTitle}");
+                    if ((ind%50)==0)
+                    {
+                        //db.SaveChanges();
+                        Console.ReadLine();
+                    }
+                }
+                //db.SaveChanges();
+            }
             Console.WriteLine("END --------->");
             Console.ReadLine();
         }
