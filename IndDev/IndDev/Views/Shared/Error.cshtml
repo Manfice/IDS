@@ -1,11 +1,11 @@
 ﻿@model System.Web.Mvc.HandleErrorInfo
 
 @{
+    Layout = "~/Views/Shared/_NewDesing.cshtml";
     ViewBag.Title = "Ошибка";
 }
 
 <h1 class="text-danger">Что-то не так.</h1>
-<h2 class="text-danger">@Model.Exception</h2>
 
 <a href="@ViewBag.ReturnUrl" class="btn btn-info">Назад</a>
 

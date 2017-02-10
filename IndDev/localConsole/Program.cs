@@ -19,21 +19,28 @@ namespace localConsole
             var ind = 0;
             using (var db = new DataContext())
             {
-                var p = db.Products.ToList();
-                foreach (var prod in p.Where(product => product.CanonicTitle.Contains("0,-22")))
+                var p = db.Visitors.ToList();
+                //foreach (var rout in p.UserRouts)
+                //{
+                //    Console.WriteLine($"{rout.ActionVisited} - {rout.ControllerVisited} - {rout.UrlString} - {rout.UrlQuery}");
+                //}
+                var ua = p.Select(visitor => visitor.UserAgent).Distinct();
+                //foreach (var s in ua)
+                //{
+                //    Console.WriteLine(s);
+                //}
+                foreach (var visitor in p)
                 {
                     ind++;
-                    var dbP = db.Products.Find(prod.Id);
-                    dbP.CanonicTitle = prod.CanonicTitle.Replace("0,-22", "0,22");
-                    Console.WriteLine($"{ind}:{prod.CanonicTitle}");
-                    if ((ind%50)==0)
-                    {
-                        //db.SaveChanges();
-                        Console.ReadLine();
-                    }
+                    Console.WriteLine("---------------------------------");
+                    Console.WriteLine($"{ind}:{visitor.Identifer}");
+                    Console.WriteLine($"{visitor.FirstDate} : {visitor.UserAgent}");
+                    Console.WriteLine($"{visitor.StartUrl} : {visitor.UserRouts.Count}");
                 }
-                //db.SaveChanges();
+
+
             }
+            //CheckSiteXml();
             Console.WriteLine("END --------->");
             Console.ReadLine();
         }

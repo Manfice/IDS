@@ -88,14 +88,13 @@ namespace IndDev.Domain.Context
 
         private XElement FillByProducts(XElement root, XNamespace ns)
         {
-            var goods = _context.Products.Where(product => product.GetOptPrice().GetPriceRubl()>0).Select(product => new {product.CanonicTitle});
-            foreach (var i in goods)
+            var goods = _context.Products.ToList();
+            foreach (var node in from i in goods where i.GetOptPrice().GetPriceRubl() > 0 select new XElement(ns + "url",
+                new XElement(ns + "loc", $"{Dmn}Product/{i.CanonicTitle}"),
+                new XElement(ns + "lastmod", DateTime.Now.ToString("yyyy-mm-dd HH:MM")),
+                new XElement(ns + "changefreq", UpdateTime.Monthly),
+                new XElement(ns + "priority", "1.0")))
             {
-                var node = new XElement(ns + "url",
-                    new XElement(ns + "loc", $"{Dmn}Product/{i.CanonicTitle}"),
-                    new XElement(ns + "lastmod", DateTime.Now.ToString("yyyy-mm-dd HH:MM")),
-                    new XElement(ns + "changefreq", UpdateTime.Monthly),
-                    new XElement(ns + "priority", "1.0"));
                 root.Add(node);
             }
 

@@ -26,8 +26,8 @@ namespace IndDev.Controllers
             _repository = repository;
         }
         // GET: Shop
-        [Visitors]
         [Route("Catalog")] // canonical
+        [Tracking]
         public ActionResult Index()
         {
             var catList = _repository.GetProductMenus;
@@ -57,7 +57,7 @@ namespace IndDev.Controllers
             return PartialView(sm);
         }
 
-        [Visitors]
+        [Tracking]
         public ActionResult CatDetails(int catId)//int catId canonical
         {
             ///<summary> Заглушка для старых ссылок по яндексу. Надеюсь скоро он будет не нужен.</summary>
@@ -69,8 +69,8 @@ namespace IndDev.Controllers
             return RedirectToAction("CatDetails", new { canonic=model.CanonicalTitle});
         }
 
-        [Visitors]
         [Route("catalog/{canonic}")]
+        [Tracking]
         public ActionResult CatDetails(string canonic)//int catId canonical
         {
             var model = _repository.GetProductMenu(canonic);
@@ -80,7 +80,7 @@ namespace IndDev.Controllers
 
             return View(model);
         }
-        [Visitors]
+        [Tracking]
         public ActionResult ShowProducts(int catId, Cart cart)
         {
             var model = _repository.GetProduct(catId);
@@ -89,8 +89,8 @@ namespace IndDev.Controllers
             return RedirectToAction("ShowProducts", new { canonical=model.ProductMenuItem.CanonicalTitle});
         }
 
-        [Visitors]
         [Route("Category/{canonical}")]
+        [Tracking]
         public ActionResult ShowProducts(string canonical, Cart cart)
         {
             var model = _repository.GetProduct(canonical);
@@ -101,6 +101,7 @@ namespace IndDev.Controllers
         }
 
         [Route("Baraholochka")]
+        [Tracking]
         public ActionResult ShowOffers(Cart cart) //canonic
         {
             var model = _repository.GetTopRetails;
@@ -110,15 +111,15 @@ namespace IndDev.Controllers
 
             return View(model);
         }
-        [Visitors]
+        [Tracking]
         public ActionResult ProductDetails(Cart cart, int id)
         {
             var model = _repository.GetProductDetails(id);
             model.Cart = cart;
             return RedirectToAction("ProductDetails", new {canonical = model.Product.CanonicTitle});
         }
-        [Visitors]
         [Route("Product/{canonical}")]
+        [Tracking]
         public ActionResult ProductDetails(Cart cart, string canonical)
         {
             var model = _repository.GetProductDetails(canonical);
@@ -143,6 +144,7 @@ namespace IndDev.Controllers
             return View(model);
         }
 
+        [Tracking]
         public ActionResult IndexConv()
         {
             ViewBag.Title = "Каталог товаров компании Торговый дом \"АЙДИ-С\"";

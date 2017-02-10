@@ -54,6 +54,7 @@ namespace IndDev.Infrastructure
             _kernel.Bind<ISearchRepository>().To<DbSearch>().InSingletonScope();
             _kernel.Bind<ICrm>().To<CrmRepository>().InRequestScope();
             _kernel.Bind<IXml>().To<MyXmlRepo>().InRequestScope();
+            _kernel.Bind<ITrack>().To<Tracking>().InRequestScope();
         }
     }
 }

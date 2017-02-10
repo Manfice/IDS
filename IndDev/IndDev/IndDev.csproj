@@ -227,6 +227,7 @@
     <Compile Include="Controllers\CrmController.cs" />
     <Compile Include="Controllers\CustApiController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Controllers\ExceptionPageController.cs" />
     <Compile Include="Controllers\FeedbackController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MailController.cs" />
@@ -236,6 +237,8 @@
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\SecurityController.cs" />
     <Compile Include="Controllers\ShopController.cs" />
+    <Compile Include="Filters\ErrorAttribute.cs" />
+    <Compile Include="Filters\TrackingAttribute.cs" />
     <Compile Include="Filters\VisitorsAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -244,6 +247,7 @@
     <Compile Include="HtmlHelpers\PagingHelper.cs" />
     <Compile Include="Infrastructure\Binders\CartModelBinder.cs" />
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
+    <Compile Include="Infrastructure\TrackingUsers.cs" />
     <Compile Include="Infrastructure\VisitorModule.cs" />
     <Compile Include="Models\CatViewModel.cs" />
     <Compile Include="Models\FeedbackModel.cs" />
@@ -263,9 +267,11 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Customer\customer.css" />
+    <Content Include="Content\exceptions.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\fonts.css" />
+    <Content Include="Content\images\404.jpg" />
     <Content Include="Content\images\ahtung.jpg" />
     <Content Include="Content\images\cart_logo.png" />
     <Content Include="Content\images\CP42.png" />
@@ -739,6 +745,7 @@
     <Content Include="Views\Shop\placeholders\_leftMenus.cshtml" />
     <Content Include="Views\Shop\placeholders\_middleSide.cshtml" />
     <Content Include="Views\Shop\placeholders\_rightSide.cshtml" />
+    <Content Include="Views\ExceptionPage\Page404.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

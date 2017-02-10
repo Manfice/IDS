@@ -12,6 +12,7 @@ using IndDev.Domain.Entity.Cart;
 using IndDev.Domain.Entity.Customers;
 using IndDev.Domain.Entity.Orders;
 using IndDev.Domain.ViewModels;
+using IndDev.Filters;
 
 namespace IndDev.Controllers
 {
@@ -33,6 +34,7 @@ namespace IndDev.Controllers
             _user = int.Parse(context.HttpContext.User.Identity.Name);
         }
         // GET: Customer
+        [Visitors]
         public ActionResult Index()
         {
             var customer = _repository.GetCustomerByUserId(_user);
@@ -51,12 +53,14 @@ namespace IndDev.Controllers
             return PartialView(nav);
         }
 
+        [Visitors]
         public ActionResult Orders()
         {
             var model = _repository.GetOrders(_user);
             return View(model);
         }
 
+        [Visitors]
         public ActionResult OrderDetails(int id)
         {
             var cust = _repository.GetCustomerByUserId(_user).Id;
@@ -79,6 +83,7 @@ namespace IndDev.Controllers
             return PartialView(cust);
         }
 
+        [Visitors]
         public ActionResult CustomerDetails()
         {
             var user = _repository.GetUserById(_user);
@@ -128,6 +133,7 @@ namespace IndDev.Controllers
             return RedirectToAction("MyOrder",new {id=order.Id});
         }
 
+        [Visitors]
         public ActionResult MyOrder(int id)
         {
             var cust = _repository.GetCustomerByUserId(_user).Id;

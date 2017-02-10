@@ -109,6 +109,7 @@
     <Compile Include="Abstract\INewsRepository.cs" />
     <Compile Include="Abstract\ISearchRepository.cs" />
     <Compile Include="Abstract\IShopRepository.cs" />
+    <Compile Include="Abstract\ITrack.cs" />
     <Compile Include="Abstract\IXml.cs" />
     <Compile Include="Abstract\Logic.cs" />
     <Compile Include="Abstract\Roles.cs" />
@@ -126,6 +127,7 @@
     <Compile Include="Context\DbShopRepository.cs" />
     <Compile Include="Context\MailRepository.cs" />
     <Compile Include="Context\MyXmlRepo.cs" />
+    <Compile Include="Context\Tracking.cs" />
     <Compile Include="Context\Valutes.cs" />
     <Compile Include="Entity\Auth\User.cs" />
     <Compile Include="Entity\Auth\Usr_Roles.cs" />
@@ -144,6 +146,7 @@
     <Compile Include="Entity\Products\SearchRequests.cs" />
     <Compile Include="Entity\Products\Vendor.cs" />
     <Compile Include="Entity\Stock\Stock.cs" />
+    <Compile Include="Entity\TrackingUser\Visitor.cs" />
     <Compile Include="Logic\ExternalLogic.cs" />
     <Compile Include="Logic\sitemap.cs" />
     <Compile Include="Logic\YmlData.cs" />

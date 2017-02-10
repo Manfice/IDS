@@ -8,6 +8,7 @@ using IndDev.Domain.Entity.Menu;
 using IndDev.Domain.Entity.Orders;
 using IndDev.Domain.Entity.Products;
 using IndDev.Domain.Entity.Stock;
+using IndDev.Domain.Entity.TrackingUser;
 
 namespace IndDev.Domain.Context
 {
@@ -56,6 +57,9 @@ namespace IndDev.Domain.Context
         public DbSet<SearchRequests> SearchRequestses { get; set; }
         //CRM
         public DbSet<DetailsEvent> DetailsEvents { get; set; }
+        //Tracking
+        public DbSet<Visitor> Visitors { get; set; }
+        public DbSet<UserRout> UserRouts { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

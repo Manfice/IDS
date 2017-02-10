@@ -5,6 +5,7 @@ using System.Web.UI;
 using IndDev.Domain.Abstract;
 using IndDev.Domain.Context;
 using IndDev.Domain.Entity.Cart;
+using IndDev.Filters;
 using IndDev.Models;
 
 namespace IndDev.Controllers
@@ -21,19 +22,21 @@ namespace IndDev.Controllers
             _home = home;
         }
         [OutputCache(Duration = int.MaxValue, Location = OutputCacheLocation.Any)]
+        [Tracking]
         public ActionResult Index()
         {
             ViewBag.Title = "Industrial Development";
             return View();
         }
 
-        public ActionResult Test()
-        {
-            return View();
-        }
+        //public ActionResult Test()
+        //{
+        //    return View();
+        //}
 
         [OutputCache(Duration = int.MaxValue, Location = OutputCacheLocation.Any)]
         [Route("Company")]
+        [Tracking]
         public ActionResult About()
         {
             return View();
@@ -41,6 +44,7 @@ namespace IndDev.Controllers
         
         [OutputCache(Duration = int.MaxValue, Location = OutputCacheLocation.Any)]
         [Route("Contacts")]
+        [Tracking]
         public ActionResult Contact()
         {
             return View();
@@ -86,6 +90,7 @@ namespace IndDev.Controllers
         {
             return PartialView(new MailMessageModel());
         }
+        [Tracking]
         public ActionResult MessageScreen(string message, string paragraf)
         {
             ViewBag.Paragraf = paragraf;

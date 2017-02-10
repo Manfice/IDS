@@ -1,0 +1,9 @@
+﻿.errorBlock {
+    flex: 1 0 auto;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-end;
+    justify-content: flex-start;
+    background: url("/Content/images/404.jpg") no-repeat center center;
+    color: whitesmoke;
+}
