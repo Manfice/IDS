@@ -24,19 +24,20 @@ namespace localConsole
                 //{
                 //    Console.WriteLine($"{rout.ActionVisited} - {rout.ControllerVisited} - {rout.UrlString} - {rout.UrlQuery}");
                 //}
-                var ua = p.Select(visitor => visitor.UserAgent).Distinct();
-                //foreach (var s in ua)
-                //{
-                //    Console.WriteLine(s);
-                //}
-                foreach (var visitor in p)
+                var ua = p.Select(visitor => visitor.UserAgent).Distinct().OrderBy(s => s);
+                foreach (var s in ua)
                 {
                     ind++;
-                    Console.WriteLine("---------------------------------");
-                    Console.WriteLine($"{ind}:{visitor.Identifer}");
-                    Console.WriteLine($"{visitor.FirstDate} : {visitor.UserAgent}");
-                    Console.WriteLine($"{visitor.StartUrl} : {visitor.UserRouts.Count}");
+                    Console.WriteLine($"{ind}:{s}");
                 }
+                //foreach (var visitor in p)
+                //{
+                //    ind++;
+                //    Console.WriteLine("---------------------------------");
+                //    Console.WriteLine($"{ind}:{visitor.Identifer}");
+                //    Console.WriteLine($"{visitor.FirstDate} : {visitor.UserAgent}");
+                //    Console.WriteLine($"{visitor.StartUrl} : {visitor.UserRouts.Count}");
+                //}
 
 
             }

@@ -37,6 +37,7 @@ namespace IndDev.Domain.Context
 
             foreach (var node in sn.Select(item => new XElement(ns+"url",
                 new XElement(ns + "loc", item.Url),
+                new XElement(ns + "lastmod", DateTime.Now.ToString("yyyy-MM-dd HH:MM")),
                 new XElement(ns + "changefreq", item.Update.ToString()),
                 new XElement(ns + "priority", item.Priority))))
             {
@@ -59,6 +60,7 @@ namespace IndDev.Domain.Context
             {
                 var node = new XElement(ns+"url",
                     new XElement(ns+"loc", $"{Dmn}catalog/{i.CanonicalTitle}"),
+                    new XElement(ns + "lastmod", DateTime.Now.ToString("yyyy-MM-dd HH:MM")),
                     new XElement(ns+ "changefreq", UpdateTime.Monthly),
                     new XElement(ns+ "priority", "0.9"));
                 root.Add(node);
@@ -78,6 +80,7 @@ namespace IndDev.Domain.Context
             {
                 var node = new XElement(ns + "url",
                     new XElement(ns + "loc", $"{Dmn}Category/{i.CanonicalTitle}"),
+                    new XElement(ns + "lastmod", DateTime.Now.ToString("yyyy-MM-dd HH:MM")),
                     new XElement(ns + "changefreq", UpdateTime.Monthly),
                     new XElement(ns + "priority", "0.9"));
                 root.Add(node);
@@ -91,7 +94,7 @@ namespace IndDev.Domain.Context
             var goods = _context.Products.ToList();
             foreach (var node in from i in goods where i.GetOptPrice().GetPriceRubl() > 0 select new XElement(ns + "url",
                 new XElement(ns + "loc", $"{Dmn}Product/{i.CanonicTitle}"),
-                new XElement(ns + "lastmod", DateTime.Now.ToString("yyyy-mm-dd HH:MM")),
+                new XElement(ns + "lastmod", DateTime.Now.ToString("yyyy-MM-dd HH:MM")),
                 new XElement(ns + "changefreq", UpdateTime.Monthly),
                 new XElement(ns + "priority", "1.0")))
             {
@@ -106,7 +109,7 @@ namespace IndDev.Domain.Context
         public XDocument CreateShopYml()
         {
             var xDoc = new XDocument(new XDocumentType("yml_catalog",null, "shops.dtd", null));
-            var root = new XElement("yml_catalog", new XAttribute("date",DateTime.Now.ToString("yyyy-mm-dd HH:MM")));
+            var root = new XElement("yml_catalog", new XAttribute("date",DateTime.Now.ToString("yyyy-MM-dd HH:MM")));
             var shop = FillShopBlock();
 
             shop = FillShopByCat(shop);
@@ -161,7 +164,11 @@ namespace IndDev.Domain.Context
                 offer.Add(new XElement("categoryId", product.Categoy.Id));
                 if (product.ProductPhotos.Any(photo => photo.PhotoType==PhotoType.Avatar))
                 {
-                    offer.Add(new XElement("picture", $"http://www.id-racks.ru{product.ProductPhotos.FirstOrDefault(photo => photo.PhotoType == PhotoType.Avatar)?.Path}"));
+                    var productPhoto = product.ProductPhotos.FirstOrDefault(photo => photo.PhotoType == PhotoType.Avatar);
+                    if (productPhoto != null && !productPhoto.Path.Contains(" "))
+                    {
+                        offer.Add(new XElement("picture", $"http://www.id-racks.ru{product.ProductPhotos.FirstOrDefault(photo => photo.PhotoType == PhotoType.Avatar)?.Path}"));
+                    }
                 }
                 offer.Add(new XElement("delivery", "true"));
                 offer.Add(new XElement("typePrefix", product.Categoy.Title));
