@@ -6,4 +6,6 @@ Disallow: /admin
 Disallow: /Security
 Disallow: /Cart
 Disallow: /Home/Test
+Disallow: /shop/indexconv
+Disallow: /ExceptionPage/Page404
 Host: www.id-racks.ru

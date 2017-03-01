@@ -45,7 +45,10 @@ namespace IndDev.Domain.Entity.TrackingUser
         public UserRout(HttpContextBase ctx)
         {
             SetTime = DateTime.Now;
-            UrlString = ctx.Request.Headers["Referer"].ToString();
+            if (!string.IsNullOrEmpty(ctx.Request.Headers["Referer"]))
+            {
+                UrlString = ctx.Request.Headers["Referer"].ToString();
+            }
             UrlQuery = ctx.Request.Url?.Query;
         }
     }

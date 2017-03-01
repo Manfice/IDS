@@ -37,7 +37,7 @@ namespace IndDev.Domain.Context
 
             foreach (var node in sn.Select(item => new XElement(ns+"url",
                 new XElement(ns + "loc", item.Url),
-                new XElement(ns + "lastmod", DateTime.Now.ToString("yyyy-MM-dd HH:MM")),
+                new XElement(ns + "lastmod", DateTime.Now.ToString("yyyy-MM-dd")),
                 new XElement(ns + "changefreq", item.Update.ToString()),
                 new XElement(ns + "priority", item.Priority))))
             {
@@ -60,7 +60,7 @@ namespace IndDev.Domain.Context
             {
                 var node = new XElement(ns+"url",
                     new XElement(ns+"loc", $"{Dmn}catalog/{i.CanonicalTitle}"),
-                    new XElement(ns + "lastmod", DateTime.Now.ToString("yyyy-MM-dd HH:MM")),
+                    new XElement(ns + "lastmod", DateTime.Now.ToString("yyyy-MM-dd")),
                     new XElement(ns+ "changefreq", UpdateTime.Monthly),
                     new XElement(ns+ "priority", "0.9"));
                 root.Add(node);
@@ -80,7 +80,7 @@ namespace IndDev.Domain.Context
             {
                 var node = new XElement(ns + "url",
                     new XElement(ns + "loc", $"{Dmn}Category/{i.CanonicalTitle}"),
-                    new XElement(ns + "lastmod", DateTime.Now.ToString("yyyy-MM-dd HH:MM")),
+                    new XElement(ns + "lastmod", DateTime.Now.ToString("yyyy-MM-dd")),
                     new XElement(ns + "changefreq", UpdateTime.Monthly),
                     new XElement(ns + "priority", "0.9"));
                 root.Add(node);
@@ -94,7 +94,7 @@ namespace IndDev.Domain.Context
             var goods = _context.Products.ToList();
             foreach (var node in from i in goods where i.GetOptPrice().GetPriceRubl() > 0 select new XElement(ns + "url",
                 new XElement(ns + "loc", $"{Dmn}Product/{i.CanonicTitle}"),
-                new XElement(ns + "lastmod", DateTime.Now.ToString("yyyy-MM-dd HH:MM")),
+                new XElement(ns + "lastmod", DateTime.Now.ToString("yyyy-MM-dd")),
                 new XElement(ns + "changefreq", UpdateTime.Monthly),
                 new XElement(ns + "priority", "1.0")))
             {
