@@ -1,11 +1,14 @@
 User-agent: *
-Allow:/shop
-Allow:/home
-Allow:/contacts
-Disallow: /admin
-Disallow: /Security
-Disallow: /Cart
-Disallow: /Home/Test
-Disallow: /shop/indexconv
+Allow:/Catalog/
+Allow:/Product/
+Allow:/Company
+Allow:/Contacts
+Allow:/Category/
+Disallow: /admin/
+Disallow: /Security/
+Disallow: /Cart/
+Disallow: /Home/Test/
+Disallow: /shop/indexconv/
 Disallow: /ExceptionPage/Page404
+Disallow: /shop/
 Host: www.id-racks.ru

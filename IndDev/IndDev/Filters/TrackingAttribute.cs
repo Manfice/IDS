@@ -36,7 +36,7 @@ namespace IndDev.Filters
             }
             else
             {
-                coockieReq = new HttpCookie("id_vtc") { ["id_vtc_id"] = id, ["id_vtc_mail"]="", Expires = DateTime.Today.AddDays(120) };
+                coockieReq = new HttpCookie("id_vtc") { ["id_vtc_id"] = id, ["id_vtc_mail"] = "", Expires = DateTime.Today.AddDays(120) };
                 visitor.Identifer = id;
                 ctx.Response.Cookies.Add(coockieReq);
             }
