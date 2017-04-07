@@ -8,7 +8,7 @@ namespace IndDev.Filters
 {
     public class TrackingAttribute : FilterAttribute, IActionFilter
     {
-        Tracking t = new Tracking();
+        //Tracking t = new Tracking();
         public void OnActionExecuted(ActionExecutedContext filterContext)
         {
         }
@@ -40,7 +40,7 @@ namespace IndDev.Filters
                 visitor.Identifer = id;
                 ctx.Response.Cookies.Add(coockieReq);
             }
-            t.CreateNewVisitor(visitor, userRout);
+            //t.CreateNewVisitor(visitor, userRout);
         }
     }
 }

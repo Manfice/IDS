@@ -11,4 +11,5 @@ Disallow: /Home/Test/
 Disallow: /shop/indexconv/
 Disallow: /ExceptionPage/Page404
 Disallow: /shop/
+Disallow: /(X(1))/
 Host: www.id-racks.ru

@@ -535,9 +535,11 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Properties\PublishProfiles\id-racks - FTP %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\id-racks - FTP %283%29.pubxml" />
     <None Include="Properties\PublishProfiles\id-racks - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\id-racks - Web Deploy %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\id-racks - Web Deploy %283%29.pubxml" />
+    <None Include="Properties\PublishProfiles\id-racks - Web Deploy %284%29.pubxml" />
     <None Include="Properties\PublishProfiles\id-racks - Web Deploy.pubxml" />
     <Content Include="robots.txt" />
     <Content Include="Scripts\Admin\adminController.js" />
